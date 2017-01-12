@@ -129,7 +129,7 @@
 <div class="comments">
 	<div class="ds-thread" data-thread-key="Myyear2016-javascript" data-title="" data-url="http://yoursite.com/2016/12/23/Myyear2016-javascript/"></div>
 	<script type="text/javascript">
-	var duoshuoQuery = {short_name:"yumemor"};
+	var duoshuoQuery = {short_name:"smartphp"};
 		(function() {
 			var ds = document.createElement('script');
 			ds.type = 'text/javascript';ds.async = true;
@@ -226,50 +226,6 @@
 			<script src="/js/toc.js"></script>
 		
 
-		
-			<script src="/js/search.js"></script>
-
-			<script type="text/javascript">
-				$(function(){
-					var currentIndex = -1;
-					var search_path = "search.xml";
-					if (!search_path) search_path = "search.xml";
-					var path = "/" + search_path;
-					searchFunc(path, 'search', 'local-search-result');
-
-					$(document).delegate("#local-search-result>.search-result-list li","hover",function(){
-						var liNode = $("#local-search-result>.search-result-list li");
-						liNode.removeClass("hover");
-						currentIndex = $("#local-search-result>.search-result-list li").index($(this));
-						liNode.eq(currentIndex).addClass("hover");
-					})
-
-					$("#search-form").submit(function(){
-						return false;
-					})
-
-					$("#search").keydown(function(event){
-						var keyCode = event.keyCode;
-						var liNode = $("#local-search-result>.search-result-list li");
-						if(keyCode == 38 || keyCode == 40 || keyCode == 13){
-							liNode.removeClass("hover");
-							if(keyCode == 38){
-								if(currentIndex - 1 >= 0) currentIndex --;
-							}
-							if(keyCode == 40){
-								if(currentIndex + 1 < liNode.length) currentIndex ++;
-							}
-							if(keyCode == 13){
-								location.href = liNode.eq(currentIndex).find("a").attr("href");
-							}
-							liNode.eq(currentIndex).addClass("hover");
-							return false;
-						}else{
-							currentIndex = -1;
-						}
-					})
-				})
-			</script>
 		
 
 		<script src="/js/index.js"></script>
