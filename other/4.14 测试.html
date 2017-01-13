@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans" prefix="og: http://ogp.me/ns#" class="han-init">
+<head>
+  <meta charset="utf-8">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+  <link rel="icon" href="/favicon.ico">
+  
+  <title>phpsmarter</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/lib/fancybox/jquery.fancybox-1.3.4.css">
+  <!--在这里倒入jquery 方便处理部分页面的jquery-->
+  <script src="https://cdn.staticfile.org/jquery/1.7/jquery.min.js" type="text/javascript" ></script>
+</head>
+
+<body>
+	<header class="site-header navfixed-false">
+  <div class="container">
+      <h1><a href="/" title="phpsmarter"><span class="octicon octicon-mark-github"></span> phpsmarter</a></h1>
+      <nav class="site-header-nav" role="navigation">
+        
+              
+              <a href="/"  class=" site-header-nav-item hvr-underline-from-center" title="首页">首页</a>
+        
+              
+              <a href="/categories/"  class=" site-header-nav-item hvr-underline-from-center" title="分类">分类</a>
+        
+              
+              <a href="/open-source/"  class=" site-header-nav-item hvr-underline-from-center" title="开源项目">开源项目</a>
+        
+              
+              <a href="/message/"  class=" site-header-nav-item hvr-underline-from-center" title="留言板">留言板</a>
+        
+              
+              <a href="/other/"  class=" selected  site-header-nav-item hvr-underline-from-center" title="其他">其他</a>
+        
+      </nav>
+  </div>
+</header>
+
+	
+<section class="collection-head geopattern" data-pattern-id="undefined" >
+    <div class="container">
+        <div class="collection-title">
+            <h1 class="collection-header">
+                undefined
+            </h1>
+            
+                <div class="collection-info">
+                    <span class="meta-info">
+                        <span class="octicon octicon-calendar"></span>
+                        <time datetime="2017-01-13T08:39:10.000Z" itemprop="datePublished">2017-01-13</time>
+                    </span>
+                    
+                </div>
+            
+        </div>
+    </div>
+</section>
+	<section class="container">
+    <div class="columns">
+        <div class="column three-fourths" >
+            <article class="article-content markdown-body">
+                <h2 id="4-14-1-mocha-和-supertest"><a href="#4-14-1-mocha-和-supertest" class="headerlink" title="4.14.1 mocha 和 supertest"></a>4.14.1 mocha 和 supertest</h2><p><a href="https://www.npmjs.com/package/mocha" target="_blank" rel="external">mocha</a> 和 <a href="https://www.npmjs.com/package/supertest" target="_blank" rel="external">suptertest</a> 是常用的测试组合，通常用来测试 restful 的 api 接口，这里我们也可以用来测试我们的博客应用。在 myblog 下新建 test 文件夹存放测试文件，以注册为例讲解 mocha 和 supertest 的用法。首先安装所需模块：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm i mocha supertest --save</div></pre></td></tr></table></figure>
+<p>修改 package.json，将：</p>
+<p><strong>package.json</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&quot;scripts&quot;: &#123;</div><div class="line">  &quot;test&quot;: &quot;echo \&quot;Error: no test specified\&quot; &amp;&amp; exit 1&quot;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>修改为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&quot;scripts&quot;: &#123;</div><div class="line">  &quot;test&quot;: &quot;mocha --harmony test&quot;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>指定执行 test 目录的测试。修改 index.js，将：</p>
+<p><strong>index.js</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">// 监听端口，启动程序</div><div class="line">app.listen(config.port, function () &#123;</div><div class="line">  console.log(`$&#123;pkg.name&#125; listening on port $&#123;config.port&#125;`);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>修改为:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">if (module.parent) &#123;</div><div class="line">  module.exports = app;</div><div class="line">&#125; else &#123;</div><div class="line">  // 监听端口，启动程序</div><div class="line">  app.listen(config.port, function () &#123;</div><div class="line">    console.log(`$&#123;pkg.name&#125; listening on port $&#123;config.port&#125;`);</div><div class="line">  &#125;);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这样做可以实现：直接启动 index.js 则会监听端口启动程序，如果 index.js 被 require 了，则导出 app，通常用于测试。</p>
+<p>找一张图片用于测试上传头像，放到 test 目录下，如 avatar.png。新建 test/signup.js，添加如下测试代码：</p>
+<p><strong>test/signup.js</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div></pre></td><td class="code"><pre><div class="line">var path = require(&apos;path&apos;);</div><div class="line">var assert = require(&apos;assert&apos;);</div><div class="line">var request = require(&apos;supertest&apos;);</div><div class="line">var app = require(&apos;../index&apos;);</div><div class="line">var User = require(&apos;../lib/mongo&apos;).User;</div><div class="line"></div><div class="line">describe(&apos;signup&apos;, function() &#123;</div><div class="line">  describe(&apos;POST /signup&apos;, function() &#123;</div><div class="line">    var agent = request.agent(app);//persist cookie when redirect</div><div class="line">    beforeEach(function (done) &#123;</div><div class="line">      // 创建一个用户</div><div class="line">      User.create(&#123;</div><div class="line">        name: &apos;aaa&apos;,</div><div class="line">        password: &apos;123456&apos;,</div><div class="line">        avatar: &apos;&apos;,</div><div class="line">        gender: &apos;x&apos;,</div><div class="line">        bio: &apos;&apos;</div><div class="line">      &#125;)</div><div class="line">      .exec()</div><div class="line">      .then(function () &#123;</div><div class="line">        done();</div><div class="line">      &#125;)</div><div class="line">      .catch(done);</div><div class="line">    &#125;);</div><div class="line"></div><div class="line">    afterEach(function (done) &#123;</div><div class="line">      // 清空 users 表</div><div class="line">      User.remove(&#123;&#125;)</div><div class="line">        .exec()</div><div class="line">        .then(function () &#123;</div><div class="line">          done();</div><div class="line">        &#125;)</div><div class="line">        .catch(done);</div><div class="line">    &#125;);</div><div class="line"></div><div class="line">    // 名户名错误的情况</div><div class="line">    it(&apos;wrong name&apos;, function(done) &#123;</div><div class="line">      agent</div><div class="line">        .post(&apos;/signup&apos;)</div><div class="line">        .type(&apos;form&apos;)</div><div class="line">        .attach(&apos;avatar&apos;, path.join(__dirname, &apos;avatar.png&apos;))</div><div class="line">        .field(&#123; name: &apos;&apos; &#125;)</div><div class="line">        .redirects()</div><div class="line">        .end(function(err, res) &#123;</div><div class="line">          if (err) return done(err);</div><div class="line">          assert(res.text.match(/名字请限制在 1-10 个字符/));</div><div class="line">          done();</div><div class="line">        &#125;);</div><div class="line">    &#125;);</div><div class="line"></div><div class="line">    // 性别错误的情况</div><div class="line">    it(&apos;wrong gender&apos;, function(done) &#123;</div><div class="line">      agent</div><div class="line">        .post(&apos;/signup&apos;)</div><div class="line">        .type(&apos;form&apos;)</div><div class="line">        .attach(&apos;avatar&apos;, path.join(__dirname, &apos;avatar.png&apos;))</div><div class="line">        .field(&#123; name: &apos;nswbmw&apos;, gender: &apos;a&apos; &#125;)</div><div class="line">        .redirects()</div><div class="line">        .end(function(err, res) &#123;</div><div class="line">          if (err) return done(err);</div><div class="line">          assert(res.text.match(/性别只能是 m、f 或 x/));</div><div class="line">          done();</div><div class="line">        &#125;);</div><div class="line">    &#125;);</div><div class="line">    // 其余的参数测试自行补充</div><div class="line">    // 用户名被占用的情况</div><div class="line">    it(‘duplicate name&apos;, function(done) &#123;</div><div class="line">      agent</div><div class="line">        .post(&apos;/signup&apos;)</div><div class="line">        .type(&apos;form&apos;)</div><div class="line">        .attach(&apos;avatar&apos;, path.join(__dirname, &apos;avatar.png&apos;))</div><div class="line">        .field(&#123; name: &apos;aaa&apos;, gender: &apos;m&apos;, bio: &apos;noder&apos;, password: &apos;123456&apos;, repassword: &apos;123456&apos; &#125;)</div><div class="line">        .redirects()</div><div class="line">        .end(function(err, res) &#123;</div><div class="line">          if (err) return done(err);</div><div class="line">          assert(res.text.match(/用户名已被占用/));</div><div class="line">          done();</div><div class="line">        &#125;);</div><div class="line">    &#125;);</div><div class="line"></div><div class="line">    // 注册成功的情况</div><div class="line">    it(&apos;success&apos;, function(done) &#123;</div><div class="line">      agent</div><div class="line">        .post(&apos;/signup&apos;)</div><div class="line">        .type(&apos;form&apos;)</div><div class="line">        .attach(&apos;avatar&apos;, path.join(__dirname, &apos;avatar.png&apos;))</div><div class="line">        .field(&#123; name: &apos;nswbmw&apos;, gender: &apos;m&apos;, bio: &apos;noder&apos;, password: &apos;123456&apos;, repassword: &apos;123456&apos; &#125;)</div><div class="line">        .redirects()</div><div class="line">        .end(function(err, res) &#123;</div><div class="line">          if (err) return done(err);</div><div class="line">          assert(res.text.match(/注册成功/));</div><div class="line">          done();</div><div class="line">        &#125;);</div><div class="line">    &#125;);</div><div class="line">  &#125;);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>运行 <code>npm test</code> 看看效果吧，其余的测试请读者自行完成。</p>
+<h2 id="4-14-2-测试覆盖率"><a href="#4-14-2-测试覆盖率" class="headerlink" title="4.14.2 测试覆盖率"></a>4.14.2 测试覆盖率</h2><p>我们写测试肯定想覆盖所有的情况（包括各种出错的情况及正确时的情况），但光靠想需要写哪些测试是不行的，总也会有疏漏，最简单的办法就是可以直观的看出测试是否覆盖了所有的代码，这就是测试覆盖率，即被测试覆盖到的代码行数占总代码行数的比例。</p>
+<blockquote>
+<p>注意：即使测试覆盖率达到 100% 也不能说明你的测试覆盖了所有的情况，只能说明基本覆盖了所有的情况。</p>
+</blockquote>
+<p><a href="https://www.npmjs.com/package/istanbul" target="_blank" rel="external">istanbul</a> 是一个常用的生成测试覆盖率的库，它会将测试的结果报告生成 html 页面，并放到项目根目录的 coverage 目录下。首先安装 istanbul:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm i istanbul --save-dev</div></pre></td></tr></table></figure>
+<p>配置 istanbul 很简单，将 package.json 中：</p>
+<p><strong>package.json</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&quot;scripts&quot;: &#123;</div><div class="line">  &quot;test&quot;: &quot;mocha --harmony test&quot;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>修改为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&quot;scripts&quot;: &#123;</div><div class="line">  &quot;test&quot;: &quot;node --harmony ./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha&quot;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>注意：如果 Windows 下报错，尝试修改为：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&gt; &quot;scripts&quot;: &#123;</div><div class="line">&gt;   &quot;test&quot;: &quot;node --harmony ./node_modules/istanbul/lib/cli.js cover ./node_modules/mocha/bin/_mocha&quot;</div><div class="line">&gt; &#125;</div><div class="line">&gt;</div></pre></td></tr></table></figure></p>
+<p>见 <a href="https://github.com/nswbmw/N-blog/issues/201" target="_blank" rel="external">#201</a>.</p>
+</blockquote>
+<p>即可将 mocha 和 istanbul 结合使用，终端会打印：</p>
+<p><img src="./img/4.14.1.png" alt=""></p>
+<p>打开 myblog/coverage/Icov-report/index.html，如下所示：</p>
+<p><img src="./img/4.14.2.png" alt=""></p>
+<p>可以点进去查看某个代码文件具体的覆盖率，如下所示：</p>
+<p><img src="./img/4.14.3.png" alt=""></p>
+<p>红色的行表示测试没有覆盖到，因为我们只写了 name 和 gender 的测试。</p>
+<p>上一节：<a href="https://github.com/nswbmw/N-blog/blob/master/book/4.13%20%E6%97%A5%E5%BF%97.md" target="_blank" rel="external">4.13 日志</a></p>
+<p>下一节：<a href="https://github.com/nswbmw/N-blog/blob/master/book/4.15%20%E9%83%A8%E7%BD%B2.md" target="_blank" rel="external">4.15 部署</a></p>
+
+            </article>
+            
+                <div class="share">
+                    <!--开启分享-->
+<div class="share-component" data-disabled="google,twitter,facebook" data-description=""></div>
+
+<script src="/js/share.min.js"></script>
+
+                </div>    
+            
+
+            
+            
+                
+                    
+<div class="comments">
+	<div class="ds-thread" data-thread-key="" data-title="" data-url="http://yoursite.com/other/4.14 测试.html"></div>
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"smartphp"};
+		(function() {
+			var ds = document.createElement('script');
+			ds.type = 'text/javascript';ds.async = true;
+			ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+			ds.charset = 'UTF-8';
+			(document.getElementsByTagName('head')[0]
+			 || document.getElementsByTagName('body')[0]).appendChild(ds);
+		})();
+	</script>
+</div>
+
+                
+            
+
+        </div>
+        <div class="column one-fourth">
+            
+                
+                
+
+
+<h3>Post Directory</h3>
+
+<div id="post-directory-module">
+	<section class="post-directory">
+		<p><strong class="toc-title">文章目录</strong></p>
+		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#4-14-1-mocha-和-supertest"><span class="toc-text">4.14.1 mocha 和 supertest</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-14-2-测试覆盖率"><span class="toc-text">4.14.2 测试覆盖率</span></a></li></ol>
+	</section>
+</div>
+            
+        </div>
+    </div>
+</section>
+
+<footer class="container">
+    <div class="site-footer" role="contentinfo">
+        <div class="copyright left mobile-block">
+                © 2017
+                <span title="phpsmarter">phpsmarter</span>
+                <a href="javascript:window.scrollTo(0,0)" class="right mobile-visible">TOP</a>
+        </div>
+
+        <ul class="site-footer-links right mobile-hidden">
+            <li>
+                <a href="javascript:window.scrollTo(0,0)" >TOP</a>
+            </li>
+        </ul>
+
+        <a href="https://phpsmarter.github.io" target="_blank" aria-label="view source code">
+            <span class="mega-octicon octicon-mark-github" title="GitHub"></span>
+        </a>
+
+        <ul class="site-footer-links mobile-hidden">
+            
+                  
+                  <li>
+                    <a href="/"  title="首页">首页</a>
+                  </li>
+            
+                  
+                  <li>
+                    <a href="/categories/"  title="分类">分类</a>
+                  </li>
+            
+                  
+                  <li>
+                    <a href="/open-source/"  title="开源项目">开源项目</a>
+                  </li>
+            
+                  
+                  <li>
+                    <a href="/message/"  title="留言板">留言板</a>
+                  </li>
+            
+                  
+                  <li>
+                    <a href="/other/"  title="其他">其他</a>
+                  </li>
+            
+            <li>
+                <a href="/atom.xml">
+                    <span class="octicon octicon-rss" style="color:blue;"></span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</footer>
+
+		<script src="/js/geopattern.js"></script>
+		<script src="/js/highlight.pack.js"></script>
+		<script src="/lib/fancybox/jquery.fancybox-1.3.4.pack.js"></script>
+
+		
+			<script src="/js/toc.js"></script>
+		
+
+		
+
+		<script src="/js/index.js"></script>
+
+		 <script src="/js/popular_repo.js"></script> 
+
+	</body>
+</html>
