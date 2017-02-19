@@ -71,46 +71,163 @@
 <p>在学习这个关键字的过程中似乎也走了很长时间的弯路。你要问我为什么走了很长时间的弯路，关键的地方还是没有对核心的概念彻底学习和领会，这一点和小学生学习新知识没有任何区别。要想掌握this这个关键字，需要紧扣关键概念，不要凭空想象这到底是怎么一回事。</p>
 <p><strong>关键概念：js中的函数在调用的时候，一定，一定，一定会绑定在一个对象上，在分析this关键字的时候，一定要知道函数在调用的时候这个对象到底是谁？</strong>。<br><strong>切记：js中函数的调用和定义是没有任何关系的，函数所绑定的对象直到他被调用的时候才能知道。</strong></p>
 <p>this关键字的不确定定是把双刃剑，一是函数调用时的对象不确定性，是js中函数的使用具有很大灵活性，每个对象都可以借用其他函数来完成功能。二是这也造成了this学习的一些困扰。所以在学习的时候先要理解this关键字的优点，然后再去学习造成困扰的地方</p>
-<p>首先看看第一段代码<br>page 75<br>    <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line">  </div><div class="line">//注意只是定义了一个函数，并未调用，这时候函数是没有绑定任何对象</div><div class="line">function identify() &#123;</div><div class="line">	return this.name.toUpperCase();</div><div class="line">&#125;</div><div class="line">//同上面的函数,但是这个函数内部有点复杂，如果下面的代码看不懂</div><div class="line">//可以只看上面的函数</div><div class="line">function speak() &#123;</div><div class="line">	var greeting = &quot;Hello, I&apos;m &quot; + identify.call( this );</div><div class="line">	console.log( greeting );</div><div class="line">&#125;</div><div class="line"></div><div class="line">var me = &#123; //定义了一个字面量对象</div><div class="line">	name: &quot;Kyle&quot;</div><div class="line">&#125;;</div><div class="line"></div><div class="line">var you = &#123;//定义了一个字面量对象</div><div class="line">	name: &quot;Reader&quot;</div><div class="line">&#125;;</div><div class="line">//通过call方式把函数identify分别绑定到两个对象上</div><div class="line">//这时的this是指向me对象，和you对象</div><div class="line">identify.call( me ); // KYLE  </div><div class="line">identify.call( you ); // READER</div><div class="line"></div><div class="line">//通过call方式把函数call分别绑定到两个对象上</div><div class="line">//这时的this是指向me对象，和you对象</div><div class="line">speak.call( me ); // Hello, I&apos;m KYLE</div><div class="line">speak.call( you ); // Hello, I&apos;m READER</div></pre></td></tr></table></figure></p>
-<blockquote>
-<p>在javascript中定义函数的时候，函数是不属于任何对象的。这一点非常的关键，非常的关键，非常的关键。这是理解this关键字的第一个障碍。</p>
-</blockquote>
-<p>this关键字在js函数定义的时候的不确定性使得js函数使用有极大的灵活性，任何对象都可以使用他。</p>
-<p>###this到底是什么？</p>
-<p>this的绑定和函数定义的位置没有任何关系，只<code>取决于函数调用的方式</code>.<br>javascript中当一个函数被调用的时候，会创建一个活动记录(有时也称上下文)。这个记录包括函数在哪里被调用，函数的调用方法，传入的参数。this就是记录中的一个属性。</p>
-<p>这样在学习javascript关键字的<code>首要问题是要解决怎么知道到函数的调用位置</code>.</p>
-<p>###js对象绑定规则</p>
-<p>每个js函数在调用的时候一定要找到一个对象，<code>绑定</code>以后才能使用。 这里是理解了js函数的定义和调用的区别以后需要掌握的一个规模最庞大的概念，在js中一共有四种绑定方式.就我个人来看，绑定规则并不难，<code>难点还是在js的函数作用域的理解</code>. 尤其是<code>默认绑定</code>.这个绑定方式有极大的迷惑性。</p>
-<p>####默认绑定<br>这个是函数的独立调用，也就是在一个函数直接调用的时候，似乎是没有绑定到对象上的，但是根据前面的介绍，js中函数调用时必须要绑定到一个对象上。<br>看下面代码 page 83</p>
-<pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">  </div><div class="line">  function foo() &#123; //这是函数的定义位置</div><div class="line">	console.log( this.a );</div><div class="line">&#125;</div><div class="line"></div><div class="line">  var a = 2;//这个变量定义的含义是什么呢？仅仅是赋值给a吗？</div><div class="line"></div><div class="line">  foo(); // 2  //这是函数的调用位置。为什么会打印出2呢？</div></pre></td></tr></table></figure>
-</code></pre><blockquote>
-<p>很多函数都是这么调用的，照猫画虎也可以写出来，但是理解了具体的含义就不一样了。<br>foo这个函数定义在全局作用域中(window作用域中)，巧合的是他的调用也是在全局作用域中，注意这仅仅是巧合，巧合。 那么foo()调用的时候为什么会打印出变量 a的值呢？尽管使用了var这个关键字，但是分析作用域可以知道，a这个变量实际是全局变量，说的再明白一点，a实际是window这个全局对象的一个属性，2是这个属性的属性值。<br>foo()调用的时候是一丝不挂的全裸状态，仅仅是函数本身，没有任何修饰符，这个时候他也没有任何函数包裹，处在全局作用域下面，所以foo()里面的this是指向全局对象的，当要打印this.a的时候，寻找foo()调用位置会找到全局作用域，找全局作用域的属性this.a的时候会打印出2这个属性值。</p>
-</blockquote>
-<p>我们在使用setTimeout,setInterval函数的时候，实际这两个函数就是一丝不挂的，同样绑定在window对象上。</p>
-<p>####隐式绑定</p>
-<p>函数在调用的时候被添加了修饰符。看下面这个代码<br>page 85</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">  <span class="function">function <span class="title">foo</span><span class="params">()</span> </span>&#123; <span class="comment">//定义在全局作用下的函数，仅仅是定义，不是调用位置</span></div><div class="line">	console.<span class="built_in">log</span>( <span class="keyword">this</span>.a );</div><div class="line">&#125;</div><div class="line"></div><div class="line">var obj = &#123; <span class="comment">//定义一个对象</span></div><div class="line">	a: <span class="number">2</span>,</div><div class="line">	foo: foo</div><div class="line">&#125;;</div><div class="line"></div><div class="line">obj.foo(); <span class="comment">// 2  给foo()函数找了一个对象，this就指向这个对象了</span></div></pre></td></tr></table></figure>
-<p>这是最常见的方式了，如果不写前面的obj是不是就是上面的默认绑定了？</p>
+<p>首先看看第一段代码<br>page 75</p>
+<pre><code>```
+</code></pre><p>//注意只是定义了一个函数，并未调用，这时候函数是没有绑定任何对象<br>function identify() {<br>    return this.name.toUpperCase();<br>}<br>//同上面的函数,但是这个函数内部有点复杂，如果下面的代码看不懂<br>//可以只看上面的函数<br>function speak() {<br>    var greeting = “Hello, I’m “ + identify.call( this );<br>    console.log( greeting );<br>}</p>
+<p>var me = { //定义了一个字面量对象<br>    name: “Kyle”<br>};</p>
+<p>var you = {//定义了一个字面量对象<br>    name: “Reader”<br>};<br>//通过call方式把函数identify分别绑定到两个对象上<br>//这时的this是指向me对象，和you对象<br>identify.call( me ); // KYLE<br>identify.call( you ); // READER</p>
+<p>//通过call方式把函数call分别绑定到两个对象上<br>//这时的this是指向me对象，和you对象<br>speak.call( me ); // Hello, I’m KYLE<br>speak.call( you ); // Hello, I’m READER  </p>
+<pre><code>
+&gt;在javascript中定义函数的时候，函数是不属于任何对象的。这一点非常的关键，非常的关键，非常的关键。这是理解this关键字的第一个障碍。
+
+this关键字在js函数定义的时候的不确定性使得js函数使用有极大的灵活性，任何对象都可以使用他。
+
+###this到底是什么？
+
+this的绑定和函数定义的位置没有任何关系，只`取决于函数调用的方式`.
+javascript中当一个函数被调用的时候，会创建一个活动记录(有时也称上下文)。这个记录包括函数在哪里被调用，函数的调用方法，传入的参数。this就是记录中的一个属性。
+
+这样在学习javascript关键字的`首要问题是要解决怎么知道到函数的调用位置`.
+
+
+###js对象绑定规则
+
+每个js函数在调用的时候一定要找到一个对象，`绑定`以后才能使用。 这里是理解了js函数的定义和调用的区别以后需要掌握的一个规模最庞大的概念，在js中一共有四种绑定方式.就我个人来看，绑定规则并不难，`难点还是在js的函数作用域的理解`. 尤其是`默认绑定`.这个绑定方式有极大的迷惑性。
+
+####默认绑定
+这个是函数的独立调用，也就是在一个函数直接调用的时候，似乎是没有绑定到对象上的，但是根据前面的介绍，js中函数调用时必须要绑定到一个对象上。
+看下面代码 page 83
+</code></pre><p>  function foo() { //这是函数的定义位置<br>    console.log( this.a );<br>}</p>
+<p>  var a = 2;//这个变量定义的含义是什么呢？仅仅是赋值给a吗？</p>
+<p>  foo(); // 2  //这是函数的调用位置。为什么会打印出2呢？</p>
+<pre><code>&gt;很多函数都是这么调用的，照猫画虎也可以写出来，但是理解了具体的含义就不一样了。
+foo这个函数定义在全局作用域中(window作用域中)，巧合的是他的调用也是在全局作用域中，注意这仅仅是巧合，巧合。 那么foo()调用的时候为什么会打印出变量 a的值呢？尽管使用了var这个关键字，但是分析作用域可以知道，a这个变量实际是全局变量，说的再明白一点，a实际是window这个全局对象的一个属性，2是这个属性的属性值。 
+foo()调用的时候是一丝不挂的全裸状态，仅仅是函数本身，没有任何修饰符，这个时候他也没有任何函数包裹，处在全局作用域下面，所以foo()里面的this是指向全局对象的，当要打印this.a的时候，寻找foo()调用位置会找到全局作用域，找全局作用域的属性this.a的时候会打印出2这个属性值。
+
+我们在使用setTimeout,setInterval函数的时候，实际这两个函数就是一丝不挂的，同样绑定在window对象上。
+
+####隐式绑定
+
+函数在调用的时候被添加了修饰符。看下面这个代码
+page 85
+
+```cpp
+  function foo() { //定义在全局作用下的函数，仅仅是定义，不是调用位置
+    console.log( this.a );
+}
+
+var obj = { //定义一个对象
+    a: 2,
+    foo: foo
+};
+
+obj.foo(); // 2  给foo()函数找了一个对象，this就指向这个对象了
+</code></pre><p>这是最常见的方式了，如果不写前面的obj是不是就是上面的默认绑定了？</p>
 <p><code>隐式丢失</code><br>经常在js代码的嵌套回调函数中看到在外层函数开始的一句 </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">var  that=this; //这是什么含义</div></pre></td></tr></table></figure>
-<p>或许你已经会用了，但是理解了其中意义用起来会更加得心应手啊</p>
+<pre><code>   var  that=this; //这是什么含义
+</code></pre><p>或许你已经会用了，但是理解了其中意义用起来会更加得心应手啊</p>
 <p>看下面段代码.这段代码其实以前我也不太理解，问题还是没有彻底领悟js函数定义和调用之间是没有关系的这一点。<br>page 86</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="function">function <span class="title">foo</span><span class="params">()</span> </span>&#123; <span class="comment">//定义了一个函数</span></div><div class="line">	console.<span class="built_in">log</span>( <span class="keyword">this</span>.a );</div><div class="line">&#125;</div><div class="line"></div><div class="line">var obj = &#123; <span class="comment">//定义了一个对象字面量</span></div><div class="line">	a: <span class="number">2</span>,</div><div class="line">	foo: foo  <span class="comment">//函数作为对对象的属性</span></div><div class="line">&#125;;</div><div class="line"></div><div class="line">var bar = obj.foo; <span class="comment">//把obj对象的函数foo属性赋值给bar变量</span></div><div class="line"><span class="comment">//这里就是理解这个问题的关键，如果你现在认为调用bar()的时候绑定的对象</span></div><div class="line"><span class="comment">//是obj那就完全搞错了。这个时候仅仅是把函数foo赋值给了var变量，</span></div><div class="line"><span class="comment">//并没有把对象也给bar变量，因为这里还不是foo()函数的调用位置，现在</span></div><div class="line"><span class="comment">//foo函数还没有绑定对象，那么调用bar()的时候对象到底是谁？不知道。</span></div><div class="line"><span class="comment">//调用的时候才知道。</span></div><div class="line"></div><div class="line">var a = <span class="string">"oops, global"</span>; <span class="comment">// 任然是全局对象的属性</span></div><div class="line">bar(); <span class="comment">// "oops, global" 这里执行的是默认绑定，this就是去全局对象啦</span></div></pre></td></tr></table></figure>
+<pre><code class="cpp">function foo() { //定义了一个函数
+    console.log( this.a );
+}
+
+var obj = { //定义了一个对象字面量
+    a: 2,
+    foo: foo  //函数作为对对象的属性
+};
+
+var bar = obj.foo; //把obj对象的函数foo属性赋值给bar变量
+//这里就是理解这个问题的关键，如果你现在认为调用bar()的时候绑定的对象
+//是obj那就完全搞错了。这个时候仅仅是把函数foo赋值给了var变量，
+//并没有把对象也给bar变量，因为这里还不是foo()函数的调用位置，现在
+//foo函数还没有绑定对象，那么调用bar()的时候对象到底是谁？不知道。
+//调用的时候才知道。
+
+var a = &quot;oops, global&quot;; // 任然是全局对象的属性
+bar(); // &quot;oops, global&quot; 这里执行的是默认绑定，this就是去全局对象啦
+</code></pre>
 <p>下面这段代码就是使用var that=this的场景<br>在使用回调函数的时候要留心。js中函数是一等对象，可以作为另一个函数的参数传入函数。 问题就出在这里了，函数一旦作为实参代替形参的时候，实际也执行了和上面代码一样的赋值过程，实际只是传递了函数本身，原先的对象就没有了。</p>
 <p>page 86</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="function">function <span class="title">foo</span><span class="params">()</span> </span>&#123; <span class="comment">//定义一个函数</span></div><div class="line">	console.<span class="built_in">log</span>( <span class="keyword">this</span>.a );</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function">function <span class="title">doFoo</span><span class="params">(fn)</span> </span>&#123; <span class="comment">//fn是形参</span></div><div class="line">	<span class="comment">// 如果函数作为实参传入相当于代码 var fn=obj.foo</span></div><div class="line">	<span class="comment">//和上面一段代码是完全一样的，只是函数本身，并没有绑定任何对象</span></div><div class="line"></div><div class="line">	fn(); <span class="comment">// 在这里调用的时候，由于fn只代表foo()函数，被绑定到全局对象上了</span></div><div class="line">&#125;</div><div class="line"></div><div class="line">var obj = &#123;</div><div class="line">	a: <span class="number">2</span>,</div><div class="line">	foo: foo</div><div class="line">&#125;;</div><div class="line"></div><div class="line">var a = <span class="string">"oops, global"</span>; <span class="comment">// `a` also property on global object</span></div><div class="line"></div><div class="line">doFoo( obj.foo ); <span class="comment">// "oops, global"不要被obj.foo迷惑了</span></div><div class="line"><span class="comment">//没有实际执行函数的调用，此时obj.foo仅仅代表没有绑定任何对象的函数</span></div><div class="line"></div><div class="line"><span class="comment">//这个代码块看着眼熟么？这就是javascript中回调函数的样子，当</span></div><div class="line"><span class="comment">//一个函数作为参数传递进另一个函数的时候,这个参数函数就找不到自己绑定的对象是谁了，</span></div><div class="line"><span class="comment">//所以就默认绑定到全局对象上了。但是我们既然在一个函数里调用另一个函数，肯定是要用这个函数操作当前的对象，那么既然找不到了，我们就手动给他指定一个对象吧。这就是为什么要使用</span></div><div class="line"><span class="comment">//var  that=this的原因。我觉得理解这个概念，js的功力至少会增加5%😁。至于具体使用，我想写出来其实没有什么必要了。这样的代</span></div><div class="line"><span class="comment">//码随处可见.</span></div></pre></td></tr></table></figure>
+<pre><code class="cpp">function foo() { //定义一个函数
+    console.log( this.a );
+}
+
+function doFoo(fn) { //fn是形参
+    // 如果函数作为实参传入相当于代码 var fn=obj.foo
+    //和上面一段代码是完全一样的，只是函数本身，并没有绑定任何对象
+
+    fn(); // 在这里调用的时候，由于fn只代表foo()函数，被绑定到全局对象上了
+}
+
+var obj = {
+    a: 2,
+    foo: foo
+};
+
+var a = &quot;oops, global&quot;; // `a` also property on global object
+
+doFoo( obj.foo ); // &quot;oops, global&quot;不要被obj.foo迷惑了
+//没有实际执行函数的调用，此时obj.foo仅仅代表没有绑定任何对象的函数
+
+//这个代码块看着眼熟么？这就是javascript中回调函数的样子，当
+//一个函数作为参数传递进另一个函数的时候,这个参数函数就找不到自己绑定的对象是谁了，
+//所以就默认绑定到全局对象上了。但是我们既然在一个函数里调用另一个函数，肯定是要用这个函数操作当前的对象，那么既然找不到了，我们就手动给他指定一个对象吧。这就是为什么要使用
+//var  that=this的原因。我觉得理解这个概念，js的功力至少会增加5%😁。至于具体使用，我想写出来其实没有什么必要了。这样的代
+//码随处可见.
+</code></pre>
 <p>最后我们会返回来看看怎么解决这个问题。</p>
 <p>####显示绑定</p>
 <p>直接使用apply()和call()方法来给函数指定一个对象<br>page 88</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">   <span class="function">function <span class="title">foo</span><span class="params">()</span> </span>&#123;  <span class="comment">//定义函数</span></div><div class="line">	console.<span class="built_in">log</span>( <span class="keyword">this</span>.a );</div><div class="line">&#125;</div><div class="line"></div><div class="line">var obj = &#123;  <span class="comment">//对象字面量定义</span></div><div class="line">	a: <span class="number">2</span> </div><div class="line">&#125;;</div><div class="line"></div><div class="line">foo.call( obj ); <span class="comment">// 2  强制绑定到obj对象上</span></div></pre></td></tr></table></figure>
+<pre><code class="cpp">   function foo() {  //定义函数
+    console.log( this.a );
+}
+
+var obj = {  //对象字面量定义
+    a: 2 
+};
+
+foo.call( obj ); // 2  强制绑定到obj对象上
+</code></pre>
 <p>使用显示绑定还不能解决this的丢失问题，所以可以创建一个包裹函数</p>
 <p>page 89</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">  <span class="function">function <span class="title">foo</span><span class="params">(something)</span> </span>&#123; <span class="comment">//定义函数</span></div><div class="line">	console.<span class="built_in">log</span>( <span class="keyword">this</span>.a, something );</div><div class="line">	<span class="keyword">return</span> <span class="keyword">this</span>.a + something;</div><div class="line">&#125;</div><div class="line"></div><div class="line">var obj = &#123; <span class="comment">//对象字面量</span></div><div class="line">	a: <span class="number">2</span></div><div class="line">&#125;;</div><div class="line"></div><div class="line">var bar = function() &#123; 包裹函数，显示绑定</div><div class="line">	<span class="keyword">return</span> foo.apply( obj, arguments );</div><div class="line"> <span class="comment">//返回绑定了对象和传入参数的函数调用</span></div><div class="line"> <span class="comment">//这个语句在js的代码中非常的常见</span></div><div class="line">&#125;;</div><div class="line"></div><div class="line">var b = bar( <span class="number">3</span> ); <span class="comment">// 2, 3  </span></div><div class="line">console.<span class="built_in">log</span>( b ); <span class="comment">// 5</span></div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">//可以把绑定函数独立出来</span></div><div class="line"></div><div class="line"><span class="function">function <span class="title">bind</span><span class="params">(fn, obj)</span> </span>&#123;</div><div class="line">	<span class="keyword">return</span> function() &#123;</div><div class="line">		<span class="keyword">return</span> fn.apply( obj, arguments );</div><div class="line">	&#125;;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<pre><code class="cpp">  function foo(something) { //定义函数
+    console.log( this.a, something );
+    return this.a + something;
+}
+
+var obj = { //对象字面量
+    a: 2
+};
+
+var bar = function() { 包裹函数，显示绑定
+    return foo.apply( obj, arguments );
+ //返回绑定了对象和传入参数的函数调用
+ //这个语句在js的代码中非常的常见
+};
+
+var b = bar( 3 ); // 2, 3  
+console.log( b ); // 5
+
+
+//可以把绑定函数独立出来
+
+function bind(fn, obj) {
+    return function() {
+        return fn.apply( obj, arguments );
+    };
+}
+</code></pre>
 <p>####new 绑定</p>
 <blockquote>
 <p>js中的new关键字和java中完全不同，js中没有类，只有对象，在js中使用new 关键字的时候只是被调用的普通函数</p>
 </blockquote>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"> <span class="function">function <span class="title">foo</span><span class="params">(a)</span> </span>&#123;  <span class="comment">//定义函数</span></div><div class="line">	<span class="keyword">this</span>.a = a;</div><div class="line">&#125;</div><div class="line"></div><div class="line">var bar = <span class="keyword">new</span> foo( <span class="number">2</span> ); <span class="comment">//仅仅是调用了一个函数</span></div><div class="line">console.<span class="built_in">log</span>( bar.a ); <span class="comment">// 2</span></div></pre></td></tr></table></figure>
+<pre><code class="cpp"> function foo(a) {  //定义函数
+    this.a = a;
+}
+
+var bar = new foo( 2 ); //仅仅是调用了一个函数
+console.log( bar.a ); // 2
+</code></pre>
 <p>好了以上就是js this绑定的四种方式。  解决的关键问题是js中在函数调用的时候到底是属于哪个对象的问题。 </p>
 <p>后面还有一点内容，但是上面的内容是最重要的。  2017年1月17日<br><code>的确包裹函数那里好像是没有讲清楚，我也忘了当初是怎么理解的，等我再看看，然后更新。有些地方已经做了更新!</code></p>
 

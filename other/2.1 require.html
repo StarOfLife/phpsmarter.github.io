@@ -67,12 +67,14 @@
 <p>简单概括以下几点:</p>
 <ul>
 <li>require 可加载 .js、.json 和 .node 后缀的文件</li>
-<li>require 的过程是同步的，所以这样是错误的:<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">setTimeout(() =&gt; &#123;</div><div class="line">  module.exports = &#123; a: &apos;hello&apos; &#125;;</div><div class="line">&#125;, 0);</div></pre></td></tr></table></figure>
+<li><p>require 的过程是同步的，所以这样是错误的:</p>
+<pre><code>setTimeout(() =&gt; {
+module.exports = { a: &#39;hello&#39; };
+}, 0);
+</code></pre><p>require 这个文件得到的是空对象 <code>{}</code></p>
 </li>
-</ul>
-<p>require 这个文件得到的是空对象 <code>{}</code></p>
+<li><p>require 目录的机制是:</p>
 <ul>
-<li>require 目录的机制是:<ul>
 <li>如果目录下有 package.json 并指定了 main 字段，则用之</li>
 <li>如果不存在 package.json，则依次尝试加载目录下的 index.js 和 index.node</li>
 </ul>
@@ -86,15 +88,19 @@
 </ul>
 <h4 id="循环引用"><a href="#循环引用" class="headerlink" title="循环引用"></a>循环引用</h4><p>循环引用（或循环依赖）简单点来说就是 a 文件 require 了 b 文件，然后 b 文件又反过来 require 了 a 文件。我们用 a-&gt;b 代表 b require 了 a。</p>
 <p>简单的情况:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">a-&gt;b</div><div class="line">b-&gt;a</div></pre></td></tr></table></figure>
-<p>复杂点的情况:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">a-&gt;b</div><div class="line">b-&gt;c</div><div class="line">c-&gt;a</div></pre></td></tr></table></figure>
-<p>循环引用并不会报错，导致的结果是 require 的结果是空对象 <code>{}</code>，原因是 b require 了 a，a 又去 require 了 b，此时 b 还没初始化好，所以只能拿到初始值 <code>{}</code>。当产生循环引用时一般有两种方法解决：</p>
+<pre><code>a-&gt;b
+b-&gt;a
+</code></pre><p>复杂点的情况:</p>
+<pre><code>a-&gt;b
+b-&gt;c
+c-&gt;a
+</code></pre><p>循环引用并不会报错，导致的结果是 require 的结果是空对象 <code>{}</code>，原因是 b require 了 a，a 又去 require 了 b，此时 b 还没初始化好，所以只能拿到初始值 <code>{}</code>。当产生循环引用时一般有两种方法解决：</p>
 <ol>
 <li>通过分离共用的代码到另一个文件解决，如上面简单的情况，可拆出共用的代码到 c 中，如下:</li>
 </ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">c-&gt;a</div><div class="line">c-&gt;b</div></pre></td></tr></table></figure>
-<ol>
+<pre><code>c-&gt;a
+c-&gt;b
+</code></pre><ol>
 <li>不在最外层 require，在用到的地方 require，通常在函数的内部</li>
 </ol>
 <p>总的来说，循环依赖的陷阱并不大容易出现，但一旦出现了，对于新手来说还真不好定位。它的存在给我们提了个醒，要时刻注意你项目的依赖关系不要过于复杂，哪天你发现一个你明明已经 exports 了的方法报 <code>undefined is not a function</code>，我们就该提醒一下自己：哦，也许是它来了。</p>
