@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans" prefix="og: http://ogp.me/ns#" class="han-init">
+<head>
+  <meta charset="utf-8">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+  <link rel="icon" href="/favicon.ico">
+  
+  <title>phpsmarter</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/lib/fancybox/jquery.fancybox-1.3.4.css">
+  <!--在这里倒入jquery 方便处理部分页面的jquery-->
+  <script src="https://cdn.staticfile.org/jquery/1.7/jquery.min.js" type="text/javascript" ></script>
+</head>
+
+<body>
+	<header class="site-header navfixed-false">
+  <div class="container">
+      <h1><a href="/" title="phpsmarter"><span class="octicon octicon-mark-github"></span> phpsmarter</a></h1>
+      <nav class="site-header-nav" role="navigation">
+        
+              
+              <a href="/"  class=" site-header-nav-item hvr-underline-from-center" title="首页">首页</a>
+        
+              
+              <a href="/categories/"  class=" site-header-nav-item hvr-underline-from-center" title="分类">分类</a>
+        
+              
+              <a href="/open-source/"  class=" site-header-nav-item hvr-underline-from-center" title="开源项目">开源项目</a>
+        
+              
+              <a href="/message/"  class=" site-header-nav-item hvr-underline-from-center" title="留言板">留言板</a>
+        
+              
+              <a href="/javascript/"  class=" site-header-nav-item hvr-underline-from-center" title="javascript">javascript</a>
+        
+      </nav>
+  </div>
+</header>
+
+	
+<section class="collection-head geopattern" data-pattern-id="undefined" >
+    <div class="container">
+        <div class="collection-title">
+            <h1 class="collection-header">
+                undefined
+            </h1>
+            
+                <div class="collection-info">
+                    <span class="meta-info">
+                        <span class="octicon octicon-calendar"></span>
+                        <time datetime="2017-01-13T08:39:10.000Z" itemprop="datePublished">2017-01-13</time>
+                    </span>
+                    
+                </div>
+            
+        </div>
+    </div>
+</section>
+	<section class="container">
+    <div class="columns">
+        <div class="column three-fourths" >
+            <article class="article-content markdown-body">
+                <h2 id="2-6-1-npm-init"><a href="#2-6-1-npm-init" class="headerlink" title="2.6.1 npm init"></a>2.6.1 npm init</h2><p>使用 <code>npm init</code> 初始化一个空项目是一个好的习惯，即使你对 package.json 及其他属性非常熟悉，<code>npm init</code> 也是你开始写新的 Node.js 应用或模块的一个快捷的办法。<code>npm init</code> 有智能的默认选项，比如从根目录名称推断模块名称，通过 <code>~/.npmrc</code> 读取你的信息，用你的 Git 设置来确定 repository 等等。</p>
+<h2 id="2-6-2-npm-install"><a href="#2-6-2-npm-install" class="headerlink" title="2.6.2 npm install"></a>2.6.2 npm install</h2><p><code>npm install</code> 是我们最常用的 npm 命令之一，因此我们需要好好了解下这个命令。终端输入 <code>npm install -h</code> 查看使用方式:</p>
+<p><img src="./img/2.6.1.png" alt=""></p>
+<p>可以看出：我们通过 <code>npm install</code> 可以安装 npm 上发布的某个版本、某个tag、某个版本区间的模块，甚至可以安装本地目录、压缩包和 git/github 的库作为依赖。</p>
+<blockquote>
+<p>小提示: <code>npm i</code> 是 <code>npm install</code> 的简写，建议使用 <code>npm i</code>。</p>
+</blockquote>
+<p>直接使用 <code>npm i</code> 安装的模块是不会写入 package.json 的 dependencies (或 devDependencies)，需要额外加个参数:</p>
+<ol>
+<li><code>npm i express --save</code>/<code>npm i express -S</code> (安装 express，同时将 <code>&quot;express&quot;: &quot;^4.14.0&quot;</code> 写入 dependencies )</li>
+<li><code>npm i express --save-dev</code>/<code>npm i express -D</code> (安装 express，同时将 <code>&quot;express&quot;: &quot;^4.14.0&quot;</code> 写入 devDependencies )</li>
+<li><code>npm i express --save --save-exact</code> (安装 express，同时将 <code>&quot;express&quot;: &quot;4.14.0&quot;</code> 写入 dependencies )</li>
+</ol>
+<p>第三种方式将固定版本号写入 dependencies，建议线上的 Node.js 应用都采取这种锁定版本号的方式，因为你不可能保证第三方模块下个小版本是没有验证 bug 的，即使是很流行的模块。拿 Mongoose 来说，Mongoose 4.1.4 引入了一个 bug 导致调用一个文档 entry 的 remove 会删除整个集合的文档，见：<a href="https://github.com/Automattic/mongoose/blob/master/History.md#415--2015-09-01" target="_blank" rel="external">https://github.com/Automattic/mongoose/blob/master/History.md#415–2015-09-01</a>。</p>
+<blockquote>
+<p>后面会介绍更安全的 <code>npm shrinkwrap</code> 的用法。</p>
+</blockquote>
+<p>运行以下命令：</p>
+<pre><code>npm config set save-exact true
+</code></pre><p>这样每次 <code>npm i xxx --save</code> 的时候会锁定依赖的版本号，相当于加了 <code>--save-exact</code> 参数。</p>
+<blockquote>
+<p>小提示：<code>npm config set</code> 命令将配置写到了 ~/.npmrc 文件，运行 <code>npm config list</code> 查看。</p>
+</blockquote>
+<h2 id="2-6-3-npm-scripts"><a href="#2-6-3-npm-scripts" class="headerlink" title="2.6.3 npm scripts"></a>2.6.3 npm scripts</h2><p>npm 提供了灵活而强大的 scripts 功能，见 <a href="https://docs.npmjs.com/misc/scripts" target="_blank" rel="external">官方文档</a>。</p>
+<p>npm 的 scripts 有一些内置的缩写命令，如常用的：</p>
+<ul>
+<li><code>npm start</code> 等价于 <code>npm run start</code> </li>
+<li><code>npm test</code> 等价于 <code>npm run test</code> </li>
+</ul>
+<h2 id="2-6-4-npm-shrinkwrap"><a href="#2-6-4-npm-shrinkwrap" class="headerlink" title="2.6.4 npm shrinkwrap"></a>2.6.4 npm shrinkwrap</h2><p>前面说过要锁定依赖的版本，但这并不能完全防止意外情况的发生，因为锁定的只是最外一层的依赖，而里层依赖的模块的 package.json 有可能写的是 <code>&quot;mongoose&quot;: &quot;*&quot;</code>。为了彻底锁定依赖的版本，让你的应用在任何机器上安装的都是同样版本的模块（不管嵌套多少层），通过运行 <code>npm shrinkwrap</code>，会在当前目录下产生一个 <code>npm-shrinkwrap.json</code>，里面包含了通过 node_modules 计算出的模块的依赖树及版本。上面的截图也显示：只要目录下有 npm-shrinkwrap.json 则运行 <code>npm install</code> 的时候会优先使用 npm-shrinkwrap.json 进行安装，没有则使用 package.json 进行安装。</p>
+<p>更多阅读：</p>
+<ol>
+<li><a href="https://docs.npmjs.com/cli/shrinkwrap" target="_blank" rel="external">https://docs.npmjs.com/cli/shrinkwrap</a></li>
+<li><a href="http://tech.meituan.com/npm-shrinkwrap.html" target="_blank" rel="external">http://tech.meituan.com/npm-shrinkwrap.html</a></li>
+</ol>
+<blockquote>
+<p>注意: 如果 node_modules 下存在某个模块（如直接通过 <code>npm install xxx</code> 安装的）而 package.json 中没有，运行 <code>npm shrinkwrap</code> 则会报错。另外，<code>npm shrinkwrap</code> 只会生成 dependencies 的依赖，不会生成 devDependencies 的。</p>
+</blockquote>
+<p>上一节：<a href="https://github.com/nswbmw/N-blog/blob/master/book/2.5%20package.json.md" target="_blank" rel="external">2.5 packge.json</a></p>
+<p>下一节：<a href="https://github.com/nswbmw/N-blog/blob/master/book/3.1%20%E5%88%9D%E5%A7%8B%E5%8C%96%E4%B8%80%E4%B8%AA%20Express%20%E9%A1%B9%E7%9B%AE.md" target="_blank" rel="external">3.1 初始化一个 Express 项目</a></p>
+
+            </article>
+            
+                <div class="share">
+                    <!--开启分享-->
+<div class="share-component" data-disabled="google,twitter,facebook" data-description=""></div>
+
+<script src="/js/share.min.js"></script>
+
+                </div>    
+            
+
+            
+            
+                
+                    
+<div class="comments">
+	<div class="ds-thread" data-thread-key="" data-title="" data-url="http://yoursite.com/other/2.6 npm 使用注意事项.html"></div>
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"smartphp"};
+		(function() {
+			var ds = document.createElement('script');
+			ds.type = 'text/javascript';ds.async = true;
+			ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+			ds.charset = 'UTF-8';
+			(document.getElementsByTagName('head')[0]
+			 || document.getElementsByTagName('body')[0]).appendChild(ds);
+		})();
+	</script>
+</div>
+
+                
+            
+
+        </div>
+        <div class="column one-fourth">
+            
+                
+                
+
+
+<h3>Post Directory</h3>
+
+<div id="post-directory-module">
+	<section class="post-directory">
+		<p><strong class="toc-title">文章目录</strong></p>
+		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-6-1-npm-init"><span class="toc-text">2.6.1 npm init</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-6-2-npm-install"><span class="toc-text">2.6.2 npm install</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-6-3-npm-scripts"><span class="toc-text">2.6.3 npm scripts</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-6-4-npm-shrinkwrap"><span class="toc-text">2.6.4 npm shrinkwrap</span></a></li></ol>
+	</section>
+</div>
+            
+        </div>
+    </div>
+</section>
+
+<footer class="container">
+    <div class="site-footer" role="contentinfo">
+        <div class="copyright left mobile-block">
+                © 2017
+                <span title="phpsmarter">phpsmarter</span>
+                <a href="javascript:window.scrollTo(0,0)" class="right mobile-visible">TOP</a>
+        </div>
+
+        <ul class="site-footer-links right mobile-hidden">
+            <li>
+                <a href="javascript:window.scrollTo(0,0)" >TOP</a>
+            </li>
+        </ul>
+
+        <a href="https://phpsmarter.github.io" target="_blank" aria-label="view source code">
+            <span class="mega-octicon octicon-mark-github" title="GitHub"></span>
+        </a>
+
+        <ul class="site-footer-links mobile-hidden">
+            
+                  
+                  <li>
+                    <a href="/"  title="首页">首页</a>
+                  </li>
+            
+                  
+                  <li>
+                    <a href="/categories/"  title="分类">分类</a>
+                  </li>
+            
+                  
+                  <li>
+                    <a href="/open-source/"  title="开源项目">开源项目</a>
+                  </li>
+            
+                  
+                  <li>
+                    <a href="/message/"  title="留言板">留言板</a>
+                  </li>
+            
+                  
+                  <li>
+                    <a href="/javascript/"  title="javascript">javascript</a>
+                  </li>
+            
+            <li>
+                <a href="/atom.xml">
+                    <span class="octicon octicon-rss" style="color:blue;"></span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</footer>
+
+		<script src="/js/geopattern.js"></script>
+		<script src="/js/highlight.pack.js"></script>
+		<script src="/lib/fancybox/jquery.fancybox-1.3.4.pack.js"></script>
+
+		
+			<script src="/js/toc.js"></script>
+		
+
+		
+
+		<script src="/js/index.js"></script>
+
+		 <script src="/js/popular_repo.js"></script> 
+
+	</body>
+</html>
