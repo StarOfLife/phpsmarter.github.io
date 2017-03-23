@@ -234,28 +234,6 @@
   </entry>
   
   <entry>
-    <title>understanding React(2)</title>
-    <link href="http://yoursite.com/2016/05/29/understanding%20React(2)/"/>
-    <id>http://yoursite.com/2016/05/29/understanding React(2)/</id>
-    <published>2016-05-28T23:53:25.000Z</published>
-    <updated>2017-03-23T02:45:02.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>#####understanding React2</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;#####understanding React2&lt;/p&gt;
-
-    
-    </summary>
-    
-      <category term="javascript" scheme="http://yoursite.com/categories/javascript/"/>
-    
-    
-  </entry>
-  
-  <entry>
     <title>understanding React(1)</title>
     <link href="http://yoursite.com/2016/05/29/understanding%20React(1)/"/>
     <id>http://yoursite.com/2016/05/29/understanding React(1)/</id>
@@ -282,6 +260,28 @@
     <summary type="html">
     
       &lt;p&gt;Rect/Redux的系列文章
+    
+    </summary>
+    
+      <category term="javascript" scheme="http://yoursite.com/categories/javascript/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>understanding React(2)</title>
+    <link href="http://yoursite.com/2016/05/29/understanding%20React(2)/"/>
+    <id>http://yoursite.com/2016/05/29/understanding React(2)/</id>
+    <published>2016-05-28T23:53:25.000Z</published>
+    <updated>2017-03-23T02:45:02.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>#####understanding React2</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;#####understanding React2&lt;/p&gt;
+
     
     </summary>
     
