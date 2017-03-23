@@ -1,0 +1,1002 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="phpsmarter" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="翻译版本，原文请见14 NOVEMBER 2016
+
+##实现Saga代码这篇文章是三篇关于Redux Saga系列文章的第三篇,也是最后一篇.在第一部分我们先对有关的概念进行了热身.在第二部分,我们和Redux关系推进到了另一个高度.我们把Saga付诸实施.在最后一篇文章,我们把最后一部分内容写完.如果你没有克隆app repo，可以在这个地址克隆,如果不想看这个repo,想直接跳到最终的ap">
+<meta property="og:type" content="article">
+<meta property="og:title" content="-翻译-Redux-Saga-完成时钟演示App">
+<meta property="og:url" content="http://yoursite.com/2017/03/08/-翻译-Redux-Saga-完成时钟演示App/index.html">
+<meta property="og:site_name" content="phpsmarter">
+<meta property="og:description" content="翻译版本，原文请见14 NOVEMBER 2016
+
+##实现Saga代码这篇文章是三篇关于Redux Saga系列文章的第三篇,也是最后一篇.在第一部分我们先对有关的概念进行了热身.在第二部分,我们和Redux关系推进到了另一个高度.我们把Saga付诸实施.在最后一篇文章,我们把最后一部分内容写完.如果你没有克隆app repo，可以在这个地址克隆,如果不想看这个repo,想直接跳到最终的ap">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2044710-a754703b38f36735.gif?imageMogr2/auto-orient/strip">
+<meta property="og:updated_time" content="2017-03-23T08:44:53.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="-翻译-Redux-Saga-完成时钟演示App">
+<meta name="twitter:description" content="翻译版本，原文请见14 NOVEMBER 2016
+
+##实现Saga代码这篇文章是三篇关于Redux Saga系列文章的第三篇,也是最后一篇.在第一部分我们先对有关的概念进行了热身.在第二部分,我们和Redux关系推进到了另一个高度.我们把Saga付诸实施.在最后一篇文章,我们把最后一部分内容写完.如果你没有克隆app repo，可以在这个地址克隆,如果不想看这个repo,想直接跳到最终的ap">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/2044710-a754703b38f36735.gif?imageMogr2/auto-orient/strip">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/03/08/-翻译-Redux-Saga-完成时钟演示App/"/>
+
+
+
+
+
+  <title> -翻译-Redux-Saga-完成时钟演示App | phpsmarter </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">phpsmarter</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">A beginner of React-native</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-sitemap">
+          <a href="/sitemap.xml" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br />
+            
+            站点地图
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/08/-翻译-Redux-Saga-完成时钟演示App/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="phpsmarter">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="phpsmarter">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                -翻译-Redux-Saga-完成时钟演示App
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-08T08:04:10+08:00">
+                2017-03-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/翻译/" itemprop="url" rel="index">
+                    <span itemprop="name">翻译</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>翻译版本，<a href="http://ohyayanotherblog.ghost.io/redux-saga-finishing-the-clock-demo-app/" target="_blank" rel="external">原文请见</a><br><em>14 NOVEMBER 2016</em></p>
+</blockquote>
+<p>##实现Saga代码<br>这篇文章是三篇关于Redux Saga系列文章的第三篇,也是最后一篇.在第一部分我们先对有关的概念进行了热身.在第二部分,我们和Redux关系推进到了另一个高度.我们把Saga付诸实施.在最后一篇文章,我们把最后一部分内容写完.如果你没有克隆app repo，可以在这个<a href="https://github.com/granmoe/redux-saga-clock-tutorial" target="_blank" rel="external">地址克隆</a>,如果不想看这个repo,想直接跳到最终的app代码,可以<a href="https://github.com/granmoe/redux-saga-clock.git" target="_blank" rel="external">看这个repo</a>.   <a href="https://granmoe.github.io/redux-saga-clock/" target="_blank" rel="external">live demo看这里</a>.</p>
+<hr>
+<p><a href="http://www.jianshu.com/p/6f8678a6ad78" target="_blank" rel="external">第一部分译文请见</a>，<br><a href="http://www.jianshu.com/p/fad0136e77c0" target="_blank" rel="external">第二部分译文请见</a>，<br><a href="http://www.jianshu.com/p/88fc4236b505" target="_blank" rel="external">第三部分译文请见</a>.</p>
+<hr>
+<h2 id="What’s-my-name-agian"><a href="#What’s-my-name-agian" class="headerlink" title="What’s my name agian?"></a>What’s my name agian?</h2><p>在上一篇文章中,我们设计了基础但是有点幼稚的需求,创建了很初级时钟,可以对用户的交互操作做出一些响应.(译者：后面有几句似乎和技术没有太大关系,我就没有翻译了.请参见原文).</p>
+<p>我们决定只使用最小化的redux state值有一个字段“milliseconds”来代表时钟的时间.因为我们的时钟需要向前,向后,重置,所以创建了相应的redux action去执行增,减,重置actions,这些actions可以改变state.<br>当我们进入某些saga code代码,创建一个saga监听三个actions(开始,暂停,回拨),只有收到相应action的时候,输出日志内容.最后,我们的目标是把日志输出替换成时钟实际运行的流程,例如每一秒种发送一个递减的action,因此app state的异步操作需要好好的设计.最后我们创建一个简单的React组件,可以让我们根据期望的saga代码的工作流程测试redux和saga action,观察state的更新.</p>
+<p>现在我们来完成这件事,我们想给朋友留下深刻的印象,看上去有意思一点,所以会使用一些非常酷的SVG技术,当时间增加的时候,时钟可以画出一些图形.但是最重要的是使用Saga可以是app唱歌,跳舞.开始编码.</p>
+<p>##实现Saga<br>我们的duck.js是非常小的,实际上仅仅需要很少几行代码去完成saga/redux.目前为止我们的duck代码是这样的:<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"> <span class="keyword">export</span> <span class="function"><span class="keyword">function</span>* <span class="title">rootSaga</span> (<span class="params"></span>) </span>&#123;  </div><div class="line">  <span class="keyword">yield</span> takeLatest([<span class="string">'start-clock'</span>, <span class="string">'pause-clock'</span>, <span class="string">'rewind-clock'</span>], handleClockAction)</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span>* <span class="title">handleClockAction</span> (<span class="params">&#123; type &#125;</span>) </span>&#123;  </div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'Pushed this action to handleClockAction: '</span>, type)</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<hr>
+<p>正如我们上一篇文章所讨论的,<code>takeLatest</code>将会监听action type数组中的任何一个action type,当每次发送的action和action type之一匹配的时候,会运行另一个流程(在我们的app中,是<code>handleClockAction</code>).<code>takeLatest</code>也会取消之前的运行流程,他也会传递整个action对象,我们可以在<code>handleClockAction</code>使用这个对象.</p>
+<p>现在让我们考虑一下整个app应该怎么工作.所有的实际流程都是在<code>handelClockAction</code>中,在三个saga actions中,每一个action我们都做一些不同的工作.深入到代码的基础构架中.使用<code>if/else if</code>代码块替换<code>handleClockAction</code>的单行代码.这个代码块为每个action type提供分支判断逻辑,并且输出一些文本日志,验证代码的正确性.</p>
+<p>给你几秒钟,耐心等待一下.</p>
+<p>好了,下面的是我的<code>handelClockAction</code>的实际样子:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//if else if代码块进行分支判断执行流程</span></div><div class="line"><span class="function"><span class="keyword">function</span>* <span class="title">handleClockAction</span> (<span class="params">&#123; type &#125;</span>) </span>&#123;  </div><div class="line">  <span class="keyword">if</span> (type === <span class="string">'start-clock'</span>) &#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">`Received <span class="subst">$&#123;type&#125;</span>. We need to run the clock forward here.`</span>)</div><div class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span> (type === <span class="string">'rewind-clock'</span>) &#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">`Received <span class="subst">$&#123;type&#125;</span>. We need to run the clock backwards here.`</span>)</div><div class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span> (type === <span class="string">'pause-clock'</span>) &#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">`Received <span class="subst">$&#123;type&#125;</span>. Guess what needs to be done here?`</span>)</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<hr>
+<p>现在运行app(npm start),转到localhost:8080,打开javascript终端,测试一些saga actions(他们和SVG图下面的按钮是连接在一起的).我们可以看到每次action执行时,有相应的日志输出.</p>
+<p>当我们开始clock action,我们想让时钟每100毫秒递增一次.为了这样做,从saga导入助手函数”delay”.编辑redux-saga文件.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> &#123; delay, takeLatest &#125; <span class="keyword">from</span> <span class="string">'redux-saga'</span></div></pre></td></tr></table></figure>
+<hr>
+<p>delay非常简单，功能不言自明.它接收一个参数,毫秒数,然后暂停执行对应的时间.例如<code>yield delay(50)</code>.在<code>if/else if</code>代码块中添加一些逻辑代码,每1000ms,输出日志.请记住,你需要这个过程无限制的重复.我们可以使用非常简单的原生javascript代码控制流来实现.我想让你先猜猜怎么实现.</p>
+<p>不要偷看.</p>
+<p>花点时间考虑一下.</p>
+<p>好了,下面是我的代码</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"> <span class="function"><span class="keyword">function</span>* <span class="title">handleClockAction</span> (<span class="params">&#123; type &#125;</span>) </span>&#123;  </div><div class="line">  <span class="keyword">if</span> (type === <span class="string">'start-clock'</span>) &#123;</div><div class="line">    <span class="keyword">while</span> (<span class="literal">true</span>) &#123;<span class="comment">//就是这个while(true)语句保持始终运行</span></div><div class="line">      <span class="keyword">yield</span> delay(<span class="number">1000</span>)</div><div class="line">      <span class="built_in">console</span>.log(<span class="string">`Received <span class="subst">$&#123;type&#125;</span>. We need to run the clock forward here.`</span>)</div><div class="line">    &#125;</div><div class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span> (type === <span class="string">'rewind-clock'</span>) &#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">`Received <span class="subst">$&#123;type&#125;</span>. We need to run the clock backwards here.`</span>)</div><div class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span> (type === <span class="string">'pause-clock'</span>) &#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">`Received <span class="subst">$&#123;type&#125;</span>. Guess what needs to be done here?`</span>)</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<hr>
+<p>在这一点上,打开js终端,查看日志输出,可以得到直观的信息.你将看到,start clock action暂停100毫秒,然后输出一些日志信息,之后无限地重复这个过程.注意一个关键事实,无论什么时间我们的<code>takeLatest</code>函数接收到匹配的action的时候,它会退出当前运行的<code>handleClockAction</code>.如果是暂停的action,什么事情也不做,但是还是要退出当前任何的action,猜猜我们应该怎么做？删除一点代码！暂停的时钟将会自动开始工作,因为<code>takeLatest</code>会退出当前的<code>handleClockAction</code>,不管时钟是向前还是向后运行,时钟都会停止.<br>确信你理解<code>takeLatest</code>的关键特性.在<code>handleClockAction</code>中做出合适的改变.应该想下面这样做:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"> <span class="function"><span class="keyword">function</span>* <span class="title">handleClockAction</span> (<span class="params">&#123; type &#125;</span>) </span>&#123;  </div><div class="line">  <span class="keyword">if</span> (type === <span class="string">'start-clock'</span>) &#123;</div><div class="line">    <span class="keyword">while</span> (<span class="literal">true</span>) &#123;</div><div class="line">      <span class="keyword">yield</span> delay(<span class="number">1000</span>)</div><div class="line">      <span class="built_in">console</span>.log(<span class="string">`Received <span class="subst">$&#123;type&#125;</span>. We need to run the clock forward here.`</span>)</div><div class="line">    &#125;</div><div class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span> (type === <span class="string">'rewind-clock'</span>) &#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">`Received <span class="subst">$&#123;type&#125;</span>. We need to run the clock backwards here.`</span>)</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<hr>
+<p>现在让我们在循环内真正的dispatch一个action.<br>（旁白：我们没有实际dispatch一个action，仅仅请求中间件来做这件事,暂时不要担心,我后面会解释清楚的.)</p>
+<p>在Saga里面dispatch一个action,我们要使用<code>put</code> side effects,添加一行代码到duck文件里.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> &#123; put &#125; <span class="keyword">from</span> <span class="string">'redux-saga/effects'</span></div></pre></td></tr></table></figure>
+<hr>
+<p>通过<code>put</code>请求一个dispatch的action,简单的使用<code>yield put({ type: &#39;hi&#39;, data: &#39;I am an action&#39; })</code>就可以了.意思是在<code>put</code>里,可以调用一个action creator 返回一个单纯对象,像这样<code>yield put(someAction())</code>.(在javascript中函数的参数会立即求值).还记得我们在开始创建的那些redux action吗？我们要使用一个,转到while循环,试试<code>put</code>.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">  <span class="function"><span class="keyword">function</span>* <span class="title">handleClockAction</span> (<span class="params">&#123; type &#125;</span>) </span>&#123;  </div><div class="line">  <span class="keyword">if</span> (type === <span class="string">'start-clock'</span>) &#123;</div><div class="line">    <span class="keyword">while</span> (<span class="literal">true</span>) &#123;</div><div class="line">      <span class="keyword">yield</span> delay(<span class="number">1000</span>)</div><div class="line">      <span class="keyword">yield</span> put(incrementMilliseconds())<span class="comment">//注意这一句</span></div><div class="line">    &#125;</div><div class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span> (type === <span class="string">'rewind-clock'</span>) &#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">`Received <span class="subst">$&#123;type&#125;</span>. We need to run the clock backwards here.`</span>)</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<hr>
+<p>在你的浏览器里试试.注意在SVG下面的时钟时间是递增的.</p>
+<p>为了让时钟后退,可以重用start 时钟的大部分代码.</p>
+<p>下面是回退的代码:<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">  <span class="function"><span class="keyword">function</span>* <span class="title">handleClockAction</span> (<span class="params">&#123; type &#125;</span>) </span>&#123;  </div><div class="line">  <span class="keyword">if</span> (type === <span class="string">'start-clock'</span>) &#123;</div><div class="line">    <span class="keyword">while</span> (<span class="literal">true</span>) &#123;</div><div class="line">      <span class="keyword">yield</span> delay(<span class="number">1000</span>)</div><div class="line">      <span class="keyword">yield</span> put(incrementMilliseconds())</div><div class="line">    &#125;</div><div class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span> (type === <span class="string">'rewind-clock'</span>) &#123;</div><div class="line">    <span class="keyword">while</span> (<span class="literal">true</span>) &#123;</div><div class="line">      <span class="keyword">yield</span> delay(<span class="number">1000</span>)</div><div class="line">      <span class="keyword">yield</span> put(decrementMilliseconds())<span class="comment">//递减</span></div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<hr>
+<p>现在测试一下所有的saga actions,确保每件事情都工作正常.如果工作不正常,那绝对是你的错,不是我的错.开个玩笑.(译者:后面几句没有翻译)</p>
+<p>激动人心的时刻是运行saga代码并且通过实验学到的了一些东西.一个提示：<code>delay</code>是阻塞的,其他的effect语句都是非阻塞的.试着使用<code>for</code>循环.要么把<code>while</code>条件改为false.我们已经放弃了promise的世界,现在我们可以使用这些简单的,可预测的,原生的javascript来表现出所有的控制流语句.</p>
+<p>好了,把saga代码恢复到上面的样子.</p>
+<p>做好了上面的恢复,我的saga代码已经完成,可以操作了(注意事项：在最终版本上,我已经把代码重新组织了一下,以便于阅读).</p>
+<h2 id="Saga’s的方式处理异步操作"><a href="#Saga’s的方式处理异步操作" class="headerlink" title="Saga’s的方式处理异步操作"></a>Saga’s的方式处理异步操作</h2><p>好了.现在让我们再做一些事情,让我们谈谈代码是怎么工作的.Redux Saga中核心的概念是:我们实际没有像dispatch一个action到store一样执行异步操作.替代方法是:我们yield异步操作到saga middleware,然后middleware执行他们.简单的说,我们给Saga一个指示,告诉他我们希望发生什么.这些异步操作描述是遵循标准generator输出的单纯对象:<code>{value:any,done:boolean}</code>,这和我们在第一部分看到的完全一样.<br>例如,<code>yield put</code>发送一个对象到中间件,这个中间件包含一个action对象,可以dispatch一些内容给我们(译者:这个地方有点绕,其实是在异步操作完成以后,需要再次dispatch返回的结果,从而改变state，这样我们的组件才可以根据state的改变来渲染效果,例如从远程资源请求数据,通常都需要把整个操作分成几步来完成,每一步要改变不同的state,在dispatch中再dispatch)这样定义异步数据流有很多好处,其中之一是可测试性.我们可以很简单的在每一个side effect返回中间件的时候创建断言(继续关注后续的内容,有测试的深入介绍)</p>
+<p> 我们应该遵循redux-saga的最佳实践,做些小小的更新,从redux-saga/effects中导入<code>call</code>,把<code>yield delay(100)</code>改为<code>yield call(delay,100)</code>.因为我们只想返回side-effects到saga中间件,saga提供了<code>call</code>effect把non-effects转变为effects.与仅仅yield<code>delay</code>自己(promise对象)不同,我们通过<code>call</code>把<code>delay</code>转变为effect,然后yield它.所有的non-effect都应该做相同的处理.<code>call</code>的语法调用一个函数,并且传递参数列表.例如:<code>yield call(fetch,url,options)</code>.最后,注意,<code>call</code>可以被promise对象,generators,或者函数使用.</p>
+<h2 id="代码不要太丑陋"><a href="#代码不要太丑陋" class="headerlink" title="代码不要太丑陋"></a>代码不要太丑陋</h2><p> 我们需要创建一个文件作为app的配置,包含一些常量.为什么不叫做“config.js”在/src目录下创建,粘贴下面的内容.</p>
+ <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line">  <span class="keyword">const</span> MAX_RADIUS = <span class="number">40</span></div><div class="line"></div><div class="line"><span class="keyword">let</span> hands = [  </div><div class="line">  &#123; <span class="attr">ms</span>: <span class="number">144000</span>, <span class="attr">maxTicks</span>: <span class="number">1</span> &#125;,</div><div class="line">  &#123; <span class="attr">ms</span>: <span class="number">36000</span>, <span class="attr">maxTicks</span>: <span class="number">4</span> &#125;,</div><div class="line">  &#123; <span class="attr">ms</span>: <span class="number">12000</span>, <span class="attr">maxTicks</span>: <span class="number">3</span> &#125;,</div><div class="line">  &#123; <span class="attr">ms</span>: <span class="number">2000</span>, <span class="attr">maxTicks</span>: <span class="number">6</span> &#125;,</div><div class="line">  &#123; <span class="attr">ms</span>: <span class="number">400</span>, <span class="attr">maxTicks</span>: <span class="number">5</span> &#125;,</div><div class="line">  &#123; <span class="attr">ms</span>: <span class="number">100</span>, <span class="attr">maxTicks</span>: <span class="number">4</span> &#125;</div><div class="line">]</div><div class="line"></div><div class="line"><span class="keyword">export</span> <span class="keyword">const</span> STROKE_WIDTH = MAX_RADIUS / hands.length</div><div class="line"></div><div class="line">hands = hands.map(<span class="function">(<span class="params">hand, idx</span>) =&gt;</span> &#123;  </div><div class="line">  <span class="keyword">const</span> radius = STROKE_WIDTH * (hands.length - idx)</div><div class="line"></div><div class="line">  <span class="keyword">return</span> &#123;</div><div class="line">    ...hand,</div><div class="line">    radius,</div><div class="line">    <span class="attr">circumference</span>: <span class="number">2</span> * <span class="built_in">Math</span>.PI * radius,</div><div class="line">    <span class="attr">alpha</span>: <span class="number">1</span> - idx / hands.length</div><div class="line">  &#125;</div><div class="line">&#125;)</div><div class="line"></div><div class="line"><span class="keyword">export</span> <span class="keyword">const</span> CLOCK_HANDS = hands</div><div class="line"></div><div class="line"><span class="keyword">export</span> <span class="keyword">const</span> MINIMUM_MS = <span class="number">100</span></div></pre></td></tr></table></figure>
+<hr>
+<p> 这里面都有什么内容？让我解释一下,它是一组常量和计算量,描述SVG的外观.<br> 我不会详细讲这个内容,不是这里的重点.</p>
+<p> 好了,现在我们的saga代码已经就绪,我们也定义了所有SVG需要的配置文件.再更新一下SVG内容,好完成app.jsx的代码.</p>
+<p> ##完成 HIM<br> 下面是目前的app.jsx代码<br> <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div></pre></td><td class="code"><pre><div class="line">  <span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span>  </div><div class="line"><span class="keyword">import</span> &#123; connect &#125; <span class="keyword">from</span> <span class="string">'react-redux'</span></div><div class="line"></div><div class="line"><span class="keyword">import</span> &#123; incrementMilliseconds, decrementMilliseconds, resetClock, startClock, pauseClock, rewindClock &#125; <span class="keyword">from</span> <span class="string">'duck'</span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Clock</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;  </div><div class="line">  render () &#123;</div><div class="line">    <span class="keyword">const</span> &#123;</div><div class="line">      milliseconds,</div><div class="line">      incrementMilliseconds,</div><div class="line">      decrementMilliseconds,</div><div class="line">      resetClock,</div><div class="line">      startClock,</div><div class="line">      pauseClock,</div><div class="line">      rewindClock</div><div class="line">    &#125; = <span class="keyword">this</span>.props</div><div class="line"></div><div class="line">    <span class="keyword">return</span> (</div><div class="line">      <span class="xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></div><div class="line">        <span class="tag">&lt;<span class="name">svg</span> <span class="attr">onClick</span>=<span class="string">&#123;</span> <span class="attr">incrementMilliseconds</span> &#125; <span class="attr">onDoubleClick</span>=<span class="string">&#123;</span> <span class="attr">resetClock</span> &#125; <span class="attr">onMouseLeave</span>=<span class="string">&#123;</span> <span class="attr">decrementMilliseconds</span> &#125;</span></div><div class="line">          <span class="attr">className</span>=<span class="string">"clock"</span> <span class="attr">xmlns</span>=<span class="string">"http://www.w3.org/2000/svg"</span> <span class="attr">viewBox</span>=<span class="string">"0 0 100 100"</span> <span class="attr">width</span>=<span class="string">"500"</span>&gt;</div><div class="line">          <span class="tag">&lt;<span class="name">circle</span> <span class="attr">cx</span>=<span class="string">"50"</span> <span class="attr">cy</span>=<span class="string">"50"</span> <span class="attr">r</span>=<span class="string">&#123;</span> <span class="attr">30</span> &#125; <span class="attr">stroke</span>=<span class="string">&#123;</span> '<span class="attr">rgba</span>(<span class="attr">1</span>,<span class="attr">1</span>,<span class="attr">1</span>,<span class="attr">1</span>)' &#125; <span class="attr">fill</span>=<span class="string">"orange"</span> /&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">svg</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">p</span>&gt;</span>&#123; milliseconds &#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">p</span>&gt;</span></div><div class="line">          <span class="tag">&lt;<span class="name">button</span> <span class="attr">type</span>=<span class="string">"button"</span> <span class="attr">onClick</span>=<span class="string">&#123;</span> <span class="attr">startClock</span> &#125;&gt;</span>Start Clock<span class="tag">&lt;/<span class="name">button</span>&gt;</span></div><div class="line">          <span class="tag">&lt;<span class="name">button</span> <span class="attr">type</span>=<span class="string">"button"</span> <span class="attr">onClick</span>=<span class="string">&#123;</span> <span class="attr">pauseClock</span> &#125;&gt;</span>Pause Clock<span class="tag">&lt;/<span class="name">button</span>&gt;</span></div><div class="line">          <span class="tag">&lt;<span class="name">button</span> <span class="attr">type</span>=<span class="string">"button"</span> <span class="attr">onClick</span>=<span class="string">&#123;</span> <span class="attr">rewindClock</span> &#125;&gt;</span>Rewind Clock<span class="tag">&lt;/<span class="name">button</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line">      <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">    )</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">export default connect(state =&gt; (&#123;  </div><div class="line">  milliseconds: state.milliseconds</div><div class="line">&#125;), (&#123;</div><div class="line">  incrementMilliseconds,</div><div class="line">  decrementMilliseconds,</div><div class="line">  resetClock,</div><div class="line">  startClock,</div><div class="line">  pauseClock,</div><div class="line">  rewindClock</div><div class="line">&#125;))(Clock)</div></pre></td></tr></table></figure></p>
+<hr>
+<p> 我们需要导入conifg内容,通过props传递到组件.删除一些不必要的导入文件.不再直接调用特定的actions,因为我们仅仅在saga中发出action.更新一下代码.<br> <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">  <span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span>  </div><div class="line"><span class="keyword">import</span> &#123; connect &#125; <span class="keyword">from</span> <span class="string">'react-redux'</span></div><div class="line"></div><div class="line"><span class="keyword">import</span> &#123; startClock, rewindClock, pauseClock, resetClock &#125; <span class="keyword">from</span> <span class="string">'duck'</span>  </div><div class="line"><span class="keyword">import</span> &#123; CLOCK_HANDS, STROKE_WIDTH &#125; <span class="keyword">from</span> <span class="string">'config'</span></div></pre></td></tr></table></figure></p>
+<hr>
+<p> 现在我们有了数据,可以在SVG内画出漂亮的圆环.简单点的说我们使用同心圆代表小时/分钟/秒.时间流逝的时候,改变每一个圆环的长度.为了做SVG图片,使用了一些小技巧<a href="https://css-tricks.com/svg-line-animation-works/" target="_blank" rel="external">CSS Trick blog post</a></p>
+<p> 我们不再通过props手段传递millseconds字段.每次更新milliseconds时,我们计算每一个时钟指针的位置.这像是烦人的数学计算.基本上我们遍历每一个指针,然后在下一个指针重复同样的过程,(时针就减掉小时的整倍好秒数,分钟和秒一样处理),把剩余的时间传递给下去.最小的指针对应的最小的精度单位,100ms(config.js中的MAXIMUM_MS),更新你的<code>connect</code></p>
+ <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line">  <span class="keyword">export</span> <span class="keyword">default</span> connect(<span class="function"><span class="params">state</span> =&gt;</span> &#123;  </div><div class="line">  <span class="keyword">const</span> currentTime = state.milliseconds</div><div class="line">  <span class="keyword">let</span> remainingTime = currentTime</div><div class="line"></div><div class="line">  <span class="keyword">const</span> getTicks = <span class="function">(<span class="params">hands, timeRemaining</span>) =&gt;</span> &#123;</div><div class="line">    <span class="keyword">let</span> [hand, ...tailHands] = hands</div><div class="line">    hand.ticks = <span class="built_in">Math</span>.floor(timeRemaining / hand.ms)</div><div class="line">    <span class="keyword">return</span> tailHands.length ? [hand, ...getTicks(tailHands, timeRemaining % hand.ms)] : [hand]</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="keyword">const</span> hands = getTicks(CLOCK_HANDS, remainingTime)</div><div class="line">    .map(<span class="function">(<span class="params">hand, idx</span>) =&gt;</span> &#123;</div><div class="line">      <span class="keyword">const</span> offset = state.milliseconds &gt;= hand.ms ? <span class="number">1</span> : <span class="number">0</span></div><div class="line">      <span class="keyword">const</span> position = hand.circumference - ((hand.ticks + offset) / hand.maxTicks * hand.circumference)</div><div class="line"></div><div class="line">      <span class="keyword">return</span> &#123;</div><div class="line">        ...hand,</div><div class="line">        position</div><div class="line">      &#125;</div><div class="line">    &#125;)</div><div class="line"></div><div class="line">  <span class="keyword">return</span> &#123;</div><div class="line">    hands</div><div class="line">  &#125;</div><div class="line">&#125;, (&#123;</div><div class="line">  startClock,</div><div class="line">  rewindClock,</div><div class="line">  resetClock,</div><div class="line">  pauseClock</div><div class="line">&#125;))(Clock)</div></pre></td></tr></table></figure>
+<hr>
+<p> 现在我们需要在组件中导入新的<code>指针</code>属性.在渲染方法中给props解构赋值:</p>
+ <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">render () &#123;  </div><div class="line"><span class="keyword">const</span> &#123;</div><div class="line">  hands,</div><div class="line">  startClock,</div><div class="line">  rewindClock,</div><div class="line">  resetClock,</div><div class="line">  pauseClock</div><div class="line">&#125; = <span class="keyword">this</span>.props</div></pre></td></tr></table></figure>
+<hr>
+<p> 为了最终版本,我们做一下最终的改变.我们更新SVG,启动<code>onMouseEnter</code>,回退<code>onMouseLeave</code>,暂停<code>onClick</code>.添加一下这些变化.</p>
+<p> （译者：这一段也不翻了,原作者要喝伏特加).</p>
+<p>  做好了吧,现在我们在SVG内创建同心圆,遍历<code>hands</code>并且创建<code>&lt;circle&gt;</code>SVG元素,使用我们的计算值设置每个指针的半径,位置和透明度.</p>
+<p>  这是最终的更新,下面是<code>render()</code>函数返回的内容：<br>  <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">   <span class="keyword">return</span> (  </div><div class="line">  <span class="xml"><span class="tag">&lt;<span class="name">svg</span> <span class="attr">onMouseEnter</span>=<span class="string">&#123;</span> <span class="attr">startClock</span> &#125; <span class="attr">onMouseLeave</span>=<span class="string">&#123;</span> <span class="attr">rewindClock</span> &#125; <span class="attr">onDoubleClick</span>=<span class="string">&#123;</span> <span class="attr">resetClock</span> &#125;</span></span></div><div class="line">    <span class="attr">onClick</span>=<span class="string">&#123;</span> <span class="attr">pauseClock</span> &#125; <span class="attr">className</span>=<span class="string">"clock"</span> <span class="attr">xmlns</span>=<span class="string">"http://www.w3.org/2000/svg"</span> <span class="attr">viewBox</span>=<span class="string">"0 0 100 100"</span> <span class="attr">width</span>=<span class="string">"500"</span>&gt;</div><div class="line">    &#123; hands.map((hand, index) =&gt; &#123;</div><div class="line">      const &#123; radius, circumference, position, alpha &#125; = hand</div><div class="line">      return (</div><div class="line">        <span class="tag">&lt;<span class="name">circle</span> <span class="attr">key</span>=<span class="string">&#123;</span> <span class="attr">index</span> &#125; <span class="attr">cx</span>=<span class="string">"50"</span> <span class="attr">cy</span>=<span class="string">"50"</span> <span class="attr">r</span>=<span class="string">&#123;</span> <span class="attr">radius</span> &#125; <span class="attr">stroke</span>=<span class="string">&#123;</span> `<span class="attr">rgba</span>(<span class="attr">1</span>,<span class="attr">1</span>,<span class="attr">1</span>,$&#123;<span class="attr">alpha</span>&#125;)` &#125; <span class="attr">fill</span>=<span class="string">"none"</span></span></div><div class="line">          <span class="attr">strokeWidth</span>=<span class="string">&#123;</span> <span class="attr">STROKE_WIDTH</span> &#125; <span class="attr">strokeDasharray</span>=<span class="string">&#123;</span> <span class="attr">circumference</span> &#125; <span class="attr">strokeDashoffset</span>=<span class="string">&#123;</span> <span class="attr">position</span> &#125; /&gt;</div><div class="line">      )</div><div class="line">    &#125;) &#125;</div><div class="line">  <span class="tag">&lt;/<span class="name">svg</span>&gt;</span></div><div class="line">)</div></pre></td></tr></table></figure></p>
+<hr>
+<p> 忘了件事情,返回duck.js文件,从config导入MINIMUM_MS:</p>
+ <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> &#123; MINIMUM_MS &#125; <span class="keyword">from</span> <span class="string">'config'</span></div></pre></td></tr></table></figure>
+<hr>
+<p> 现在在delay函数调用时使用<code>MINIMUM_MS</code>替换<code>1000</code>.<br> 时钟每100ms就会滴答一下:</p>
+ <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">  <span class="function"><span class="keyword">function</span>* <span class="title">handleClockAction</span> (<span class="params">&#123; type &#125;</span>) </span>&#123;  </div><div class="line">  <span class="keyword">if</span> (type === <span class="string">'start-clock'</span>) &#123;</div><div class="line">    <span class="keyword">while</span> (<span class="literal">true</span>) &#123;</div><div class="line">      <span class="keyword">yield</span> delay(MINIMUM_MS)</div><div class="line">      <span class="keyword">yield</span> put(incrementMilliseconds())</div><div class="line">    &#125;</div><div class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span> (type === <span class="string">'rewind-clock'</span>) &#123;</div><div class="line">    <span class="keyword">while</span> (<span class="literal">true</span>) &#123;</div><div class="line">      <span class="keyword">yield</span> delay(MINIMUM_MS)</div><div class="line">      <span class="keyword">yield</span> put(decrementMilliseconds())</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<hr>
+<p> 看看在saga中控制流程的逻辑有多容易？</p>
+<h2 id="给你的时钟上发条"><a href="#给你的时钟上发条" class="headerlink" title="给你的时钟上发条"></a>给你的时钟上发条</h2><p> 现在给这段代码拧发条,<code>npm start</code>,浏览器中打开localhost:8080.</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/2044710-a754703b38f36735.gif?imageMogr2/auto-orient/strip" alt="redux-saga-clock.gif"></p>
+<p> 这是一个能暂停,恢复,向前,向后和重置.看上去也很酷.</p>
+<h2 id="结束语"><a href="#结束语" class="headerlink" title="结束语"></a>结束语</h2><p> 感谢阅读这个教程,我们涉及到了js generator和Redux saga的有关内容.我希望能帮助你理解怎么使用Redux Saga,同时还有使用的好处和背后的合理性.</p>
+<p> 如果你想了解更多的Redux Saga的内容,这里还有一些很好的教程.下面是我开始学习redux saga的时候帮助我入门的内容.</p>
+<ul>
+<li><a href="http://yelouafi.github.io/redux-saga/docs/introduction/BeginnerTutorial.html" target="_blank" rel="external">Redux的官方文档</a>是无价之宝</li>
+<li><a href="http://wecodetheweb.com/2016/01/23/handling-async-in-redux-with-sagas/" target="_blank" rel="external">Niels Gerritsen’s的Redux Saga入门教程</a>.这是我最开始学习Redux saga的教程之一,结构很清晰,帮助我跨国一些概念障碍.</li>
+<li><a href="http://joelhooks.com/blog/2016/03/20/build-an-image-gallery-using-redux-saga" target="_blank" rel="external">Joel Hooks的教程</a></li>
+<li><a href="http://jaysoo.ca/2016/01/03/managing-processes-in-redux-using-sagas/" target="_blank" rel="external">Jack Hsu的文章</a>.我的实例实际是这个教程的扩展.</li>
+</ul>
+<p>我也喜欢下面的文章,解密generators,激励我写这篇文章,没有这两个文章,我都不知道generators讲的是什么玩意.</p>
+<ul>
+<li><a href="https://davidwalsh.name/es6-generators" target="_blank" rel="external">David Walsh的博客,关于ES6 generator的内容,作者是kyle Simpson</a></li>
+<li><a href="http://www.2ality.com/2015/03/es6-generators.html2ality" target="_blank" rel="external">Axel Rauschmeyer的ES6 generators的文章</a></li>
+</ul>
+<p>感谢阅读!</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/03/08/翻译-使用Reselect改进React和Redux程序性能/" rel="next" title="翻译-使用Reselect改进React和Redux程序性能">
+                <i class="fa fa-chevron-left"></i> 翻译-使用Reselect改进React和Redux程序性能
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/03/08/本地Node-js服务器作为api服务器的解决办法/" rel="prev" title="本地Node-js服务器作为api服务器的解决办法">
+                本地Node-js服务器作为api服务器的解决办法 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpeg"
+               alt="phpsmarter" />
+          <p class="site-author-name" itemprop="name">phpsmarter</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">21</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#What’s-my-name-agian"><span class="nav-number">1.</span> <span class="nav-text">What’s my name agian?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Saga’s的方式处理异步操作"><span class="nav-number">2.</span> <span class="nav-text">Saga’s的方式处理异步操作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码不要太丑陋"><span class="nav-number">3.</span> <span class="nav-text">代码不要太丑陋</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#给你的时钟上发条"><span class="nav-number">4.</span> <span class="nav-text">给你的时钟上发条</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#结束语"><span class="nav-number">5.</span> <span class="nav-text">结束语</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">phpsmarter</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

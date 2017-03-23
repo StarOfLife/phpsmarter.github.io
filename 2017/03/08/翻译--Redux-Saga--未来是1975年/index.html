@@ -1,0 +1,993 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="phpsmarter" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="24 SEPTEMBER 2016
+
+原文在这里
+
+(这个文章是有关Redux-saga三部曲的第一部分,第二部分,第三部分.我们会构建一个抽象的时钟)
+
+第一部分译文请见，第二部分译文请见，第三部分译文请见.
+
+我的观点是:React/Redux组合是目前最好的前端技术栈.这两个库是相互依存的,因为React可以是纯函数,功能是:state=&amp;gt;view,React仅仅关注怎么根据state">
+<meta property="og:type" content="article">
+<meta property="og:title" content="翻译--Redux-Saga--未来是1975年">
+<meta property="og:url" content="http://yoursite.com/2017/03/08/翻译--Redux-Saga--未来是1975年/index.html">
+<meta property="og:site_name" content="phpsmarter">
+<meta property="og:description" content="24 SEPTEMBER 2016
+
+原文在这里
+
+(这个文章是有关Redux-saga三部曲的第一部分,第二部分,第三部分.我们会构建一个抽象的时钟)
+
+第一部分译文请见，第二部分译文请见，第三部分译文请见.
+
+我的观点是:React/Redux组合是目前最好的前端技术栈.这两个库是相互依存的,因为React可以是纯函数,功能是:state=&amp;gt;view,React仅仅关注怎么根据state">
+<meta property="og:updated_time" content="2017-03-23T08:45:37.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="翻译--Redux-Saga--未来是1975年">
+<meta name="twitter:description" content="24 SEPTEMBER 2016
+
+原文在这里
+
+(这个文章是有关Redux-saga三部曲的第一部分,第二部分,第三部分.我们会构建一个抽象的时钟)
+
+第一部分译文请见，第二部分译文请见，第三部分译文请见.
+
+我的观点是:React/Redux组合是目前最好的前端技术栈.这两个库是相互依存的,因为React可以是纯函数,功能是:state=&amp;gt;view,React仅仅关注怎么根据state">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/03/08/翻译--Redux-Saga--未来是1975年/"/>
+
+
+
+
+
+  <title> 翻译--Redux-Saga--未来是1975年 | phpsmarter </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">phpsmarter</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">A beginner of React-native</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-sitemap">
+          <a href="/sitemap.xml" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br />
+            
+            站点地图
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/08/翻译--Redux-Saga--未来是1975年/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="phpsmarter">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="phpsmarter">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                翻译--Redux-Saga--未来是1975年
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-08T08:04:10+08:00">
+                2017-03-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/翻译/" itemprop="url" rel="index">
+                    <span itemprop="name">翻译</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>24 SEPTEMBER 2016</p>
+<blockquote>
+<p><a href="https://ohyayanotherblog.ghost.io/redux-saga-clock/" target="_blank" rel="external">原文在这里</a></p>
+</blockquote>
+<p>(这个文章是有关Redux-saga三部曲的第一部分,<a href="https://ohyayanotherblog.ghost.io/redux-saga-hello-world/" target="_blank" rel="external">第二部分</a>,<a href="https://ohyayanotherblog.ghost.io/redux-saga-finishing-the-clock-demo-app/" target="_blank" rel="external">第三部分</a>.我们会构建一个抽象的时钟)</p>
+<hr>
+<p><a href="http://www.jianshu.com/p/6f8678a6ad78" target="_blank" rel="external">第一部分译文请见</a>，<br><a href="http://www.jianshu.com/p/fad0136e77c0" target="_blank" rel="external">第二部分译文请见</a>，<br><a href="http://www.jianshu.com/p/88fc4236b505" target="_blank" rel="external">第三部分译文请见</a>.</p>
+<hr>
+<p>我的观点是:React/Redux组合是目前最好的前端技术栈.这两个库是相互依存的,因为React可以是纯函数,功能是:<code>state=&gt;view</code>,React仅仅关注怎么根据state来渲染内容,Redux也是纯函数,功能是:<code>action=&gt;state</code>,Redux作为控制app state的单一资源(译者观点:这个地方的state,需要更加开阔眼界,并不是仅仅是UI的状态,组件需要的远程数据也可以是state的一部分,如此以来,Redux的意义就更加凸显出来).即便是拥有如此先进的技术,你最终也会发现,app的控制流代码被一位闲逛的流浪汉搞得好像是一团烂泥.在实际的应用中,最复杂的控制流代码通常包含异步代码,异步代码和其他时序的代码总是协同工作.</p>
+<ul>
+<li>“当POST请求返回时,转到下一页或者显示错误信息.”</li>
+<li>“当移动设备的电力降到5%一下的时候,显示一条⚠️信息.”</li>
+<li>“十秒钟以后,隐藏模态框.”</li>
+<li>“但我的直属领导在附近晃荡的时候,从FB切换到JIRA.”(译者：这肯定是个幽默)</li>
+</ul>
+<p>在一些app中,这些“无家可归”的代码开始骚骚扰有礼貌的邻居.(译者:后面这段没有翻译出来,意思是异步代码会把同步代码搞得一团糟.)</p>
+<p>###与无家可归者战斗<br>javascript库Redux-saga是为Redux设计的一个中间件,为异步操作提供了解决办法:把数据流中的异步代码使用生成器代码块(generator)隔离起来,generator的yield描述一些代码块:<code>effects</code>,这些<code>effects</code>火灾控制流的某个给定点发生作用.</p>
+<p>Saga作为异步代码的收容所,接纳app的异步代码块.saga严重依赖生成器函数,因此我们在正式学习Redux-saga之前,需要了解一下生成器函数.在这个文章中,我们会涉及到内在的合理原因和使用Redux-saga的好处,接着我会教你一些必要的背景知识.好了,到底什么是generator,我们为什么需要他？</p>
+<p>wiki关于generators的解释下面这个内容</p>
+<blockquote>
+<p>生成器非常类似于返回一个数组的函数,在生成器内有可以被调用的参数,生成器是一系列的值.然而与返回一个数组的函数一次返回整个数组不同,生成器函数一次只返回一个值.一句话,生成器函数看起来就是一个函数,但是行为像是一个遍历器.</p>
+</blockquote>
+<p>我觉得从上面这段话根本就没有学到任何东西,那么看看下面这段</p>
+<blockquote>
+<p>生成器概念首次提出是在1975年(译者:题目就是来源于此),作为CLU语言的字符串操作特征,现在Python,C#,Ruby中都可以使用,在javascript的ES6版本中也会加入,在CLU和C#中生成器叫做iterators,在Ruby中叫做enumerators.</p>
+</blockquote>
+<p>所以生成器函数的概念是比较老也是广为所知的概念,但是直到最近才加入ECMAScript.但是为什么现在在javascript中要关注它呢？</p>
+<p>javascript的运行环境让我们成为了非常不幸的程序员,在浏览器内部仅仅只有一个单线程事件循环模型.我们所有的代码都在同一个线程中执行,因此在javascript程序员的脑袋里一定要牢固的植入一个概念,永远永远不要阻塞代码执行,因为阻塞的代码块将会终端其他所有的其他代码的执行.在非阻塞情况下,我们有各种办法来处理异步代码执行,其实都是各种形式的回调函数的注册方法.回调函数是每一个javascript开发者必须熟练掌握的内容,如果你还不了解回调函数和promises对象,在开始下面内容之前要了解一下.否则的话你看到生成器的时候会疯掉的.</p>
+<p>时刻记住,不要暂停代码执行,让我们看看ES6生成器的实现.你也可以读读收到高度评价的<a href="http://www.2ality.com/2015/03/es6-generators.html" target="_blank" rel="external">2ality Blog</a>,</p>
+<blockquote>
+<p>生成器是ECMAScript6的新特征,生成器可以暂停和恢复执行.这个特点对于遍历器和异步编程都大有帮助.<br>这都是什么鬼话.他只说生成器是“可以暂停和恢复的函数!!”我们被允许,鼓励在生成器内暂停和恢复代码执行.这一点完全和不要阻塞代码执行不一样.现在我们已经有了一个编程构架允许我们编写可以暂停和恢复执行的代码.这就是为什么生成器函数成为一个js异步编程进化的里程碑.</p>
+</blockquote>
+<h3 id="ES6生成器摘要"><a href="#ES6生成器摘要" class="headerlink" title="ES6生成器摘要"></a>ES6生成器摘要</h3><p>你不需要具有博士学位才可以使用Redux-saga,但是基础知识还是需要的.下面的内容是ES6生成器绝对的精华部分:</p>
+<ul>
+<li>一个generator函数以<code>function *</code>(“function star”)开始,看起来像下面的样子:</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span>* <span class="title">genFunc</span> (<span class="params"></span>) </span>&#123;  </div><div class="line">  <span class="comment">// code goes here </span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>generator函数返回一个generator</li>
+<li>generator不是一个函数,该死的.看起来像是generator函数返回的一个特殊对象:<code>let genObj=genFunc()</code></li>
+<li>在generator中可以使用<code>yield</code>终止一个generator的执行.</li>
+<li>不要忘了那个✨符号 <code>function* example(){yield &#39;scheibe&#39;}</code></li>
+<li><p>不能使用<code>new</code>关键字来调用一个generator函数.我们可以一直调用generator函数,他总是返回一个新的generator对象,函数体执行会中断,直到我们调用<code>next</code>：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"> <span class="function"><span class="keyword">function</span>* <span class="title">genFunc</span> (<span class="params"></span>) </span>&#123; <span class="keyword">yield</span> <span class="string">'hi'</span> &#125;  </div><div class="line">  <span class="keyword">let</span> genObj1 = genFunc()</div><div class="line">  <span class="keyword">let</span> genObj2 = genFunc()</div><div class="line">  genObj1.next()</div><div class="line">  &#123;<span class="attr">value</span>: <span class="string">"hi"</span>, <span class="attr">done</span>: <span class="literal">false</span> &#125;</div><div class="line">  genObj1.next()</div><div class="line">&#123; <span class="attr">value</span>: <span class="literal">undefined</span>, <span class="attr">done</span>: <span class="literal">true</span> &#125;</div><div class="line">  genObj2.next()</div><div class="line">&#123; <span class="attr">value</span>: <span class="string">"hi"</span>, <span class="attr">done</span>: <span class="literal">false</span> &#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>从上面的代码可以看到,当我们调用<code>next</code>方法像这样<code>genObj.next()</code>,直到下一个<code>yield</code>关键字的时候才可以执行,接着返回<code>yield</code>的表达式形式,格式为<code>{value:any,done:boolean}</code>,“any”是yield的值,”done”告诉我们generator还有没有剩下的代码需要yield.</p>
+</li>
+<li>下一次返回的时候,generator从这个点继续执行.但是你是监听不到这个过程的.</li>
+<li>如果整个generator完成,如果再执行<code>next()</code>调用,将返回<code>{value:undefined,}</code>.</li>
+<li>也可以通过参数传值到generator:</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"> <span class="function"><span class="keyword">function</span>* <span class="title">test</span> (<span class="params"></span>) </span>&#123;  </div><div class="line">  <span class="keyword">while</span> (<span class="literal">true</span>) &#123; </div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'FIRST STEP'</span>)</div><div class="line">    <span class="keyword">var</span> x = <span class="keyword">yield</span> <span class="number">1</span></div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'SECOND STEP'</span>)</div><div class="line">    <span class="keyword">yield</span> x * <span class="number">2</span></div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">&gt; <span class="keyword">let</span> gen = test()</div><div class="line">&gt; gen.next()</div><div class="line"><span class="comment">// executes until the first yield, sends out its value and waits</span></div><div class="line">FIRST STEP  </div><div class="line">&#123; <span class="attr">value</span>: <span class="number">1</span>, <span class="attr">done</span>: <span class="literal">false</span> &#125;</div><div class="line">gen.next(<span class="number">29</span>)  </div><div class="line"><span class="comment">// sends in 29 to the first yield, which is waiting, assigns it to x, then executes until the next yield and sends out its value</span></div><div class="line">SECOND STEP  </div><div class="line">&#123; <span class="attr">value</span>: <span class="number">58</span>, <span class="attr">done</span>: <span class="literal">false</span> &#125;</div><div class="line">gen.next(<span class="number">2</span>)  </div><div class="line"><span class="comment">// paused at the second yield, we execute up until the first yield again, the value passed to next gets thrown away since we didn't assign it to anything</span></div><div class="line">FIRST STEP  </div><div class="line">&#123; <span class="attr">value</span>: <span class="number">1</span>, <span class="attr">done</span>: <span class="literal">false</span> &#125;</div><div class="line">gen.next()  </div><div class="line"><span class="comment">// sends in no value to the paused first yield (undefined), and executes until the second yield, sending out the result of its operand expression</span></div><div class="line">SECOND STEP  </div><div class="line">&#123; <span class="attr">value</span>: <span class="literal">NaN</span>, <span class="attr">done</span>: <span class="literal">false</span> &#125;</div></pre></td></tr></table></figure>
+<hr>
+<ul>
+<li>所以<code>next</code>可以被分为三个步骤:1.可以传递一个值到目前挂起的yield 2.返回下一个yield的操作符 3.在yield中挂起</li>
+</ul>
+<p>好了,确实有很多的东西要消化,但是现在你已经知道怎么传递一个值到generator.你或许会想着慢慢研究这些代码直到搞清楚每件事.确保调用<code>next</code>的时候,记住三个步骤.最好能记住这些步骤.这些步骤不仅仅对于理解generator,Redux和Saga很关键,如果我们写测试saga代码的时候,这些步骤也变得非常有用.最终的两个结论:</p>
+<ul>
+<li><strong>只能在generator函数中yield,在回调函数中是不行的.例如下面的代码是错误的：</strong></li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span>* <span class="title">genFunc</span> (<span class="params"></span>) </span>&#123; [<span class="number">1</span>, <span class="number">2</span>].map(<span class="function"><span class="params">x</span> =&gt;</span> <span class="keyword">yield</span> x) &#125;</div></pre></td></tr></table></figure>
+<hr>
+<ul>
+<li>可以使用yield*把控制权传递到另一个generator：</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span>* <span class="title">foo</span> (<span class="params"></span>) </span>&#123;  </div><div class="line">  <span class="keyword">yield</span>* bar()</div><div class="line">  <span class="keyword">yield</span> <span class="number">3</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span>* <span class="title">bar</span> (<span class="params"></span>) </span>&#123;  </div><div class="line">  <span class="keyword">yield</span> <span class="number">1</span></div><div class="line">  <span class="keyword">yield</span> <span class="number">2</span></div><div class="line">&#125;</div><div class="line"></div><div class="line">&gt; <span class="keyword">let</span> gen = foo()</div><div class="line">&gt; gen.next()</div><div class="line">&#123; <span class="attr">value</span>: <span class="number">1</span>, <span class="attr">done</span>: <span class="literal">false</span> &#125;</div><div class="line">&gt; gen.next()</div><div class="line">&#123; <span class="attr">value</span>: <span class="number">2</span>, <span class="attr">done</span>: <span class="literal">false</span> &#125;</div><div class="line">&gt; gen.next()</div><div class="line">&#123; <span class="attr">value</span>: <span class="number">3</span>, <span class="attr">done</span>: <span class="literal">false</span> &#125;</div><div class="line">&gt; gen.next()</div><div class="line">&#123; <span class="attr">value</span>: <span class="literal">undefined</span>, <span class="attr">done</span>: <span class="literal">true</span> &#125;</div></pre></td></tr></table></figure>
+<hr>
+<p>我期望你能重新读读上面的列表项的内容,在浏览器的console中练习一下generators代码.如果你对这些代码熟悉了以后,就可以准备开始Redux Saga app了.</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/03/08/翻译-Redux-Saga-hello，world!/" rel="next" title="翻译-Redux-Saga-hello，world!">
+                <i class="fa fa-chevron-left"></i> 翻译-Redux-Saga-hello，world!
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/03/08/翻译-开启React,Redux和Immutable之旅-测试驱动教程(part2)/" rel="prev" title="翻译-开启React,Redux和Immutable之旅-测试驱动教程(part2)">
+                翻译-开启React,Redux和Immutable之旅-测试驱动教程(part2) <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpeg"
+               alt="phpsmarter" />
+          <p class="site-author-name" itemprop="name">phpsmarter</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">21</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#ES6生成器摘要"><span class="nav-number">1.</span> <span class="nav-text">ES6生成器摘要</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">phpsmarter</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

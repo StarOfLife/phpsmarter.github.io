@@ -1,0 +1,943 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="phpsmarter" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="Arunoda Susiripala  参看原文,这篇文章发布有些时间了,但仍然是很好的学习资料,而且在随着学习和了解的深入,许多有意思的想法得到证实,那感觉真是很好.比如我前面诞生了一个想法,redux就是一个数据层啊!可以借助数据库的思想来学习,包括其中诞生的一些中间思想.在这篇文章有有了新的发现,在Meteor的state管理方法直接使用了minimongo cache的名字,名字里的含义">
+<meta property="og:type" content="article">
+<meta property="og:title" content="翻译-重新思考Redux">
+<meta property="og:url" content="http://yoursite.com/2017/03/03/翻译-重新思考Redux/index.html">
+<meta property="og:site_name" content="phpsmarter">
+<meta property="og:description" content="Arunoda Susiripala  参看原文,这篇文章发布有些时间了,但仍然是很好的学习资料,而且在随着学习和了解的深入,许多有意思的想法得到证实,那感觉真是很好.比如我前面诞生了一个想法,redux就是一个数据层啊!可以借助数据库的思想来学习,包括其中诞生的一些中间思想.在这篇文章有有了新的发现,在Meteor的state管理方法直接使用了minimongo cache的名字,名字里的含义">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2044710-078a8427c21f15a5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/600">
+<meta property="og:updated_time" content="2017-03-23T08:52:34.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="翻译-重新思考Redux">
+<meta name="twitter:description" content="Arunoda Susiripala  参看原文,这篇文章发布有些时间了,但仍然是很好的学习资料,而且在随着学习和了解的深入,许多有意思的想法得到证实,那感觉真是很好.比如我前面诞生了一个想法,redux就是一个数据层啊!可以借助数据库的思想来学习,包括其中诞生的一些中间思想.在这篇文章有有了新的发现,在Meteor的state管理方法直接使用了minimongo cache的名字,名字里的含义">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/2044710-078a8427c21f15a5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/600">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/03/03/翻译-重新思考Redux/"/>
+
+
+
+
+
+  <title> 翻译-重新思考Redux | phpsmarter </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">phpsmarter</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">A beginner of React-native</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-sitemap">
+          <a href="/sitemap.xml" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br />
+            
+            站点地图
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/03/翻译-重新思考Redux/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="phpsmarter">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="phpsmarter">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                翻译-重新思考Redux
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-03T08:04:10+08:00">
+                2017-03-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/翻译/" itemprop="url" rel="index">
+                    <span itemprop="name"> 翻译</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p><em>Arunoda Susiripala  <a href="https://voice.kadira.io/rethinking-redux-f1e96daba60c#.svx11tv8l" target="_blank" rel="external">参看原文</a>,这篇文章发布有些时间了,但仍然是很好的学习资料,而且在随着学习和了解的深入,许多有意思的想法得到证实,那感觉真是很好.比如我前面诞生了一个想法,redux就是一个数据层啊!可以借助数据库的思想来学习,包括其中诞生的一些中间思想.在这篇文章有有了新的发现,在Meteor的state管理方法直接使用了<code>minimongo cache</code>的名字,名字里的含义不言自明了.就是这些小点慢慢使我的学习过程更加深入.当然也有一些新的想法,有兴趣的往下看看.<br>   Dec 22, 2015</em></p>
+<hr>
+<p>   #重新思考Redux<br>   Redux是非常好的框架.这篇文章既不是Redux的扩充也不是要创建一个新的Flux库,这里是对Redux模式的重新思考.</p>
+</blockquote>
+<h3 id="什么是Redux"><a href="#什么是Redux" class="headerlink" title="什么是Redux?"></a>什么是Redux?</h3><p>   在我们讨论新内容之前,让我们先看看Redux是什么.</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/2044710-078a8427c21f15a5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/600" alt="Redux flow pic"></p>
+<ul>
+<li>本质上,Redux是我们的app里存储客户端state的地方.</li>
+<li>一些actions可以改变state.</li>
+<li><p>我们使用纯函数来监听所有的actions并且使用当前的state作为上下文去创建新的state.这个函数叫reducer.<br>(之所以叫纯函数,是因为它不会突变state,而且它也没有任何异步操作.)</p>
+</li>
+<li><p>有很多订阅者监听着他们需要修改的state.</p>
+</li>
+</ul>
+<p>如果你是Redux新手,看看这些由<a href="https://egghead.io/series/getting-started-with-redux" target="_blank" rel="external">Redux创建者发布的视频</a></p>
+<p>我以前和你一样,但是我现在喜欢Redux.</p>
+<h2 id="为什么是Redux"><a href="#为什么是Redux" class="headerlink" title="为什么是Redux?"></a>为什么是Redux?</h2><p>现在有足够的理由使用React构建app.我们可以使用父子数据流,Meteor的Tracker based system,Relay或者Mobservable.</p>
+<p>这些方法对于简单app(或者中型app应用)来说还是挺好的.但是一旦app规模变大,极有可能会丧失app的控制权.</p>
+<blockquote>
+<p>我之所以这么说是从我两次重构kandira UI的经验来的,那个过程太痛苦了.</p>
+</blockquote>
+<p>能和Redux很高工作的构架就是Redux.</p>
+<p>Redux是一个简单概念,它采用了一些函数式编程的概念(实际上来自Elm)和Flux的构架.</p>
+<p>有了Redux,</p>
+<ul>
+<li>我们的state是可以预期的,在app中也是这样</li>
+<li>app的大部分是纯函数,UI也是纯函数.所以很容易测试.</li>
+<li>Redux是一个简单的库,所以没有任何魔法.</li>
+<li>Redux里的模式被很多开发者使用.所有你可以依据很好的生态系统.</li>
+</ul>
+<p>上面这些观点就是我认为Redux非常重要的原因.</p>
+<p>##重新思考<br>我们正在考虑使用客户端state和Metero后台交互来重写app.我们认为Redux的模型更合适.但是我们还有许多问题要考虑,在那些地方书写逻辑代码,怎么减少模板代码量.<br> 我们也不怎么确信Redux的state管理怎么和其他的state管理系统整合,比如Meteor的minimongo cache(译者:单词的含义意味着可以看做简单的mongo 数据库,看到这里你有什么想法呢？).这就是为什么我们想要寻求一些改变.</p>
+<p> 现在让我们讨论一下我们建议的一些修改.</p>
+<h3 id="使用Redux管理UI的state"><a href="#使用Redux管理UI的state" class="headerlink" title="使用Redux管理UI的state"></a>使用Redux管理UI的state</h3><p> 在我们的app中,我们要保留一些states,Redux就是用于UI state管理的组件.在Redux之外可能会有其他部分来管理state,例如像是REST API的缓存或者GraphQL.在Meteor中,可能是Minimongo cache.</p>
+<p> ###Redux中的导航<br> update:<br>  在评论和其他地方,我准备试试simple-redux-router.看起来可以在Redux中进行导航.他允许React路由器管理布局和dispatch actions到store.<br>  我把simple-redux-router和我的sample app进行整合,整合过程还好除了即时加载过程.<br>  现在,我们准备把React Router和Redux合并.但是我们仔细考虑一下就可以发现,routing(路由)其实是另一种用户的action,类似按钮的点击action.所以router不应该成为app的管理或者app state的管理工具.<br>  理想Redux中的router应该应route的改变而发起actions.这就是我们需要做的工作.然后我们使用reducer来改变需要的app state.</p>
+<h3 id="使用模块的目录结构"><a href="#使用模块的目录结构" class="headerlink" title="使用模块的目录结构"></a>使用模块的目录结构</h3><p>  推荐的是默认的布局目录结构.但是我们需要添加新的特性时,我们需要在多个目录中添加代码.<br>  有一个模式叫做<code>鸭子</code>模型,建议我们按组把相关的actions creators和reducer放到一个文件中.我们准备使用这个方法.我们也准备把相互关联的组件和redux container放到一个单一目录中.</p>
+<p>  ###用于数据加载的一些助手函数.</p>
+<p>  我们需要数据来渲染组件,通常我们通过action creator来做这件事.但是为了把数据加载和组件渲染很好的整合在一起,我们需要写一些模板式的代码.我们可以使用一些助手方法来消除这些模板代码.</p>
+<p>  ###整合在一起<br>  为了充分理解这些理念,我们必需读一些代码.这也是我们构建实例代码app的原因.<br>  这里是repo:<a href="https://github.com/kadira-samples/rethinking-redux-demo" target="_blank" rel="external">rethinking-redux-demo</a>.</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/03/01/翻译-中间件和React-Redux-生命周期/" rel="next" title="翻译-中间件和React-Redux-生命周期">
+                <i class="fa fa-chevron-left"></i> 翻译-中间件和React-Redux-生命周期
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/03/08/翻译-Redux-Saga-hello，world!/" rel="prev" title="翻译-Redux-Saga-hello，world!">
+                翻译-Redux-Saga-hello，world! <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpeg"
+               alt="phpsmarter" />
+          <p class="site-author-name" itemprop="name">phpsmarter</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">21</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是Redux"><span class="nav-number">1.</span> <span class="nav-text">什么是Redux?</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么是Redux"><span class="nav-number"></span> <span class="nav-text">为什么是Redux?</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#使用Redux管理UI的state"><span class="nav-number">1.</span> <span class="nav-text">使用Redux管理UI的state</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用模块的目录结构"><span class="nav-number">2.</span> <span class="nav-text">使用模块的目录结构</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">phpsmarter</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

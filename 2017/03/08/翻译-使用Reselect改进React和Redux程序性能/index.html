@@ -1,0 +1,947 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="phpsmarter" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="Written by Neil Fenton16 June 2016  原文请见
+
+ 
+React和Redux组合是非常棒的,当他们两个一起使用时,可以帮助我们在程序结构中分离关注点.即使React易用性非常强,但是总会遇到高性能需求的时间.
+在React中最昂贵的操作就是渲染回路.当组件检测到输入的变化,渲染回路就会被触发(译注：这里的意思的组件的action会改变redux的state,变回">
+<meta property="og:type" content="article">
+<meta property="og:title" content="翻译-使用Reselect改进React和Redux程序性能">
+<meta property="og:url" content="http://yoursite.com/2017/03/08/翻译-使用Reselect改进React和Redux程序性能/index.html">
+<meta property="og:site_name" content="phpsmarter">
+<meta property="og:description" content="Written by Neil Fenton16 June 2016  原文请见
+
+ 
+React和Redux组合是非常棒的,当他们两个一起使用时,可以帮助我们在程序结构中分离关注点.即使React易用性非常强,但是总会遇到高性能需求的时间.
+在React中最昂贵的操作就是渲染回路.当组件检测到输入的变化,渲染回路就会被触发(译注：这里的意思的组件的action会改变redux的state,变回">
+<meta property="og:image" content="https://ww2.sinaimg.cn/large/006tKfTcly1fdnldaaddyg31040g4747.gif">
+<meta property="og:image" content="https://ww4.sinaimg.cn/large/006tKfTcly1fdnmmp9vlrj30nr0we75c.jpg">
+<meta property="og:image" content="https://ww4.sinaimg.cn/large/006tKfTcly1fdnrzja9zgj30nk080q31.jpg">
+<meta property="og:image" content="https://ww3.sinaimg.cn/large/006tKfTcly1fdnshe7qxtj30ng0es0t4.jpg">
+<meta property="og:image" content="https://ww3.sinaimg.cn/large/006tKfTcly1fdnskl1pn9j30s8106gms.jpg">
+<meta property="og:updated_time" content="2017-03-23T08:50:55.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="翻译-使用Reselect改进React和Redux程序性能">
+<meta name="twitter:description" content="Written by Neil Fenton16 June 2016  原文请见
+
+ 
+React和Redux组合是非常棒的,当他们两个一起使用时,可以帮助我们在程序结构中分离关注点.即使React易用性非常强,但是总会遇到高性能需求的时间.
+在React中最昂贵的操作就是渲染回路.当组件检测到输入的变化,渲染回路就会被触发(译注：这里的意思的组件的action会改变redux的state,变回">
+<meta name="twitter:image" content="https://ww2.sinaimg.cn/large/006tKfTcly1fdnldaaddyg31040g4747.gif">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/03/08/翻译-使用Reselect改进React和Redux程序性能/"/>
+
+
+
+
+
+  <title> 翻译-使用Reselect改进React和Redux程序性能 | phpsmarter </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">phpsmarter</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">A beginner of React-native</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-sitemap">
+          <a href="/sitemap.xml" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br />
+            
+            站点地图
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/08/翻译-使用Reselect改进React和Redux程序性能/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="phpsmarter">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="phpsmarter">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                翻译-使用Reselect改进React和Redux程序性能
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-08T08:04:10+08:00">
+                2017-03-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/翻译/" itemprop="url" rel="index">
+                    <span itemprop="name">翻译</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p><em>Written by Neil Fenton16 June 2016</em><br>  <a href="http://blog.rangle.io/react-and-redux-performance-with-reselect/" target="_blank" rel="external">原文请见</a></p>
+</blockquote>
+<p> <img src="https://ww2.sinaimg.cn/large/006tKfTcly1fdnldaaddyg31040g4747.gif" alt="图1"></p>
+<p>React和Redux组合是非常棒的,当他们两个一起使用时,可以帮助我们在程序结构中分离关注点.即使React易用性非常强,但是总会遇到高性能需求的时间.</p>
+<p>在React中最昂贵的操作就是渲染回路.当组件检测到输入的变化,渲染回路就会被触发(译注：这里的意思的组件的action会改变redux的state,变回最终又回到组件了).</p>
+<p>当我们初次开始React程序的时候,我们不会担心渲染回路的花销问题.但是当我们的UI变得复杂的时候,我们需要考虑这一点.React提供了一些工具让我们能劫持渲染回路,如果渲染看上去不必要,我们就可以使用工具来阻止重渲染的发生.为了这么做,我们要敲入<code>componentShouldUpdate</code>生命周期事件,返回一个布尔值,通知组件是否应该进行更新.这是以<code>PureRenderMixin</code>作为基础,它比较输入的props和state和先前的props和state,如果两者相等就返回false.</p>
+<p> 这个生命周期事件和Immutable集合一起可以实实在在的改进性能,因为我们可以很容易的决定是渲染还是不渲染组件.<br> 不幸的是,仅此而已.</p>
+<p> 考虑到紧接着的问题:我们构建一个购物车,有三个输入类型：</p>
+<ul>
+<li>购物车里的货物</li>
+<li>货物的数量</li>
+<li>相应的税率(基于州或者省)</li>
+</ul>
+<p>问题是无论只要输入的状态一改变(新货物加入,数量的变化,选择州的变哈),每一个部分都要被重新计算和渲染.如果我们的购物车里有几百个东西,你可以想象一下这将会是一个很大的性能问题.改变税率肯能会触发购物车的重新计算,但是是不应该发生的.税率的变化仅仅会影响衍生的数据.仅仅总数,税的总数应该发生变化,并且发生后继的更新.接下来我们看看怎么修复这个问题.(译注：这段的意思是如果税率变化,在UI组件中是不应该发生渲染的,只有几个地方需要发生变化)</p>
+<h2 id="Reselect前来救援"><a href="#Reselect前来救援" class="headerlink" title="Reselect前来救援"></a>Reselect前来救援</h2><p>Reselect用来记忆selectors的库.我们定义的selectors是作为函数获取Redux state的某一部分.使用记忆能力,我们可以组织不必要的衍生数据的重渲染和计算过程,由此加速了我们的app.</p>
+<p>考虑下面这个示例:<br><img src="https://ww4.sinaimg.cn/large/006tKfTcly1fdnmmp9vlrj30nr0we75c.jpg" alt=""></p>
+<p>如果我们有几百甚至上千个条目,渲染购物车中的所有项目花费会非常的大,即使是税率的变化.用户每一次搜索的他的购物车的时候,我们是否应该一遍一遍的重计算？我们可以使用记忆性的selectors来阻止昂贵的计算过程.使用记忆selectors,如果Redux中的state的树很大,我们也不用担心没吃state变化的计算问题.我们也可以在前端增加额外的灵活性,把这些selectors分散到单个的组件中.</p>
+<p>现在看看一个使用Reselect的简单selector:<br><img src="https://ww4.sinaimg.cn/large/006tKfTcly1fdnrzja9zgj30nk080q31.jpg" alt="selector using Reselect"></p>
+<p> 在上面的实例中,我们把item的获取函数分成两个函数,第一个函数(第3行)简单的额获取购物车中所有的items,第二个函数代表一个记忆性selector.Reselect暴露了<code>createSelector</code>API,我们可以借此创建一个记忆性的selector.这个意思是<code>getItemWithTotals</code>在第一次函数运行的时候将会进行运算.如果同一个函数再次被调用,但是输入值(<code>getItems</code>的值)没有变化,函数将会返回一个缓存(cached)的计算结果.如果items被修改了(例如：item添加,数量的变化,任何事情操作了<code>getItems</code>的结果),函数将会再次执行.</p>
+<p> 这是一个非常有力的概念,允许我们在一个组件的state需要重计算的时候,完全的优化应该被渲染的组件.这意味着我们不在担心<code>getItems</code>和后继的每一次中价格的计算,但操作的时候,不会影响state的执行.</p>
+<p> 我们继续这个方式来创建四个衍生数据的selectors.包括小计,税额总计和总价格.<br> <img src="https://ww3.sinaimg.cn/large/006tKfTcly1fdnshe7qxtj30ng0es0t4.jpg" alt="四个selectors"></p>
+<h2 id="使用selector"><a href="#使用selector" class="headerlink" title="使用selector"></a>使用selector</h2><p>  selectors代码完成以后,让我们看看怎么在组件中使用<code>getItemWithTitals</code>selector:</p>
+<p>  <img src="https://ww3.sinaimg.cn/large/006tKfTcly1fdnskl1pn9j30s8106gms.jpg" alt=""></p>
+<p>   现在我们有了有了一个组件,仅仅感知购物车中的items.这是一个不错的方式因为它和总计和小计没有任何关联.他不是可以重用的组件,但是是性能非常好的组件.和这个组件无关的变化不会引起额外的重渲染.</p>
+<p>   这个方式应用到其他的购物车上意味着我们将会有一个组件负责显示小计,总计和税额计算.</p>
+<p>   早一点在应用中使用这些优化措施意味着未来需要修正性能问题的时候做的工作就比较少.我建议尽可能早的使用reselect.在组件之外使用Selectors意味着我们可以容易的测试这些数据衍生计算.在Redux中使用简单的模拟数据,基于提供的数据测试期待的输出结果.</p>
+<p> 进一步了解这些概念,参考<a href="https://github.com/neilff/react-redux-performance" target="_blank" rel="external">demo</a></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/03/08/翻译-开启React,Redux和Immutable之旅-测试驱动教程(part2)/" rel="next" title="翻译-开启React,Redux和Immutable之旅-测试驱动教程(part2)">
+                <i class="fa fa-chevron-left"></i> 翻译-开启React,Redux和Immutable之旅-测试驱动教程(part2)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/03/08/-翻译-Redux-Saga-完成时钟演示App/" rel="prev" title="-翻译-Redux-Saga-完成时钟演示App">
+                -翻译-Redux-Saga-完成时钟演示App <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpeg"
+               alt="phpsmarter" />
+          <p class="site-author-name" itemprop="name">phpsmarter</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">21</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Reselect前来救援"><span class="nav-number">1.</span> <span class="nav-text">Reselect前来救援</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用selector"><span class="nav-number">2.</span> <span class="nav-text">使用selector</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">phpsmarter</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
