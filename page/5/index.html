@@ -313,7 +313,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/08/翻译-Redux-Saga-hello，world!/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/08/翻译-Immutable-js,持久化数据结构和结构共享/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="phpsmarter">
@@ -335,8 +335,8 @@
             
               
                 
-                <a class="post-title-link" href="/2017/03/08/翻译-Redux-Saga-hello，world!/" itemprop="url">
-                  翻译-Redux-Saga-hello，world!
+                <a class="post-title-link" href="/2017/03/08/翻译-Immutable-js,持久化数据结构和结构共享/" itemprop="url">
+                  翻译-Immutable-js,持久化数据结构和结构共享
                 </a>
               
             
@@ -412,20 +412,18 @@
       
         
           
-          12 OCTOBER 2016
+          为什么要用Immutable.js来代替Javascript的对象
 
-这是翻译版本,原文请见
+翻译版本,原文请见
 
+把你的数据看成是不可变的会带来很多的好处.实际上在React背后有个原则:React的元素是不可变的.你可能也会对学习不可变App构架有很大兴趣.
 
-第一部分译文请见，第二部分译文请见，第三部分译文请见.
-
-##简单的Redux Saga 模板
-在这个文章中,我们将完成完整的React/Redux/Redux Saga app,并且来看看为什么要这样做.
-我已经创建了一个app的模板作为本文的起点,我们没有必要关注一些开发的细节,因为这些细节不是本系列文章的重点(我假设你已经了解Re
+但是使用Immutable.js的好处是:
+1234567 function toggleTodo (todos, id) &#123;  return to
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/03/08/翻译-Redux-Saga-hello，world!/#more" rel="contents">
+            <a class="btn" href="/2017/03/08/翻译-Immutable-js,持久化数据结构和结构共享/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1230,153 +1228,6 @@ funcA — calls→ funcB — calls→ funcC
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/05/29/understanding React(1)/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="phpsmarter">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="phpsmarter">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/05/29/understanding React(1)/" itemprop="url">
-                  understanding React(1)
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-05-28T23:53:25Z">
-                2016-05-28
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/javascript/" itemprop="url" rel="index">
-                    <span itemprop="name">javascript</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>Rect/Redux的系列文章
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2016/05/29/understanding React(1)/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/05/29/understanding React(2)/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1482,6 +1333,153 @@ funcA — calls→ funcB — calls→ funcC
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2016/05/29/understanding React(2)/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/05/29/understanding React(1)/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="phpsmarter">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="phpsmarter">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/05/29/understanding React(1)/" itemprop="url">
+                  understanding React(1)
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-05-28T23:53:25Z">
+                2016-05-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>Rect/Redux的系列文章
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2016/05/29/understanding React(1)/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1742,7 +1740,7 @@ Basic UsageBasic usage requires adding a few lines to
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-count">3</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
