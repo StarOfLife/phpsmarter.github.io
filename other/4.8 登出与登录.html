@@ -88,20 +88,14 @@
 
 <meta name="description" content="4.8.1 登出现在我们来完成登出的功能。修改 routes/signout.js 如下：
 routes/signout.js
-var express = require(&amp;#39;express&amp;#39;);
-var router = express.Router();
-
-var checkLogin = require(&amp;#39;../middlewares/check&amp;#39;).check">
+123456789101112131415var express = require(&apos;express&apos;);var router = express.Router();var checkLogin = require(&apos;../middlewares/check&apos;).che">
 <meta property="og:type" content="website">
 <meta property="og:title" content="phpsmarter">
 <meta property="og:url" content="http://yoursite.com/other/4.8 登出与登录.html">
 <meta property="og:site_name" content="phpsmarter">
 <meta property="og:description" content="4.8.1 登出现在我们来完成登出的功能。修改 routes/signout.js 如下：
 routes/signout.js
-var express = require(&amp;#39;express&amp;#39;);
-var router = express.Router();
-
-var checkLogin = require(&amp;#39;../middlewares/check&amp;#39;).check">
+123456789101112131415var express = require(&apos;express&apos;);var router = express.Router();var checkLogin = require(&apos;../middlewares/check&apos;).che">
 <meta property="og:image" content="http://yoursite.com/./img/4.8.1.png">
 <meta property="og:image" content="http://yoursite.com/./img/4.8.2.png">
 <meta property="og:image" content="http://yoursite.com/./img/4.8.3.png">
@@ -110,10 +104,7 @@ var checkLogin = require(&amp;#39;../middlewares/check&amp;#39;).check">
 <meta name="twitter:title" content="phpsmarter">
 <meta name="twitter:description" content="4.8.1 登出现在我们来完成登出的功能。修改 routes/signout.js 如下：
 routes/signout.js
-var express = require(&amp;#39;express&amp;#39;);
-var router = express.Router();
-
-var checkLogin = require(&amp;#39;../middlewares/check&amp;#39;).check">
+123456789101112131415var express = require(&apos;express&apos;);var router = express.Router();var checkLogin = require(&apos;../middlewares/check&apos;).che">
 <meta name="twitter:image" content="http://yoursite.com/./img/4.8.1.png">
 
 
@@ -323,135 +314,30 @@ var checkLogin = require(&amp;#39;../middlewares/check&amp;#39;).check">
     
       <h2 id="4-8-1-登出"><a href="#4-8-1-登出" class="headerlink" title="4.8.1 登出"></a>4.8.1 登出</h2><p>现在我们来完成登出的功能。修改 routes/signout.js 如下：</p>
 <p><strong>routes/signout.js</strong></p>
-<pre><code>var express = require(&#39;express&#39;);
-var router = express.Router();
-
-var checkLogin = require(&#39;../middlewares/check&#39;).checkLogin;
-
-// GET /signout 登出
-router.get(&#39;/&#39;, checkLogin, function(req, res, next) {
-  // 清空 session 中用户信息
-  req.session.user = null;
-  req.flash(&#39;success&#39;, &#39;登出成功&#39;);
-  // 登出成功后跳转到主页
-  res.redirect(&#39;/posts&#39;);
-});
-
-module.exports = router;
-</code></pre><p>此时点击右上角的 <code>登出</code>，成功后如下图所示：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> express = <span class="built_in">require</span>(<span class="string">'express'</span>);</div><div class="line"><span class="keyword">var</span> router = express.Router();</div><div class="line"></div><div class="line"><span class="keyword">var</span> checkLogin = <span class="built_in">require</span>(<span class="string">'../middlewares/check'</span>).checkLogin;</div><div class="line"></div><div class="line"><span class="comment">// GET /signout 登出</span></div><div class="line">router.get(<span class="string">'/'</span>, checkLogin, <span class="function"><span class="keyword">function</span>(<span class="params">req, res, next</span>) </span>&#123;</div><div class="line">  <span class="comment">// 清空 session 中用户信息</span></div><div class="line">  req.session.user = <span class="literal">null</span>;</div><div class="line">  req.flash(<span class="string">'success'</span>, <span class="string">'登出成功'</span>);</div><div class="line">  <span class="comment">// 登出成功后跳转到主页</span></div><div class="line">  res.redirect(<span class="string">'/posts'</span>);</div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="built_in">module</span>.exports = router;</div></pre></td></tr></table></figure>
+<p>此时点击右上角的 <code>登出</code>，成功后如下图所示：</p>
 <p><img src="./img/4.8.1.png" alt=""></p>
 <h2 id="4-8-2-登录页"><a href="#4-8-2-登录页" class="headerlink" title="4.8.2 登录页"></a>4.8.2 登录页</h2><p>现在我们来完成登录页。修改 routes/signin.js 相应代码如下：</p>
 <p><strong>routes/signin.js</strong></p>
-<pre><code>router.get(&#39;/&#39;, checkNotLogin, function(req, res, next) {
-  res.render(&#39;signin&#39;);
-});
-</code></pre><p>新建 views/signin.ejs，添加如下代码：</p>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">router.get(<span class="string">'/'</span>, checkNotLogin, <span class="function"><span class="keyword">function</span><span class="params">(req, res, next)</span> </span>&#123;</div><div class="line">  res.render(<span class="string">'signin'</span>);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>新建 views/signin.ejs，添加如下代码：</p>
 <p><strong>views/signin.ejs</strong></p>
-<pre><code>&lt;%- include(&#39;header&#39;) %&gt;
-
-&lt;div class=&quot;ui grid&quot;&gt;
-  &lt;div class=&quot;four wide column&quot;&gt;&lt;/div&gt;
-  &lt;div class=&quot;eight wide column&quot;&gt;
-    &lt;form class=&quot;ui form segment&quot; method=&quot;post&quot;&gt;
-      &lt;div class=&quot;field required&quot;&gt;
-        &lt;label&gt;用户名&lt;/label&gt;
-        &lt;input placeholder=&quot;用户名&quot; type=&quot;text&quot; name=&quot;name&quot;&gt;
-      &lt;/div&gt;
-      &lt;div class=&quot;field required&quot;&gt;
-        &lt;label&gt;密码&lt;/label&gt;
-        &lt;input placeholder=&quot;密码&quot; type=&quot;password&quot; name=&quot;password&quot;&gt;
-      &lt;/div&gt;
-      &lt;input type=&quot;submit&quot; class=&quot;ui button fluid&quot; value=&quot;登录&quot;&gt;
-    &lt;/div&gt;
-  &lt;/form&gt;
-&lt;/div&gt;
-
-&lt;%- include(&#39;footer&#39;) %&gt;
-</code></pre><p>现在访问 <code>localhost:3000/signin</code> 试试吧。</p>
+<figure class="highlight erb"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="xml"><span class="tag">&lt;<span class="name">%-</span></span></span><span class="ruby"> <span class="keyword">include</span>(<span class="string">'header'</span>) </span><span class="xml"><span class="tag">%&gt;</span></span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"ui grid"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"four wide column"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"eight wide column"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">form</span> <span class="attr">class</span>=<span class="string">"ui form segment"</span> <span class="attr">method</span>=<span class="string">"post"</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"field required"</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">label</span>&gt;</span>用户名<span class="tag">&lt;/<span class="name">label</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">placeholder</span>=<span class="string">"用户名"</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"name"</span>&gt;</span></div><div class="line">      <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"field required"</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">label</span>&gt;</span>密码<span class="tag">&lt;/<span class="name">label</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">placeholder</span>=<span class="string">"密码"</span> <span class="attr">type</span>=<span class="string">"password"</span> <span class="attr">name</span>=<span class="string">"password"</span>&gt;</span></div><div class="line">      <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"submit"</span> <span class="attr">class</span>=<span class="string">"ui button fluid"</span> <span class="attr">value</span>=<span class="string">"登录"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">form</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">%-</span></span><span class="ruby"> <span class="keyword">include</span>(<span class="string">'footer'</span>) </span><span class="xml"><span class="tag">%&gt;</span></span></div></pre></td></tr></table></figure>
+<p>现在访问 <code>localhost:3000/signin</code> 试试吧。</p>
 <h2 id="4-8-3-登录"><a href="#4-8-3-登录" class="headerlink" title="4.8.3 登录"></a>4.8.3 登录</h2><p>现在我们来完成登录的功能。修改 models/users.js 添加 <code>getUserByName</code> 方法用于通过用户名获取用户信息：</p>
 <p><strong>models/users.js</strong></p>
-<pre><code>var User = require(&#39;../lib/mongo&#39;).User;
-
-module.exports = {
-  // 注册一个用户
-  create: function create(user) {
-    return User.create(user).exec();
-  },
-
-  // 通过用户名获取用户信息
-  getUserByName: function getUserByName(name) {
-    return User
-      .findOne({ name: name })
-      .addCreatedAt()
-      .exec();
-  }
-};
-</code></pre><p>这里我们使用了 <code>addCreatedAt</code> 自定义插件（通过 _id 生成时间戳），修改 lib/mongo.js，添加如下代码：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> User = <span class="built_in">require</span>(<span class="string">'../lib/mongo'</span>).User;</div><div class="line"></div><div class="line"><span class="built_in">module</span>.exports = &#123;</div><div class="line">  <span class="comment">// 注册一个用户</span></div><div class="line">  create: <span class="function"><span class="keyword">function</span> <span class="title">create</span>(<span class="params">user</span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> User.create(user).exec();</div><div class="line">  &#125;,</div><div class="line"></div><div class="line">  <span class="comment">// 通过用户名获取用户信息</span></div><div class="line">  getUserByName: <span class="function"><span class="keyword">function</span> <span class="title">getUserByName</span>(<span class="params">name</span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> User</div><div class="line">      .findOne(&#123; <span class="attr">name</span>: name &#125;)</div><div class="line">      .addCreatedAt()</div><div class="line">      .exec();</div><div class="line">  &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>这里我们使用了 <code>addCreatedAt</code> 自定义插件（通过 _id 生成时间戳），修改 lib/mongo.js，添加如下代码：</p>
 <p><strong>lib/mongo.js</strong></p>
-<pre><code>var moment = require(&#39;moment&#39;);
-var objectIdToTimestamp = require(&#39;objectid-to-timestamp&#39;);
-
-// 根据 id 生成创建时间 created_at
-mongolass.plugin(&#39;addCreatedAt&#39;, {
-  afterFind: function (results) {
-    results.forEach(function (item) {
-      item.created_at = moment(objectIdToTimestamp(item._id)).format(&#39;YYYY-MM-DD HH:mm&#39;);
-    });
-    return results;
-  },
-  afterFindOne: function (result) {
-    if (result) {
-      result.created_at = moment(objectIdToTimestamp(result._id)).format(&#39;YYYY-MM-DD HH:mm&#39;);
-    }
-    return result;
-  }
-});
-</code></pre><blockquote>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> moment = <span class="keyword">require</span>(<span class="string">'moment'</span>);</div><div class="line"><span class="keyword">var</span> objectIdToTimestamp = <span class="keyword">require</span>(<span class="string">'objectid-to-timestamp'</span>);</div><div class="line"></div><div class="line"><span class="comment">// 根据 id 生成创建时间 created_at</span></div><div class="line">mongolass.plugin(<span class="string">'addCreatedAt'</span>, &#123;</div><div class="line">  afterFind: <span class="function"><span class="keyword">function</span> <span class="params">(results)</span> </span>&#123;</div><div class="line">    results.<span class="keyword">forEach</span>(<span class="function"><span class="keyword">function</span> <span class="params">(item)</span> </span>&#123;</div><div class="line">      item.created_at = moment(objectIdToTimestamp(item._id)).format(<span class="string">'YYYY-MM-DD HH:mm'</span>);</div><div class="line">    &#125;);</div><div class="line">    <span class="keyword">return</span> results;</div><div class="line">  &#125;,</div><div class="line">  afterFindOne: <span class="function"><span class="keyword">function</span> <span class="params">(result)</span> </span>&#123;</div><div class="line">    <span class="keyword">if</span> (result) &#123;</div><div class="line">      result.created_at = moment(objectIdToTimestamp(result._id)).format(<span class="string">'YYYY-MM-DD HH:mm'</span>);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> result;</div><div class="line">  &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<blockquote>
 <p>小提示：24 位长的 ObjectId 前 4 个字节是精确到秒的时间戳，所以我们没有额外的存创建时间（如: createdAt）的字段。ObjectId 生成规则：</p>
 </blockquote>
 <p><img src="./img/4.8.2.png" alt=""></p>
 <p>修改 routes/signin.js 如下：</p>
 <p><strong>routes/signin.js</strong></p>
-<pre><code>var sha1 = require(&#39;sha1&#39;);
-var express = require(&#39;express&#39;);
-var router = express.Router();
-
-var UserModel = require(&#39;../models/users&#39;);
-var checkNotLogin = require(&#39;../middlewares/check&#39;).checkNotLogin;
-
-// GET /signin 登录页
-router.get(&#39;/&#39;, checkNotLogin, function(req, res, next) {
-  res.render(&#39;signin&#39;);
-});
-
-// POST /signin 用户登录
-router.post(&#39;/&#39;, checkNotLogin, function(req, res, next) {
-  var name = req.fields.name;
-  var password = req.fields.password;
-
-  UserModel.getUserByName(name)
-    .then(function (user) {
-      if (!user) {
-        req.flash(&#39;error&#39;, &#39;用户不存在&#39;);
-        return res.redirect(&#39;back&#39;);
-      }
-      // 检查密码是否匹配
-      if (sha1(password) !== user.password) {
-        req.flash(&#39;error&#39;, &#39;用户名或密码错误&#39;);
-        return res.redirect(&#39;back&#39;);
-      }
-      req.flash(&#39;success&#39;, &#39;登录成功&#39;);
-      // 用户信息写入 session
-      delete user.password;
-      req.session.user = user;
-      // 跳转到主页
-      res.redirect(&#39;/posts&#39;);
-    })
-    .catch(next);
-});
-
-module.exports = router;
-</code></pre><p>现在访问 <code>localhost:3000/signin</code>，用刚才注册的账号登录，如下图所示：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> sha1 = <span class="built_in">require</span>(<span class="string">'sha1'</span>);</div><div class="line"><span class="keyword">var</span> express = <span class="built_in">require</span>(<span class="string">'express'</span>);</div><div class="line"><span class="keyword">var</span> router = express.Router();</div><div class="line"></div><div class="line"><span class="keyword">var</span> UserModel = <span class="built_in">require</span>(<span class="string">'../models/users'</span>);</div><div class="line"><span class="keyword">var</span> checkNotLogin = <span class="built_in">require</span>(<span class="string">'../middlewares/check'</span>).checkNotLogin;</div><div class="line"></div><div class="line"><span class="comment">// GET /signin 登录页</span></div><div class="line">router.get(<span class="string">'/'</span>, checkNotLogin, <span class="function"><span class="keyword">function</span>(<span class="params">req, res, next</span>) </span>&#123;</div><div class="line">  res.render(<span class="string">'signin'</span>);</div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="comment">// POST /signin 用户登录</span></div><div class="line">router.post(<span class="string">'/'</span>, checkNotLogin, <span class="function"><span class="keyword">function</span>(<span class="params">req, res, next</span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> name = req.fields.name;</div><div class="line">  <span class="keyword">var</span> password = req.fields.password;</div><div class="line"></div><div class="line">  UserModel.getUserByName(name)</div><div class="line">    .then(<span class="function"><span class="keyword">function</span> (<span class="params">user</span>) </span>&#123;</div><div class="line">      <span class="keyword">if</span> (!user) &#123;</div><div class="line">        req.flash(<span class="string">'error'</span>, <span class="string">'用户不存在'</span>);</div><div class="line">        <span class="keyword">return</span> res.redirect(<span class="string">'back'</span>);</div><div class="line">      &#125;</div><div class="line">      <span class="comment">// 检查密码是否匹配</span></div><div class="line">      <span class="keyword">if</span> (sha1(password) !== user.password) &#123;</div><div class="line">        req.flash(<span class="string">'error'</span>, <span class="string">'用户名或密码错误'</span>);</div><div class="line">        <span class="keyword">return</span> res.redirect(<span class="string">'back'</span>);</div><div class="line">      &#125;</div><div class="line">      req.flash(<span class="string">'success'</span>, <span class="string">'登录成功'</span>);</div><div class="line">      <span class="comment">// 用户信息写入 session</span></div><div class="line">      <span class="keyword">delete</span> user.password;</div><div class="line">      req.session.user = user;</div><div class="line">      <span class="comment">// 跳转到主页</span></div><div class="line">      res.redirect(<span class="string">'/posts'</span>);</div><div class="line">    &#125;)</div><div class="line">    .catch(next);</div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="built_in">module</span>.exports = router;</div></pre></td></tr></table></figure>
+<p>现在访问 <code>localhost:3000/signin</code>，用刚才注册的账号登录，如下图所示：</p>
 <p><img src="./img/4.8.3.png" alt=""></p>
 <p>上一节：<a href="https://github.com/nswbmw/N-blog/blob/master/book/4.7%20%E6%B3%A8%E5%86%8C.md" target="_blank" rel="external">4.7 注册</a></p>
 <p>下一节：<a href="https://github.com/nswbmw/N-blog/blob/master/book/4.9%20%E6%96%87%E7%AB%A0.md" target="_blank" rel="external">4.9 文章</a></p>

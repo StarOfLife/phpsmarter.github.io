@@ -88,26 +88,20 @@
 
 <meta name="description" content="4.9.1 文章模型设计我们只存储文章的作者 id、标题、正文和点击量这几个字段，对应修改 lib/mongo.js，添加如下代码：
 lib/mongo.js
-exports.Post = mongolass.model(&amp;#39;Post&amp;#39;, {
-  author: { type: Mongolass.Types.ObjectId },
-  title: { type: &amp;#39;str">
+1234567exports.Post = mongolass.model(&apos;Post&apos;, &amp;#123;  author: &amp;#123; type: Mongolass.Types.ObjectId &amp;#125;,  title: &amp;#12">
 <meta property="og:type" content="website">
 <meta property="og:title" content="phpsmarter">
 <meta property="og:url" content="http://yoursite.com/other/4.9 文章.html">
 <meta property="og:site_name" content="phpsmarter">
 <meta property="og:description" content="4.9.1 文章模型设计我们只存储文章的作者 id、标题、正文和点击量这几个字段，对应修改 lib/mongo.js，添加如下代码：
 lib/mongo.js
-exports.Post = mongolass.model(&amp;#39;Post&amp;#39;, {
-  author: { type: Mongolass.Types.ObjectId },
-  title: { type: &amp;#39;str">
+1234567exports.Post = mongolass.model(&apos;Post&apos;, &amp;#123;  author: &amp;#123; type: Mongolass.Types.ObjectId &amp;#125;,  title: &amp;#12">
 <meta property="og:updated_time" content="2016-11-28T16:07:21.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="phpsmarter">
 <meta name="twitter:description" content="4.9.1 文章模型设计我们只存储文章的作者 id、标题、正文和点击量这几个字段，对应修改 lib/mongo.js，添加如下代码：
 lib/mongo.js
-exports.Post = mongolass.model(&amp;#39;Post&amp;#39;, {
-  author: { type: Mongolass.Types.ObjectId },
-  title: { type: &amp;#39;str">
+1234567exports.Post = mongolass.model(&apos;Post&apos;, &amp;#123;  author: &amp;#123; type: Mongolass.Types.ObjectId &amp;#125;,  title: &amp;#12">
 
 
 
@@ -316,399 +310,72 @@ exports.Post = mongolass.model(&amp;#39;Post&amp;#39;, {
     
       <h2 id="4-9-1-文章模型设计"><a href="#4-9-1-文章模型设计" class="headerlink" title="4.9.1 文章模型设计"></a>4.9.1 文章模型设计</h2><p>我们只存储文章的作者 id、标题、正文和点击量这几个字段，对应修改 lib/mongo.js，添加如下代码：</p>
 <p><strong>lib/mongo.js</strong></p>
-<pre><code>exports.Post = mongolass.model(&#39;Post&#39;, {
-  author: { type: Mongolass.Types.ObjectId },
-  title: { type: &#39;string&#39; },
-  content: { type: &#39;string&#39; },
-  pv: { type: &#39;number&#39; }
-});
-exports.Post.index({ author: 1, _id: -1 }).exec();// 按创建时间降序查看用户的文章列表
-</code></pre><h2 id="4-9-2-发表文章"><a href="#4-9-2-发表文章" class="headerlink" title="4.9.2 发表文章"></a>4.9.2 发表文章</h2><p>现在我们来实现发表文章的功能。首先创建发表文章页，新建 views/create.ejs，添加如下代码：</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">exports.<span class="type">Post</span> = mongolass.model(<span class="symbol">'Pos</span>t', &#123;</div><div class="line">  author: &#123; <span class="class"><span class="keyword">type</span></span>: <span class="type">Mongolass</span>.<span class="type">Types</span>.<span class="type">ObjectId</span> &#125;,</div><div class="line">  title: &#123; <span class="class"><span class="keyword">type</span></span>: <span class="symbol">'strin</span>g' &#125;,</div><div class="line">  content: &#123; <span class="class"><span class="keyword">type</span></span>: <span class="symbol">'strin</span>g' &#125;,</div><div class="line">  pv: &#123; <span class="class"><span class="keyword">type</span></span>: <span class="symbol">'numbe</span>r' &#125;</div><div class="line">&#125;);</div><div class="line">exports.<span class="type">Post</span>.index(&#123; author: <span class="number">1</span>, _id: <span class="number">-1</span> &#125;).exec();<span class="comment">// 按创建时间降序查看用户的文章列表</span></div></pre></td></tr></table></figure>
+<h2 id="4-9-2-发表文章"><a href="#4-9-2-发表文章" class="headerlink" title="4.9.2 发表文章"></a>4.9.2 发表文章</h2><p>现在我们来实现发表文章的功能。首先创建发表文章页，新建 views/create.ejs，添加如下代码：</p>
 <p><strong>views/create.ejs</strong></p>
-<pre><code>&lt;%- include(&#39;header&#39;) %&gt;
-
-&lt;div class=&quot;ui grid&quot;&gt;
-  &lt;div class=&quot;four wide column&quot;&gt;
-    &lt;a class=&quot;avatar&quot;
-       href=&quot;/posts?author=&lt;%= user._id %&gt;&quot;
-       data-title=&quot;&lt;%= user.name %&gt; | &lt;%= ({m: &#39;男&#39;, f: &#39;女&#39;, x: &#39;保密&#39;})[user.gender] %&gt;&quot;
-       data-content=&quot;&lt;%= user.bio %&gt;&quot;&gt;
-      &lt;img class=&quot;avatar&quot; src=&quot;/img/&lt;%= user.avatar %&gt;&quot;&gt;
-    &lt;/a&gt;
-  &lt;/div&gt;
-
-  &lt;div class=&quot;eight wide column&quot;&gt;
-    &lt;form class=&quot;ui form segment&quot; method=&quot;post&quot; action=&quot;/posts&quot;&gt;
-      &lt;div class=&quot;field required&quot;&gt;
-        &lt;label&gt;标题&lt;/label&gt;
-        &lt;input type=&quot;text&quot; name=&quot;title&quot;&gt;
-      &lt;/div&gt;
-      &lt;div class=&quot;field required&quot;&gt;
-        &lt;label&gt;内容&lt;/label&gt;
-        &lt;textarea name=&quot;content&quot; rows=&quot;15&quot;&gt;&lt;/textarea&gt;
-      &lt;/div&gt;
-      &lt;input type=&quot;submit&quot; class=&quot;ui button&quot; value=&quot;发布&quot;&gt;
-    &lt;/div&gt;
-  &lt;/form&gt;
-&lt;/div&gt;
-
-&lt;%- include(&#39;footer&#39;) %&gt;
-</code></pre><p>新建 models/posts.js 用来存放与文章操作相关的代码：</p>
+<figure class="highlight erb"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="xml"><span class="tag">&lt;<span class="name">%-</span></span></span><span class="ruby"> <span class="keyword">include</span>(<span class="string">'header'</span>) </span><span class="xml"><span class="tag">%&gt;</span></span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"ui grid"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"four wide column"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">a</span> <span class="attr">class</span>=<span class="string">"avatar"</span></span></div><div class="line">       <span class="attr">href</span>=<span class="string">"/posts?author=&lt;%=</span><span class="ruby"> user._id </span><span class="xml"><span class="tag"><span class="string">%&gt;"</span></span></span></div><div class="line">       <span class="attr">data-title</span>=<span class="string">"&lt;%=</span><span class="ruby"> user.name </span><span class="xml"><span class="tag"><span class="string">%&gt; | &lt;%=</span></span></span><span class="ruby"> (&#123;<span class="symbol">m:</span> <span class="string">'男'</span>, <span class="symbol">f:</span> <span class="string">'女'</span>, <span class="symbol">x:</span> <span class="string">'保密'</span>&#125;)[user.gender] </span><span class="xml"><span class="tag"><span class="string">%&gt;"</span></span></span></div><div class="line">       <span class="attr">data-content</span>=<span class="string">"&lt;%=</span><span class="ruby"> user.bio </span><span class="xml"><span class="tag"><span class="string">%&gt;"</span>&gt;</span></span></div><div class="line">      <span class="tag">&lt;<span class="name">img</span> <span class="attr">class</span>=<span class="string">"avatar"</span> <span class="attr">src</span>=<span class="string">"/img/&lt;%=</span></span><span class="ruby"> user.avatar </span><span class="xml"><span class="tag"><span class="string">%&gt;"</span>&gt;</span></span></div><div class="line">    <span class="tag">&lt;/<span class="name">a</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"></div><div class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"eight wide column"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">form</span> <span class="attr">class</span>=<span class="string">"ui form segment"</span> <span class="attr">method</span>=<span class="string">"post"</span> <span class="attr">action</span>=<span class="string">"/posts"</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"field required"</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">label</span>&gt;</span>标题<span class="tag">&lt;/<span class="name">label</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"title"</span>&gt;</span></div><div class="line">      <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"field required"</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">label</span>&gt;</span>内容<span class="tag">&lt;/<span class="name">label</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">textarea</span> <span class="attr">name</span>=<span class="string">"content"</span> <span class="attr">rows</span>=<span class="string">"15"</span>&gt;</span><span class="tag">&lt;/<span class="name">textarea</span>&gt;</span></div><div class="line">      <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"submit"</span> <span class="attr">class</span>=<span class="string">"ui button"</span> <span class="attr">value</span>=<span class="string">"发布"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">form</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">%-</span></span><span class="ruby"> <span class="keyword">include</span>(<span class="string">'footer'</span>) </span><span class="xml"><span class="tag">%&gt;</span></span></div></pre></td></tr></table></figure>
+<p>新建 models/posts.js 用来存放与文章操作相关的代码：</p>
 <p><strong>models/posts.js</strong></p>
-<pre><code>var Post = require(&#39;../lib/mongo&#39;).Post;
-
-module.exports = {
-  // 创建一篇文章
-  create: function create(post) {
-    return Post.create(post).exec();
-  }
-};
-</code></pre><p>修改 routes/posts.js，在文件上方引入 PostModel：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> Post = <span class="built_in">require</span>(<span class="string">'../lib/mongo'</span>).Post;</div><div class="line"></div><div class="line"><span class="built_in">module</span>.exports = &#123;</div><div class="line">  <span class="comment">// 创建一篇文章</span></div><div class="line">  create: <span class="function"><span class="keyword">function</span> <span class="title">create</span>(<span class="params">post</span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> Post.create(post).exec();</div><div class="line">  &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>修改 routes/posts.js，在文件上方引入 PostModel：</p>
 <p><strong>routes/posts.js</strong></p>
-<pre><code>var PostModel = require(&#39;../models/posts&#39;);
-</code></pre><p>将：</p>
-<pre><code>// GET /posts/create 发表文章页
-router.get(&#39;/create&#39;, checkLogin, function(req, res, next) {
-  res.send(req.flash());
-});
-
-// POST /posts 发表一篇文章
-router.post(&#39;/&#39;, checkLogin, function(req, res, next) {
-  res.send(req.flash());
-});
-</code></pre><p>修改为：</p>
-<pre><code>// GET /posts/create 发表文章页
-router.get(&#39;/create&#39;, checkLogin, function(req, res, next) {
-  res.render(&#39;create&#39;);
-});
-
-// POST /posts 发表一篇文章
-router.post(&#39;/&#39;, checkLogin, function(req, res, next) {
-  var author = req.session.user._id;
-  var title = req.fields.title;
-  var content = req.fields.content;
-
-  // 校验参数
-  try {
-    if (!title.length) {
-      throw new Error(&#39;请填写标题&#39;);
-    }
-    if (!content.length) {
-      throw new Error(&#39;请填写内容&#39;);
-    }
-  } catch (e) {
-    req.flash(&#39;error&#39;, e.message);
-    return res.redirect(&#39;back&#39;);
-  }
-
-  var post = {
-    author: author,
-    title: title,
-    content: content,
-    pv: 0
-  };
-
-  PostModel.create(post)
-    .then(function (result) {
-      // 此 post 是插入 mongodb 后的值，包含 _id
-      post = result.ops[0];
-      req.flash(&#39;success&#39;, &#39;发表成功&#39;);
-      // 发表成功后跳转到该文章页
-      res.redirect(`/posts/${post._id}`);
-    })
-    .catch(next);
-});
-</code></pre><p>现在访问 <code>localhost:3000/posts/create</code> 发表篇文章试试吧，发表成功后跳转到了文章页但并没有任何内容，下面我们就来实现文章页及主页。</p>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="attribute">var PostModel</span> = require(<span class="string">'../models/posts'</span>);</div></pre></td></tr></table></figure>
+<p>将：</p>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// GET /posts/create 发表文章页</span></div><div class="line">router.get(<span class="string">'/create'</span>, checkLogin, <span class="function"><span class="keyword">function</span><span class="params">(req, res, next)</span> </span>&#123;</div><div class="line">  res.send(req.flash());</div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="comment">// POST /posts 发表一篇文章</span></div><div class="line">router.post(<span class="string">'/'</span>, checkLogin, <span class="function"><span class="keyword">function</span><span class="params">(req, res, next)</span> </span>&#123;</div><div class="line">  res.send(req.flash());</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>修改为：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// GET /posts/create 发表文章页</span></div><div class="line">router.get(<span class="string">'/create'</span>, checkLogin, <span class="function"><span class="keyword">function</span>(<span class="params">req, res, next</span>) </span>&#123;</div><div class="line">  res.render(<span class="string">'create'</span>);</div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="comment">// POST /posts 发表一篇文章</span></div><div class="line">router.post(<span class="string">'/'</span>, checkLogin, <span class="function"><span class="keyword">function</span>(<span class="params">req, res, next</span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> author = req.session.user._id;</div><div class="line">  <span class="keyword">var</span> title = req.fields.title;</div><div class="line">  <span class="keyword">var</span> content = req.fields.content;</div><div class="line"></div><div class="line">  <span class="comment">// 校验参数</span></div><div class="line">  <span class="keyword">try</span> &#123;</div><div class="line">    <span class="keyword">if</span> (!title.length) &#123;</div><div class="line">      <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'请填写标题'</span>);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">if</span> (!content.length) &#123;</div><div class="line">      <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'请填写内容'</span>);</div><div class="line">    &#125;</div><div class="line">  &#125; <span class="keyword">catch</span> (e) &#123;</div><div class="line">    req.flash(<span class="string">'error'</span>, e.message);</div><div class="line">    <span class="keyword">return</span> res.redirect(<span class="string">'back'</span>);</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="keyword">var</span> post = &#123;</div><div class="line">    <span class="attr">author</span>: author,</div><div class="line">    <span class="attr">title</span>: title,</div><div class="line">    <span class="attr">content</span>: content,</div><div class="line">    <span class="attr">pv</span>: <span class="number">0</span></div><div class="line">  &#125;;</div><div class="line"></div><div class="line">  PostModel.create(post)</div><div class="line">    .then(<span class="function"><span class="keyword">function</span> (<span class="params">result</span>) </span>&#123;</div><div class="line">      <span class="comment">// 此 post 是插入 mongodb 后的值，包含 _id</span></div><div class="line">      post = result.ops[<span class="number">0</span>];</div><div class="line">      req.flash(<span class="string">'success'</span>, <span class="string">'发表成功'</span>);</div><div class="line">      <span class="comment">// 发表成功后跳转到该文章页</span></div><div class="line">      res.redirect(<span class="string">`/posts/<span class="subst">$&#123;post._id&#125;</span>`</span>);</div><div class="line">    &#125;)</div><div class="line">    .catch(next);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>现在访问 <code>localhost:3000/posts/create</code> 发表篇文章试试吧，发表成功后跳转到了文章页但并没有任何内容，下面我们就来实现文章页及主页。</p>
 <h2 id="4-9-3-主页与文章页"><a href="#4-9-3-主页与文章页" class="headerlink" title="4.9.3 主页与文章页"></a>4.9.3 主页与文章页</h2><p>现在我们来实现主页及文章页。修改 models/posts.js 如下：</p>
 <p><strong>models/posts.js</strong></p>
-<pre><code>var marked = require(&#39;marked&#39;);
-var Post = require(&#39;../lib/mongo&#39;).Post;
-
-// 将 post 的 content 从 markdown 转换成 html
-Post.plugin(&#39;contentToHtml&#39;, {
-  afterFind: function (posts) {
-    return posts.map(function (post) {
-      post.content = marked(post.content);
-      return post;
-    });
-  },
-  afterFindOne: function (post) {
-    if (post) {
-      post.content = marked(post.content);
-    }
-    return post;
-  }
-});
-
-module.exports = {
-  // 创建一篇文章
-  create: function create(post) {
-    return Post.create(post).exec();
-  },
-
-  // 通过文章 id 获取一篇文章
-  getPostById: function getPostById(postId) {
-    return Post
-      .findOne({ _id: postId })
-      .populate({ path: &#39;author&#39;, model: &#39;User&#39; })
-      .addCreatedAt()
-      .contentToHtml()
-      .exec();
-  },
-
-  // 按创建时间降序获取所有用户文章或者某个特定用户的所有文章
-  getPosts: function getPosts(author) {
-    var query = {};
-    if (author) {
-      query.author = author;
-    }
-    return Post
-      .find(query)
-      .populate({ path: &#39;author&#39;, model: &#39;User&#39; })
-      .sort({ _id: -1 })
-      .addCreatedAt()
-      .contentToHtml()
-      .exec();
-  },
-
-  // 通过文章 id 给 pv 加 1
-  incPv: function incPv(postId) {
-    return Post
-      .update({ _id: postId }, { $inc: { pv: 1 } })
-      .exec();
-  }
-};
-</code></pre><p>需要讲解两点：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> marked = <span class="built_in">require</span>(<span class="string">'marked'</span>);</div><div class="line"><span class="keyword">var</span> Post = <span class="built_in">require</span>(<span class="string">'../lib/mongo'</span>).Post;</div><div class="line"></div><div class="line"><span class="comment">// 将 post 的 content 从 markdown 转换成 html</span></div><div class="line">Post.plugin(<span class="string">'contentToHtml'</span>, &#123;</div><div class="line">  <span class="attr">afterFind</span>: <span class="function"><span class="keyword">function</span> (<span class="params">posts</span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> posts.map(<span class="function"><span class="keyword">function</span> (<span class="params">post</span>) </span>&#123;</div><div class="line">      post.content = marked(post.content);</div><div class="line">      <span class="keyword">return</span> post;</div><div class="line">    &#125;);</div><div class="line">  &#125;,</div><div class="line">  <span class="attr">afterFindOne</span>: <span class="function"><span class="keyword">function</span> (<span class="params">post</span>) </span>&#123;</div><div class="line">    <span class="keyword">if</span> (post) &#123;</div><div class="line">      post.content = marked(post.content);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> post;</div><div class="line">  &#125;</div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="built_in">module</span>.exports = &#123;</div><div class="line">  <span class="comment">// 创建一篇文章</span></div><div class="line">  create: <span class="function"><span class="keyword">function</span> <span class="title">create</span>(<span class="params">post</span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> Post.create(post).exec();</div><div class="line">  &#125;,</div><div class="line"></div><div class="line">  <span class="comment">// 通过文章 id 获取一篇文章</span></div><div class="line">  getPostById: <span class="function"><span class="keyword">function</span> <span class="title">getPostById</span>(<span class="params">postId</span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> Post</div><div class="line">      .findOne(&#123; <span class="attr">_id</span>: postId &#125;)</div><div class="line">      .populate(&#123; <span class="attr">path</span>: <span class="string">'author'</span>, <span class="attr">model</span>: <span class="string">'User'</span> &#125;)</div><div class="line">      .addCreatedAt()</div><div class="line">      .contentToHtml()</div><div class="line">      .exec();</div><div class="line">  &#125;,</div><div class="line"></div><div class="line">  <span class="comment">// 按创建时间降序获取所有用户文章或者某个特定用户的所有文章</span></div><div class="line">  getPosts: <span class="function"><span class="keyword">function</span> <span class="title">getPosts</span>(<span class="params">author</span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> query = &#123;&#125;;</div><div class="line">    <span class="keyword">if</span> (author) &#123;</div><div class="line">      query.author = author;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> Post</div><div class="line">      .find(query)</div><div class="line">      .populate(&#123; <span class="attr">path</span>: <span class="string">'author'</span>, <span class="attr">model</span>: <span class="string">'User'</span> &#125;)</div><div class="line">      .sort(&#123; <span class="attr">_id</span>: <span class="number">-1</span> &#125;)</div><div class="line">      .addCreatedAt()</div><div class="line">      .contentToHtml()</div><div class="line">      .exec();</div><div class="line">  &#125;,</div><div class="line"></div><div class="line">  <span class="comment">// 通过文章 id 给 pv 加 1</span></div><div class="line">  incPv: <span class="function"><span class="keyword">function</span> <span class="title">incPv</span>(<span class="params">postId</span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> Post</div><div class="line">      .update(&#123; <span class="attr">_id</span>: postId &#125;, &#123; <span class="attr">$inc</span>: &#123; <span class="attr">pv</span>: <span class="number">1</span> &#125; &#125;)</div><div class="line">      .exec();</div><div class="line">  &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>需要讲解两点：</p>
 <ol>
 <li>我们使用了 markdown 解析文章的内容，所以在发表文章的时候可使用 markdown 语法（如插入链接、图片等等），关于 markdown 的使用请参考： <a href="http://wowubuntu.com/markdown/" target="_blank" rel="external">Markdown 语法说明</a>。</li>
 <li>我们在 PostModel 上注册了 <code>contentToHtml</code>，而 <code>addCreatedAt</code> 是在 lib/mongo.js 中 mongolass 上注册的。</li>
 </ol>
 <p>接下来完成主页的模板，修改 views/posts.ejs 如下：</p>
 <p><strong>views/posts.ejs</strong></p>
-<pre><code>&lt;%- include(&#39;header&#39;) %&gt;
-
-&lt;% posts.forEach(function (post) { %&gt;
-  &lt;%- include(&#39;components/post-content&#39;, { post: post }) %&gt;
-&lt;% }) %&gt;
-
-&lt;%- include(&#39;footer&#39;) %&gt;
-</code></pre><p>新建 views/components/post-content.ejs 用来存放单篇文章的模板片段：</p>
+<figure class="highlight erb"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="xml"><span class="tag">&lt;<span class="name">%-</span></span></span><span class="ruby"> <span class="keyword">include</span>(<span class="string">'header'</span>) </span><span class="xml"><span class="tag">%&gt;</span></span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">%</span></span><span class="ruby"> posts.forEach(function (post) &#123; </span><span class="xml"><span class="tag">%&gt;</span></span></div><div class="line">  <span class="tag">&lt;<span class="name">%-</span></span><span class="ruby"> <span class="keyword">include</span>(<span class="string">'components/post-content'</span>, &#123; <span class="symbol">post:</span> post &#125;) </span><span class="xml"><span class="tag">%&gt;</span></span></div><div class="line"><span class="tag">&lt;<span class="name">%</span></span><span class="ruby"> &#125;) </span><span class="xml"><span class="tag">%&gt;</span></span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">%-</span></span><span class="ruby"> <span class="keyword">include</span>(<span class="string">'footer'</span>) </span><span class="xml"><span class="tag">%&gt;</span></span></div></pre></td></tr></table></figure>
+<p>新建 views/components/post-content.ejs 用来存放单篇文章的模板片段：</p>
 <p><strong>views/components/post-content.ejs</strong></p>
-<pre><code>&lt;div class=&quot;post-content&quot;&gt;
-  &lt;div class=&quot;ui grid&quot;&gt;
-    &lt;div class=&quot;four wide column&quot;&gt;
-      &lt;a class=&quot;avatar&quot;
-         href=&quot;/posts?author=&lt;%= post.author._id %&gt;&quot;
-         data-title=&quot;&lt;%= post.author.name %&gt; | &lt;%= ({m: &#39;男&#39;, f: &#39;女&#39;, x: &#39;保密&#39;})[post.author.gender] %&gt;&quot;
-         data-content=&quot;&lt;%= post.author.bio %&gt;&quot;&gt;
-        &lt;img class=&quot;avatar&quot; src=&quot;/img/&lt;%= post.author.avatar %&gt;&quot;&gt;
-      &lt;/a&gt;
-    &lt;/div&gt;
-
-    &lt;div class=&quot;eight wide column&quot;&gt;
-      &lt;div class=&quot;ui segment&quot;&gt;
-        &lt;h3&gt;&lt;a href=&quot;/posts/&lt;%= post._id %&gt;&quot;&gt;&lt;%= post.title %&gt;&lt;/a&gt;&lt;/h3&gt;
-        &lt;pre&gt;&lt;%- post.content %&gt;&lt;/pre&gt;
-        &lt;div&gt;
-          &lt;span class=&quot;tag&quot;&gt;&lt;%= post.created_at %&gt;&lt;/span&gt;
-          &lt;span class=&quot;tag right&quot;&gt;
-            &lt;span&gt;浏览(&lt;%= post.pv %&gt;)&lt;/span&gt;
-            &lt;span&gt;留言(&lt;%= post.commentsCount %&gt;)&lt;/span&gt;
-
-            &lt;% if (user &amp;&amp; post.author._id &amp;&amp; user._id.toString() === post.author._id.toString()) { %&gt;
-              &lt;div class=&quot;ui inline dropdown&quot;&gt;
-                &lt;div class=&quot;text&quot;&gt;&lt;/div&gt;
-                &lt;i class=&quot;dropdown icon&quot;&gt;&lt;/i&gt;
-                &lt;div class=&quot;menu&quot;&gt;
-                  &lt;div class=&quot;item&quot;&gt;&lt;a href=&quot;/posts/&lt;%= post._id %&gt;/edit&quot;&gt;编辑&lt;/a&gt;&lt;/div&gt;
-                  &lt;div class=&quot;item&quot;&gt;&lt;a href=&quot;/posts/&lt;%= post._id %&gt;/remove&quot;&gt;删除&lt;/a&gt;&lt;/div&gt;
-                &lt;/div&gt;
-              &lt;/div&gt;
-            &lt;% } %&gt;
-
-          &lt;/span&gt;
-        &lt;/div&gt;
-      &lt;/div&gt;
-    &lt;/div&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
-</code></pre><blockquote>
+<figure class="highlight erb"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line"><span class="xml"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"post-content"</span>&gt;</span></span></div><div class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"ui grid"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"four wide column"</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">a</span> <span class="attr">class</span>=<span class="string">"avatar"</span></span></div><div class="line">         <span class="attr">href</span>=<span class="string">"/posts?author=&lt;%=</span><span class="ruby"> post.author._id </span><span class="xml"><span class="tag"><span class="string">%&gt;"</span></span></span></div><div class="line">         <span class="attr">data-title</span>=<span class="string">"&lt;%=</span><span class="ruby"> post.author.name </span><span class="xml"><span class="tag"><span class="string">%&gt; | &lt;%=</span></span></span><span class="ruby"> (&#123;<span class="symbol">m:</span> <span class="string">'男'</span>, <span class="symbol">f:</span> <span class="string">'女'</span>, <span class="symbol">x:</span> <span class="string">'保密'</span>&#125;)[post.author.gender] </span><span class="xml"><span class="tag"><span class="string">%&gt;"</span></span></span></div><div class="line">         <span class="attr">data-content</span>=<span class="string">"&lt;%=</span><span class="ruby"> post.author.bio </span><span class="xml"><span class="tag"><span class="string">%&gt;"</span>&gt;</span></span></div><div class="line">        <span class="tag">&lt;<span class="name">img</span> <span class="attr">class</span>=<span class="string">"avatar"</span> <span class="attr">src</span>=<span class="string">"/img/&lt;%=</span></span><span class="ruby"> post.author.avatar </span><span class="xml"><span class="tag"><span class="string">%&gt;"</span>&gt;</span></span></div><div class="line">      <span class="tag">&lt;/<span class="name">a</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"></div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"eight wide column"</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"ui segment"</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">h3</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"/posts/&lt;%=</span></span><span class="ruby"> post._id </span><span class="xml"><span class="tag"><span class="string">%&gt;"</span>&gt;</span><span class="tag">&lt;<span class="name">%=</span></span></span><span class="ruby"> post.title </span><span class="xml"><span class="tag">%&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span></div><div class="line">        <span class="tag">&lt;<span class="name">pre</span>&gt;</span><span class="tag">&lt;<span class="name">%-</span></span><span class="ruby"> post.content </span><span class="xml"><span class="tag">%&gt;</span><span class="tag">&lt;/<span class="name">pre</span>&gt;</span></span></div><div class="line">        <span class="tag">&lt;<span class="name">div</span>&gt;</span></div><div class="line">          <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"tag"</span>&gt;</span><span class="tag">&lt;<span class="name">%=</span></span><span class="ruby"> post.created_at </span><span class="xml"><span class="tag">%&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span></div><div class="line">          <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"tag right"</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">span</span>&gt;</span>浏览(<span class="tag">&lt;<span class="name">%=</span></span><span class="ruby"> post.pv </span><span class="xml"><span class="tag">%&gt;</span>)<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span></div><div class="line">            <span class="tag">&lt;<span class="name">span</span>&gt;</span>留言(<span class="tag">&lt;<span class="name">%=</span></span><span class="ruby"> post.commentsCount </span><span class="xml"><span class="tag">%&gt;</span>)<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span></div><div class="line"></div><div class="line">            <span class="tag">&lt;<span class="name">%</span></span><span class="ruby"> <span class="keyword">if</span> (user &amp;&amp; post.author._id &amp;&amp; user._id.toString() === post.author._id.toString()) &#123; </span><span class="xml"><span class="tag">%&gt;</span></span></div><div class="line">              <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"ui inline dropdown"</span>&gt;</span></div><div class="line">                <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"text"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">                <span class="tag">&lt;<span class="name">i</span> <span class="attr">class</span>=<span class="string">"dropdown icon"</span>&gt;</span><span class="tag">&lt;/<span class="name">i</span>&gt;</span></div><div class="line">                <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"menu"</span>&gt;</span></div><div class="line">                  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"item"</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"/posts/&lt;%=</span></span><span class="ruby"> post._id </span><span class="xml"><span class="tag"><span class="string">%&gt;/edit"</span>&gt;</span>编辑<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></div><div class="line">                  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"item"</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"/posts/&lt;%=</span></span><span class="ruby"> post._id </span><span class="xml"><span class="tag"><span class="string">%&gt;/remove"</span>&gt;</span>删除<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></div><div class="line">                <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">              <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">%</span></span><span class="ruby"> &#125; </span><span class="xml"><span class="tag">%&gt;</span></span></div><div class="line"></div><div class="line">          <span class="tag">&lt;/<span class="name">span</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">      <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure>
+<blockquote>
 <p>注意：我们用了 <code>&lt;%- post.content %&gt;</code>，而不是 <code>&lt;%= post.content %&gt;</code>，因为 post.content 是 markdown 转换成的 html 字符串。</p>
 </blockquote>
 <p>修改 routes/posts.js，将：</p>
 <p><strong>routes/posts.js</strong></p>
-<pre><code>router.get(&#39;/&#39;, function(req, res, next) {
-  res.render(&#39;posts&#39;);
-});
-</code></pre><p>修改为：</p>
-<pre><code>router.get(&#39;/&#39;, function(req, res, next) {
-  var author = req.query.author;
-
-  PostModel.getPosts(author)
-    .then(function (posts) {
-      res.render(&#39;posts&#39;, {
-        posts: posts
-      });
-    })
-    .catch(next);
-});
-</code></pre><blockquote>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">router.get(<span class="string">'/'</span>, <span class="function"><span class="keyword">function</span><span class="params">(req, res, next)</span> </span>&#123;</div><div class="line">  res.render(<span class="string">'posts'</span>);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>修改为：</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">router.get(<span class="string">'/'</span>, <span class="function"><span class="keyword">function</span><span class="params">(req, res, next)</span></span> &#123;</div><div class="line">  var author = req.query.author;</div><div class="line"></div><div class="line">  PostModel.getPosts(author)</div><div class="line">    .<span class="keyword">then</span>(<span class="function"><span class="keyword">function</span> <span class="params">(posts)</span></span> &#123;</div><div class="line">      res.render(<span class="string">'posts'</span>, &#123;</div><div class="line">        posts: posts</div><div class="line">      &#125;);</div><div class="line">    &#125;)</div><div class="line">    .catch(<span class="built_in">next</span>);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<blockquote>
 <p>注意：主页与用户页通过 url 中的 author 区分。</p>
 </blockquote>
 <p>现在完成了主页与用户页，访问 <code>http://localhost:3000/posts</code> 试试吧，尝试点击用户的头像看看效果。</p>
 <p>接下来完成文章页。新建 views/post.ejs，添加如下代码：</p>
 <p><strong>views/post.ejs</strong></p>
-<pre><code>&lt;%- include(&#39;header&#39;) %&gt;
-&lt;%- include(&#39;components/post-content&#39;) %&gt;
-&lt;%- include(&#39;footer&#39;) %&gt;
-</code></pre><p>打开 routes/posts.js，将：</p>
+<figure class="highlight erb"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="xml"><span class="tag">&lt;<span class="name">%-</span></span></span><span class="ruby"> <span class="keyword">include</span>(<span class="string">'header'</span>) </span><span class="xml"><span class="tag">%&gt;</span></span></div><div class="line"><span class="tag">&lt;<span class="name">%-</span></span><span class="ruby"> <span class="keyword">include</span>(<span class="string">'components/post-content'</span>) </span><span class="xml"><span class="tag">%&gt;</span></span></div><div class="line"><span class="tag">&lt;<span class="name">%-</span></span><span class="ruby"> <span class="keyword">include</span>(<span class="string">'footer'</span>) </span><span class="xml"><span class="tag">%&gt;</span></span></div></pre></td></tr></table></figure>
+<p>打开 routes/posts.js，将：</p>
 <p><strong>routes/posts.js</strong></p>
-<pre><code>// GET /posts/:postId 单独一篇的文章页
-router.get(&#39;/:postId&#39;, function(req, res, next) {
-  res.send(req.flash());
-});
-</code></pre><p>修改为：</p>
-<pre><code>// GET /posts/:postId 单独一篇的文章页
-router.get(&#39;/:postId&#39;, function(req, res, next) {
-  var postId = req.params.postId;
-
-  Promise.all([
-    PostModel.getPostById(postId),// 获取文章信息
-    PostModel.incPv(postId)// pv 加 1
-  ])
-  .then(function (result) {
-    var post = result[0];
-    if (!post) {
-      throw new Error(&#39;该文章不存在&#39;);
-    }
-
-    res.render(&#39;post&#39;, {
-      post: post
-    });
-  })
-  .catch(next);
-});
-</code></pre><p>现在刷新浏览器，点击文章的标题看看浏览器地址的变化吧。</p>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// GET /posts/:postId 单独一篇的文章页</span></div><div class="line">router.get(<span class="string">'/:postId'</span>, <span class="function"><span class="keyword">function</span><span class="params">(req, res, next)</span> </span>&#123;</div><div class="line">  res.send(req.flash());</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>修改为：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// GET /posts/:postId 单独一篇的文章页</span></div><div class="line">router.get(<span class="string">'/:postId'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">req, res, next</span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> postId = req.params.postId;</div><div class="line"></div><div class="line">  <span class="built_in">Promise</span>.all([</div><div class="line">    PostModel.getPostById(postId),<span class="comment">// 获取文章信息</span></div><div class="line">    PostModel.incPv(postId)<span class="comment">// pv 加 1</span></div><div class="line">  ])</div><div class="line">  .then(<span class="function"><span class="keyword">function</span> (<span class="params">result</span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> post = result[<span class="number">0</span>];</div><div class="line">    <span class="keyword">if</span> (!post) &#123;</div><div class="line">      <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'该文章不存在'</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    res.render(<span class="string">'post'</span>, &#123;</div><div class="line">      <span class="attr">post</span>: post</div><div class="line">    &#125;);</div><div class="line">  &#125;)</div><div class="line">  .catch(next);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>现在刷新浏览器，点击文章的标题看看浏览器地址的变化吧。</p>
 <h2 id="4-9-4-编辑与删除文章"><a href="#4-9-4-编辑与删除文章" class="headerlink" title="4.9.4 编辑与删除文章"></a>4.9.4 编辑与删除文章</h2><p>现在我们来完成编辑与删除文章的功能。修改 models/posts.js，在 module.exports 对象上添加如下 3 个方法：</p>
 <p><strong>models/posts.js</strong></p>
-<pre><code>// 通过文章 id 获取一篇原生文章（编辑文章）
-getRawPostById: function getRawPostById(postId) {
-  return Post
-    .findOne({ _id: postId })
-    .populate({ path: &#39;author&#39;, model: &#39;User&#39; })
-    .exec();
-},
-
-// 通过用户 id 和文章 id 更新一篇文章
-updatePostById: function updatePostById(postId, author, data) {
-  return Post.update({ author: author, _id: postId }, { $set: data }).exec();
-},
-
-// 通过用户 id 和文章 id 删除一篇文章
-delPostById: function delPostById(postId, author) {
-  return Post.remove({ author: author, _id: postId}).exec();
-}
-</code></pre><blockquote>
+<figure class="highlight scilab"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 通过文章 id 获取一篇原生文章（编辑文章）</span></div><div class="line">getRawPostById: <span class="function"><span class="keyword">function</span> <span class="title">getRawPostById</span><span class="params">(postId)</span> &#123;</span></div><div class="line">  <span class="keyword">return</span> Post</div><div class="line">    .findOne(&#123; _id: postId &#125;)</div><div class="line">    .populate(&#123; path: <span class="string">'author'</span>, model: <span class="string">'User'</span> &#125;)</div><div class="line">    .<span class="built_in">exec</span>();</div><div class="line">&#125;,</div><div class="line"></div><div class="line"><span class="comment">// 通过用户 id 和文章 id 更新一篇文章</span></div><div class="line">updatePostById: <span class="function"><span class="keyword">function</span> <span class="title">updatePostById</span><span class="params">(postId, author, data)</span> &#123;</span></div><div class="line">  <span class="keyword">return</span> Post.update(&#123; author: author, _id: postId &#125;, &#123; $set: data &#125;).<span class="built_in">exec</span>();</div><div class="line">&#125;,</div><div class="line"></div><div class="line"><span class="comment">// 通过用户 id 和文章 id 删除一篇文章</span></div><div class="line">delPostById: <span class="function"><span class="keyword">function</span> <span class="title">delPostById</span><span class="params">(postId, author)</span> &#123;</span></div><div class="line">  <span class="keyword">return</span> Post.remove(&#123; author: author, _id: postId&#125;).<span class="built_in">exec</span>();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
 <p>注意：不要忘了在适当位置添加逗号，如 incPv 的结束大括号后。</p>
 <p>注意：我们通过新函数 <code>getRawPostById</code> 用来获取文章原生的内容，而不是用 <code>getPostById</code> 返回将 markdown 转换成 html 后的内容。</p>
 </blockquote>
 <p>新建编辑文章页 views/edit.ejs，添加如下代码：</p>
 <p><strong>views/edit.ejs</strong></p>
-<pre><code>&lt;%- include(&#39;header&#39;) %&gt;
-
-&lt;div class=&quot;ui grid&quot;&gt;
-  &lt;div class=&quot;four wide column&quot;&gt;
-    &lt;a class=&quot;avatar&quot;
-       href=&quot;/posts?author=&lt;%= user._id %&gt;&quot;
-       data-title=&quot;&lt;%= user.name %&gt; | &lt;%= ({m: &#39;男&#39;, f: &#39;女&#39;, x: &#39;保密&#39;})[user.gender] %&gt;&quot;
-       data-content=&quot;&lt;%= user.bio %&gt;&quot;&gt;
-      &lt;img class=&quot;avatar&quot; src=&quot;/img/&lt;%= user.avatar %&gt;&quot;&gt;
-    &lt;/a&gt;
-  &lt;/div&gt;
-
-  &lt;div class=&quot;eight wide column&quot;&gt;
-    &lt;form class=&quot;ui form segment&quot; method=&quot;post&quot; action=&quot;/posts/&lt;%= post._id %&gt;/edit&quot;&gt;
-      &lt;div class=&quot;field required&quot;&gt;
-        &lt;label&gt;标题&lt;/label&gt;
-        &lt;input type=&quot;text&quot; name=&quot;title&quot; value=&quot;&lt;%= post.title %&gt;&quot;&gt;
-      &lt;/div&gt;
-      &lt;div class=&quot;field required&quot;&gt;
-        &lt;label&gt;内容&lt;/label&gt;
-        &lt;textarea name=&quot;content&quot; rows=&quot;15&quot;&gt;&lt;%= post.content %&gt;&lt;/textarea&gt;
-      &lt;/div&gt;
-      &lt;input type=&quot;submit&quot; class=&quot;ui button&quot; value=&quot;发布&quot;&gt;
-    &lt;/div&gt;
-  &lt;/form&gt;
-&lt;/div&gt;
-
-&lt;%- include(&#39;footer&#39;) %&gt;
-</code></pre><p>修改 routes/posts.js，将：</p>
+<figure class="highlight erb"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="xml"><span class="tag">&lt;<span class="name">%-</span></span></span><span class="ruby"> <span class="keyword">include</span>(<span class="string">'header'</span>) </span><span class="xml"><span class="tag">%&gt;</span></span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"ui grid"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"four wide column"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">a</span> <span class="attr">class</span>=<span class="string">"avatar"</span></span></div><div class="line">       <span class="attr">href</span>=<span class="string">"/posts?author=&lt;%=</span><span class="ruby"> user._id </span><span class="xml"><span class="tag"><span class="string">%&gt;"</span></span></span></div><div class="line">       <span class="attr">data-title</span>=<span class="string">"&lt;%=</span><span class="ruby"> user.name </span><span class="xml"><span class="tag"><span class="string">%&gt; | &lt;%=</span></span></span><span class="ruby"> (&#123;<span class="symbol">m:</span> <span class="string">'男'</span>, <span class="symbol">f:</span> <span class="string">'女'</span>, <span class="symbol">x:</span> <span class="string">'保密'</span>&#125;)[user.gender] </span><span class="xml"><span class="tag"><span class="string">%&gt;"</span></span></span></div><div class="line">       <span class="attr">data-content</span>=<span class="string">"&lt;%=</span><span class="ruby"> user.bio </span><span class="xml"><span class="tag"><span class="string">%&gt;"</span>&gt;</span></span></div><div class="line">      <span class="tag">&lt;<span class="name">img</span> <span class="attr">class</span>=<span class="string">"avatar"</span> <span class="attr">src</span>=<span class="string">"/img/&lt;%=</span></span><span class="ruby"> user.avatar </span><span class="xml"><span class="tag"><span class="string">%&gt;"</span>&gt;</span></span></div><div class="line">    <span class="tag">&lt;/<span class="name">a</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"></div><div class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"eight wide column"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">form</span> <span class="attr">class</span>=<span class="string">"ui form segment"</span> <span class="attr">method</span>=<span class="string">"post"</span> <span class="attr">action</span>=<span class="string">"/posts/&lt;%=</span></span><span class="ruby"> post._id </span><span class="xml"><span class="tag"><span class="string">%&gt;/edit"</span>&gt;</span></span></div><div class="line">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"field required"</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">label</span>&gt;</span>标题<span class="tag">&lt;/<span class="name">label</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"title"</span> <span class="attr">value</span>=<span class="string">"&lt;%=</span></span><span class="ruby"> post.title </span><span class="xml"><span class="tag"><span class="string">%&gt;"</span>&gt;</span></span></div><div class="line">      <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"field required"</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">label</span>&gt;</span>内容<span class="tag">&lt;/<span class="name">label</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">textarea</span> <span class="attr">name</span>=<span class="string">"content"</span> <span class="attr">rows</span>=<span class="string">"15"</span>&gt;</span><span class="tag">&lt;<span class="name">%=</span></span><span class="ruby"> post.content </span><span class="xml"><span class="tag">%&gt;</span><span class="tag">&lt;/<span class="name">textarea</span>&gt;</span></span></div><div class="line">      <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"submit"</span> <span class="attr">class</span>=<span class="string">"ui button"</span> <span class="attr">value</span>=<span class="string">"发布"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">form</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">%-</span></span><span class="ruby"> <span class="keyword">include</span>(<span class="string">'footer'</span>) </span><span class="xml"><span class="tag">%&gt;</span></span></div></pre></td></tr></table></figure>
+<p>修改 routes/posts.js，将：</p>
 <p><strong>routes/posts.js</strong></p>
-<pre><code>// GET /posts/:postId/edit 更新文章页
-router.get(&#39;/:postId/edit&#39;, checkLogin, function(req, res, next) {
-  res.send(req.flash());
-});
-
-// POST /posts/:postId/edit 更新一篇文章
-router.post(&#39;/:postId/edit&#39;, checkLogin, function(req, res, next) {
-  res.send(req.flash());
-});
-
-// GET /posts/:postId/remove 删除一篇文章
-router.get(&#39;/:postId/remove&#39;, checkLogin, function(req, res, next) {
-  res.send(req.flash());
-});
-</code></pre><p>修改为：</p>
-<pre><code>// GET /posts/:postId/edit 更新文章页
-router.get(&#39;/:postId/edit&#39;, checkLogin, function(req, res, next) {
-  var postId = req.params.postId;
-  var author = req.session.user._id;
-
-  PostModel.getRawPostById(postId)
-    .then(function (post) {
-      if (!post) {
-        throw new Error(&#39;该文章不存在&#39;);
-      }
-      if (author.toString() !== post.author._id.toString()) {
-        throw new Error(&#39;权限不足&#39;);
-      }
-      res.render(&#39;edit&#39;, {
-        post: post
-      });
-    })
-    .catch(next);
-});
-
-// POST /posts/:postId/edit 更新一篇文章
-router.post(&#39;/:postId/edit&#39;, checkLogin, function(req, res, next) {
-  var postId = req.params.postId;
-  var author = req.session.user._id;
-  var title = req.fields.title;
-  var content = req.fields.content;
-
-  PostModel.updatePostById(postId, author, { title: title, content: content })
-    .then(function () {
-      req.flash(&#39;success&#39;, &#39;编辑文章成功&#39;);
-      // 编辑成功后跳转到上一页
-      res.redirect(`/posts/${postId}`);
-    })
-    .catch(next);
-});
-
-// GET /posts/:postId/remove 删除一篇文章
-router.get(&#39;/:postId/remove&#39;, checkLogin, function(req, res, next) {
-  var postId = req.params.postId;
-  var author = req.session.user._id;
-
-  PostModel.delPostById(postId, author)
-    .then(function () {
-      req.flash(&#39;success&#39;, &#39;删除文章成功&#39;);
-      // 删除成功后跳转到主页
-      res.redirect(&#39;/posts&#39;);
-    })
-    .catch(next);
-});
-</code></pre><p>现在刷新主页，点击文章右下角的小三角，编辑文章和删除文章试试吧。</p>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">/<span class="regexp">/ GET /posts</span><span class="regexp">/:postId/edit</span> 更新文章页</div><div class="line">router.get(<span class="string">'/:postId/edit'</span>, checkLogin, function(req, res, <span class="keyword">next</span>) &#123;</div><div class="line">  res.send(req.flash());</div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="regexp">//</span> POST /posts/<span class="symbol">:postId/edit</span> 更新一篇文章</div><div class="line">router.post(<span class="string">'/:postId/edit'</span>, checkLogin, function(req, res, <span class="keyword">next</span>) &#123;</div><div class="line">  res.send(req.flash());</div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="regexp">//</span> GET /posts/<span class="symbol">:postId/remove</span> 删除一篇文章</div><div class="line">router.get(<span class="string">'/:postId/remove'</span>, checkLogin, function(req, res, <span class="keyword">next</span>) &#123;</div><div class="line">  res.send(req.flash());</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>修改为：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// GET /posts/:postId/edit 更新文章页</span></div><div class="line">router.get(<span class="string">'/:postId/edit'</span>, checkLogin, <span class="function"><span class="keyword">function</span>(<span class="params">req, res, next</span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> postId = req.params.postId;</div><div class="line">  <span class="keyword">var</span> author = req.session.user._id;</div><div class="line"></div><div class="line">  PostModel.getRawPostById(postId)</div><div class="line">    .then(<span class="function"><span class="keyword">function</span> (<span class="params">post</span>) </span>&#123;</div><div class="line">      <span class="keyword">if</span> (!post) &#123;</div><div class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'该文章不存在'</span>);</div><div class="line">      &#125;</div><div class="line">      <span class="keyword">if</span> (author.toString() !== post.author._id.toString()) &#123;</div><div class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'权限不足'</span>);</div><div class="line">      &#125;</div><div class="line">      res.render(<span class="string">'edit'</span>, &#123;</div><div class="line">        <span class="attr">post</span>: post</div><div class="line">      &#125;);</div><div class="line">    &#125;)</div><div class="line">    .catch(next);</div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="comment">// POST /posts/:postId/edit 更新一篇文章</span></div><div class="line">router.post(<span class="string">'/:postId/edit'</span>, checkLogin, <span class="function"><span class="keyword">function</span>(<span class="params">req, res, next</span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> postId = req.params.postId;</div><div class="line">  <span class="keyword">var</span> author = req.session.user._id;</div><div class="line">  <span class="keyword">var</span> title = req.fields.title;</div><div class="line">  <span class="keyword">var</span> content = req.fields.content;</div><div class="line"></div><div class="line">  PostModel.updatePostById(postId, author, &#123; <span class="attr">title</span>: title, <span class="attr">content</span>: content &#125;)</div><div class="line">    .then(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">      req.flash(<span class="string">'success'</span>, <span class="string">'编辑文章成功'</span>);</div><div class="line">      <span class="comment">// 编辑成功后跳转到上一页</span></div><div class="line">      res.redirect(<span class="string">`/posts/<span class="subst">$&#123;postId&#125;</span>`</span>);</div><div class="line">    &#125;)</div><div class="line">    .catch(next);</div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="comment">// GET /posts/:postId/remove 删除一篇文章</span></div><div class="line">router.get(<span class="string">'/:postId/remove'</span>, checkLogin, <span class="function"><span class="keyword">function</span>(<span class="params">req, res, next</span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> postId = req.params.postId;</div><div class="line">  <span class="keyword">var</span> author = req.session.user._id;</div><div class="line"></div><div class="line">  PostModel.delPostById(postId, author)</div><div class="line">    .then(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">      req.flash(<span class="string">'success'</span>, <span class="string">'删除文章成功'</span>);</div><div class="line">      <span class="comment">// 删除成功后跳转到主页</span></div><div class="line">      res.redirect(<span class="string">'/posts'</span>);</div><div class="line">    &#125;)</div><div class="line">    .catch(next);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>现在刷新主页，点击文章右下角的小三角，编辑文章和删除文章试试吧。</p>
 <p>上一节：<a href="https://github.com/nswbmw/N-blog/blob/master/book/4.8%20%E7%99%BB%E5%87%BA%E4%B8%8E%E7%99%BB%E5%BD%95.md" target="_blank" rel="external">4.8 登出与登录</a></p>
 <p>下一节：<a href="https://github.com/nswbmw/N-blog/blob/master/book/4.10%20%E7%95%99%E8%A8%80.md" target="_blank" rel="external">4.10 留言</a></p>
 

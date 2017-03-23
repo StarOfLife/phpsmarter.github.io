@@ -87,13 +87,13 @@
 
 
 <meta name="description" content="4.15.1 申请 MLabMLab (前身是 MongoLab) 是一个 mongodb 云数据库提供商，我们可以选择 500MB 空间的免费套餐用来测试。注册成功后，点击右上角的 Create New 创建一个数据库（如: myblog），成功后点击进入到该数据库详情页，注意页面中有一行黄色的警告：
-A database user is required to connect to this">
+1A database user is required to connect to this">
 <meta property="og:type" content="website">
 <meta property="og:title" content="phpsmarter">
 <meta property="og:url" content="http://yoursite.com/other/4.15 部署.html">
 <meta property="og:site_name" content="phpsmarter">
 <meta property="og:description" content="4.15.1 申请 MLabMLab (前身是 MongoLab) 是一个 mongodb 云数据库提供商，我们可以选择 500MB 空间的免费套餐用来测试。注册成功后，点击右上角的 Create New 创建一个数据库（如: myblog），成功后点击进入到该数据库详情页，注意页面中有一行黄色的警告：
-A database user is required to connect to this">
+1A database user is required to connect to this">
 <meta property="og:image" content="http://yoursite.com/./img/4.15.1.png">
 <meta property="og:image" content="http://yoursite.com/./img/4.15.2.png">
 <meta property="og:image" content="http://yoursite.com/./img/4.15.3.png">
@@ -101,7 +101,7 @@ A database user is required to connect to this">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="phpsmarter">
 <meta name="twitter:description" content="4.15.1 申请 MLabMLab (前身是 MongoLab) 是一个 mongodb 云数据库提供商，我们可以选择 500MB 空间的免费套餐用来测试。注册成功后，点击右上角的 Create New 创建一个数据库（如: myblog），成功后点击进入到该数据库详情页，注意页面中有一行黄色的警告：
-A database user is required to connect to this">
+1A database user is required to connect to this">
 <meta name="twitter:image" content="http://yoursite.com/./img/4.15.1.png">
 
 
@@ -310,33 +310,27 @@ A database user is required to connect to this">
     
     
       <h2 id="4-15-1-申请-MLab"><a href="#4-15-1-申请-MLab" class="headerlink" title="4.15.1 申请 MLab"></a>4.15.1 申请 MLab</h2><p><a href="https://mlab.com" target="_blank" rel="external">MLab</a> (前身是 MongoLab) 是一个 mongodb 云数据库提供商，我们可以选择 500MB 空间的免费套餐用来测试。注册成功后，点击右上角的 <code>Create New</code> 创建一个数据库（如: myblog），成功后点击进入到该数据库详情页，注意页面中有一行黄色的警告：</p>
-<pre><code>A database user is required to connect to this database. To create one now, visit the &#39;Users&#39; tab and click the &#39;Add database user&#39; button.
-</code></pre><p>每个数据库至少需要一个 user，所以我们点击 Users 下的 <code>Add database user</code> 创建一个用户。</p>
+<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">A database user is required <span class="built_in">to</span> connect <span class="built_in">to</span> this database. To <span class="built_in">create</span> <span class="literal">one</span> now, visit <span class="keyword">the</span> <span class="string">'Users'</span> <span class="literal">tab</span> <span class="keyword">and</span> click <span class="keyword">the</span> <span class="string">'Add database user'</span> button.</div></pre></td></tr></table></figure>
+<p>每个数据库至少需要一个 user，所以我们点击 Users 下的 <code>Add database user</code> 创建一个用户。</p>
 <blockquote>
 <p>注意：不要选中 <code>Make read-only</code>，因为我们有写数据库的操作。</p>
 </blockquote>
 <p>最后分配给我们的类似下面的 mongodb url：</p>
-<pre><code>mongodb://&lt;dbuser&gt;:&lt;dbpassword&gt;@ds139327.mlab.com:39327/myblog
-</code></pre><p>如我创建的用户名和密码都为 myblog 的用户，新建 config/production.js，添加如下代码：</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mongod<span class="variable">b:</span>//<span class="symbol">&lt;dbuser&gt;</span>:<span class="symbol">&lt;dbpassword&gt;</span>@ds139327.mlab.<span class="keyword">com</span>:<span class="number">39327</span>/myblog</div></pre></td></tr></table></figure>
+<p>如我创建的用户名和密码都为 myblog 的用户，新建 config/production.js，添加如下代码：</p>
 <p><strong>config/production.js</strong></p>
-<pre><code>module.exports = {
-  mongodb: &#39;mongodb://myblog:myblog@ds139327.mlab.com:39327/myblog&#39;
-};
-</code></pre><p>停止程序，然后以 production 配置启动程序:</p>
-<pre><code>NODE_ENV=production supervisor --harmony index
-</code></pre><blockquote>
-<p>注意：Windows 用户安装 <a href="https://www.npmjs.com/package/cross-env" target="_blank" rel="external">cross-env</a>，使用：</p>
-<pre><code>cross-env NODE_ENV=production supervisor --harmony index
-</code></pre></blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">module</span>.<span class="keyword">exports</span> = &#123;</div><div class="line">  mongodb: <span class="string">'mongodb://myblog:myblog@ds139327.mlab.com:39327/myblog'</span></div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>停止程序，然后以 production 配置启动程序:</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="attr">NODE_ENV</span>=production supervisor --harmony index</div></pre></td></tr></table></figure>
+<blockquote>
+<p>注意：Windows 用户安装 <a href="https://www.npmjs.com/package/cross-env" target="_blank" rel="external">cross-env</a>，使用：<br><figure class="highlight glsl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&gt; <span class="built_in">cross</span>-env NODE_ENV=production supervisor --harmony <span class="keyword">index</span></div><div class="line">&gt;</div></pre></td></tr></table></figure></p>
+</blockquote>
 <h2 id="4-15-2-pm2"><a href="#4-15-2-pm2" class="headerlink" title="4.15.2 pm2"></a>4.15.2 pm2</h2><p>当我们的博客要部署到线上服务器时，不能单纯的靠 <code>node index</code> 或者 <code>supervisor index</code> 来启动了，因为我们断掉 SSH 连接后服务就终止了，这时我们就需要像 <a href="https://www.npmjs.com/package/pm2" target="_blank" rel="external">pm2</a> 或者 <a href="https://www.npmjs.com/package/forever" target="_blank" rel="external">forever</a> 这样的进程管理器了。pm2 是 Node.js 下的生产环境进程管理工具，就是我们常说的进程守护工具，可以用来在生产环境中进行自动重启、日志记录、错误预警等等。以 pm2 为例，全局安装 pm2：</p>
-<pre><code>npm install pm2 -g
-</code></pre><p>修改 package.json，添加 start 的命令：</p>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm <span class="keyword">install</span> pm2 -g</div></pre></td></tr></table></figure>
+<p>修改 package.json，添加 start 的命令：</p>
 <p><strong>package.json</strong></p>
-<pre><code>&quot;scripts&quot;: {
-  &quot;test&quot;: &quot;node --harmony ./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha&quot;,
-  &quot;start&quot;: &quot;NODE_ENV=production pm2 start index.js --node-args=&#39;--harmony&#39; --name &#39;myblog&#39;&quot;
-}
-</code></pre><p>然后运行 <code>npm start</code> 通过 pm2 启动程序，如下图所示 ：</p>
+<figure class="highlight scilab"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="string">"scripts"</span>: &#123;</div><div class="line">  <span class="string">"test"</span>: <span class="string">"node --harmony ./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha"</span>,</div><div class="line">  <span class="string">"start"</span>: <span class="string">"NODE_ENV=production pm2 start index.js --node-args='</span>--harmony' --name <span class="string">'myblog'</span><span class="string">"</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>然后运行 <code>npm start</code> 通过 pm2 启动程序，如下图所示 ：</p>
 <p><img src="./img/4.15.1.png" alt=""></p>
 <p>pm2 常用命令:</p>
 <ol>
@@ -351,16 +345,12 @@ A database user is required to connect to this">
 <p>注意：新版 heroku 会有填写信用卡的步骤，如果没有请跳过本节。</p>
 </blockquote>
 <p>首先，需要到 <a href="https://toolbelt.heroku.com/" target="_blank" rel="external">https://toolbelt.heroku.com/</a> 下载安装 Heroku 的命令行工具包 toolbelt。然后登录（如果没有账号，请注册）到 Heroku 的 Dashboard，点击右上角 New -&gt; Create New App 创建一个应用。创建成功后运行：</p>
-<pre><code>$ heroku login
-</code></pre><p>填写正确的 email 和 password 验证通过后，本地会产生一个 SSH public key，然后输入以下命令：</p>
-<pre><code>$ git init
-$ heroku git:remote -a 你的应用名称
-$ git add .
-$ git commit -am &quot;first blood&quot;
-$ git push heroku master
-</code></pre><p>稍后，我们的论坛就部署成功了。访问：</p>
-<pre><code>https://你的应用名称.herokuapp.com/
-</code></pre><h2 id="4-15-3-部署到-UCloud"><a href="#4-15-3-部署到-UCloud" class="headerlink" title="4.15.3 部署到 UCloud"></a>4.15.3 部署到 UCloud</h2><p><a href="https://www.ucloud.cn/" target="_blank" rel="external">UCloud</a> 是国内的一家云计算服务商，接下来我们尝试将博客搭在 UCloud 上。</p>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="variable">$ </span>heroku login</div></pre></td></tr></table></figure>
+<p>填写正确的 email 和 password 验证通过后，本地会产生一个 SSH public key，然后输入以下命令：</p>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="variable">$ </span>git init</div><div class="line"><span class="variable">$ </span>heroku <span class="symbol">git:</span>remote -a 你的应用名称</div><div class="line"><span class="variable">$ </span>git add .</div><div class="line"><span class="variable">$ </span>git commit -am <span class="string">"first blood"</span></div><div class="line"><span class="variable">$ </span>git push heroku master</div></pre></td></tr></table></figure>
+<p>稍后，我们的论坛就部署成功了。访问：</p>
+<figure class="highlight dts"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="symbol">https:</span><span class="comment">//你的应用名称.herokuapp.com/</span></div></pre></td></tr></table></figure>
+<h2 id="4-15-3-部署到-UCloud"><a href="#4-15-3-部署到-UCloud" class="headerlink" title="4.15.3 部署到 UCloud"></a>4.15.3 部署到 UCloud</h2><p><a href="https://www.ucloud.cn/" target="_blank" rel="external">UCloud</a> 是国内的一家云计算服务商，接下来我们尝试将博客搭在 UCloud 上。</p>
 <blockquote>
 <p>小提示：不是给 UCloud 打广告。Heroku 不能用后，于是寻找可以免费试用的云主机，注册 UCloud 后发现没有免费试用，于是果断弃坑。过了一会 UCloud 的人打电话回访然后给充了点钱。。于是我就试了下。如果你们注册没有赠送金额，可以联系 UCloud 索要。。</p>
 </blockquote>
@@ -377,33 +367,16 @@ $ git push heroku master
 </blockquote>
 <h4 id="环境搭建与部署"><a href="#环境搭建与部署" class="headerlink" title="环境搭建与部署"></a>环境搭建与部署</h4><p>修改 config/production.js，将 port 修改为 80 端口：</p>
 <p><strong>config/production.js</strong></p>
-<pre><code>module.exports = {
-  port: 80,
-  mongodb: &#39;mongodb://myblog:myblog@ds139327.mlab.com:39327/myblog&#39;
-};
-</code></pre><p>登录主机，用刚才设置的密码：</p>
-<pre><code>ssh root@106.75.47.229
-</code></pre><p>因为是 CentOS 系统，所以我选择使用 yum 安装，而不是下载源码编译安装：</p>
-<pre><code>yum install git #安装git
-yum install nodejs #安装 Node.js
-yum install npm #安装 npm
-
-npm i npm -g #升级 npm
-npm i pm2 -g #安装 pm2
-npm i n -g #安装 n
-n v6.9.1 #安装 v6.9.1 版本的 Node.js
-n use 6.9.1 #使用 v6.9.1 版本的 Node.js
-node -v
-</code></pre><blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">module</span>.<span class="keyword">exports</span> = &#123;</div><div class="line">  port: <span class="number">80</span>,</div><div class="line">  mongodb: <span class="string">'mongodb://myblog:myblog@ds139327.mlab.com:39327/myblog'</span></div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>登录主机，用刚才设置的密码：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">ssh</span> <span class="selector-tag">root</span>@<span class="keyword">106</span>.<span class="keyword">75</span>.<span class="keyword">47</span>.<span class="keyword">229</span></div></pre></td></tr></table></figure>
+<p>因为是 CentOS 系统，所以我选择使用 yum 安装，而不是下载源码编译安装：</p>
+<figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">yum install git <span class="comment">#安装git</span></div><div class="line">yum install nodejs <span class="comment">#安装 Node.js</span></div><div class="line">yum install <span class="built_in">npm</span> <span class="comment">#安装 npm</span></div><div class="line"></div><div class="line"><span class="built_in">npm</span> i <span class="built_in">npm</span> -g <span class="comment">#升级 npm</span></div><div class="line"><span class="built_in">npm</span> i pm2 -g <span class="comment">#安装 pm2</span></div><div class="line"><span class="built_in">npm</span> i n -g <span class="comment">#安装 n</span></div><div class="line">n v6<span class="number">.9</span><span class="number">.1</span> <span class="comment">#安装 v6.9.1 版本的 Node.js</span></div><div class="line">n use <span class="number">6.9</span><span class="number">.1</span> <span class="comment">#使用 v6.9.1 版本的 Node.js</span></div><div class="line">node -v</div></pre></td></tr></table></figure>
+<blockquote>
 <p>注意：如果 <code>node -v</code> 显示的不是 6.9.1，则断开 ssh，重新登录主机再试试。</p>
 </blockquote>
-<p>此时应该在 <code>/root</code> 目录下，运行以下命令：</p>
-<pre><code>git clone https://github.com/nswbmw/N-blog.git myblog #或在本机 myblog 目录下运行 rsync -av --exclude=&quot;node_modules&quot; ./ root@106.75.47.229:/root/myblog
-cd myblog
-npm i
-npm start
-pm2 logs
-</code></pre><blockquote>
+<p>此时应该在 <code>/root</code> 目录下，运行以下命令：<br><figure class="highlight elixir"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">git clone <span class="symbol">https:</span>/<span class="regexp">/github.com/nswbmw</span><span class="regexp">/N-blog.git myblog #或在本机 myblog 目录下运行 rsync -av --exclude="node_modules" ./</span> root<span class="variable">@106</span>.<span class="number">75.47</span>.<span class="number">229</span><span class="symbol">:/root/myblog</span></div><div class="line">cd myblog</div><div class="line">npm i</div><div class="line">npm start</div><div class="line">pm2 logs</div></pre></td></tr></table></figure></p>
+<blockquote>
 <p>注意：如果不想用 git 的形式将代码拉到云主机上，可以用 rsync 将本地的代码同步到你的 UCloud 主机上，如上所示。</p>
 </blockquote>
 <p>最后，访问你的公网 ip 地址试试吧，如下所示：</p>

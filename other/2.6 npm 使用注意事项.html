@@ -325,8 +325,8 @@
 <p>后面会介绍更安全的 <code>npm shrinkwrap</code> 的用法。</p>
 </blockquote>
 <p>运行以下命令：</p>
-<pre><code>npm config set save-exact true
-</code></pre><p>这样每次 <code>npm i xxx --save</code> 的时候会锁定依赖的版本号，相当于加了 <code>--save-exact</code> 参数。</p>
+<figure class="highlight processing"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm config <span class="built_in">set</span> <span class="built_in">save</span>-exact <span class="keyword">true</span></div></pre></td></tr></table></figure>
+<p>这样每次 <code>npm i xxx --save</code> 的时候会锁定依赖的版本号，相当于加了 <code>--save-exact</code> 参数。</p>
 <blockquote>
 <p>小提示：<code>npm config set</code> 命令将配置写到了 ~/.npmrc 文件，运行 <code>npm config list</code> 查看。</p>
 </blockquote>

@@ -88,29 +88,20 @@
 
 <meta name="description" content="前面讲到 express 有一个内置的错误处理逻辑，如果程序出错，会直接将错误栈返回并显示到页面上。现在我们来自己写一个错误页面，新建 views/error.ejs，添加如下代码：
 views/error.ejs
-&amp;lt;!DOCTYPE html&amp;gt;
-&amp;lt;html&amp;gt;
-  &amp;lt;head&amp;gt;
-    &amp;lt;meta charset=&amp;quot;utf-8&amp;quot;&amp;gt;">
+123456789101112&amp;lt;!DOCTYPE html&amp;gt;&amp;lt;html&amp;gt;  &amp;lt;head&amp;gt;    &amp;lt;meta charset=&quot;utf-8&quot;&amp;g">
 <meta property="og:type" content="website">
 <meta property="og:title" content="phpsmarter">
 <meta property="og:url" content="http://yoursite.com/other/4.12 错误页面.html">
 <meta property="og:site_name" content="phpsmarter">
 <meta property="og:description" content="前面讲到 express 有一个内置的错误处理逻辑，如果程序出错，会直接将错误栈返回并显示到页面上。现在我们来自己写一个错误页面，新建 views/error.ejs，添加如下代码：
 views/error.ejs
-&amp;lt;!DOCTYPE html&amp;gt;
-&amp;lt;html&amp;gt;
-  &amp;lt;head&amp;gt;
-    &amp;lt;meta charset=&amp;quot;utf-8&amp;quot;&amp;gt;">
+123456789101112&amp;lt;!DOCTYPE html&amp;gt;&amp;lt;html&amp;gt;  &amp;lt;head&amp;gt;    &amp;lt;meta charset=&quot;utf-8&quot;&amp;g">
 <meta property="og:updated_time" content="2016-11-28T16:07:21.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="phpsmarter">
 <meta name="twitter:description" content="前面讲到 express 有一个内置的错误处理逻辑，如果程序出错，会直接将错误栈返回并显示到页面上。现在我们来自己写一个错误页面，新建 views/error.ejs，添加如下代码：
 views/error.ejs
-&amp;lt;!DOCTYPE html&amp;gt;
-&amp;lt;html&amp;gt;
-  &amp;lt;head&amp;gt;
-    &amp;lt;meta charset=&amp;quot;utf-8&amp;quot;&amp;gt;">
+123456789101112&amp;lt;!DOCTYPE html&amp;gt;&amp;lt;html&amp;gt;  &amp;lt;head&amp;gt;    &amp;lt;meta charset=&quot;utf-8&quot;&amp;g">
 
 
 
@@ -319,27 +310,11 @@ views/error.ejs
     
       <p>前面讲到 express 有一个内置的错误处理逻辑，如果程序出错，会直接将错误栈返回并显示到页面上。现在我们来自己写一个错误页面，新建 views/error.ejs，添加如下代码：</p>
 <p><strong>views/error.ejs</strong></p>
-<pre><code>&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-  &lt;head&gt;
-    &lt;meta charset=&quot;utf-8&quot;&gt;
-    &lt;title&gt;&lt;%= blog.title %&gt;&lt;/title&gt;
-    &lt;link rel=&quot;stylesheet&quot; href=&quot;/css/style.css&quot;&gt;
-  &lt;/head&gt;
-  &lt;body&gt;
-    &lt;h2&gt;&lt;%= error.message %&gt;&lt;/h2&gt;
-    &lt;p&gt;&lt;%= error.stack %&gt;&lt;/p&gt;
-  &lt;/body&gt;
-&lt;/html&gt;
-</code></pre><p>修改 index.js，在 <code>app.listen</code> 上一行添加如下代码：</p>
+<figure class="highlight erb"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="xml"><span class="meta">&lt;!DOCTYPE html&gt;</span></span></div><div class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span><span class="tag">&lt;<span class="name">%=</span></span><span class="ruby"> blog.title </span><span class="xml"><span class="tag">%&gt;</span><span class="tag">&lt;/<span class="name">title</span>&gt;</span></span></div><div class="line">    <span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">href</span>=<span class="string">"/css/style.css"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">h2</span>&gt;</span><span class="tag">&lt;<span class="name">%=</span></span><span class="ruby"> error.message </span><span class="xml"><span class="tag">%&gt;</span><span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span></div><div class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span><span class="tag">&lt;<span class="name">%=</span></span><span class="ruby"> error.stack </span><span class="xml"><span class="tag">%&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></div><div class="line">  <span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>修改 index.js，在 <code>app.listen</code> 上一行添加如下代码：</p>
 <p><strong>index.js</strong></p>
-<pre><code>// error page
-app.use(function (err, req, res, next) {
-  res.render(&#39;error&#39;, {
-    error: err
-  });
-});
-</code></pre><p>上一节：<a href="https://github.com/nswbmw/N-blog/blob/master/book/4.11%20404%20%E9%A1%B5%E9%9D%A2.md" target="_blank" rel="external">4.11 404页面</a></p>
+<figure class="highlight stata"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// error page</span></div><div class="line"><span class="keyword">app</span>.<span class="keyword">use</span>(function (<span class="keyword">err</span>, req, res, next) &#123;</div><div class="line">  res.render('<span class="keyword">error</span>', &#123;</div><div class="line">    <span class="keyword">error</span>: <span class="keyword">err</span></div><div class="line">  &#125;);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>上一节：<a href="https://github.com/nswbmw/N-blog/blob/master/book/4.11%20404%20%E9%A1%B5%E9%9D%A2.md" target="_blank" rel="external">4.11 404页面</a></p>
 <p>下一节：<a href="https://github.com/nswbmw/N-blog/blob/master/book/4.13%20%E6%97%A5%E5%BF%97.md" target="_blank" rel="external">4.13 日志</a></p>
 
     

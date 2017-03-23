@@ -87,15 +87,15 @@
 
 
 <meta name="description" content="4.14.1 mocha 和 supertestmocha 和 suptertest 是常用的测试组合，通常用来测试 restful 的 api 接口，这里我们也可以用来测试我们的博客应用。在 myblog 下新建 test 文件夹存放测试文件，以注册为例讲解 mocha 和 supertest 的用法。首先安装所需模块：
-npm i mocha supertest --save
-修改 packa">
+1npm i mocha supertest --save
+修改 pack">
 <meta property="og:type" content="website">
 <meta property="og:title" content="phpsmarter">
 <meta property="og:url" content="http://yoursite.com/other/4.14 测试.html">
 <meta property="og:site_name" content="phpsmarter">
 <meta property="og:description" content="4.14.1 mocha 和 supertestmocha 和 suptertest 是常用的测试组合，通常用来测试 restful 的 api 接口，这里我们也可以用来测试我们的博客应用。在 myblog 下新建 test 文件夹存放测试文件，以注册为例讲解 mocha 和 supertest 的用法。首先安装所需模块：
-npm i mocha supertest --save
-修改 packa">
+1npm i mocha supertest --save
+修改 pack">
 <meta property="og:image" content="http://yoursite.com/./img/4.14.1.png">
 <meta property="og:image" content="http://yoursite.com/./img/4.14.2.png">
 <meta property="og:image" content="http://yoursite.com/./img/4.14.3.png">
@@ -103,8 +103,8 @@ npm i mocha supertest --save
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="phpsmarter">
 <meta name="twitter:description" content="4.14.1 mocha 和 supertestmocha 和 suptertest 是常用的测试组合，通常用来测试 restful 的 api 接口，这里我们也可以用来测试我们的博客应用。在 myblog 下新建 test 文件夹存放测试文件，以注册为例讲解 mocha 和 supertest 的用法。首先安装所需模块：
-npm i mocha supertest --save
-修改 packa">
+1npm i mocha supertest --save
+修改 pack">
 <meta name="twitter:image" content="http://yoursite.com/./img/4.14.1.png">
 
 
@@ -313,152 +313,36 @@ npm i mocha supertest --save
     
     
       <h2 id="4-14-1-mocha-和-supertest"><a href="#4-14-1-mocha-和-supertest" class="headerlink" title="4.14.1 mocha 和 supertest"></a>4.14.1 mocha 和 supertest</h2><p><a href="https://www.npmjs.com/package/mocha" target="_blank" rel="external">mocha</a> 和 <a href="https://www.npmjs.com/package/supertest" target="_blank" rel="external">suptertest</a> 是常用的测试组合，通常用来测试 restful 的 api 接口，这里我们也可以用来测试我们的博客应用。在 myblog 下新建 test 文件夹存放测试文件，以注册为例讲解 mocha 和 supertest 的用法。首先安装所需模块：</p>
-<pre><code>npm i mocha supertest --save
-</code></pre><p>修改 package.json，将：</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm <span class="selector-tag">i</span> mocha supertest --save</div></pre></td></tr></table></figure>
+<p>修改 package.json，将：</p>
 <p><strong>package.json</strong></p>
-<pre><code>&quot;scripts&quot;: {
-  &quot;test&quot;: &quot;echo \&quot;Error: no test specified\&quot; &amp;&amp; exit 1&quot;
-}
-</code></pre><p>修改为：</p>
-<pre><code>&quot;scripts&quot;: {
-  &quot;test&quot;: &quot;mocha --harmony test&quot;
-}
-</code></pre><p>指定执行 test 目录的测试。修改 index.js，将：</p>
+<figure class="highlight stata"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="string">"scripts"</span>: &#123;</div><div class="line">  <span class="string">"test"</span>: <span class="string">"echo \"</span><span class="keyword">Error</span>: <span class="keyword">no</span> <span class="keyword">test</span> specified\<span class="string">" &amp;&amp; exit 1"</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>修改为：</p>
+<figure class="highlight xquery"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="string">"scripts"</span>: &#123;</div><div class="line">  <span class="string">"test"</span>: <span class="string">"mocha --harmony test"</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>指定执行 test 目录的测试。修改 index.js，将：</p>
 <p><strong>index.js</strong></p>
-<pre><code>// 监听端口，启动程序
-app.listen(config.port, function () {
-  console.log(`${pkg.name} listening on port ${config.port}`);
-});
-</code></pre><p>修改为:</p>
-<pre><code>if (module.parent) {
-  module.exports = app;
-} else {
-  // 监听端口，启动程序
-  app.listen(config.port, function () {
-    console.log(`${pkg.name} listening on port ${config.port}`);
-  });
-}
-</code></pre><p>这样做可以实现：直接启动 index.js 则会监听端口启动程序，如果 index.js 被 require 了，则导出 app，通常用于测试。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 监听端口，启动程序</span></div><div class="line">app.listen(config.port, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">`<span class="subst">$&#123;pkg.name&#125;</span> listening on port <span class="subst">$&#123;config.port&#125;</span>`</span>);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>修改为:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> (<span class="built_in">module</span>.parent) &#123;</div><div class="line">  <span class="built_in">module</span>.exports = app;</div><div class="line">&#125; <span class="keyword">else</span> &#123;</div><div class="line">  <span class="comment">// 监听端口，启动程序</span></div><div class="line">  app.listen(config.port, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">`<span class="subst">$&#123;pkg.name&#125;</span> listening on port <span class="subst">$&#123;config.port&#125;</span>`</span>);</div><div class="line">  &#125;);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这样做可以实现：直接启动 index.js 则会监听端口启动程序，如果 index.js 被 require 了，则导出 app，通常用于测试。</p>
 <p>找一张图片用于测试上传头像，放到 test 目录下，如 avatar.png。新建 test/signup.js，添加如下测试代码：</p>
 <p><strong>test/signup.js</strong></p>
-<pre><code>var path = require(&#39;path&#39;);
-var assert = require(&#39;assert&#39;);
-var request = require(&#39;supertest&#39;);
-var app = require(&#39;../index&#39;);
-var User = require(&#39;../lib/mongo&#39;).User;
-
-describe(&#39;signup&#39;, function() {
-  describe(&#39;POST /signup&#39;, function() {
-    var agent = request.agent(app);//persist cookie when redirect
-    beforeEach(function (done) {
-      // 创建一个用户
-      User.create({
-        name: &#39;aaa&#39;,
-        password: &#39;123456&#39;,
-        avatar: &#39;&#39;,
-        gender: &#39;x&#39;,
-        bio: &#39;&#39;
-      })
-      .exec()
-      .then(function () {
-        done();
-      })
-      .catch(done);
-    });
-
-    afterEach(function (done) {
-      // 清空 users 表
-      User.remove({})
-        .exec()
-        .then(function () {
-          done();
-        })
-        .catch(done);
-    });
-
-    // 名户名错误的情况
-    it(&#39;wrong name&#39;, function(done) {
-      agent
-        .post(&#39;/signup&#39;)
-        .type(&#39;form&#39;)
-        .attach(&#39;avatar&#39;, path.join(__dirname, &#39;avatar.png&#39;))
-        .field({ name: &#39;&#39; })
-        .redirects()
-        .end(function(err, res) {
-          if (err) return done(err);
-          assert(res.text.match(/名字请限制在 1-10 个字符/));
-          done();
-        });
-    });
-
-    // 性别错误的情况
-    it(&#39;wrong gender&#39;, function(done) {
-      agent
-        .post(&#39;/signup&#39;)
-        .type(&#39;form&#39;)
-        .attach(&#39;avatar&#39;, path.join(__dirname, &#39;avatar.png&#39;))
-        .field({ name: &#39;nswbmw&#39;, gender: &#39;a&#39; })
-        .redirects()
-        .end(function(err, res) {
-          if (err) return done(err);
-          assert(res.text.match(/性别只能是 m、f 或 x/));
-          done();
-        });
-    });
-    // 其余的参数测试自行补充
-    // 用户名被占用的情况
-    it(‘duplicate name&#39;, function(done) {
-      agent
-        .post(&#39;/signup&#39;)
-        .type(&#39;form&#39;)
-        .attach(&#39;avatar&#39;, path.join(__dirname, &#39;avatar.png&#39;))
-        .field({ name: &#39;aaa&#39;, gender: &#39;m&#39;, bio: &#39;noder&#39;, password: &#39;123456&#39;, repassword: &#39;123456&#39; })
-        .redirects()
-        .end(function(err, res) {
-          if (err) return done(err);
-          assert(res.text.match(/用户名已被占用/));
-          done();
-        });
-    });
-
-    // 注册成功的情况
-    it(&#39;success&#39;, function(done) {
-      agent
-        .post(&#39;/signup&#39;)
-        .type(&#39;form&#39;)
-        .attach(&#39;avatar&#39;, path.join(__dirname, &#39;avatar.png&#39;))
-        .field({ name: &#39;nswbmw&#39;, gender: &#39;m&#39;, bio: &#39;noder&#39;, password: &#39;123456&#39;, repassword: &#39;123456&#39; })
-        .redirects()
-        .end(function(err, res) {
-          if (err) return done(err);
-          assert(res.text.match(/注册成功/));
-          done();
-        });
-    });
-  });
-});
-</code></pre><p>运行 <code>npm test</code> 看看效果吧，其余的测试请读者自行完成。</p>
+<figure class="highlight scilab"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div></pre></td><td class="code"><pre><div class="line">var path = require(<span class="string">'path'</span>);</div><div class="line">var assert = require(<span class="string">'assert'</span>);</div><div class="line">var request = require(<span class="string">'supertest'</span>);</div><div class="line">var app = require(<span class="string">'../index'</span>);</div><div class="line">var User = require(<span class="string">'../lib/mongo'</span>).User;</div><div class="line"></div><div class="line">describe(<span class="string">'signup'</span>, <span class="function"><span class="keyword">function</span><span class="params">()</span> &#123;</span></div><div class="line">  describe(<span class="string">'POST /signup'</span>, <span class="function"><span class="keyword">function</span><span class="params">()</span> &#123;</span></div><div class="line">    var agent = request.agent(app);<span class="comment">//persist cookie when redirect</span></div><div class="line">    beforeEach(<span class="function"><span class="keyword">function</span> <span class="params">(done)</span> &#123;</span></div><div class="line">      <span class="comment">// 创建一个用户</span></div><div class="line">      User.create(&#123;</div><div class="line">        name: <span class="string">'aaa'</span>,</div><div class="line">        password: <span class="string">'123456'</span>,</div><div class="line">        avatar: <span class="string">''</span>,</div><div class="line">        gender: <span class="string">'x'</span>,</div><div class="line">        bio: <span class="string">''</span></div><div class="line">      &#125;)</div><div class="line">      .<span class="built_in">exec</span>()</div><div class="line">      .<span class="keyword">then</span>(<span class="function"><span class="keyword">function</span> <span class="params">()</span> &#123;</span></div><div class="line">        done();</div><div class="line">      &#125;)</div><div class="line">      .<span class="keyword">catch</span>(done);</div><div class="line">    &#125;);</div><div class="line"></div><div class="line">    afterEach(<span class="function"><span class="keyword">function</span> <span class="params">(done)</span> &#123;</span></div><div class="line">      <span class="comment">// 清空 users 表</span></div><div class="line">      User.remove(&#123;&#125;)</div><div class="line">        .<span class="built_in">exec</span>()</div><div class="line">        .<span class="keyword">then</span>(<span class="function"><span class="keyword">function</span> <span class="params">()</span> &#123;</span></div><div class="line">          done();</div><div class="line">        &#125;)</div><div class="line">        .<span class="keyword">catch</span>(done);</div><div class="line">    &#125;);</div><div class="line"></div><div class="line">    <span class="comment">// 名户名错误的情况</span></div><div class="line">    it(<span class="string">'wrong name'</span>, <span class="function"><span class="keyword">function</span><span class="params">(done)</span> &#123;</span></div><div class="line">      agent</div><div class="line">        .post(<span class="string">'/signup'</span>)</div><div class="line">        .<span class="built_in">type</span>(<span class="string">'form'</span>)</div><div class="line">        .attach(<span class="string">'avatar'</span>, path.join(__dirname, <span class="string">'avatar.png'</span>))</div><div class="line">        .field(&#123; name: <span class="string">''</span> &#125;)</div><div class="line">        .redirects()</div><div class="line">        .<span class="keyword">end</span>(<span class="function"><span class="keyword">function</span><span class="params">(err, res)</span> &#123;</span></div><div class="line">          <span class="keyword">if</span> (err) <span class="keyword">return</span> done(err);</div><div class="line">          assert(res.text.match(/名字请限制在 <span class="number">1</span><span class="number">-10</span> 个字符/));</div><div class="line">          done();</div><div class="line">        &#125;);</div><div class="line">    &#125;);</div><div class="line"></div><div class="line">    <span class="comment">// 性别错误的情况</span></div><div class="line">    it(<span class="string">'wrong gender'</span>, <span class="function"><span class="keyword">function</span><span class="params">(done)</span> &#123;</span></div><div class="line">      agent</div><div class="line">        .post(<span class="string">'/signup'</span>)</div><div class="line">        .<span class="built_in">type</span>(<span class="string">'form'</span>)</div><div class="line">        .attach(<span class="string">'avatar'</span>, path.join(__dirname, <span class="string">'avatar.png'</span>))</div><div class="line">        .field(&#123; name: <span class="string">'nswbmw'</span>, gender: <span class="string">'a'</span> &#125;)</div><div class="line">        .redirects()</div><div class="line">        .<span class="keyword">end</span>(<span class="function"><span class="keyword">function</span><span class="params">(err, res)</span> &#123;</span></div><div class="line">          <span class="keyword">if</span> (err) <span class="keyword">return</span> done(err);</div><div class="line">          assert(res.text.match(/性别只能是 m、f 或 x/));</div><div class="line">          done();</div><div class="line">        &#125;);</div><div class="line">    &#125;);</div><div class="line">    <span class="comment">// 其余的参数测试自行补充</span></div><div class="line">    <span class="comment">// 用户名被占用的情况</span></div><div class="line">    it(‘duplicate name', <span class="function"><span class="keyword">function</span><span class="params">(done)</span> &#123;</span></div><div class="line">      agent</div><div class="line">        .post(<span class="string">'/signup'</span>)</div><div class="line">        .<span class="built_in">type</span>(<span class="string">'form'</span>)</div><div class="line">        .attach(<span class="string">'avatar'</span>, path.join(__dirname, <span class="string">'avatar.png'</span>))</div><div class="line">        .field(&#123; name: <span class="string">'aaa'</span>, gender: <span class="string">'m'</span>, bio: <span class="string">'noder'</span>, password: <span class="string">'123456'</span>, repassword: <span class="string">'123456'</span> &#125;)</div><div class="line">        .redirects()</div><div class="line">        .<span class="keyword">end</span>(<span class="function"><span class="keyword">function</span><span class="params">(err, res)</span> &#123;</span></div><div class="line">          <span class="keyword">if</span> (err) <span class="keyword">return</span> done(err);</div><div class="line">          assert(res.text.match(/用户名已被占用/));</div><div class="line">          done();</div><div class="line">        &#125;);</div><div class="line">    &#125;);</div><div class="line"></div><div class="line">    <span class="comment">// 注册成功的情况</span></div><div class="line">    it(<span class="string">'success'</span>, <span class="function"><span class="keyword">function</span><span class="params">(done)</span> &#123;</span></div><div class="line">      agent</div><div class="line">        .post(<span class="string">'/signup'</span>)</div><div class="line">        .<span class="built_in">type</span>(<span class="string">'form'</span>)</div><div class="line">        .attach(<span class="string">'avatar'</span>, path.join(__dirname, <span class="string">'avatar.png'</span>))</div><div class="line">        .field(&#123; name: <span class="string">'nswbmw'</span>, gender: <span class="string">'m'</span>, bio: <span class="string">'noder'</span>, password: <span class="string">'123456'</span>, repassword: <span class="string">'123456'</span> &#125;)</div><div class="line">        .redirects()</div><div class="line">        .<span class="keyword">end</span>(<span class="function"><span class="keyword">function</span><span class="params">(err, res)</span> &#123;</span></div><div class="line">          <span class="keyword">if</span> (err) <span class="keyword">return</span> done(err);</div><div class="line">          assert(res.text.match(/注册成功/));</div><div class="line">          done();</div><div class="line">        &#125;);</div><div class="line">    &#125;);</div><div class="line">  &#125;);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>运行 <code>npm test</code> 看看效果吧，其余的测试请读者自行完成。</p>
 <h2 id="4-14-2-测试覆盖率"><a href="#4-14-2-测试覆盖率" class="headerlink" title="4.14.2 测试覆盖率"></a>4.14.2 测试覆盖率</h2><p>我们写测试肯定想覆盖所有的情况（包括各种出错的情况及正确时的情况），但光靠想需要写哪些测试是不行的，总也会有疏漏，最简单的办法就是可以直观的看出测试是否覆盖了所有的代码，这就是测试覆盖率，即被测试覆盖到的代码行数占总代码行数的比例。</p>
 <blockquote>
 <p>注意：即使测试覆盖率达到 100% 也不能说明你的测试覆盖了所有的情况，只能说明基本覆盖了所有的情况。</p>
 </blockquote>
 <p><a href="https://www.npmjs.com/package/istanbul" target="_blank" rel="external">istanbul</a> 是一个常用的生成测试覆盖率的库，它会将测试的结果报告生成 html 页面，并放到项目根目录的 coverage 目录下。首先安装 istanbul:</p>
-<pre><code>npm i istanbul --save-dev
-</code></pre><p>配置 istanbul 很简单，将 package.json 中：</p>
+<figure class="highlight q"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm i istanbul --<span class="built_in">save</span>-<span class="built_in">dev</span></div></pre></td></tr></table></figure>
+<p>配置 istanbul 很简单，将 package.json 中：</p>
 <p><strong>package.json</strong></p>
-<pre><code>&quot;scripts&quot;: {
-  &quot;test&quot;: &quot;mocha --harmony test&quot;
-}
-</code></pre><p>修改为：</p>
-<pre><code>&quot;scripts&quot;: {
-  &quot;test&quot;: &quot;node --harmony ./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha&quot;
-}
-</code></pre><blockquote>
-<p>注意：如果 Windows 下报错，尝试修改为：</p>
-<pre><code>&quot;scripts&quot;: {
-  &quot;test&quot;: &quot;node --harmony ./node_modules/istanbul/lib/cli.js cover ./node_modules/mocha/bin/_mocha&quot;
-}
-</code></pre><p>见 <a href="https://github.com/nswbmw/N-blog/issues/201" target="_blank" rel="external">#201</a>.</p>
+<figure class="highlight xquery"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="string">"scripts"</span>: &#123;</div><div class="line">  <span class="string">"test"</span>: <span class="string">"mocha --harmony test"</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>修改为：</p>
+<figure class="highlight xquery"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="string">"scripts"</span>: &#123;</div><div class="line">  <span class="string">"test"</span>: <span class="string">"node --harmony ./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha"</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>注意：如果 Windows 下报错，尝试修改为：<br><figure class="highlight xquery"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&gt; <span class="string">"scripts"</span>: &#123;</div><div class="line">&gt;   <span class="string">"test"</span>: <span class="string">"node --harmony ./node_modules/istanbul/lib/cli.js cover ./node_modules/mocha/bin/_mocha"</span></div><div class="line">&gt; &#125;</div><div class="line">&gt;</div></pre></td></tr></table></figure></p>
+<p>见 <a href="https://github.com/nswbmw/N-blog/issues/201" target="_blank" rel="external">#201</a>.</p>
 </blockquote>
 <p>即可将 mocha 和 istanbul 结合使用，终端会打印：</p>
 <p><img src="./img/4.14.1.png" alt=""></p>

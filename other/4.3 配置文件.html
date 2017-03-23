@@ -307,16 +307,8 @@
 <p>如果程序以 <code>NODE_ENV=test node app</code> 启动，则通过 <code>require(&#39;config-lite&#39;)</code> 会依次降级查找 <code>config/test.js</code>、<code>config/test.json</code>、<code>config/test.node</code>、<code>config/test.yml</code>、<code>config/test.yaml</code> 并合并 default 配置; 如果程序以 <code>NODE_ENV=production node app</code> 启动，则通过 <code>require(&#39;config-lite&#39;)</code> 会依次降级查找 <code>config/production.js</code>、<code>config/production.json</code>、<code>config/production.node</code>、<code>config/production.yml</code>、<code>config/production.yaml</code> 并合并 default 配置。</p>
 <p>在 myblog 下新建 config 目录，在该目录下新建 default.js，添加如下代码：</p>
 <p><strong>config/default.js</strong></p>
-<pre><code>module.exports = {
-  port: 3000,
-  session: {
-    secret: &#39;myblog&#39;,
-    key: &#39;myblog&#39;,
-    maxAge: 2592000000
-  },
-  mongodb: &#39;mongodb://localhost:27017/myblog&#39;
-};
-</code></pre><p>配置释义：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">module.exports = &#123;</div><div class="line"><span class="attr">  port:</span> <span class="number">3000</span>,</div><div class="line"><span class="attr">  session:</span> &#123;</div><div class="line"><span class="attr">    secret:</span> <span class="string">'myblog'</span>,</div><div class="line"><span class="attr">    key:</span> <span class="string">'myblog'</span>,</div><div class="line"><span class="attr">    maxAge:</span> <span class="number">2592000000</span></div><div class="line">  &#125;,</div><div class="line"><span class="attr">  mongodb:</span> <span class="string">'mongodb://localhost:27017/myblog'</span></div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>配置释义：</p>
 <ol>
 <li><code>port</code>: 程序启动要监听的端口号</li>
 <li><code>session</code>: express-session 的配置信息，后面介绍</li>
