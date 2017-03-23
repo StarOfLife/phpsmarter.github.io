@@ -175,7 +175,7 @@
     <link href="http://yoursite.com/2016/05/29/Redux%E5%92%8CReact%E7%BC%96%E7%A8%8B/"/>
     <id>http://yoursite.com/2016/05/29/Redux和React编程/</id>
     <published>2016-05-28T23:53:25.000Z</published>
-    <updated>2017-03-23T02:41:50.000Z</updated>
+    <updated>2017-03-23T02:47:16.000Z</updated>
     
     <content type="html"><![CDATA[<h1 id="Redux-Persist"><a href="#Redux-Persist" class="headerlink" title="Redux Persist"></a>Redux Persist</h1><p>Persist and rehydrate a redux store.</p>
 <p>Redux Persist is <a href="#why-redux-persist">performant</a>, easy to <a href="#basic-usage">implement</a>, and easy to <a href="./docs/ecosystem.md">extend</a>.</p>
@@ -284,6 +284,8 @@
     
       <category term="testing" scheme="http://yoursite.com/categories/testing/"/>
     
+    
+      <category term="react-native" scheme="http://yoursite.com/tags/react-native/"/>
     
   </entry>
   
