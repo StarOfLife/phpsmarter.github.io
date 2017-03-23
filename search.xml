@@ -230,6 +230,13 @@
     </entry>
     
     <entry>
+      <title><![CDATA[understanding React(2)]]></title>
+      <url>http://yoursite.com/2016/05/29/understanding%20React(2)/</url>
+      <content type="html"><![CDATA[<p>#####understanding React2</p>
+]]></content>
+    </entry>
+    
+    <entry>
       <title><![CDATA[understanding React(1)]]></title>
       <url>http://yoursite.com/2016/05/29/understanding%20React(1)/</url>
       <content type="html"><![CDATA[<p>Rect/Redux的系列文章<a id="more"></a><br>理解React程序(1)-宇宙大爆炸的奇点.<br>当大约160亿年前宇宙大爆炸从一个奇点开始的时候,第一缕光在宇宙中扩展开来,爆炸时产生的宇宙背景辐射至今在宇宙的时空中到处游荡,作为一个普通人也可以很容感知到到他们的存在,不信的话搬出你家里犄角旮旯里落满灰尘的十二寸黑白电视机,只要能点亮你就可以感知到他们存在.那么他们是什？没有电视节目的时候,满屏的雪花点就是电视天线接受到的宇宙背景辐射.至今关于宇宙大爆炸的奇点到底是是什么？谁做的程序架构,初衷是什么？迷仍然没有解开,甚至在宇宙大爆炸开始之前,连时间都是不存在的.科学家弄统的把所有的未解之谜都丢给了奇点,为了自圆其说,又创建了其他的理论.或许本来就存在多个奇点,所以存在好多平行的宇宙.好吧！上面的是一个脑洞大开的过程,你可能会说你说的这些东西到底和程序开发有半点关系吗？或许有吧,也或许更本没有任何关系.看你是怎么理解了.</p>
@@ -247,13 +254,6 @@
 </blockquote>
 <hr>
 <p>接下来的一篇我们要看看一个React的程序是怎么加载到浏览器中的.<br>需要有点<code>node.js</code>的基础知识和自动化打包程序的基础.</p>
-]]></content>
-    </entry>
-    
-    <entry>
-      <title><![CDATA[understanding React(2)]]></title>
-      <url>http://yoursite.com/2016/05/29/understanding%20React(2)/</url>
-      <content type="html"><![CDATA[<p>#####understanding React2</p>
 ]]></content>
     </entry>
     
