@@ -24,13 +24,16 @@
               <a href="/"  class=" site-header-nav-item hvr-underline-from-center" title="首页">首页</a>
         
               
-              <a href="/category/" target="true" class=" site-header-nav-item hvr-underline-from-center" title="分类">分类</a>
+              <a href="/categories/"  class=" site-header-nav-item hvr-underline-from-center" title="分类">分类</a>
         
               
               <a href="/open-source/"  class=" site-header-nav-item hvr-underline-from-center" title="开源项目">开源项目</a>
         
               
               <a href="/message/"  class=" site-header-nav-item hvr-underline-from-center" title="留言板">留言板</a>
+        
+              
+              <a href="/javascript/"  class=" site-header-nav-item hvr-underline-from-center" title="javascript">javascript</a>
         
       </nav>
   </div>
@@ -46,11 +49,12 @@
                 <div class="collection-info">
                     
                     
+                    
                         <span class="meta-info">
                             
                                 <span class="octicon octicon-location">
                                    
-                                        ChengDu, China
+                                        xi&#39;an, China
                                     
                                 </span>
                                 
@@ -63,7 +67,7 @@
                                    
                                 </span>
                                 
-                                    <a href="http://github.com/yumemor" target="_blank">yumemor</a>
+                                    <a href="http://github.com/phpsmarter" target="_blank">phpsmarter</a>
                                 
                             
                         </span>
@@ -284,73 +288,25 @@
             
         </div>
         <div class="column one-third">
-          <!--处理未安装 search 插件 默认 Google 搜索-->
- 
-
-<h3>Search</h3>
+          <h3>Search</h3>
 
 <div id="site_search">
 
 	<!-- Google -->
 	
+		<form action="http://www.google.com/search?" data-site="http://yoursite.com">
+	    	<input type="text" id="search_box" name="q" placeholder="Search" style="width: 253px;">
+	    	<button type="button" class="btn btn-default" id="site_search_do"><span class="octicon octicon-search"></span></button>
+	    </form>
+	
 
 	<!-- 本地搜索 -->
 	
-		<form id="search-form" >
-			<input type="text" id="search" placeholder="Search" >
-			<button type="button" class="btn btn-default" id="site_search_do"><span class="octicon octicon-search"></span></button>
-		</form>
-
-		<div id="local-search-result"></div>
-
-		<script src="/js/search.js"></script>	
-		<script type="text/javascript">
-			$(function(){
-				var currentIndex = -1;
-				var search_path = "search.xml";
-				if (!search_path) search_path = "search.xml";
-				var path = "/" + search_path;
-				searchFunc(path, 'search', 'local-search-result');
-
-				$(document).delegate("#local-search-result>.search-result-list li","hover",function(){
-					var liNode = $("#local-search-result>.search-result-list li");
-					liNode.removeClass("hover");
-					currentIndex = $("#local-search-result>.search-result-list li").index($(this));
-					liNode.eq(currentIndex).addClass("hover");
-				})
-
-				$("#search-form").submit(function(){
-					return false;
-				})
-
-				$("#search").keydown(function(event){
-					var keyCode = event.keyCode;
-					var liNode = $("#local-search-result>.search-result-list li");
-					if(keyCode == 38 || keyCode == 40 || keyCode == 13){
-						liNode.removeClass("hover");
-						if(keyCode == 38){
-							if(currentIndex - 1 >= 0) currentIndex --;
-						}
-						if(keyCode == 40){
-							if(currentIndex + 1 < liNode.length) currentIndex ++;
-						}
-						if(keyCode == 13){
-							location.href = liNode.eq(currentIndex).find("a").attr("href");
-						}
-						liNode.eq(currentIndex).addClass("hover");
-						return false;
-					}else{
-						currentIndex = -1;
-					}
-				})
-			})
-		</script>
-
-	
 
 </div>
-
 <h3>Popular Repositories</h3>
+
+    
     <div class="popular-container"></div>
     
     <script type="text/template" id="popular-list-template">
@@ -399,10 +355,10 @@
             var handleGithub = function(){
                 var popularContainer = $(".popular-container");
 
-                var repos = "hexo-theme-primer".split(",");
+                var repos = "Redux-counter-with-note,myreading,React-native-dummy-redux-app".split(",");
                 for(var i in repos){
                     var name = repos[i];
-                    $.get("https://api.github.com/repos/yumemor/"+name,handle);
+                    $.get("https://api.github.com/repos/phpsmarter/"+name,handle);
                 }
 
                 function handle(result){
@@ -436,8 +392,8 @@
 <footer class="container">
     <div class="site-footer" role="contentinfo">
         <div class="copyright left mobile-block">
-                © 2016
-                <span title="yumemor">yumemor</span>
+                © 2017
+                <span title="phpsmarter">phpsmarter</span>
                 <a href="javascript:window.scrollTo(0,0)" class="right mobile-visible">TOP</a>
         </div>
 
@@ -447,7 +403,7 @@
             </li>
         </ul>
 
-        <a href="https://github.com/yumemor/hexo-theme-primer" target="_blank" aria-label="view source code">
+        <a href="https://phpsmarter.github.io" target="_blank" aria-label="view source code">
             <span class="mega-octicon octicon-mark-github" title="GitHub"></span>
         </a>
 
@@ -460,7 +416,7 @@
             
                   
                   <li>
-                    <a href="/category/" target="true" title="分类">分类</a>
+                    <a href="/categories/"  title="分类">分类</a>
                   </li>
             
                   
@@ -473,9 +429,14 @@
                     <a href="/message/"  title="留言板">留言板</a>
                   </li>
             
+                  
+                  <li>
+                    <a href="/javascript/"  title="javascript">javascript</a>
+                  </li>
+            
             <li>
                 <a href="/atom.xml">
-                    <span class="octicon octicon-rss" style="color:orange;"></span>
+                    <span class="octicon octicon-rss" style="color:blue;"></span>
                 </a>
             </li>
         </ul>
@@ -485,6 +446,8 @@
 		<script src="/js/geopattern.js"></script>
 		<script src="/js/highlight.pack.js"></script>
 		<script src="/lib/fancybox/jquery.fancybox-1.3.4.pack.js"></script>
+
+		
 
 		
 

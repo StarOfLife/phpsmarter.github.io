@@ -25,13 +25,16 @@
               <a href="/"  class=" site-header-nav-item hvr-underline-from-center" title="首页">首页</a>
         
               
-              <a href="/category/" target="true" class=" site-header-nav-item hvr-underline-from-center" title="分类">分类</a>
+              <a href="/categories/"  class=" site-header-nav-item hvr-underline-from-center" title="分类">分类</a>
         
               
               <a href="/open-source/"  class=" site-header-nav-item hvr-underline-from-center" title="开源项目">开源项目</a>
         
               
               <a href="/message/"  class=" site-header-nav-item hvr-underline-from-center" title="留言板">留言板</a>
+        
+              
+              <a href="/javascript/"  class=" site-header-nav-item hvr-underline-from-center" title="javascript">javascript</a>
         
       </nav>
   </div>
@@ -78,7 +81,7 @@
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> Immutable = <span class="built_in">require</span>(<span class="string">'immutable'</span>);</div><div class="line"><span class="keyword">var</span> map1 = Immutable.Map(&#123;<span class="attr">a</span>:<span class="number">1</span>, <span class="attr">b</span>:<span class="number">2</span>, <span class="attr">c</span>:<span class="number">3</span>&#125;);</div><div class="line"><span class="keyword">var</span> map2 = map1.set(<span class="string">'b'</span>, <span class="number">50</span>);</div><div class="line">map1.get(<span class="string">'b'</span>); <span class="comment">// 2</span></div><div class="line">map2.get(<span class="string">'b'</span>); <span class="comment">// 50</span></div></pre></td></tr></table></figure>
 <h3 id="Browser"><a href="#Browser" class="headerlink" title="Browser"></a>Browser</h3><p>To use <code>immutable</code> from a browser, download <a href="https://github.com/facebook/immutable-js/blob/master/dist/immutable.min.js" target="_blank" rel="external">dist/immutable.min.js</a><br>or use a CDN such as <a href="https://cdnjs.com/libraries/immutable" target="_blank" rel="external">CDNJS</a><br>or <a href="http://www.jsdelivr.com/#!immutable.js" target="_blank" rel="external">jsDelivr</a>.</p>
 <p>Then, add it as a script tag to your page:</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"immutable.min.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript"></span></div><div class="line">    <span class="keyword">var</span> map1 = Immutable.Map(&#123;<span class="attr">a</span>:<span class="number">1</span>, <span class="attr">b</span>:<span class="number">2</span>, <span class="attr">c</span>:<span class="number">3</span>&#125;);</div><div class="line">    <span class="keyword">var</span> map2 = map1.set(<span class="string">'b'</span>, <span class="number">50</span>);</div><div class="line">    map1.get(<span class="string">'b'</span>); <span class="comment">// 2</span></div><div class="line">    map2.get(<span class="string">'b'</span>); <span class="comment">// 50</span></div><div class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"immutable.min.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="actionscript"></span></div><div class="line">    <span class="keyword">var</span> map1 = Immutable.Map(&#123;a:<span class="number">1</span>, b:<span class="number">2</span>, c:<span class="number">3</span>&#125;);</div><div class="line">    <span class="keyword">var</span> map2 = map1.set(<span class="string">'b'</span>, <span class="number">50</span>);</div><div class="line">    map1.get(<span class="string">'b'</span>); <span class="comment">// 2</span></div><div class="line">    map2.get(<span class="string">'b'</span>); <span class="comment">// 50</span></div><div class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
 <p>Or use an AMD loader (such as <a href="http://requirejs.org/" target="_blank" rel="external">RequireJS</a>):</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">require</span>([<span class="string">'./immutable.min.js'</span>], <span class="function"><span class="keyword">function</span> (<span class="params">Immutable</span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> map1 = Immutable.Map(&#123;<span class="attr">a</span>:<span class="number">1</span>, <span class="attr">b</span>:<span class="number">2</span>, <span class="attr">c</span>:<span class="number">3</span>&#125;);</div><div class="line">    <span class="keyword">var</span> map2 = map1.set(<span class="string">'b'</span>, <span class="number">50</span>);</div><div class="line">    map1.get(<span class="string">'b'</span>); <span class="comment">// 2</span></div><div class="line">    map2.get(<span class="string">'b'</span>); <span class="comment">// 50</span></div><div class="line">&#125;);</div></pre></td></tr></table></figure>
 <p>If you’re using <a href="http://browserify.org/" target="_blank" rel="external">browserify</a>, the <code>immutable</code> npm module<br>also works from the browser.</p>
@@ -179,7 +182,7 @@
 <div class="comments">
 	<div class="ds-thread" data-thread-key="Immutable collections for JavaScript" data-title="Immutable-collections" data-url="http://yoursite.com/2017/03/22/Immutable collections for JavaScript/"></div>
 	<script type="text/javascript">
-	var duoshuoQuery = {short_name:"null"};
+	var duoshuoQuery = {short_name:"smartphp"};
 		(function() {
 			var ds = document.createElement('script');
 			ds.type = 'text/javascript';ds.async = true;
@@ -217,8 +220,8 @@
 <footer class="container">
     <div class="site-footer" role="contentinfo">
         <div class="copyright left mobile-block">
-                © 2016
-                <span title="yumemor">yumemor</span>
+                © 2017
+                <span title="phpsmarter">phpsmarter</span>
                 <a href="javascript:window.scrollTo(0,0)" class="right mobile-visible">TOP</a>
         </div>
 
@@ -228,7 +231,7 @@
             </li>
         </ul>
 
-        <a href="https://github.com/yumemor/hexo-theme-primer" target="_blank" aria-label="view source code">
+        <a href="https://phpsmarter.github.io" target="_blank" aria-label="view source code">
             <span class="mega-octicon octicon-mark-github" title="GitHub"></span>
         </a>
 
@@ -241,7 +244,7 @@
             
                   
                   <li>
-                    <a href="/category/" target="true" title="分类">分类</a>
+                    <a href="/categories/"  title="分类">分类</a>
                   </li>
             
                   
@@ -254,9 +257,14 @@
                     <a href="/message/"  title="留言板">留言板</a>
                   </li>
             
+                  
+                  <li>
+                    <a href="/javascript/"  title="javascript">javascript</a>
+                  </li>
+            
             <li>
                 <a href="/atom.xml">
-                    <span class="octicon octicon-rss" style="color:orange;"></span>
+                    <span class="octicon octicon-rss" style="color:blue;"></span>
                 </a>
             </li>
         </ul>
@@ -269,6 +277,8 @@
 
 		
 			<script src="/js/toc.js"></script>
+		
+
 		
 
 		<script src="/js/index.js"></script>

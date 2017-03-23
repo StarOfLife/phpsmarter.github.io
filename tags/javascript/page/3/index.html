@@ -24,13 +24,16 @@
               <a href="/"  class=" site-header-nav-item hvr-underline-from-center" title="首页">首页</a>
         
               
-              <a href="/category/" target="true" class=" site-header-nav-item hvr-underline-from-center" title="分类">分类</a>
+              <a href="/categories/"  class=" site-header-nav-item hvr-underline-from-center" title="分类">分类</a>
         
               
               <a href="/open-source/"  class=" site-header-nav-item hvr-underline-from-center" title="开源项目">开源项目</a>
         
               
               <a href="/message/"  class=" site-header-nav-item hvr-underline-from-center" title="留言板">留言板</a>
+        
+              
+              <a href="/javascript/"  class=" site-header-nav-item hvr-underline-from-center" title="javascript">javascript</a>
         
       </nav>
   </div>
@@ -46,11 +49,12 @@
                 <div class="collection-info">
                     
                     
+                    
                         <span class="meta-info">
                             
                                 <span class="octicon octicon-location">
                                    
-                                        ChengDu, China
+                                        xi&#39;an, China
                                     
                                 </span>
                                 
@@ -63,7 +67,7 @@
                                    
                                 </span>
                                 
-                                    <a href="http://github.com/yumemor" target="_blank">yumemor</a>
+                                    <a href="http://github.com/phpsmarter" target="_blank">phpsmarter</a>
                                 
                             
                         </span>
@@ -77,82 +81,22 @@
     <div class="columns">
         <div class="column two-thirds">
             
-                  <article id="post-javascript-装饰者模式" class="repo-list">
+                  <article id="post-javascript-职责链模式" class="repo-list">
     <div class="repo-list-item" >
       <h3 class="repo-list-name" itemprop="name">
         
   
-      <a class="article-title" href="/2017/03/08/javascript-装饰者模式/">javascript-装饰者模式</a>
+      <a class="article-title" href="/2017/03/08/javascript-职责链模式/">javascript 职责链模式-紧密耦合判读变多函数分开处理</a>
   
 
       </h3>
       <div class="repo-list-description">
         
           <blockquote>
-<p>装饰者模式：给对象动态添加职责的方式就是装饰者模式，能够在不改变原对象的情况下，在运行的时候给对象添加新的职责。<br>参考《javascript设计模式与开发实践》</p>
+<p>职责链模式是：是多个对象都有机会处理请求，从而避免请求的发送者和接收者之间的耦合关系。如果是在jvascript中很好解决这个问题。 从编程上来说就是把比较复杂的if-else嵌套紧密的判断-执行逻辑使用高阶函数把判断语句中所做的事情放到函数中处理。</p>
 </blockquote>
-<p>###装饰函数<br>如果在给一个函数或对象添加功能的时候不想动原函数，或者原函数是别的程序员写的，这时候可以通过引用来增加函数功能</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">  <span class="keyword">var</span> a=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; <span class="comment">//构造函数</span></div><div class="line">    alert(<span class="number">1</span>);</div><div class="line"> &#125;;</div><div class="line"></div><div class="line"><span class="keyword">var</span> _a=a; <span class="comment">//_a作为中间变量</span></div><div class="line"></div><div class="line">a=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;  <span class="comment">//重新赋值a变量</span></div><div class="line">   _a();  <span class="comment">//执行a函数</span></div><div class="line">   alert(<span class="number">2</span>); <span class="comment">//添加的功能</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>下面重点是介绍一个AOP的例子，AOP是面向切面编程，在下面的函数运行的时候，可以给把函数看做有一个生命周期，分为 运行前（before），运行中，运行后（after）。在运行前，运行后可以给函数对象添加不同的职责，这些添加的职责不会影响原函数对象的运行。</p>
-<p>在javascript中几乎一切都是对象，函数作为一等对象，可以作为函数的参数传递，所以在js中使用装饰者模式的时候后很大的便利性。</p>
-<p>#####AOP的标准模型</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">//argument对象是函数调用时，隐式传递的函数参数</span></div><div class="line"><span class="built_in">Function</span>.prototype.before = <span class="function"><span class="keyword">function</span>(<span class="params"> beforefn </span>)</span>&#123;</div><div class="line">		<span class="keyword">var</span> __self = <span class="keyword">this</span>; <span class="comment">// 保存原函数的引用</span></div><div class="line">		<span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; <span class="comment">// 返回包含了原函数和新函数的"代理"函数</span></div><div class="line">			beforefn.apply( <span class="keyword">this</span>, <span class="built_in">arguments</span> ); <span class="comment">// 执行新函数，且保证this</span></div><div class="line"><span class="comment">// 不被劫持，新函数接受的参数也会被原封不动地传入原函数，新函数在原函数之前执行</span></div><div class="line">			<span class="keyword">return</span> __self.apply( <span class="keyword">this</span>, <span class="built_in">arguments</span> ); <span class="comment">// 执行原函数并返</span></div><div class="line"><span class="comment">//回原函数的执行结果， 并且保证this 不被劫持		</span></div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="built_in">Function</span>.prototype.after = <span class="function"><span class="keyword">function</span>(<span class="params"> afterfn </span>)</span>&#123;</div><div class="line">	<span class="keyword">var</span> __self = <span class="keyword">this</span>;</div><div class="line">	<span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">		<span class="keyword">var</span> ret = __self.apply( <span class="keyword">this</span>, <span class="built_in">arguments</span> );</div><div class="line">		afterfn.apply( <span class="keyword">this</span>, <span class="built_in">arguments</span> );</div><div class="line">		<span class="keyword">return</span> ret;</div><div class="line">	&#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-<p>实例：点击按钮时弹框之后统计弹框的参数<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//log函数作为参数传递  </span></div><div class="line"><span class="built_in">Function</span>.prototype.after = <span class="function"><span class="keyword">function</span>(<span class="params"> afterfn </span>)</span>&#123;</div><div class="line">		<span class="keyword">var</span> __self = <span class="keyword">this</span>; <span class="comment">//保存原函数的引用，_在js中是可以使用的可以作为一个私有方法和变量的起始标志</span></div><div class="line">		<span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; <span class="comment">//返回函数复合体</span></div><div class="line">			<span class="keyword">var</span> ret = __self.apply( <span class="keyword">this</span>, <span class="built_in">arguments</span> );<span class="comment">//原函数调用</span></div><div class="line">			afterfn.apply( <span class="keyword">this</span>, <span class="built_in">arguments</span> );<span class="comment">//after函数调用</span></div><div class="line">			<span class="keyword">return</span> ret; <span class="comment">//返回原函数</span></div><div class="line">		&#125;</div><div class="line">	&#125;;</div><div class="line">	<span class="keyword">var</span> showLogin = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">		<span class="built_in">console</span>.log( <span class="string">'打开登录浮层'</span> );</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">var</span> log = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">		<span class="built_in">console</span>.log( <span class="string">'上报标签为: '</span> + <span class="keyword">this</span>.getAttribute( <span class="string">'tag'</span> ) );</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	showLogin = showLogin.after( log ); <span class="comment">// 打开登录浮层之后上报数据</span></div><div class="line">	<span class="built_in">document</span>.getElementById( <span class="string">'button'</span> ).onclick = showLogin;</div></pre></td></tr></table></figure></p>
-<p>在javascript中。面向对象编程和函数式编程是不矛盾的。两者结合起来威力更大。随着学习的深入，你会觉得满满的都是套路和模式。到了这一步学习有点欲罢不能了。学习javascript真是有意思。</p>
-
-        
-      </div>
-      <p class="repo-list-meta">
-        <span class="meta-info">
-          <span class="octicon octicon-calendar"></span>
-           <time datetime="2017-03-08T00:04:10.000Z" itemprop="datePublished">2017-03-08</time>
-        </span>
-
-        
-          <span class="meta-info">
-            <span class="octicon octicon-file-directory"></span>
-            <a href='/categories/Designpattern/' title=''>Designpattern</a>
-          </span>
-        
-      
-        <!--
-          
-            <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
-          
-        -->
-
-      </p>
-    </div>
-  </article>
-            
-                  <article id="post-学习模式设计的启示-献给和我一样的react-redux的初学者" class="repo-list">
-    <div class="repo-list-item" >
-      <h3 class="repo-list-name" itemprop="name">
-        
-  
-      <a class="article-title" href="/2017/03/08/学习模式设计的启示-献给和我一样的react-redux的初学者/">学习模式设计的启示-献给和我一样的react-redux的初学者</a>
-  
-
-      </h3>
-      <div class="repo-list-description">
-        
-          <p>这里我不谈到底哪家的书好，那种学习方法好。作为一个软件开发的初学者已经两年了，前一个月感觉到很焦虑，感觉到好多代码都还读不懂，而且年龄也比较大。但是自从接触了几本javascrpt模式设计的书以后，焦虑消失了，尽管任然有很多的代码等着去读，但是心里感觉非常有底，以前如果是赤手在荒原上打猎的话，现在手上就一把猎枪。</p>
-<p>现在说说读过模式设计以后的感受。这个读的过程本身又是嵌套函数，读模式设计的过程中也在利用模式的方法来不断的针对一个问题，继续深入的学习，重构。不断的反复。</p>
-<p>1拿着榔头的人，看到任何东西都是钉子？</p>
-<p>我上周有段时间，感觉看到任何的代码都在考虑他里面有什么模式，甚至影响到了我的其他和编程不相干的领域，比如我以前的专业知识和业余爱好，发现短时间内，通过把模式设计的思想(我说的而是思想，不是思路，是宏观的看法)来重新审视学过或者了解的东西，结果获得了和以前完全不同的东西，似乎好多问题看得很透彻了。 </p>
-<p>结果乐此不疲，但是冷静下来想，在这个过程中我是否有点矫枉过正了？我重新反思以后发现，并没有矫枉过正，模式就是解决问题的万能方式，只要你是在主动的根据实际情况解决问题，主动的总结解决问题的过程中各种利弊和规律，就是模式。<br>你再次把这个已经成型的模式应用到类似问题的解决和设计中就是<code>模式设计</code>。<br>这里面最中的是看清楚当前要解决的问题和哪些已知的模式相类似。这是第一步，可以称为<code>模式识别</code>。比如你要开发汽车号牌之别系统，你要先识别出号码，才能做后一步的工作，后一步的逻辑再简单，没有识别出问题就，后面的问题就无从解决。</p>
-<p>作为程序员的你是否考虑过：“我的生活，体育爱好，读书，写作，包括找对象，结婚，甚至是约炮过程中是不是总结了一些规律或者使用了别人总结的一些规律，在使用这些规律的过程中那些有效，那些是负分？”  是的！无处不在的经验，到处都是。但是请不要忘了，这些规律是都有自己的使用特殊性的。不考虑环境或者上下文的规律就乱用这些经验就是耍流氓，可能不仅起不到良好效果，反而骂经验总结者傻逼。<br>   我们中国足球就是典型的乱用经验的例子。 我们的足球管理者总是懒政，想短平快的解决问题，期望用别人现成的模式来解决问题。<br>   也可谓是尝试了不少，比如第一人外籍主帅，德国人是那普利。当时举国兴奋，以为找到了解决中国足球难题的良药。结果国人全部都陷入一种妄想症中。  但是忘记了两国足球背景的差别，<br>   两国国民身体健康，身体素质平均情况，足球普及情况，青训普及情况，联赛开展情况，国家经济收入情况。当界队员的天赋情况。这些都要综合考虑。问题岂是区区一个足球教练就能解决的？结果希望越大，失望越大。<br>   领导仍不死心，接着砸钱，足球要从娃娃抓起，派了一对小球员去巴西学习，以为这样问题就能解决了。当时看纪录片介绍，条件那个差呀。但是当时巴西就是那个条件，为什么人家就成功了，屡夺世界冠军呢？。踢球人太多了，球场虽然很差，但是踢球人基数大，天才还是能在这样的条件下诞生。所以这样的计划必定失败。</p>
-<p>   如果不考虑这些综合问题，外籍教练和青训系统来一个死一个，成功的都是赌徒。</p>
-<p>   实际上我以上的分析也是站在旁观者的角度上看问题，解决问题肯定不会这么简单，如果能看到问题就能解决问题，那就不是问题了。</p>
-<p>   2.动手，阅读之后的感受。模式是你自己的体验</p>
-<p>   在学习了模式设计的书以后，试着写了一篇有关react/redux中潜藏的一些模式的文章。写这个文章的过程实际是基于我对这个框架之间的关系的学习过程，我是初学者，在redux的学习中确实是卡了很长时间。很多代码具体逻辑看的懂，但是就是感觉不知道在干什么，在学些redux中，刚开始不知道数据怎么流动的。 现在看来这些学习中的摸索过程也还有一定的好处，当我第一次意识到 React UI Component的组件是包含在container这个罐子中的时候，问题似乎一下变得简单了。看到了组件react-redux之间的那种为了功能划分而进行<code>解耦和</code>的过程，当我想到<code>解耦和</code>的过程，似乎其他用到<code>解耦和</code>概念的地方，认识更加清楚了和明晰了，结果是在我继续学习《js模式设计》的时候，难度和广度都降了了好多，原因是这种<code>解耦和</code>思想是编程中把复杂问题分解成简单问题的最有效的方式，通过这种方式可以把复杂的逻辑判断分解开。模式设计中大量使用这种思想，所以很多问题就很容易看懂了。</p>
-<p>   但是我回头一想，这个过程也是基于我自己的学习过程来逐渐理解的，如果没有前面的挫折，可能也不会得出 container是个罐子这个形象的例子。如果在刚遇到挫折的时候，别人告诉我，这个容器就是个罐子，你去看看吧。 不可能的事，和盲人摸象一样，给你说面前是一头大象，在你没有完全摸透的情况下，你的感觉是千奇百怪的。</p>
-<p>   也许你自己完全理解了以后，这个container可以是一个铝罐，一个篮子，其他什么的东西。不重要<code>最终都会抽象成一个容器</code>。  容器就是大象,要你自己去感受</p>
-<p>   3.模式设计和模式识别是一个思考过程。</p>
-<p>   我感觉在学习中慢慢感觉到了编程思考的乐趣。在这些书上，一些很复杂的代码，经过重构变为容易维护，容易阅读，容易扩展的过程，真是一张享受过程。从阅读中感受到了思考的强大。<br>   如果前一段时间的学习是基于别人的代码的一种形式的模仿，那么从阅读这些模式设计的书以后，后面就要考虑到对这些作者思想的模仿，人家是怎么做到这一点，我怎么才能达到。大言不惭的说，如果到了这一个境界，我想我的编程方法和能力都能有很大的提高。<br>   4.仅仅是为了编程而编程吗？</p>
-<p>   模式设计的书上实际讲了很多的日常生活中的事物运转原理的模拟解决过程。 我想的是编程都是解决实际问题，要想编程思想能有很大的提高，必须要关注这些具体事物运转的逻辑。<br>   5.不断的记录自己的感悟<br>      人的记忆是很脆弱的，程序员要学的东西那么多，你不可能都记住，错误的记录下来也好。</p>
-<hr>
-<p>   好了，就写这么多，初学者水平，可能过一段时间就觉得这个文章很傻比了。借此文记录这个傻逼的过程。呵呵</p>
+<p>逻辑处理的复杂度并没有改变，但是各个处理部分就分散到函数中去了。每个函数只做两件事情，能处理就处理，不能处理就交给其他函数，或者把自己的逻辑，通过异步再通知下一个函数进行处理。 这样通过单个函数内部的指针简化紧密嵌套的逻辑。<br>我作为初学者感觉到这样处理，代码读起来非常清晰。但是执行的效率是不是和紧密嵌套的逻辑一样我就不知道了。或许是用时间换代码的易读性。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line">//实例来自《js设计模式与开发实践》</div><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="javascript"></span></div><div class="line">	<span class="keyword">var</span> order500 = <span class="function"><span class="keyword">function</span>(<span class="params"> orderType, pay, stock </span>)</span>&#123;</div><div class="line">		<span class="keyword">if</span> ( orderType === <span class="number">1</span> &amp;&amp; pay === <span class="literal">true</span> )&#123;<span class="comment">//根据orderType,pay进行任务分配</span></div><div class="line">			<span class="built_in">console</span>.log( <span class="string">'500 元定金预购, 得到100 优惠券'</span> ); <span class="comment">//符合order500条件，直接执行逻辑</span></div><div class="line">		&#125;<span class="keyword">else</span>&#123;</div><div class="line">		   <span class="comment">//不符合order500条件交个order200处理，order500任务完成</span></div><div class="line">			order200( orderType, pay, stock ); <span class="comment">// 将请求传递给200 元订单</span></div><div class="line">		&#125;</div><div class="line"></div><div class="line">	&#125;;</div><div class="line">	<span class="comment">// 200 元订单</span></div><div class="line">	<span class="keyword">var</span> order200 = <span class="function"><span class="keyword">function</span>(<span class="params"> orderType, pay, stock </span>)</span>&#123;</div><div class="line">		<span class="keyword">if</span> ( orderType === <span class="number">2</span> &amp;&amp; pay === <span class="literal">true</span> )&#123;<span class="comment">//符合order200条件</span></div><div class="line">			<span class="built_in">console</span>.log( <span class="string">'200 元定金预购, 得到50 优惠券'</span> ); <span class="comment">//执行逻辑</span></div><div class="line">		&#125;<span class="keyword">else</span>&#123;</div><div class="line">		   <span class="comment">//条件不符合，传给下一个函数处理</span></div><div class="line">			orderNormal( orderType, pay, stock ); <span class="comment">// 将请求传递给普通订单</span></div><div class="line">		&#125;</div><div class="line">	&#125;;</div><div class="line">	<span class="comment">// 普通购买订单</span></div><div class="line">	<span class="keyword">var</span> orderNormal = <span class="function"><span class="keyword">function</span>(<span class="params"> orderType, pay, stock </span>)</span>&#123;</div><div class="line">		<span class="keyword">if</span> ( stock &gt; <span class="number">0</span> )&#123;</div><div class="line">			<span class="built_in">console</span>.log( <span class="string">'普通购买, 无优惠券'</span> );</div><div class="line">		&#125;<span class="keyword">else</span>&#123;</div><div class="line">			<span class="built_in">console</span>.log( <span class="string">'手机库存不足'</span> );</div><div class="line">		&#125;</div><div class="line">	&#125;;</div><div class="line"></div><div class="line">	<span class="comment">// 测试结果：</span></div><div class="line">	order500( <span class="number">1</span> , <span class="literal">true</span>, <span class="number">500</span>); <span class="comment">// 输出：500 元定金预购, 得到100 优惠券</span></div><div class="line">	order500( <span class="number">1</span>, <span class="literal">false</span>, <span class="number">500</span> ); <span class="comment">// 输出：普通购买, 无优惠券</span></div><div class="line">	order500( <span class="number">2</span>, <span class="literal">true</span>, <span class="number">500</span> ); <span class="comment">// 输出：200 元定金预购, 得到500 优惠券</span></div><div class="line">	order500( <span class="number">3</span>, <span class="literal">false</span>, <span class="number">500</span> ); <span class="comment">// 输出：普通购买, 无优惠券</span></div><div class="line">	order500( <span class="number">3</span>, <span class="literal">false</span>, <span class="number">0</span> ); <span class="comment">// 输出：手机库存不足</span></div><div class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
 
         
       </div>
@@ -236,6 +180,48 @@
     </div>
   </article>
             
+                  <article id="post-再再访javascript闭包" class="repo-list">
+    <div class="repo-list-item" >
+      <h3 class="repo-list-name" itemprop="name">
+        
+  
+      <a class="article-title" href="/2017/03/08/再再访javascript闭包/">再再访javascript闭包</a>
+  
+
+      </h3>
+      <div class="repo-list-description">
+        
+          <blockquote>
+<p>还是闭包，闭包在javascript的编程中作用太大。仍然还是要加深理解<br>  这次的例子是来自《javascript设计模式》<br><a href="http://jsdesignpatterns.com" target="_blank" rel="external">pro javascript design patterns  sourcecode</a> 这本书算是比较老的了。上帝要我学好javascript，花了不少力气。本地图书馆的 javascript的设计模式的书籍尽然悉数尽收了。名字直接带js 设计模式的书四本都有，《精通javascript》,《javascript面向对象编程》有内容涉及。几本javascript的动物书都有。</p>
+</blockquote>
+<p>直接看代码，这个代码的问题，其实在tab编程的时候，已经在用了，但是还不是太清楚。<code>关键点：每次调用闭包的时候，都会创建一个单独的作用域，或者叫作用域气泡，这个作用域中的变量和其他闭包的变量是隔绝的，所以叫气泡</code>。javascript通过闭包可以达到隐藏和封装信息的用途。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//foo()函数是外部函数。bar()是内部函数，var a=10是使用var 关键字</span></div><div class="line"><span class="comment">//定义的变量，而且位于foo()函数内部，在全局作用域下是访问不到的</span></div><div class="line"><span class="comment">//所以是私有变量。bar()函数位于foo()函数内部，拥有访问foo()作用域的权利。</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</div><div class="line">   <span class="keyword">var</span> a = <span class="number">10</span>;</div><div class="line"> </div><div class="line">   <span class="function"><span class="keyword">function</span> <span class="title">bar</span>(<span class="params"></span>) </span>&#123;<span class="comment">//bar()函数是内部函数，可以访问到var a 变量，或者叫捕获</span></div><div class="line">     a *= <span class="number">2</span>; </div><div class="line">     <span class="keyword">return</span> a; <span class="comment">//return  局部变量</span></div><div class="line">   &#125;</div><div class="line">   </div><div class="line">   <span class="keyword">return</span> bar;     <span class="comment">//返回内部函数，这样在foo()作用域外也可以访问到bar</span></div><div class="line">           <span class="comment">//函数，由于变量a也从bar()函数返回，变量从 foo()作用域中脱逃出来。</span></div><div class="line">  </div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> baz = foo(); <span class="comment">// baz是函数foo()的引用</span></div><div class="line">baz(); <span class="comment">// returns 20. //奇妙的地方在这里</span></div><div class="line">baz(); <span class="comment">// returns 40.//也是</span></div><div class="line">baz(); <span class="comment">// returns 80.//也是</span></div><div class="line"><span class="comment">//持续调用baz实际上在同一个foo()作用域里面的操作.这里就只有一个</span></div><div class="line"><span class="comment">//作用域存在，变量a也就可以一直保存改变的值了。</span></div><div class="line"></div><div class="line"><span class="comment">//下面就不同了，blat重新引用了foo()函数，重新创建了一个闭包作用</span></div><div class="line"><span class="comment">//域，变量a是从10开始的，可以理解为初始化。</span></div><div class="line"></div><div class="line"><span class="keyword">var</span> blat = foo();   <span class="comment">//这是foo()的另一引用。这里有点绕了。</span></div><div class="line"><span class="comment">//闭包的变量是在定义闭包时候就定义好的，与运行时是无关的。</span></div><div class="line"><span class="comment">//所以在第二次引用闭包是变量的初始值还是10</span></div><div class="line"><span class="comment">//这个地方是不是有些熟悉？是的，和函数绑定的对象刚好是相反的，</span></div><div class="line"><span class="comment">//函数绑定的作用域对象是在运行时绑定的，与定义函数时的作用域无关</span></div><div class="line">blat();    <span class="comment">// returns 20</span></div><div class="line">blat();    <span class="comment">// returns 40</span></div></pre></td></tr></table></figure>
+
+        
+      </div>
+      <p class="repo-list-meta">
+        <span class="meta-info">
+          <span class="octicon octicon-calendar"></span>
+           <time datetime="2017-03-08T00:04:10.000Z" itemprop="datePublished">2017-03-08</time>
+        </span>
+
+        
+          <span class="meta-info">
+            <span class="octicon octicon-file-directory"></span>
+            <a href='/categories/javascript/' title=''>javascript</a>
+          </span>
+        
+      
+        <!--
+          
+            <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
+          
+        -->
+
+      </p>
+    </div>
+  </article>
+            
                   <article id="post-Javascript状态模式" class="repo-list">
     <div class="repo-list-item" >
       <h3 class="repo-list-name" itemprop="name">
@@ -271,6 +257,54 @@
 <p>#####Javascript版本的状态机</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> Light = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">		<span class="keyword">this</span>.currState = FSM.off; <span class="comment">// 设置当前状态</span></div><div class="line">		<span class="keyword">this</span>.button = <span class="literal">null</span>;</div><div class="line">	&#125;;</div><div class="line"></div><div class="line">	Light.prototype.init = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">		<span class="keyword">var</span> button = <span class="built_in">document</span>.createElement( <span class="string">'button'</span> ),</div><div class="line">		self = <span class="keyword">this</span>;</div><div class="line">		button.innerHTML = <span class="string">'已关灯'</span>;</div><div class="line">		<span class="keyword">this</span>.button = <span class="built_in">document</span>.body.appendChild( button );</div><div class="line">		<span class="keyword">this</span>.button.onclick = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">			<span class="comment">//初始化下就是调用FSM.off的方法设置内部状态self.currState.buttonWasPressed.call( self ); // 把请求委托给FSM 状态机</span></div><div class="line">		&#125;</div><div class="line">	&#125;;</div><div class="line">	<span class="keyword">var</span> FSM = &#123;</div><div class="line">		<span class="attr">off</span>: &#123;</div><div class="line">			<span class="attr">buttonWasPressed</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">				<span class="built_in">console</span>.log( <span class="string">'关灯'</span> );</div><div class="line">				<span class="keyword">this</span>.button.innerHTML = <span class="string">'下一次按我是开灯'</span>;</div><div class="line">				<span class="keyword">this</span>.currState = FSM.on;</div><div class="line">			&#125;</div><div class="line">		&#125;,</div><div class="line">		<span class="attr">on</span>: &#123;</div><div class="line">			<span class="attr">buttonWasPressed</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">				<span class="built_in">console</span>.log( <span class="string">'开灯'</span> );</div><div class="line">				<span class="keyword">this</span>.button.innerHTML = <span class="string">'下一次按我是关灯'</span>;</div><div class="line">				<span class="keyword">this</span>.currState = FSM.off;</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">	&#125;;</div><div class="line">	<span class="keyword">var</span> light = <span class="keyword">new</span> Light();</div><div class="line">	light.init();</div></pre></td></tr></table></figure>
 <p>具体的实例详细看看书中的例子</p>
+
+        
+      </div>
+      <p class="repo-list-meta">
+        <span class="meta-info">
+          <span class="octicon octicon-calendar"></span>
+           <time datetime="2017-03-08T00:04:10.000Z" itemprop="datePublished">2017-03-08</time>
+        </span>
+
+        
+          <span class="meta-info">
+            <span class="octicon octicon-file-directory"></span>
+            <a href='/categories/Designpattern/' title=''>Designpattern</a>
+          </span>
+        
+      
+        <!--
+          
+            <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
+          
+        -->
+
+      </p>
+    </div>
+  </article>
+            
+                  <article id="post-javascript-装饰者模式" class="repo-list">
+    <div class="repo-list-item" >
+      <h3 class="repo-list-name" itemprop="name">
+        
+  
+      <a class="article-title" href="/2017/03/08/javascript-装饰者模式/">javascript-装饰者模式</a>
+  
+
+      </h3>
+      <div class="repo-list-description">
+        
+          <blockquote>
+<p>装饰者模式：给对象动态添加职责的方式就是装饰者模式，能够在不改变原对象的情况下，在运行的时候给对象添加新的职责。<br>参考《javascript设计模式与开发实践》</p>
+</blockquote>
+<p>###装饰函数<br>如果在给一个函数或对象添加功能的时候不想动原函数，或者原函数是别的程序员写的，这时候可以通过引用来增加函数功能</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">  <span class="keyword">var</span> a=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; <span class="comment">//构造函数</span></div><div class="line">    alert(<span class="number">1</span>);</div><div class="line"> &#125;;</div><div class="line"></div><div class="line"><span class="keyword">var</span> _a=a; <span class="comment">//_a作为中间变量</span></div><div class="line"></div><div class="line">a=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;  <span class="comment">//重新赋值a变量</span></div><div class="line">   _a();  <span class="comment">//执行a函数</span></div><div class="line">   alert(<span class="number">2</span>); <span class="comment">//添加的功能</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>下面重点是介绍一个AOP的例子，AOP是面向切面编程，在下面的函数运行的时候，可以给把函数看做有一个生命周期，分为 运行前（before），运行中，运行后（after）。在运行前，运行后可以给函数对象添加不同的职责，这些添加的职责不会影响原函数对象的运行。</p>
+<p>在javascript中几乎一切都是对象，函数作为一等对象，可以作为函数的参数传递，所以在js中使用装饰者模式的时候后很大的便利性。</p>
+<p>#####AOP的标准模型</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">//argument对象是函数调用时，隐式传递的函数参数</span></div><div class="line"><span class="built_in">Function</span>.prototype.before = <span class="function"><span class="keyword">function</span>(<span class="params"> beforefn </span>)</span>&#123;</div><div class="line">		<span class="keyword">var</span> __self = <span class="keyword">this</span>; <span class="comment">// 保存原函数的引用</span></div><div class="line">		<span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; <span class="comment">// 返回包含了原函数和新函数的"代理"函数</span></div><div class="line">			beforefn.apply( <span class="keyword">this</span>, <span class="built_in">arguments</span> ); <span class="comment">// 执行新函数，且保证this</span></div><div class="line"><span class="comment">// 不被劫持，新函数接受的参数也会被原封不动地传入原函数，新函数在原函数之前执行</span></div><div class="line">			<span class="keyword">return</span> __self.apply( <span class="keyword">this</span>, <span class="built_in">arguments</span> ); <span class="comment">// 执行原函数并返</span></div><div class="line"><span class="comment">//回原函数的执行结果， 并且保证this 不被劫持		</span></div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="built_in">Function</span>.prototype.after = <span class="function"><span class="keyword">function</span>(<span class="params"> afterfn </span>)</span>&#123;</div><div class="line">	<span class="keyword">var</span> __self = <span class="keyword">this</span>;</div><div class="line">	<span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">		<span class="keyword">var</span> ret = __self.apply( <span class="keyword">this</span>, <span class="built_in">arguments</span> );</div><div class="line">		afterfn.apply( <span class="keyword">this</span>, <span class="built_in">arguments</span> );</div><div class="line">		<span class="keyword">return</span> ret;</div><div class="line">	&#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>实例：点击按钮时弹框之后统计弹框的参数<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//log函数作为参数传递  </span></div><div class="line"><span class="built_in">Function</span>.prototype.after = <span class="function"><span class="keyword">function</span>(<span class="params"> afterfn </span>)</span>&#123;</div><div class="line">		<span class="keyword">var</span> __self = <span class="keyword">this</span>; <span class="comment">//保存原函数的引用，_在js中是可以使用的可以作为一个私有方法和变量的起始标志</span></div><div class="line">		<span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; <span class="comment">//返回函数复合体</span></div><div class="line">			<span class="keyword">var</span> ret = __self.apply( <span class="keyword">this</span>, <span class="built_in">arguments</span> );<span class="comment">//原函数调用</span></div><div class="line">			afterfn.apply( <span class="keyword">this</span>, <span class="built_in">arguments</span> );<span class="comment">//after函数调用</span></div><div class="line">			<span class="keyword">return</span> ret; <span class="comment">//返回原函数</span></div><div class="line">		&#125;</div><div class="line">	&#125;;</div><div class="line">	<span class="keyword">var</span> showLogin = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">		<span class="built_in">console</span>.log( <span class="string">'打开登录浮层'</span> );</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">var</span> log = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">		<span class="built_in">console</span>.log( <span class="string">'上报标签为: '</span> + <span class="keyword">this</span>.getAttribute( <span class="string">'tag'</span> ) );</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	showLogin = showLogin.after( log ); <span class="comment">// 打开登录浮层之后上报数据</span></div><div class="line">	<span class="built_in">document</span>.getElementById( <span class="string">'button'</span> ).onclick = showLogin;</div></pre></td></tr></table></figure></p>
+<p>在javascript中。面向对象编程和函数式编程是不矛盾的。两者结合起来威力更大。随着学习的深入，你会觉得满满的都是套路和模式。到了这一步学习有点欲罢不能了。学习javascript真是有意思。</p>
 
         
       </div>
@@ -423,22 +457,34 @@
     </div>
   </article>
             
-                  <article id="post-再再访javascript闭包" class="repo-list">
+                  <article id="post-学习模式设计的启示-献给和我一样的react-redux的初学者" class="repo-list">
     <div class="repo-list-item" >
       <h3 class="repo-list-name" itemprop="name">
         
   
-      <a class="article-title" href="/2017/03/08/再再访javascript闭包/">再再访javascript闭包</a>
+      <a class="article-title" href="/2017/03/08/学习模式设计的启示-献给和我一样的react-redux的初学者/">学习模式设计的启示-献给和我一样的react-redux的初学者</a>
   
 
       </h3>
       <div class="repo-list-description">
         
-          <blockquote>
-<p>还是闭包，闭包在javascript的编程中作用太大。仍然还是要加深理解<br>  这次的例子是来自《javascript设计模式》<br><a href="http://jsdesignpatterns.com" target="_blank" rel="external">pro javascript design patterns  sourcecode</a> 这本书算是比较老的了。上帝要我学好javascript，花了不少力气。本地图书馆的 javascript的设计模式的书籍尽然悉数尽收了。名字直接带js 设计模式的书四本都有，《精通javascript》,《javascript面向对象编程》有内容涉及。几本javascript的动物书都有。</p>
-</blockquote>
-<p>直接看代码，这个代码的问题，其实在tab编程的时候，已经在用了，但是还不是太清楚。<code>关键点：每次调用闭包的时候，都会创建一个单独的作用域，或者叫作用域气泡，这个作用域中的变量和其他闭包的变量是隔绝的，所以叫气泡</code>。javascript通过闭包可以达到隐藏和封装信息的用途。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//foo()函数是外部函数。bar()是内部函数，var a=10是使用var 关键字</span></div><div class="line"><span class="comment">//定义的变量，而且位于foo()函数内部，在全局作用域下是访问不到的</span></div><div class="line"><span class="comment">//所以是私有变量。bar()函数位于foo()函数内部，拥有访问foo()作用域的权利。</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</div><div class="line">   <span class="keyword">var</span> a = <span class="number">10</span>;</div><div class="line"> </div><div class="line">   <span class="function"><span class="keyword">function</span> <span class="title">bar</span>(<span class="params"></span>) </span>&#123;<span class="comment">//bar()函数是内部函数，可以访问到var a 变量，或者叫捕获</span></div><div class="line">     a *= <span class="number">2</span>; </div><div class="line">     <span class="keyword">return</span> a; <span class="comment">//return  局部变量</span></div><div class="line">   &#125;</div><div class="line">   </div><div class="line">   <span class="keyword">return</span> bar;     <span class="comment">//返回内部函数，这样在foo()作用域外也可以访问到bar</span></div><div class="line">           <span class="comment">//函数，由于变量a也从bar()函数返回，变量从 foo()作用域中脱逃出来。</span></div><div class="line">  </div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> baz = foo(); <span class="comment">// baz是函数foo()的引用</span></div><div class="line">baz(); <span class="comment">// returns 20. //奇妙的地方在这里</span></div><div class="line">baz(); <span class="comment">// returns 40.//也是</span></div><div class="line">baz(); <span class="comment">// returns 80.//也是</span></div><div class="line"><span class="comment">//持续调用baz实际上在同一个foo()作用域里面的操作.这里就只有一个</span></div><div class="line"><span class="comment">//作用域存在，变量a也就可以一直保存改变的值了。</span></div><div class="line"></div><div class="line"><span class="comment">//下面就不同了，blat重新引用了foo()函数，重新创建了一个闭包作用</span></div><div class="line"><span class="comment">//域，变量a是从10开始的，可以理解为初始化。</span></div><div class="line"></div><div class="line"><span class="keyword">var</span> blat = foo();   <span class="comment">//这是foo()的另一引用。这里有点绕了。</span></div><div class="line"><span class="comment">//闭包的变量是在定义闭包时候就定义好的，与运行时是无关的。</span></div><div class="line"><span class="comment">//所以在第二次引用闭包是变量的初始值还是10</span></div><div class="line"><span class="comment">//这个地方是不是有些熟悉？是的，和函数绑定的对象刚好是相反的，</span></div><div class="line"><span class="comment">//函数绑定的作用域对象是在运行时绑定的，与定义函数时的作用域无关</span></div><div class="line">blat();    <span class="comment">// returns 20</span></div><div class="line">blat();    <span class="comment">// returns 40</span></div></pre></td></tr></table></figure>
+          <p>这里我不谈到底哪家的书好，那种学习方法好。作为一个软件开发的初学者已经两年了，前一个月感觉到很焦虑，感觉到好多代码都还读不懂，而且年龄也比较大。但是自从接触了几本javascrpt模式设计的书以后，焦虑消失了，尽管任然有很多的代码等着去读，但是心里感觉非常有底，以前如果是赤手在荒原上打猎的话，现在手上就一把猎枪。</p>
+<p>现在说说读过模式设计以后的感受。这个读的过程本身又是嵌套函数，读模式设计的过程中也在利用模式的方法来不断的针对一个问题，继续深入的学习，重构。不断的反复。</p>
+<p>1拿着榔头的人，看到任何东西都是钉子？</p>
+<p>我上周有段时间，感觉看到任何的代码都在考虑他里面有什么模式，甚至影响到了我的其他和编程不相干的领域，比如我以前的专业知识和业余爱好，发现短时间内，通过把模式设计的思想(我说的而是思想，不是思路，是宏观的看法)来重新审视学过或者了解的东西，结果获得了和以前完全不同的东西，似乎好多问题看得很透彻了。 </p>
+<p>结果乐此不疲，但是冷静下来想，在这个过程中我是否有点矫枉过正了？我重新反思以后发现，并没有矫枉过正，模式就是解决问题的万能方式，只要你是在主动的根据实际情况解决问题，主动的总结解决问题的过程中各种利弊和规律，就是模式。<br>你再次把这个已经成型的模式应用到类似问题的解决和设计中就是<code>模式设计</code>。<br>这里面最中的是看清楚当前要解决的问题和哪些已知的模式相类似。这是第一步，可以称为<code>模式识别</code>。比如你要开发汽车号牌之别系统，你要先识别出号码，才能做后一步的工作，后一步的逻辑再简单，没有识别出问题就，后面的问题就无从解决。</p>
+<p>作为程序员的你是否考虑过：“我的生活，体育爱好，读书，写作，包括找对象，结婚，甚至是约炮过程中是不是总结了一些规律或者使用了别人总结的一些规律，在使用这些规律的过程中那些有效，那些是负分？”  是的！无处不在的经验，到处都是。但是请不要忘了，这些规律是都有自己的使用特殊性的。不考虑环境或者上下文的规律就乱用这些经验就是耍流氓，可能不仅起不到良好效果，反而骂经验总结者傻逼。<br>   我们中国足球就是典型的乱用经验的例子。 我们的足球管理者总是懒政，想短平快的解决问题，期望用别人现成的模式来解决问题。<br>   也可谓是尝试了不少，比如第一人外籍主帅，德国人是那普利。当时举国兴奋，以为找到了解决中国足球难题的良药。结果国人全部都陷入一种妄想症中。  但是忘记了两国足球背景的差别，<br>   两国国民身体健康，身体素质平均情况，足球普及情况，青训普及情况，联赛开展情况，国家经济收入情况。当界队员的天赋情况。这些都要综合考虑。问题岂是区区一个足球教练就能解决的？结果希望越大，失望越大。<br>   领导仍不死心，接着砸钱，足球要从娃娃抓起，派了一对小球员去巴西学习，以为这样问题就能解决了。当时看纪录片介绍，条件那个差呀。但是当时巴西就是那个条件，为什么人家就成功了，屡夺世界冠军呢？。踢球人太多了，球场虽然很差，但是踢球人基数大，天才还是能在这样的条件下诞生。所以这样的计划必定失败。</p>
+<p>   如果不考虑这些综合问题，外籍教练和青训系统来一个死一个，成功的都是赌徒。</p>
+<p>   实际上我以上的分析也是站在旁观者的角度上看问题，解决问题肯定不会这么简单，如果能看到问题就能解决问题，那就不是问题了。</p>
+<p>   2.动手，阅读之后的感受。模式是你自己的体验</p>
+<p>   在学习了模式设计的书以后，试着写了一篇有关react/redux中潜藏的一些模式的文章。写这个文章的过程实际是基于我对这个框架之间的关系的学习过程，我是初学者，在redux的学习中确实是卡了很长时间。很多代码具体逻辑看的懂，但是就是感觉不知道在干什么，在学些redux中，刚开始不知道数据怎么流动的。 现在看来这些学习中的摸索过程也还有一定的好处，当我第一次意识到 React UI Component的组件是包含在container这个罐子中的时候，问题似乎一下变得简单了。看到了组件react-redux之间的那种为了功能划分而进行<code>解耦和</code>的过程，当我想到<code>解耦和</code>的过程，似乎其他用到<code>解耦和</code>概念的地方，认识更加清楚了和明晰了，结果是在我继续学习《js模式设计》的时候，难度和广度都降了了好多，原因是这种<code>解耦和</code>思想是编程中把复杂问题分解成简单问题的最有效的方式，通过这种方式可以把复杂的逻辑判断分解开。模式设计中大量使用这种思想，所以很多问题就很容易看懂了。</p>
+<p>   但是我回头一想，这个过程也是基于我自己的学习过程来逐渐理解的，如果没有前面的挫折，可能也不会得出 container是个罐子这个形象的例子。如果在刚遇到挫折的时候，别人告诉我，这个容器就是个罐子，你去看看吧。 不可能的事，和盲人摸象一样，给你说面前是一头大象，在你没有完全摸透的情况下，你的感觉是千奇百怪的。</p>
+<p>   也许你自己完全理解了以后，这个container可以是一个铝罐，一个篮子，其他什么的东西。不重要<code>最终都会抽象成一个容器</code>。  容器就是大象,要你自己去感受</p>
+<p>   3.模式设计和模式识别是一个思考过程。</p>
+<p>   我感觉在学习中慢慢感觉到了编程思考的乐趣。在这些书上，一些很复杂的代码，经过重构变为容易维护，容易阅读，容易扩展的过程，真是一张享受过程。从阅读中感受到了思考的强大。<br>   如果前一段时间的学习是基于别人的代码的一种形式的模仿，那么从阅读这些模式设计的书以后，后面就要考虑到对这些作者思想的模仿，人家是怎么做到这一点，我怎么才能达到。大言不惭的说，如果到了这一个境界，我想我的编程方法和能力都能有很大的提高。<br>   4.仅仅是为了编程而编程吗？</p>
+<p>   模式设计的书上实际讲了很多的日常生活中的事物运转原理的模拟解决过程。 我想的是编程都是解决实际问题，要想编程思想能有很大的提高，必须要关注这些具体事物运转的逻辑。<br>   5.不断的记录自己的感悟<br>      人的记忆是很脆弱的，程序员要学的东西那么多，你不可能都记住，错误的记录下来也好。</p>
+<hr>
+<p>   好了，就写这么多，初学者水平，可能过一段时间就觉得这个文章很傻比了。借此文记录这个傻逼的过程。呵呵</p>
 
         
       </div>
@@ -451,7 +497,7 @@
         
           <span class="meta-info">
             <span class="octicon octicon-file-directory"></span>
-            <a href='/categories/javascript/' title=''>javascript</a>
+            <a href='/categories/Designpattern/' title=''>Designpattern</a>
           </span>
         
       
@@ -526,48 +572,6 @@
     </div>
   </article>
             
-                  <article id="post-javascript-职责链模式" class="repo-list">
-    <div class="repo-list-item" >
-      <h3 class="repo-list-name" itemprop="name">
-        
-  
-      <a class="article-title" href="/2017/03/08/javascript-职责链模式/">javascript 职责链模式-紧密耦合判读变多函数分开处理</a>
-  
-
-      </h3>
-      <div class="repo-list-description">
-        
-          <blockquote>
-<p>职责链模式是：是多个对象都有机会处理请求，从而避免请求的发送者和接收者之间的耦合关系。如果是在jvascript中很好解决这个问题。 从编程上来说就是把比较复杂的if-else嵌套紧密的判断-执行逻辑使用高阶函数把判断语句中所做的事情放到函数中处理。</p>
-</blockquote>
-<p>逻辑处理的复杂度并没有改变，但是各个处理部分就分散到函数中去了。每个函数只做两件事情，能处理就处理，不能处理就交给其他函数，或者把自己的逻辑，通过异步再通知下一个函数进行处理。 这样通过单个函数内部的指针简化紧密嵌套的逻辑。<br>我作为初学者感觉到这样处理，代码读起来非常清晰。但是执行的效率是不是和紧密嵌套的逻辑一样我就不知道了。或许是用时间换代码的易读性。</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line">//实例来自《js设计模式与开发实践》</div><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="javascript"></span></div><div class="line">	<span class="keyword">var</span> order500 = <span class="function"><span class="keyword">function</span>(<span class="params"> orderType, pay, stock </span>)</span>&#123;</div><div class="line">		<span class="keyword">if</span> ( orderType === <span class="number">1</span> &amp;&amp; pay === <span class="literal">true</span> )&#123;<span class="comment">//根据orderType,pay进行任务分配</span></div><div class="line">			<span class="built_in">console</span>.log( <span class="string">'500 元定金预购, 得到100 优惠券'</span> ); <span class="comment">//符合order500条件，直接执行逻辑</span></div><div class="line">		&#125;<span class="keyword">else</span>&#123;</div><div class="line">		   <span class="comment">//不符合order500条件交个order200处理，order500任务完成</span></div><div class="line">			order200( orderType, pay, stock ); <span class="comment">// 将请求传递给200 元订单</span></div><div class="line">		&#125;</div><div class="line"></div><div class="line">	&#125;;</div><div class="line">	<span class="comment">// 200 元订单</span></div><div class="line">	<span class="keyword">var</span> order200 = <span class="function"><span class="keyword">function</span>(<span class="params"> orderType, pay, stock </span>)</span>&#123;</div><div class="line">		<span class="keyword">if</span> ( orderType === <span class="number">2</span> &amp;&amp; pay === <span class="literal">true</span> )&#123;<span class="comment">//符合order200条件</span></div><div class="line">			<span class="built_in">console</span>.log( <span class="string">'200 元定金预购, 得到50 优惠券'</span> ); <span class="comment">//执行逻辑</span></div><div class="line">		&#125;<span class="keyword">else</span>&#123;</div><div class="line">		   <span class="comment">//条件不符合，传给下一个函数处理</span></div><div class="line">			orderNormal( orderType, pay, stock ); <span class="comment">// 将请求传递给普通订单</span></div><div class="line">		&#125;</div><div class="line">	&#125;;</div><div class="line">	<span class="comment">// 普通购买订单</span></div><div class="line">	<span class="keyword">var</span> orderNormal = <span class="function"><span class="keyword">function</span>(<span class="params"> orderType, pay, stock </span>)</span>&#123;</div><div class="line">		<span class="keyword">if</span> ( stock &gt; <span class="number">0</span> )&#123;</div><div class="line">			<span class="built_in">console</span>.log( <span class="string">'普通购买, 无优惠券'</span> );</div><div class="line">		&#125;<span class="keyword">else</span>&#123;</div><div class="line">			<span class="built_in">console</span>.log( <span class="string">'手机库存不足'</span> );</div><div class="line">		&#125;</div><div class="line">	&#125;;</div><div class="line"></div><div class="line">	<span class="comment">// 测试结果：</span></div><div class="line">	order500( <span class="number">1</span> , <span class="literal">true</span>, <span class="number">500</span>); <span class="comment">// 输出：500 元定金预购, 得到100 优惠券</span></div><div class="line">	order500( <span class="number">1</span>, <span class="literal">false</span>, <span class="number">500</span> ); <span class="comment">// 输出：普通购买, 无优惠券</span></div><div class="line">	order500( <span class="number">2</span>, <span class="literal">true</span>, <span class="number">500</span> ); <span class="comment">// 输出：200 元定金预购, 得到500 优惠券</span></div><div class="line">	order500( <span class="number">3</span>, <span class="literal">false</span>, <span class="number">500</span> ); <span class="comment">// 输出：普通购买, 无优惠券</span></div><div class="line">	order500( <span class="number">3</span>, <span class="literal">false</span>, <span class="number">0</span> ); <span class="comment">// 输出：手机库存不足</span></div><div class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
-
-        
-      </div>
-      <p class="repo-list-meta">
-        <span class="meta-info">
-          <span class="octicon octicon-calendar"></span>
-           <time datetime="2017-03-08T00:04:10.000Z" itemprop="datePublished">2017-03-08</time>
-        </span>
-
-        
-          <span class="meta-info">
-            <span class="octicon octicon-file-directory"></span>
-            <a href='/categories/Designpattern/' title=''>Designpattern</a>
-          </span>
-        
-      
-        <!--
-          
-            <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
-          
-        -->
-
-      </p>
-    </div>
-  </article>
-            
                   <article id="post-javascript表观模式" class="repo-list">
     <div class="repo-list-item" >
       <h3 class="repo-list-name" itemprop="name">
@@ -613,73 +617,25 @@
             
         </div>
         <div class="column one-third">
-          <!--处理未安装 search 插件 默认 Google 搜索-->
- 
-
-<h3>Search</h3>
+          <h3>Search</h3>
 
 <div id="site_search">
 
 	<!-- Google -->
 	
+		<form action="http://www.google.com/search?" data-site="http://yoursite.com">
+	    	<input type="text" id="search_box" name="q" placeholder="Search" style="width: 253px;">
+	    	<button type="button" class="btn btn-default" id="site_search_do"><span class="octicon octicon-search"></span></button>
+	    </form>
+	
 
 	<!-- 本地搜索 -->
 	
-		<form id="search-form" >
-			<input type="text" id="search" placeholder="Search" >
-			<button type="button" class="btn btn-default" id="site_search_do"><span class="octicon octicon-search"></span></button>
-		</form>
-
-		<div id="local-search-result"></div>
-
-		<script src="/js/search.js"></script>	
-		<script type="text/javascript">
-			$(function(){
-				var currentIndex = -1;
-				var search_path = "search.xml";
-				if (!search_path) search_path = "search.xml";
-				var path = "/" + search_path;
-				searchFunc(path, 'search', 'local-search-result');
-
-				$(document).delegate("#local-search-result>.search-result-list li","hover",function(){
-					var liNode = $("#local-search-result>.search-result-list li");
-					liNode.removeClass("hover");
-					currentIndex = $("#local-search-result>.search-result-list li").index($(this));
-					liNode.eq(currentIndex).addClass("hover");
-				})
-
-				$("#search-form").submit(function(){
-					return false;
-				})
-
-				$("#search").keydown(function(event){
-					var keyCode = event.keyCode;
-					var liNode = $("#local-search-result>.search-result-list li");
-					if(keyCode == 38 || keyCode == 40 || keyCode == 13){
-						liNode.removeClass("hover");
-						if(keyCode == 38){
-							if(currentIndex - 1 >= 0) currentIndex --;
-						}
-						if(keyCode == 40){
-							if(currentIndex + 1 < liNode.length) currentIndex ++;
-						}
-						if(keyCode == 13){
-							location.href = liNode.eq(currentIndex).find("a").attr("href");
-						}
-						liNode.eq(currentIndex).addClass("hover");
-						return false;
-					}else{
-						currentIndex = -1;
-					}
-				})
-			})
-		</script>
-
-	
 
 </div>
-
 <h3>Popular Repositories</h3>
+
+    
     <div class="popular-container"></div>
     
     <script type="text/template" id="popular-list-template">
@@ -728,10 +684,10 @@
             var handleGithub = function(){
                 var popularContainer = $(".popular-container");
 
-                var repos = "hexo-theme-primer".split(",");
+                var repos = "Redux-counter-with-note,myreading,React-native-dummy-redux-app".split(",");
                 for(var i in repos){
                     var name = repos[i];
-                    $.get("https://api.github.com/repos/yumemor/"+name,handle);
+                    $.get("https://api.github.com/repos/phpsmarter/"+name,handle);
                 }
 
                 function handle(result){
@@ -771,8 +727,8 @@
 <footer class="container">
     <div class="site-footer" role="contentinfo">
         <div class="copyright left mobile-block">
-                © 2016
-                <span title="yumemor">yumemor</span>
+                © 2017
+                <span title="phpsmarter">phpsmarter</span>
                 <a href="javascript:window.scrollTo(0,0)" class="right mobile-visible">TOP</a>
         </div>
 
@@ -782,7 +738,7 @@
             </li>
         </ul>
 
-        <a href="https://github.com/yumemor/hexo-theme-primer" target="_blank" aria-label="view source code">
+        <a href="https://phpsmarter.github.io" target="_blank" aria-label="view source code">
             <span class="mega-octicon octicon-mark-github" title="GitHub"></span>
         </a>
 
@@ -795,7 +751,7 @@
             
                   
                   <li>
-                    <a href="/category/" target="true" title="分类">分类</a>
+                    <a href="/categories/"  title="分类">分类</a>
                   </li>
             
                   
@@ -808,9 +764,14 @@
                     <a href="/message/"  title="留言板">留言板</a>
                   </li>
             
+                  
+                  <li>
+                    <a href="/javascript/"  title="javascript">javascript</a>
+                  </li>
+            
             <li>
                 <a href="/atom.xml">
-                    <span class="octicon octicon-rss" style="color:orange;"></span>
+                    <span class="octicon octicon-rss" style="color:blue;"></span>
                 </a>
             </li>
         </ul>
@@ -820,6 +781,8 @@
 		<script src="/js/geopattern.js"></script>
 		<script src="/js/highlight.pack.js"></script>
 		<script src="/lib/fancybox/jquery.fancybox-1.3.4.pack.js"></script>
+
+		
 
 		
 
