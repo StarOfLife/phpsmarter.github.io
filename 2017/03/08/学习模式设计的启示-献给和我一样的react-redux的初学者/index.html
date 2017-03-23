@@ -1,0 +1,902 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="javascript," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="phpsmarter" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="这里我不谈到底哪家的书好，那种学习方法好。作为一个软件开发的初学者已经两年了，前一个月感觉到很焦虑，感觉到好多代码都还读不懂，而且年龄也比较大。但是自从接触了几本javascrpt模式设计的书以后，焦虑消失了，尽管任然有很多的代码等着去读，但是心里感觉非常有底，以前如果是赤手在荒原上打猎的话，现在手上就一把猎枪。
+现在说说读过模式设计以后的感受。这个读的过程本身又是嵌套函数，读模式设计的过程中也在">
+<meta property="og:type" content="article">
+<meta property="og:title" content="学习模式设计的启示-献给和我一样的react-redux的初学者">
+<meta property="og:url" content="http://yoursite.com/2017/03/08/学习模式设计的启示-献给和我一样的react-redux的初学者/index.html">
+<meta property="og:site_name" content="phpsmarter">
+<meta property="og:description" content="这里我不谈到底哪家的书好，那种学习方法好。作为一个软件开发的初学者已经两年了，前一个月感觉到很焦虑，感觉到好多代码都还读不懂，而且年龄也比较大。但是自从接触了几本javascrpt模式设计的书以后，焦虑消失了，尽管任然有很多的代码等着去读，但是心里感觉非常有底，以前如果是赤手在荒原上打猎的话，现在手上就一把猎枪。
+现在说说读过模式设计以后的感受。这个读的过程本身又是嵌套函数，读模式设计的过程中也在">
+<meta property="og:updated_time" content="2017-03-23T12:22:23.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="学习模式设计的启示-献给和我一样的react-redux的初学者">
+<meta name="twitter:description" content="这里我不谈到底哪家的书好，那种学习方法好。作为一个软件开发的初学者已经两年了，前一个月感觉到很焦虑，感觉到好多代码都还读不懂，而且年龄也比较大。但是自从接触了几本javascrpt模式设计的书以后，焦虑消失了，尽管任然有很多的代码等着去读，但是心里感觉非常有底，以前如果是赤手在荒原上打猎的话，现在手上就一把猎枪。
+现在说说读过模式设计以后的感受。这个读的过程本身又是嵌套函数，读模式设计的过程中也在">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/03/08/学习模式设计的启示-献给和我一样的react-redux的初学者/"/>
+
+
+
+
+
+  <title> 学习模式设计的启示-献给和我一样的react-redux的初学者 | phpsmarter </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">phpsmarter</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">A beginner of React-native</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-sitemap">
+          <a href="/sitemap.xml" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br />
+            
+            站点地图
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/08/学习模式设计的启示-献给和我一样的react-redux的初学者/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="phpsmarter">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="phpsmarter">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                学习模式设计的启示-献给和我一样的react-redux的初学者
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-08T08:04:10+08:00">
+                2017-03-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Designpattern/" itemprop="url" rel="index">
+                    <span itemprop="name">Designpattern</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>这里我不谈到底哪家的书好，那种学习方法好。作为一个软件开发的初学者已经两年了，前一个月感觉到很焦虑，感觉到好多代码都还读不懂，而且年龄也比较大。但是自从接触了几本javascrpt模式设计的书以后，焦虑消失了，尽管任然有很多的代码等着去读，但是心里感觉非常有底，以前如果是赤手在荒原上打猎的话，现在手上就一把猎枪。</p>
+<p>现在说说读过模式设计以后的感受。这个读的过程本身又是嵌套函数，读模式设计的过程中也在利用模式的方法来不断的针对一个问题，继续深入的学习，重构。不断的反复。</p>
+<p>1拿着榔头的人，看到任何东西都是钉子？</p>
+<p>我上周有段时间，感觉看到任何的代码都在考虑他里面有什么模式，甚至影响到了我的其他和编程不相干的领域，比如我以前的专业知识和业余爱好，发现短时间内，通过把模式设计的思想(我说的而是思想，不是思路，是宏观的看法)来重新审视学过或者了解的东西，结果获得了和以前完全不同的东西，似乎好多问题看得很透彻了。 </p>
+<p>结果乐此不疲，但是冷静下来想，在这个过程中我是否有点矫枉过正了？我重新反思以后发现，并没有矫枉过正，模式就是解决问题的万能方式，只要你是在主动的根据实际情况解决问题，主动的总结解决问题的过程中各种利弊和规律，就是模式。<br>你再次把这个已经成型的模式应用到类似问题的解决和设计中就是<code>模式设计</code>。<br>这里面最中的是看清楚当前要解决的问题和哪些已知的模式相类似。这是第一步，可以称为<code>模式识别</code>。比如你要开发汽车号牌之别系统，你要先识别出号码，才能做后一步的工作，后一步的逻辑再简单，没有识别出问题就，后面的问题就无从解决。</p>
+<p>作为程序员的你是否考虑过：“我的生活，体育爱好，读书，写作，包括找对象，结婚，甚至是约炮过程中是不是总结了一些规律或者使用了别人总结的一些规律，在使用这些规律的过程中那些有效，那些是负分？”  是的！无处不在的经验，到处都是。但是请不要忘了，这些规律是都有自己的使用特殊性的。不考虑环境或者上下文的规律就乱用这些经验就是耍流氓，可能不仅起不到良好效果，反而骂经验总结者傻逼。<br>   我们中国足球就是典型的乱用经验的例子。 我们的足球管理者总是懒政，想短平快的解决问题，期望用别人现成的模式来解决问题。<br>   也可谓是尝试了不少，比如第一人外籍主帅，德国人是那普利。当时举国兴奋，以为找到了解决中国足球难题的良药。结果国人全部都陷入一种妄想症中。  但是忘记了两国足球背景的差别，<br>   两国国民身体健康，身体素质平均情况，足球普及情况，青训普及情况，联赛开展情况，国家经济收入情况。当界队员的天赋情况。这些都要综合考虑。问题岂是区区一个足球教练就能解决的？结果希望越大，失望越大。<br>   领导仍不死心，接着砸钱，足球要从娃娃抓起，派了一对小球员去巴西学习，以为这样问题就能解决了。当时看纪录片介绍，条件那个差呀。但是当时巴西就是那个条件，为什么人家就成功了，屡夺世界冠军呢？。踢球人太多了，球场虽然很差，但是踢球人基数大，天才还是能在这样的条件下诞生。所以这样的计划必定失败。</p>
+<p>   如果不考虑这些综合问题，外籍教练和青训系统来一个死一个，成功的都是赌徒。</p>
+<p>   实际上我以上的分析也是站在旁观者的角度上看问题，解决问题肯定不会这么简单，如果能看到问题就能解决问题，那就不是问题了。</p>
+<p>   2.动手，阅读之后的感受。模式是你自己的体验</p>
+<p>   在学习了模式设计的书以后，试着写了一篇有关react/redux中潜藏的一些模式的文章。写这个文章的过程实际是基于我对这个框架之间的关系的学习过程，我是初学者，在redux的学习中确实是卡了很长时间。很多代码具体逻辑看的懂，但是就是感觉不知道在干什么，在学些redux中，刚开始不知道数据怎么流动的。 现在看来这些学习中的摸索过程也还有一定的好处，当我第一次意识到 React UI Component的组件是包含在container这个罐子中的时候，问题似乎一下变得简单了。看到了组件react-redux之间的那种为了功能划分而进行<code>解耦和</code>的过程，当我想到<code>解耦和</code>的过程，似乎其他用到<code>解耦和</code>概念的地方，认识更加清楚了和明晰了，结果是在我继续学习《js模式设计》的时候，难度和广度都降了了好多，原因是这种<code>解耦和</code>思想是编程中把复杂问题分解成简单问题的最有效的方式，通过这种方式可以把复杂的逻辑判断分解开。模式设计中大量使用这种思想，所以很多问题就很容易看懂了。</p>
+<p>   但是我回头一想，这个过程也是基于我自己的学习过程来逐渐理解的，如果没有前面的挫折，可能也不会得出 container是个罐子这个形象的例子。如果在刚遇到挫折的时候，别人告诉我，这个容器就是个罐子，你去看看吧。 不可能的事，和盲人摸象一样，给你说面前是一头大象，在你没有完全摸透的情况下，你的感觉是千奇百怪的。</p>
+<p>   也许你自己完全理解了以后，这个container可以是一个铝罐，一个篮子，其他什么的东西。不重要<code>最终都会抽象成一个容器</code>。  容器就是大象,要你自己去感受</p>
+<p>   3.模式设计和模式识别是一个思考过程。</p>
+<p>   我感觉在学习中慢慢感觉到了编程思考的乐趣。在这些书上，一些很复杂的代码，经过重构变为容易维护，容易阅读，容易扩展的过程，真是一张享受过程。从阅读中感受到了思考的强大。<br>   如果前一段时间的学习是基于别人的代码的一种形式的模仿，那么从阅读这些模式设计的书以后，后面就要考虑到对这些作者思想的模仿，人家是怎么做到这一点，我怎么才能达到。大言不惭的说，如果到了这一个境界，我想我的编程方法和能力都能有很大的提高。<br>   4.仅仅是为了编程而编程吗？</p>
+<p>   模式设计的书上实际讲了很多的日常生活中的事物运转原理的模拟解决过程。 我想的是编程都是解决实际问题，要想编程思想能有很大的提高，必须要关注这些具体事物运转的逻辑。<br>   5.不断的记录自己的感悟<br>      人的记忆是很脆弱的，程序员要学的东西那么多，你不可能都记住，错误的记录下来也好。</p>
+<hr>
+<p>   好了，就写这么多，初学者水平，可能过一段时间就觉得这个文章很傻比了。借此文记录这个傻逼的过程。呵呵</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/javascript/" rel="tag"># javascript</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/03/08/本地Node-js服务器作为api服务器的解决办法/" rel="next" title="本地Node-js服务器作为api服务器的解决办法">
+                <i class="fa fa-chevron-left"></i> 本地Node-js服务器作为api服务器的解决办法
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/03/08/翻译-使用Reselect改进React和Redux程序性能/" rel="prev" title="翻译-使用Reselect改进React和Redux程序性能">
+                翻译-使用Reselect改进React和Redux程序性能 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel sidebar-panel-active">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpeg"
+               alt="phpsmarter" />
+          <p class="site-author-name" itemprop="name">phpsmarter</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">44</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">phpsmarter</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

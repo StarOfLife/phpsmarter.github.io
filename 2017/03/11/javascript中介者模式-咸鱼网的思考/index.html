@@ -1,0 +1,896 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="javascript," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="phpsmarter" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="在字典里，中介者是指“协助谈判和解决冲突的中立方”。在模式设计里，中介者是一种行为设计模式，它允许我们公开一个统一的接口，系统不同部分可以通过该接口进行通讯。也许一个对象可以和十个对象之间发生联系，十个对象之间有可以发生相互联系，从而形成一张巨大的关系网，要想在这么复杂的关系网中理清关系不是一件容易的事情。中介者模式就是要把对象之间的相互耦合关系解除。通过增加一个中介者对象，每个对象都和中介者对">
+<meta property="og:type" content="article">
+<meta property="og:title" content="javascript中介者模式-咸鱼网的思考">
+<meta property="og:url" content="http://yoursite.com/2017/03/11/javascript中介者模式-咸鱼网的思考/index.html">
+<meta property="og:site_name" content="phpsmarter">
+<meta property="og:description" content="在字典里，中介者是指“协助谈判和解决冲突的中立方”。在模式设计里，中介者是一种行为设计模式，它允许我们公开一个统一的接口，系统不同部分可以通过该接口进行通讯。也许一个对象可以和十个对象之间发生联系，十个对象之间有可以发生相互联系，从而形成一张巨大的关系网，要想在这么复杂的关系网中理清关系不是一件容易的事情。中介者模式就是要把对象之间的相互耦合关系解除。通过增加一个中介者对象，每个对象都和中介者对">
+<meta property="og:updated_time" content="2017-03-23T12:17:23.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="javascript中介者模式-咸鱼网的思考">
+<meta name="twitter:description" content="在字典里，中介者是指“协助谈判和解决冲突的中立方”。在模式设计里，中介者是一种行为设计模式，它允许我们公开一个统一的接口，系统不同部分可以通过该接口进行通讯。也许一个对象可以和十个对象之间发生联系，十个对象之间有可以发生相互联系，从而形成一张巨大的关系网，要想在这么复杂的关系网中理清关系不是一件容易的事情。中介者模式就是要把对象之间的相互耦合关系解除。通过增加一个中介者对象，每个对象都和中介者对">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/03/11/javascript中介者模式-咸鱼网的思考/"/>
+
+
+
+
+
+  <title> javascript中介者模式-咸鱼网的思考 | phpsmarter </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">phpsmarter</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">A beginner of React-native</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-sitemap">
+          <a href="/sitemap.xml" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br />
+            
+            站点地图
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/11/javascript中介者模式-咸鱼网的思考/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="phpsmarter">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="phpsmarter">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                javascript中介者模式-咸鱼网的思考
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-11T05:04:10+08:00">
+                2017-03-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Designpattern/" itemprop="url" rel="index">
+                    <span itemprop="name">Designpattern</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>在字典里，中介者是指“协助谈判和解决冲突的中立方”。在模式设计里，中介者是一种行为设计模式，它允许我们公开一个统一的接口，系统不同部分可以通过该接口进行通讯。<br>也许一个对象可以和十个对象之间发生联系，十个对象之间有可以发生相互联系，从而形成一张巨大的关系网，要想在这么复杂的关系网中理清关系不是一件容易的事情。<br>中介者模式就是要把对象之间的相互耦合关系解除。通过增加一个中介者对象，每个对象都和中介者对象通讯，对象之间不直接发生联系。<br>中介者对象是的对象之间的网状结构变为一对多的关系。</p>
+</blockquote>
+<p>拿咸鱼网来说。以前如果我们有闲置的东西，可以在小区的路上摆个摊子，这样看到东西的邻居可能会来买。可是这种关系是十分不稳定和复杂的，交易发生都有偶然性。<br>如果我们把闲置发布到咸鱼，那么发布者和购买者不会直接发生联系。之间的关系都是通过咸鱼来完成的。这样的模式就比直接交易便利的多。</p>
+<p>参考《javascript设计模式与开发实践》第14章。《javascript设计模式》动物书 第9章。9.6</p>
+<p>看一个简单的例子<br>这是一个捉对厮杀的游戏。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Player</span>(<span class="params"> name </span>)</span>&#123; <span class="comment">//玩家构造函数</span></div><div class="line">		<span class="keyword">this</span>.name = name <span class="comment">//玩家名字</span></div><div class="line">		<span class="keyword">this</span>.enemy = <span class="literal">null</span>; <span class="comment">// 敌人</span></div><div class="line">	&#125;;</div><div class="line"></div><div class="line">	Player.prototype.win = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; <span class="comment">//获胜函数</span></div><div class="line">		<span class="built_in">console</span>.log( <span class="keyword">this</span>.name + <span class="string">' won '</span> );</div><div class="line">	&#125;;</div><div class="line">	Player.prototype.lose = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="comment">//失败函数</span></div><div class="line">		<span class="built_in">console</span>.log( <span class="keyword">this</span>.name +<span class="string">' lost'</span> );</div><div class="line">	&#125;;</div><div class="line">	Player.prototype.die = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="comment">//失败函数</span></div><div class="line">		<span class="keyword">this</span>.lose();</div><div class="line">		<span class="keyword">this</span>.enemy.win();</div><div class="line">	&#125;;</div><div class="line">	<span class="comment">//接下来创建2 个玩家对象：</span></div><div class="line">	<span class="keyword">var</span> player1 = <span class="keyword">new</span> Player( <span class="string">'皮蛋'</span> );</div><div class="line">	<span class="keyword">var</span> player2 = <span class="keyword">new</span> Player( <span class="string">'小乖'</span> );</div><div class="line">	<span class="comment">//给玩家相互设置敌人：</span></div><div class="line">	player1.enemy = player2;</div><div class="line">	player2.enemy = player1;</div><div class="line"></div><div class="line">	player1.die();<span class="comment">// 输出：皮蛋 lost、小乖 won</span></div></pre></td></tr></table></figure></p>
+<p>这样两个对象之间的相互作用还是比较简单的。<br>当增加玩家组队的时候，就比较复杂了，看看依照上面的思路的代码<br><figure class="highlight haxe"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> players = []; <span class="comment">//玩家的数组，使用的时候是二维数组，一维是队颜色</span></div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">function</span> <span class="title">Player</span></span>( name, teamColor )&#123;<span class="comment">//构造函数</span></div><div class="line">		<span class="built_in">this</span>.partners = []; <span class="comment">// 队友列表</span></div><div class="line">		<span class="built_in">this</span>.enemies = []; <span class="comment">// 敌人列表</span></div><div class="line">		<span class="built_in">this</span>.state = <span class="string">'live'</span>; <span class="comment">// 玩家状态</span></div><div class="line">		<span class="built_in">this</span>.name = name; <span class="comment">// 角色名字</span></div><div class="line">		<span class="built_in">this</span>.teamColor = teamColor; <span class="comment">// 队伍颜色</span></div><div class="line">	&#125;;</div><div class="line"></div><div class="line">	Player.prototype.win = <span class="function"><span class="keyword">function</span></span>()&#123; <span class="comment">// 玩家团队胜利</span></div><div class="line">		console.log( <span class="string">'winner: '</span> + <span class="built_in">this</span>.name );</div><div class="line">	&#125;;</div><div class="line">	Player.prototype.lose = <span class="function"><span class="keyword">function</span></span>()&#123; <span class="comment">// 玩家团队失败</span></div><div class="line">		console.log( <span class="string">'loser: '</span> + <span class="built_in">this</span>.name );</div><div class="line">	&#125;;</div><div class="line"></div><div class="line">	Player.prototype.die = <span class="function"><span class="keyword">function</span></span>()&#123; <span class="comment">// 玩家死亡</span></div><div class="line">		<span class="keyword">var</span> all_dead = <span class="literal">true</span>;</div><div class="line"></div><div class="line">		<span class="built_in">this</span>.state = <span class="string">'dead'</span>; <span class="comment">// 设置玩家状态为死亡，标记变量</span></div><div class="line">		<span class="keyword">for</span> ( <span class="keyword">var</span> i = <span class="number">0</span>, partner; partner = <span class="built_in">this</span>.partners[ i++ ]; )&#123; </div><div class="line">      <span class="comment">// 遍历队友列表</span></div><div class="line">			<span class="keyword">if</span> ( partner.state !== <span class="string">'dead'</span> )&#123; </div><div class="line">    <span class="comment">// 如果还有一个队友没有死亡，则游戏还未失败</span></div><div class="line">				all_dead = <span class="literal">false</span>;</div><div class="line">				<span class="keyword">break</span>;</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">if</span> ( all_dead === <span class="literal">true</span> )&#123; <span class="comment">// 如果队友全部死亡</span></div><div class="line">			<span class="built_in">this</span>.lose(); <span class="comment">// 通知自己游戏失败</span></div><div class="line">			<span class="keyword">for</span> ( <span class="keyword">var</span> i = <span class="number">0</span>, partner; partner = <span class="built_in">this</span>.partners[ i++ ]; )&#123;</div><div class="line"> <span class="comment">// 通知所有队友玩家游戏失败</span></div><div class="line">				partner.lose();</div><div class="line">			&#125;</div><div class="line">			<span class="keyword">for</span> ( <span class="keyword">var</span> i = <span class="number">0</span>, enemy; enemy = <span class="built_in">this</span>.enemies[ i++ ]; )&#123;</div><div class="line"> <span class="comment">// 通知所有敌人游戏胜利</span></div><div class="line">				enemy.win();</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">	&#125;;</div><div class="line"></div><div class="line"></div><div class="line">	<span class="keyword">var</span> playerFactory = <span class="function"><span class="keyword">function</span></span>( name, teamColor )&#123;<span class="comment">//玩家对象工厂</span></div><div class="line">		<span class="keyword">var</span> <span class="keyword">new</span><span class="type">Player</span> = <span class="keyword">new</span> <span class="type">Player</span>( name, teamColor ); </div><div class="line"><span class="comment">// 创建新玩家</span></div><div class="line">		<span class="keyword">for</span> ( <span class="keyword">var</span> i = <span class="number">0</span>, player; player = players[ i++ ]; )&#123;</div><div class="line"> <span class="comment">// 通知所有的玩家，有新角色加入</span></div><div class="line">			<span class="keyword">if</span> ( player.teamColor === <span class="keyword">new</span><span class="type">Player</span>.teamColor )&#123; </div><div class="line"><span class="comment">// 如果是同一队的玩家</span></div><div class="line">				player.partners.push( <span class="keyword">new</span><span class="type">Player</span> ); </div><div class="line"><span class="comment">// 相互添加到队友列表</span></div><div class="line">				<span class="keyword">new</span><span class="type">Player</span>.partners.push( player );</div><div class="line">			&#125;<span class="keyword">else</span>&#123;</div><div class="line">				player.enemies.push( <span class="keyword">new</span><span class="type">Player</span> ); </div><div class="line"><span class="comment">// 相互添加到敌人列表</span></div><div class="line">				<span class="keyword">new</span><span class="type">Player</span>.enemies.push( player );</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">		players.push( <span class="keyword">new</span><span class="type">Player</span> );</div><div class="line">		<span class="keyword">return</span> <span class="keyword">new</span><span class="type">Player</span>;</div><div class="line">	&#125;;</div><div class="line"></div><div class="line">	<span class="comment">//红队：4个玩家</span></div><div class="line">	<span class="keyword">var</span> player1 = playerFactory( <span class="string">'皮蛋'</span>, <span class="string">'red'</span> ),</div><div class="line">	player2 = playerFactory( <span class="string">'小乖'</span>, <span class="string">'red'</span> ),</div><div class="line">	player3 = playerFactory( <span class="string">'宝宝'</span>, <span class="string">'red'</span> ),</div><div class="line">	player4 = playerFactory( <span class="string">'小强'</span>, <span class="string">'red'</span> );</div><div class="line">	<span class="comment">//蓝队：4个玩家</span></div><div class="line">	<span class="keyword">var</span> player5 = playerFactory( <span class="string">'黑妞'</span>, <span class="string">'blue'</span> ),</div><div class="line">	player6 = playerFactory( <span class="string">'葱头'</span>, <span class="string">'blue'</span> ),</div><div class="line">	player7 = playerFactory( <span class="string">'胖墩'</span>, <span class="string">'blue'</span> ),</div><div class="line">	player8 = playerFactory( <span class="string">'海盗'</span>, <span class="string">'blue'</span> );</div><div class="line"></div><div class="line">	player1.die();</div><div class="line">	player2.die();</div><div class="line">	player4.die();</div><div class="line">	player3.die();</div></pre></td></tr></table></figure></p>
+<blockquote>
+<p>以上的代码就有点复杂了。当玩家失败(死亡)以后要遍历其他队友等等。加入队伍的时候也比较麻烦，要相互确认。队友之间的相互交叉变化很麻烦。</p>
+</blockquote>
+<p>下面看看中介者模式改造的代码。<br>重要的是添加了playerDirector这个中介者对象。<br>playerDirector中介者对象中添加接口，receiveMessage()通知中介者来进行相关操作。可以先在中介者对象中看看这个方法<br>reciveMessage( ‘playerDead’, this )；第一个参数是通知中介者的方法。第二个参数就是创建的玩家对象。<br><figure class="highlight dart"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div></pre></td><td class="code"><pre><div class="line">  <span class="comment"><span class="markdown">/<span class="strong">*****</span><span class="strong">*****</span><span class="strong">*****</span><span class="strong">*****</span>中介者模式<span class="strong">*****</span><span class="strong">*****</span><span class="strong">*****</span><span class="strong">*****</span>/</span></span></div><div class="line"> function Player( name, teamColor )&#123;<span class="comment">//构造函数</span></div><div class="line">		<span class="keyword">this</span>.name = name; <span class="comment">// 角色名字</span></div><div class="line">		<span class="keyword">this</span>.teamColor = teamColor; <span class="comment">// 队伍颜色，玩家数组的第一维</span></div><div class="line">		<span class="keyword">this</span>.state = <span class="string">'alive'</span>; <span class="comment">// 玩家生存状态</span></div><div class="line">	&#125;;</div><div class="line"></div><div class="line">	Player.prototype.win = function()&#123;<span class="comment">//胜利</span></div><div class="line">		console.log( <span class="keyword">this</span>.name + <span class="string">' won '</span> );</div><div class="line">	&#125;;</div><div class="line"></div><div class="line">	Player.prototype.lose = function()&#123; <span class="comment">//失败</span></div><div class="line">		console.log( <span class="keyword">this</span>.name +<span class="string">' lost'</span> );</div><div class="line">	&#125;;</div><div class="line">	<span class="comment"><span class="markdown">/<span class="strong">*****</span><span class="strong">*****</span><span class="strong">*****</span><span class="strong">****玩家死亡**</span><span class="strong">*****</span><span class="strong">*****</span><span class="strong">*****</span>/</span></span></div><div class="line">	Player.prototype.die = function()&#123;</div><div class="line">		<span class="keyword">this</span>.state = <span class="string">'dead'</span>;</div><div class="line">		playerDirector.reciveMessage( <span class="string">'playerDead'</span>, <span class="keyword">this</span> ); </div><div class="line">              <span class="comment">// 给中介者发送消息，玩家死亡</span></div><div class="line">	&#125;;</div><div class="line">	<span class="comment"><span class="markdown">/<span class="strong">*****</span><span class="strong">*****</span><span class="strong">*****</span><span class="strong">****移除玩家**</span><span class="strong">*****</span><span class="strong">*****</span><span class="strong">*****</span>/</span></span></div><div class="line">	Player.prototype.remove = function()&#123;</div><div class="line">		playerDirector.reciveMessage( <span class="string">'removePlayer'</span>, <span class="keyword">this</span> );     </div><div class="line">               <span class="comment">// 给中介者发送消息，移除一个玩家</span></div><div class="line">	&#125;;</div><div class="line"></div><div class="line">	<span class="comment"><span class="markdown">/<span class="strong">*****</span><span class="strong">*****</span><span class="strong">*****</span><span class="strong">****玩家换队**</span><span class="strong">*****</span><span class="strong">*****</span><span class="strong">*****</span>/</span></span></div><div class="line">	Player.prototype.changeTeam = function( color )&#123;</div><div class="line">		playerDirector.reciveMessage( <span class="string">'changeTeam'</span>, <span class="keyword">this</span>, color );     </div><div class="line">          <span class="comment">// 给中介者发送消息，玩家换队</span></div><div class="line">	&#125;;</div><div class="line">       </div><div class="line">	<span class="keyword">var</span> playerDirector= ( function()&#123; <span class="comment">//中介者构造函数</span></div><div class="line">		<span class="keyword">var</span> players = &#123;&#125;, <span class="comment">// 保存所有玩家</span></div><div class="line">			operations = &#123;&#125;; <span class="comment">// 中介者可以执行的操作</span></div><div class="line">		<span class="comment"><span class="markdown">/<span class="strong">*****</span><span class="strong">*****</span><span class="strong">*****</span><span class="emphasis">*新增一个玩家*</span><span class="strong">*****</span><span class="strong">*****</span><span class="strong">*****</span><span class="strong">*****</span><span class="strong">*****</span>*/</span></span></div><div class="line">		operations.addPlayer = function( player )&#123;</div><div class="line">			<span class="keyword">var</span> teamColor = player.teamColor; <span class="comment">// 玩家的队伍颜色</span></div><div class="line">			players[ teamColor ] = players[ teamColor ] || []; </div><div class="line">                   <span class="comment">// 如果该颜色的玩家还没有成立队伍，则创建</span></div><div class="line"></div><div class="line">			players[ teamColor ].push( player ); <span class="comment">// 添加玩家进队伍</span></div><div class="line">		&#125;;</div><div class="line"><span class="comment"><span class="markdown">/<span class="strong">*****</span><span class="strong">*****</span><span class="strong">*****</span><span class="emphasis">*移除一个玩家*</span><span class="strong">*****</span><span class="strong">*****</span><span class="strong">*****</span><span class="strong">*****</span><span class="strong">*****</span>*/</span></span></div><div class="line">	operations.removePlayer = function( player )&#123;</div><div class="line">		<span class="keyword">var</span> teamColor = player.teamColor, <span class="comment">// 玩家的队伍颜色</span></div><div class="line">		teamPlayers = players[ teamColor ] || []; <span class="comment">// 该队伍所有成员</span></div><div class="line">		<span class="keyword">for</span> ( <span class="keyword">var</span> i = teamPlayers.length - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i-- )&#123; <span class="comment">// 遍历删除</span></div><div class="line">			<span class="keyword">if</span> ( teamPlayers[ i ] === player )&#123;</div><div class="line">				teamPlayers.splice( i, <span class="number">1</span> );</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">	&#125;;</div><div class="line"><span class="comment"><span class="markdown">/<span class="strong">*****</span><span class="strong">*****</span><span class="strong">*****</span><span class="emphasis">*玩家换队*</span><span class="strong">*****</span><span class="strong">*****</span><span class="strong">*****</span><span class="strong">*****</span><span class="strong">*****</span>*/</span></span></div><div class="line">	operations.changeTeam = function( player, newTeamColor )&#123; <span class="comment">// 玩家换队</span></div><div class="line">		operations.removePlayer( player ); <span class="comment">// 从原队伍中删除</span></div><div class="line">		player.teamColor = newTeamColor; <span class="comment">// 改变队伍颜色</span></div><div class="line">		operations.addPlayer( player ); <span class="comment">// 增加到新队伍中</span></div><div class="line">	&#125;;</div><div class="line"></div><div class="line">	operations.playerDead = function( player )&#123; <span class="comment">// 玩家死亡</span></div><div class="line">		<span class="keyword">var</span> teamColor = player.teamColor,</div><div class="line">		teamPlayers = players[ teamColor ]; <span class="comment">// 玩家所在队伍</span></div><div class="line">		<span class="keyword">var</span> all_dead = <span class="keyword">true</span>;</div><div class="line">		<span class="keyword">for</span> ( <span class="keyword">var</span> i = <span class="number">0</span>, player; player = teamPlayers[ i++ ]; )&#123;</div><div class="line">			<span class="keyword">if</span> ( player.state !== <span class="string">'dead'</span> )&#123;</div><div class="line">				all_dead = <span class="keyword">false</span>;</div><div class="line">				<span class="keyword">break</span>;</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">if</span> ( all_dead === <span class="keyword">true</span> )&#123; <span class="comment">// 全部死亡</span></div><div class="line">			<span class="keyword">for</span> ( <span class="keyword">var</span> i = <span class="number">0</span>, player; player = teamPlayers[ i++ ]; )&#123;</div><div class="line">				player.lose(); <span class="comment">// 本队所有玩家lose</span></div><div class="line">			&#125;</div><div class="line">			<span class="keyword">for</span> ( <span class="keyword">var</span> color <span class="keyword">in</span> players )&#123;</div><div class="line">				<span class="keyword">if</span> ( color !== teamColor )&#123;</div><div class="line">					<span class="keyword">var</span> teamPlayers = players[ color ]; </div><div class="line">                                         <span class="comment">// 其他队伍的玩家</span></div><div class="line">					<span class="keyword">for</span> ( <span class="keyword">var</span> i = <span class="number">0</span>, player; player = teamPlayers[ i++ ]; )&#123;</div><div class="line">						player.win(); <span class="comment">// 其他队伍所有玩家win</span></div><div class="line">					&#125;</div><div class="line">				&#125;</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">	&#125;;</div><div class="line">         </div><div class="line">	   <span class="keyword">var</span> reciveMessage = function()&#123;</div><div class="line">            <span class="comment">//被中介者中使用通知中介者的方法</span></div><div class="line">		<span class="keyword">var</span> message = Array.prototype.shift.call( arguments ); <span class="comment">// arguments 的第一个参数为消息名称</span></div><div class="line">		operations[ message ].apply( <span class="keyword">this</span>, arguments );</div><div class="line">	&#125;;</div><div class="line"></div><div class="line">	<span class="keyword">return</span> &#123;</div><div class="line">		reciveMessage: reciveMessage<span class="comment">//揭示模式的方法</span></div><div class="line">	&#125;</div><div class="line"></div><div class="line">&#125;)();</div><div class="line"></div><div class="line">	<span class="comment">// 红队：</span></div><div class="line">	<span class="keyword">var</span> player1 = playerFactory( <span class="string">'皮蛋'</span>, <span class="string">'red'</span> ),</div><div class="line">	player2 = playerFactory( <span class="string">'小乖'</span>, <span class="string">'red'</span> ),</div><div class="line">	player3 = playerFactory( <span class="string">'宝宝'</span>, <span class="string">'red'</span> ),</div><div class="line">	player4 = playerFactory( <span class="string">'小强'</span>, <span class="string">'red'</span> );</div><div class="line">	<span class="comment">// 蓝队：</span></div><div class="line">	<span class="keyword">var</span> player5 = playerFactory( <span class="string">'黑妞'</span>, <span class="string">'blue'</span> ),</div><div class="line">	player6 = playerFactory( <span class="string">'葱头'</span>, <span class="string">'blue'</span> ),</div><div class="line">	player7 = playerFactory( <span class="string">'胖墩'</span>, <span class="string">'blue'</span> ),</div><div class="line">	player8 = playerFactory( <span class="string">'海盗'</span>, <span class="string">'blue'</span> );</div><div class="line">	player1.die();</div><div class="line">	player2.die();</div><div class="line">	player3.die();</div><div class="line">	player4.die();</div><div class="line"></div><div class="line">	player1.remove();</div><div class="line">	player2.remove();</div><div class="line">	player3.die();</div><div class="line">	player4.die();</div><div class="line"></div><div class="line">	player1.changeTeam( <span class="string">'blue'</span> );</div><div class="line">	player2.die();</div><div class="line">	player3.die();</div><div class="line">	player4.die();</div></pre></td></tr></table></figure></p>
+<p>中介者模式中，使用者之间是不发生任何关系的。发生任何的操作都是通知中介者。中介者再通知其他使用者。<br>使用者之间的耦合解除了。</p>
+<p>数组的使用上灵活度很大要注意，其他的地方还是很好理解的。</p>
+<p>我感觉react组件和redux模块的相互关系就是中介者模式，您觉得呢？</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/javascript/" rel="tag"># javascript</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/03/10/javascript发布-订阅者模式/" rel="next" title="javascript发布-订阅者模式">
+                <i class="fa fa-chevron-left"></i> javascript发布-订阅者模式
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/03/11/javascript工厂模式-XHR工厂/" rel="prev" title="javascript工厂模式-XHR工厂">
+                javascript工厂模式-XHR工厂 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel sidebar-panel-active">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpeg"
+               alt="phpsmarter" />
+          <p class="site-author-name" itemprop="name">phpsmarter</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">44</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">phpsmarter</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
