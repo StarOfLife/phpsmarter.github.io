@@ -326,7 +326,7 @@ lib/mongo.js
 </blockquote>
 <p>修改 routes/signup.js 中获取注册页的路由如下：</p>
 <p><strong>routes/signup.js</strong></p>
-<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// GET /signup 注册页</span></div><div class="line">router.get(<span class="string">'/'</span>, checkNotLogin, <span class="function"><span class="keyword">function</span><span class="params">(req, res, next)</span> </span>&#123;</div><div class="line">  res.render(<span class="string">'signup'</span>);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// GET /signup 注册页</span></div><div class="line">router.get(<span class="string">'/'</span>, checkNotLogin, <span class="function"><span class="keyword">function</span>(<span class="params">req, res, next</span>) </span>&#123;</div><div class="line">  res.render(<span class="string">'signup'</span>);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
 <p>现在访问 <code>localhost:3000/signup</code> 看看效果吧。</p>
 <h2 id="4-7-3-注册与文件上传"><a href="#4-7-3-注册与文件上传" class="headerlink" title="4.7.3 注册与文件上传"></a>4.7.3 注册与文件上传</h2><p>我们使用 <a href="https://www.npmjs.com/package/express-formidable" target="_blank" rel="external">express-formidable</a> 处理 form 表单（包括文件上传）。修改 index.js ，在 <code>app.use(flash());</code> 下一行添加如下代码：</p>
 <p><strong>index.js</strong></p>
@@ -342,7 +342,7 @@ lib/mongo.js
 </blockquote>
 <p>为了方便观察效果，我们先创建主页的模板。修改 routes/posts.js 中对应代码如下：</p>
 <p><strong>routes/posts.js</strong></p>
-<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">router.get(<span class="string">'/'</span>, <span class="function"><span class="keyword">function</span><span class="params">(req, res, next)</span> </span>&#123;</div><div class="line">  res.render(<span class="string">'posts'</span>);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">router.get(<span class="string">'/'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">req, res, next</span>) </span>&#123;</div><div class="line">  res.render(<span class="string">'posts'</span>);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
 <p>新建 views/posts.ejs，添加如下代码：</p>
 <p><strong>views/posts.ejs</strong></p>
 <figure class="highlight erb"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="xml"><span class="tag">&lt;<span class="name">%-</span></span></span><span class="ruby"> <span class="keyword">include</span>(<span class="string">'header'</span>) </span><span class="xml"><span class="tag">%&gt;</span></span></div><div class="line">这是主页</div><div class="line"><span class="tag">&lt;<span class="name">%-</span></span><span class="ruby"> <span class="keyword">include</span>(<span class="string">'footer'</span>) </span><span class="xml"><span class="tag">%&gt;</span></span></div></pre></td></tr></table></figure>
@@ -397,7 +397,7 @@ lib/mongo.js
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-count">5</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -406,7 +406,7 @@ lib/mongo.js
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-count">2</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
