@@ -1,991 +1,779 @@
-<!doctype html>
-
-
-
-  
-
-
-<html class="theme-next pisces use-motion" lang="zh-Hans">
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans" prefix="og: http://ogp.me/ns#" class="han-init">
 <head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+  <meta charset="utf-8">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
-
-
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  <link rel="icon" href="/favicon.ico">
   
-  
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
-
-
-
-
-  
-  
-  
-  
-
-  
-    
-    
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-    
-    
-    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
-  
-
-
-
-
-
-
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
-
-
-  <meta name="keywords" content="Hexo, NexT" />
-
-
-
-
-
-  <link rel="alternate" href="/atom.xml" title="phpsmarter" type="application/atom+xml" />
-
-
-
-
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
-
-
-
-
-
-
-<meta property="og:type" content="website">
-<meta property="og:title" content="phpsmarter">
-<meta property="og:url" content="http://yoursite.com/tags/javascript/page/2/index.html">
-<meta property="og:site_name" content="phpsmarter">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="phpsmarter">
-
-
-
-<script type="text/javascript" id="hexo.configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '/',
-    scheme: 'Pisces',
-    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
-    fancybox: true,
-    motion: true,
-    duoshuo: {
-      userId: '0',
-      author: '博主'
-    },
-    algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    }
-  };
-</script>
-
-
-
-  <link rel="canonical" href="http://yoursite.com/tags/javascript/page/2/"/>
-
-
-
-
-
-  <title> 标签: javascript | phpsmarter </title>
+  <title>phpsmarter</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/lib/fancybox/jquery.fancybox-1.3.4.css">
+  <!--在这里倒入jquery 方便处理部分页面的jquery-->
+  <script src="https://cdn.staticfile.org/jquery/1.7/jquery.min.js" type="text/javascript" ></script>
 </head>
-
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-    
-  
-
-  <div class="container sidebar-position-left  ">
-    <div class="headband"></div>
-
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta ">
-    
-
-    <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">phpsmarter</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
-    </div>
-      
-        <p class="site-subtitle">A beginner of React-native</p>
-      
+<body class="home">
+	<header class="site-header navfixed-false">
+  <div class="container">
+      <h1><a href="/" title="phpsmarter"><span class="octicon octicon-mark-github"></span> phpsmarter</a></h1>
+      <nav class="site-header-nav" role="navigation">
+        
+              
+              <a href="/"  class=" site-header-nav-item hvr-underline-from-center" title="首页">首页</a>
+        
+              
+              <a href="/category/" target="true" class=" site-header-nav-item hvr-underline-from-center" title="分类">分类</a>
+        
+              
+              <a href="/open-source/"  class=" site-header-nav-item hvr-underline-from-center" title="开源项目">开源项目</a>
+        
+              
+              <a href="/message/"  class=" site-header-nav-item hvr-underline-from-center" title="留言板">留言板</a>
+        
+      </nav>
   </div>
-
-  <div class="site-nav-toggle">
-    <button>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-    </button>
-  </div>
-</div>
-
-<nav class="site-nav">
-  
-
-  
-    <ul id="menu" class="menu">
-      
-        
-        <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
-            
-            首页
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-categories">
-          <a href="/categories" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
-            
-            分类
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-about">
-          <a href="/about" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
-            
-            关于
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-archives">
-          <a href="/archives" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
-            
-            归档
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-tags">
-          <a href="/tags" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
-            
-            标签
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-sitemap">
-          <a href="/sitemap.xml" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br />
-            
-            站点地图
-          </a>
-        </li>
-      
-
-      
-        <li class="menu-item menu-item-search">
-          
-            <a href="javascript:;" class="popup-trigger">
-          
-            
-              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
-            
-            搜索
-          </a>
-        </li>
-      
-    </ul>
-  
-
-  
-    <div class="site-search">
-      
-  <div class="popup search-popup local-search-popup">
-  <div class="local-search-header clearfix">
-    <span class="search-icon">
-      <i class="fa fa-search"></i>
-    </span>
-    <span class="popup-btn-close">
-      <i class="fa fa-times-circle"></i>
-    </span>
-    <div class="local-search-input-wrapper">
-      <input autocapitalize="off" autocomplete="off" autocorrect="off"
-             placeholder="搜索..." spellcheck="false"
-             type="text" id="local-search-input">
-    </div>
-  </div>
-  <div id="local-search-result"></div>
-</div>
-
-
-
-    </div>
-  
-</nav>
-
-
-
- </div>
-    </header>
-
-    <main id="main" class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          <div id="content" class="content">
-            
-
-  <div id="posts" class="posts-collapse">
-    <div class="collection-title">
-      <h2 >
-        javascript
-        <small>标签</small>
-      </h2>
-    </div>
-
-    
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2017/03/12/javascript代理模式/" itemprop="url">
-              
-                <span itemprop="name">javascript代理模式</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-03-12T00:04:10Z"
-              content="2017-03-12" >
-          03-12
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2017/03/11/javascript开放-封闭原则-NBA常规赛结束/" itemprop="url">
-              
-                <span itemprop="name">javascript开放-封闭原则-NBA常规赛结束</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-03-11T08:04:10Z"
-              content="2017-03-11" >
-          03-11
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2017/03/11/javascript工厂模式-XHR工厂/" itemprop="url">
-              
-                <span itemprop="name">javascript工厂模式-XHR工厂</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-03-11T00:07:10Z"
-              content="2017-03-11" >
-          03-11
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2017/03/11/javascript中介者模式-咸鱼网的思考/" itemprop="url">
-              
-                <span itemprop="name">javascript中介者模式-咸鱼网的思考</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-03-10T21:04:10Z"
-              content="2017-03-10" >
-          03-10
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2017/03/10/javascript发布-订阅者模式/" itemprop="url">
-              
-                <span itemprop="name">javascript发布-订阅者模式</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-03-10T00:04:10Z"
-              content="2017-03-10" >
-          03-10
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2017/03/10/javascript适配器模式/" itemprop="url">
-              
-                <span itemprop="name">javascript适配器模式</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-03-09T17:04:10Z"
-              content="2017-03-09" >
-          03-09
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2017/03/09/javascript设计原则-单一职责/" itemprop="url">
-              
-                <span itemprop="name">javascript设计原则-单一职责</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-03-08T20:04:10Z"
-              content="2017-03-08" >
-          03-08
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2017/03/09/javascript最少知识原则/" itemprop="url">
-              
-                <span itemprop="name">javascript最少知识原则</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-03-08T19:04:10Z"
-              content="2017-03-08" >
-          03-08
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2017/03/08/javascript设计模式-单例模式/" itemprop="url">
-              
-                <span itemprop="name">javascript设计模式-单例模式</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-03-08T11:04:10Z"
-              content="2017-03-08" >
-          03-08
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2017/03/08/javascript-中的apply和call方法/" itemprop="url">
-              
-                <span itemprop="name">javascript的apply和call方法</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-03-08T00:04:10Z"
-              content="2017-03-08" >
-          03-08
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-  </div>
-
-  
-  <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/tags/javascript/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/tags/javascript/">1</a><span class="page-number current">2</span><a class="page-number" href="/tags/javascript/page/3/">3</a><a class="extend next" rel="next" href="/tags/javascript/page/3/"><i class="fa fa-angle-right"></i></a>
-  </nav>
-
-
-
-          </div>
-          
-
-
-          
-
-        </div>
-        
-          
-  
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
-    </div>
-  </div>
-
-  <aside id="sidebar" class="sidebar">
-    <div class="sidebar-inner">
-
-      
-
-      
-
-      <section class="site-overview sidebar-panel sidebar-panel-active">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image"
-               src="/images/avatar.jpeg"
-               alt="phpsmarter" />
-          <p class="site-author-name" itemprop="name">phpsmarter</p>
-           
-              <p class="site-description motion-element" itemprop="description"></p>
-          
-        </div>
-        <nav class="site-state motion-element">
-
-          
-            <div class="site-state-item site-state-posts">
-              <a href="/archives">
-                <span class="site-state-item-count">58</span>
-                <span class="site-state-item-name">日志</span>
-              </a>
+</header>
+
+	<section class="banner-false">
+    <div class="collection-head">
+        <div class="container">
+            <div class="collection-title">
+                <h1 class="collection-header" id="site-description">
+                    
+                </h1>
+                <div class="collection-info">
+                    
+                    
+                        <span class="meta-info">
+                            
+                                <span class="octicon octicon-location">
+                                   
+                                        ChengDu, China
+                                    
+                                </span>
+                                
+                            
+                        </span>
+                    
+                        <span class="meta-info">
+                            
+                                <span class="octicon octicon-mark-github">
+                                   
+                                </span>
+                                
+                                    <a href="http://github.com/yumemor" target="_blank">yumemor</a>
+                                
+                            
+                        </span>
+                    
+                </div>
             </div>
-          
-
-          
-            
-            
-            <div class="site-state-item site-state-categories">
-              <a href="/categories/index.html">
-                <span class="site-state-item-count">7</span>
-                <span class="site-state-item-name">分类</span>
-              </a>
-            </div>
-          
-
-          
-            
-            
-            <div class="site-state-item site-state-tags">
-              <a href="/tags/index.html">
-                <span class="site-state-item-count">4</span>
-                <span class="site-state-item-name">标签</span>
-              </a>
-            </div>
-          
-
-        </nav>
-
-        
-          <div class="feed-link motion-element">
-            <a href="/atom.xml" rel="alternate">
-              <i class="fa fa-rss"></i>
-              RSS
-            </a>
-          </div>
-        
-
-        <div class="links-of-author motion-element">
-          
         </div>
-
-        
-        
-
-        
-        
-
-        
-
-
-      </section>
-
-      
-
-      
-
     </div>
-  </aside>
+</section>
+	   <section class="container">
+    <div class="columns">
+        <div class="column two-thirds">
+            
+                  <article id="post-javascript代理模式" class="repo-list">
+    <div class="repo-list-item" >
+      <h3 class="repo-list-name" itemprop="name">
+        
+  
+      <a class="article-title" href="/2017/03/12/javascript代理模式/">javascript代理模式</a>
+  
 
+      </h3>
+      <div class="repo-list-description">
+        
+          <blockquote>
+<p>代理模式是给对象提供一个代用品或占位符，以便控制对它的访问<br>   参考《javascript模式设计与开发实践》</p>
+</blockquote>
+<p><code>缓存代理</code></p>
+<p>  缓存代理可以为一些开销比较大的运算结果提供暂时的存储，下一次运算时如果传递参数和缓存的参数一致，则可是直接返回前面存储的运算结果</p>
+<p>计算乘积的实例</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> mult = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;  <span class="comment">//默认传递的arguments参数列表</span></div><div class="line">		<span class="built_in">console</span>.log( <span class="string">'开始计算乘积'</span> );</div><div class="line">		<span class="keyword">var</span> a = <span class="number">1</span>;</div><div class="line">		<span class="keyword">for</span> ( <span class="keyword">var</span> i = <span class="number">0</span>, l = <span class="built_in">arguments</span>.length; i &lt; l; i++ )&#123;</div><div class="line">			a = a * <span class="built_in">arguments</span>[i];</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">return</span> a;</div><div class="line">	&#125;;</div><div class="line">	mult( <span class="number">2</span>, <span class="number">3</span> ); <span class="comment">// 输出：6</span></div><div class="line">	mult( <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span> ); <span class="comment">// 输出：24</span></div><div class="line">	<span class="comment">//现在加入缓存代理函数：</span></div><div class="line"></div><div class="line">	<span class="keyword">var</span> proxyMult = (<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">		<span class="keyword">var</span> cache = &#123;&#125;;  <span class="comment">//缓存对象</span></div><div class="line">		<span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">			<span class="keyword">var</span> args = <span class="built_in">Array</span>.prototype.join.call( <span class="built_in">arguments</span>, <span class="string">','</span> ); </div><div class="line">			<span class="keyword">if</span> ( args <span class="keyword">in</span> cache )&#123; <span class="comment">//如果合并的参数在缓存中</span></div><div class="line">				<span class="keyword">return</span> cache[ args ]; <span class="comment">//直接分会缓存数据</span></div><div class="line">			&#125;</div><div class="line">			<span class="keyword">return</span> cache[ args ] = mult.apply( <span class="keyword">this</span>, <span class="built_in">arguments</span> ); </div><div class="line">                        <span class="comment">//调用函数之后存储到缓存对象中</span></div><div class="line">		&#125;</div><div class="line">	&#125;)();</div><div class="line"></div><div class="line">	proxyMult( <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span> ); <span class="comment">// 输出：24  //第一次计算</span></div><div class="line">	proxyMult( <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span> ); <span class="comment">// 输出：24 //第二次计算，直接存缓存中获取</span></div><div class="line"></div><div class="line"><span class="comment">//这里的两个函数，multi负责计算，proxyMulti负责缓存的存储和读取。</span></div><div class="line"><span class="comment">//两个函数分功能完成对应的功能</span></div></pre></td></tr></table></figure>
 
         
       </div>
-    </main>
-
-    <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright" >
-  
-  &copy; 
-  <span itemprop="copyrightYear">2017</span>
-  <span class="with-love">
-    <i class="fa fa-heart"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">phpsmarter</span>
-</div>
-
-
-<div class="powered-by">
-  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
-</div>
-
-<div class="theme-info">
-  主题 -
-  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Pisces
-  </a>
-</div>
-
+      <p class="repo-list-meta">
+        <span class="meta-info">
+          <span class="octicon octicon-calendar"></span>
+           <time datetime="2017-03-12T00:04:10.000Z" itemprop="datePublished">2017-03-12</time>
+        </span>
 
         
+          <span class="meta-info">
+            <span class="octicon octicon-file-directory"></span>
+            <a href='/categories/Designpattern/' title=''>Designpattern</a>
+          </span>
+        
+      
+        <!--
+          
+            <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
+          
+        -->
+
+      </p>
+    </div>
+  </article>
+            
+                  <article id="post-javascript开放-封闭原则-NBA常规赛结束" class="repo-list">
+    <div class="repo-list-item" >
+      <h3 class="repo-list-name" itemprop="name">
+        
+  
+      <a class="article-title" href="/2017/03/11/javascript开放-封闭原则-NBA常规赛结束/">javascript开放-封闭原则-NBA常规赛结束</a>
+  
+
+      </h3>
+      <div class="repo-list-description">
+        
+          <blockquote>
+<p>在面向对象程序(OOP)设计中，开放-封闭原则(OCP)是最重要的原则，一个oop的程序具有良好的设计，往往说明它是符合开放-封闭原则的.<br>参考《javascript模式设计与开发实践》第20章<br>首先看一个代码.开放封闭是相互关联的在一段代码中既要体现封闭又要体现开放。封闭不破坏旧功能，开放有可以添加新功能。</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//下面这个函数是修饰模式，在函数运行后添加功能</span></div><div class="line"><span class="comment">//通过这个函数，添加的功能不影响原函数的功能</span></div><div class="line"><span class="built_in">Function</span>.prototype.after = <span class="function"><span class="keyword">function</span>(<span class="params"> afterfn </span>)</span>&#123;</div><div class="line">		<span class="keyword">var</span> __self = <span class="keyword">this</span>;</div><div class="line">		<span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">			<span class="keyword">var</span> ret = __self.apply( <span class="keyword">this</span>, <span class="built_in">arguments</span> );</div><div class="line">			afterfn.apply( <span class="keyword">this</span>, <span class="built_in">arguments</span> );</div><div class="line">			<span class="keyword">return</span> ret;</div><div class="line">		&#125;</div><div class="line">	&#125;;</div><div class="line">	</div><div class="line">	<span class="comment">//如果多人开发，都要在window.onload下挂载函数功能(原生的js代码</span></div><div class="line">	<span class="comment">//只能加载一次window.load函数)。很有可能别人也在使用.</span></div><div class="line">	<span class="comment">//要解决这个问题可以结合after函数和函数引用赋值来解决这个问题</span></div><div class="line">	<span class="comment">//如果windoW.load已经挂载有内容，就引用赋值，然后使用after</span></div><div class="line">	<span class="comment">//如果没有使用则直接引用空函数对象，然后挂载after函数</span></div><div class="line">	<span class="comment">//无论哪种情况，通过after函数的</span></div><div class="line">	<span class="built_in">window</span>.onload = ( <span class="built_in">window</span>.onload || <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;&#125; ).after(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">		<span class="built_in">console</span>.log( <span class="built_in">document</span>.getElementsByTagName( <span class="string">'*'</span> ).length );</div><div class="line">	&#125;);</div></pre></td></tr></table></figure>
+<p>但是在实际应用中使用开放-封闭原则很困难，关键是要找到程序在哪里发生变化，这不是一朝一夕之功。所以道理很简单，但是应用起来可能很困难。长路漫漫啊。</p>
+<p>至此本人基本把javascript的模式设计的内容过了一遍。可以说收获良多，学到很多东西。阅读代码和分析代码的能力有了提高，好像是在NBA的赛场上，通过解说员的一些战术分析，慢慢看明白了一些跑位和战术，对于一个球迷来说在这种情况下看比赛就不光光是看热闹了，比赛有了更深层次的意义，此时的心情就是有想看更多比赛来验证下一场比赛是否也会出现同样的战术。<br>但这也只是一个起点而已，过一年肯能会觉得现在写的这些文章很幼稚很傻比。就拿这些学习笔记记录这个傻逼的过程吧.</p>
+<p>NBA常规赛结束了，还有季后赛和下一赛季等着呢。</p>
 
         
       </div>
-    </footer>
+      <p class="repo-list-meta">
+        <span class="meta-info">
+          <span class="octicon octicon-calendar"></span>
+           <time datetime="2017-03-11T08:04:10.000Z" itemprop="datePublished">2017-03-11</time>
+        </span>
 
-    
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
+        
+          <span class="meta-info">
+            <span class="octicon octicon-file-directory"></span>
+            <a href='/categories/Designpattern/' title=''>Designpattern</a>
+          </span>
+        
+      
+        <!--
+          
+            <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
+          
+        -->
+
+      </p>
+    </div>
+  </article>
+            
+                  <article id="post-javascript工厂模式-XHR工厂" class="repo-list">
+    <div class="repo-list-item" >
+      <h3 class="repo-list-name" itemprop="name">
+        
+  
+      <a class="article-title" href="/2017/03/11/javascript工厂模式-XHR工厂/">javascript工厂模式-XHR工厂</a>
+  
+
+      </h3>
+      <div class="repo-list-description">
+        
+          <p><img src="http://upload-images.jianshu.io/upload_images/2044710-f56a2c10764090f7.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/320" alt="s3398900.jpg"></p>
+<blockquote>
+<p>一个类或对象中往往包括别的对象。在创建这种成员对象时，你可能习惯于使用常规方式，即用new关键字和类构造函数。问题是这样会导致两个类之间产生依赖性。通过工厂模式可以消除类之间的依赖关系，他使用一个方法来决定究竟要实例化哪个类。参照上图那本书，第7章内容</p>
+</blockquote>
+<p>#####XHR工厂</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div></pre></td><td class="code"><pre><div class="line"> <span class="keyword">var</span> AjaxHandler = <span class="keyword">new</span> Interface(<span class="string">'AjaxHandler'</span>, [<span class="string">'request'</span>, <span class="string">'createXhrObject'</span>]);</div><div class="line"></div><div class="line"><span class="comment">/* SimpleHandler class. */</span></div><div class="line"></div><div class="line"><span class="keyword">var</span> SimpleHandler = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;&#125;; <span class="comment">// implements AjaxHandler</span></div><div class="line">SimpleHandler.prototype = &#123;</div><div class="line">  <span class="comment">//request函数负责执行发出的请求和处理相应结果所需的一系列操作</span></div><div class="line">  <span class="comment">//他先使用createXhrObject()函数并对其进行配置，然后发送请求</span></div><div class="line">  request: <span class="function"><span class="keyword">function</span>(<span class="params">method, url, callback, postVars</span>) </span>&#123;</div><div class="line">    <span class="comment">//首次运行或者是没有获得XHR对象时执行具体的方法。</span></div><div class="line">    <span class="comment">//一旦获取了XHR对象，就会缓存起来，后续执行直接从变量引用中获取XHR对象</span></div><div class="line">    <span class="keyword">var</span> xhr = <span class="keyword">this</span>.createXhrObject();</div><div class="line">    xhr.onreadystatechange = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">      <span class="keyword">if</span>(xhr.readyState !== <span class="number">4</span>) <span class="keyword">return</span>;</div><div class="line">      (xhr.status === <span class="number">200</span>) ? </div><div class="line">        callback.success(xhr.responseText, xhr.responseXML) : </div><div class="line">        callback.failure(xhr.status);</div><div class="line">    &#125;;</div><div class="line">    xhr.open(method, url, <span class="literal">true</span>);</div><div class="line">    <span class="keyword">if</span>(method !== <span class="string">'POST'</span>) postVars = <span class="literal">null</span>;</div><div class="line">    xhr.send(postVars);</div><div class="line">  &#125;,</div><div class="line">  <span class="comment">//createXhrObject()这个工厂方法根据当前具体环境返回一个XHR对象</span></div><div class="line">  <span class="comment">//首次执行时，他会依次尝试执行三种用于创建XHR对象的方法，一旦遇到</span></div><div class="line">  <span class="comment">//管用的，他就会返回所创建的对象，同时把自己也改为返回的那个对象</span></div><div class="line">  createXhrObject: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; <span class="comment">//工厂方法.</span></div><div class="line">    <span class="keyword">var</span> methods = [<span class="comment">//三种创建XHR对象的方法组成数组</span></div><div class="line">      <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; <span class="keyword">return</span> <span class="keyword">new</span> XMLHttpRequest(); &#125;,</div><div class="line">      <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; <span class="keyword">return</span> <span class="keyword">new</span> ActiveXObject(<span class="string">'Msxml2.XMLHTTP'</span>); &#125;,</div><div class="line">      <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; <span class="keyword">return</span> <span class="keyword">new</span> ActiveXObject(<span class="string">'Microsoft.XMLHTTP'</span>); &#125;</div><div class="line">    ];</div><div class="line">    <span class="comment">//下面遍历数组方法，尝试获得XHR对象</span></div><div class="line">    <span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>, len = methods.length; i &lt; len; i++) &#123;</div><div class="line">      <span class="keyword">try</span> &#123;</div><div class="line">        methods[i](); <span class="comment">//尝试获得XHR对象</span></div><div class="line">      &#125;</div><div class="line">      <span class="keyword">catch</span>(e) &#123;</div><div class="line">        <span class="keyword">continue</span>;</div><div class="line">      &#125;</div><div class="line">      <span class="comment">// If we reach this point, method[i] worked.</span></div><div class="line">      <span class="comment">//如果运行到这里，数组中有方法可以创建XHR对象</span></div><div class="line">      <span class="keyword">this</span>.createXhrObject = methods[i]; <span class="comment">//直接把对象给第一种可以获取</span></div><div class="line"><span class="comment">//对象的方法，缓存起来      </span></div><div class="line">        <span class="keyword">return</span> methods[i];</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="comment">// If we reach this point, none of the methods worked.</span></div><div class="line">    <span class="comment">//如果运行到这里，表示没有方法可以使用，抛出错误</span></div><div class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'SimpleHandler: Could not create an XHR object.'</span>);</div><div class="line">  &#125; </div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="comment">/* Usage. 具体的使用方法*/</span></div><div class="line"></div><div class="line"><span class="keyword">var</span> myHandler = <span class="keyword">new</span> SimpleHandler(); <span class="comment">//看不到工厂化的过程</span></div><div class="line"><span class="keyword">var</span> callback = &#123; </div><div class="line">  <span class="attr">success</span>: <span class="function"><span class="keyword">function</span>(<span class="params">responseText</span>) </span>&#123; alert(<span class="string">'Success: '</span> + responseText); &#125;, </div><div class="line">  <span class="attr">failure</span>: <span class="function"><span class="keyword">function</span>(<span class="params">statusCode</span>) </span>&#123; alert(<span class="string">'Failure: '</span> + statusCode); &#125; </div><div class="line">&#125;;</div><div class="line">myHandler.request(<span class="string">'GET'</span>, <span class="string">'script.php'</span>, callback);</div></pre></td></tr></table></figure>
+<p>createXhrObject()这个函数就是对象工厂方法，由于需要考虑到不同浏览器对于ajax对象的差异性，在获取XHR对象是有根据不同的条件来进行。但是这个<code>根据不同条件实例化XHR对象的方法</code>和实际的<code>ajax请求方法</code>是两个独立的过程。所以在这里把实例化XHR对象的过程封装到一个对象工厂里。在ajax方法中只需要使用XHR对象就可以了。 </p>
+<p>两个独立的对象之间实现了解耦和。其实在js模式设计中每种模式基本都是围绕功能的解耦和来展开。要解决问题首先要简化问题，在简化过程中才能识别出模式。</p>
+
         
       </div>
-    
+      <p class="repo-list-meta">
+        <span class="meta-info">
+          <span class="octicon octicon-calendar"></span>
+           <time datetime="2017-03-11T00:07:10.000Z" itemprop="datePublished">2017-03-11</time>
+        </span>
 
-  </div>
+        
+          <span class="meta-info">
+            <span class="octicon octicon-file-directory"></span>
+            <a href='/categories/Designpattern/' title=''>Designpattern</a>
+          </span>
+        
+      
+        <!--
+          
+            <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
+          
+        -->
 
+      </p>
+    </div>
+  </article>
+            
+                  <article id="post-javascript中介者模式-咸鱼网的思考" class="repo-list">
+    <div class="repo-list-item" >
+      <h3 class="repo-list-name" itemprop="name">
+        
+  
+      <a class="article-title" href="/2017/03/11/javascript中介者模式-咸鱼网的思考/">javascript中介者模式-咸鱼网的思考</a>
   
 
-<script type="text/javascript">
-  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
-    window.Promise = null;
-  }
-</script>
+      </h3>
+      <div class="repo-list-description">
+        
+          <blockquote>
+<p>在字典里，中介者是指“协助谈判和解决冲突的中立方”。在模式设计里，中介者是一种行为设计模式，它允许我们公开一个统一的接口，系统不同部分可以通过该接口进行通讯。<br>也许一个对象可以和十个对象之间发生联系，十个对象之间有可以发生相互联系，从而形成一张巨大的关系网，要想在这么复杂的关系网中理清关系不是一件容易的事情。<br>中介者模式就是要把对象之间的相互耦合关系解除。通过增加一个中介者对象，每个对象都和中介者对象通讯，对象之间不直接发生联系。<br>中介者对象是的对象之间的网状结构变为一对多的关系。</p>
+</blockquote>
+<p>拿咸鱼网来说。以前如果我们有闲置的东西，可以在小区的路上摆个摊子，这样看到东西的邻居可能会来买。可是这种关系是十分不稳定和复杂的，交易发生都有偶然性。<br>如果我们把闲置发布到咸鱼，那么发布者和购买者不会直接发生联系。之间的关系都是通过咸鱼来完成的。这样的模式就比直接交易便利的多。</p>
+<p>参考《javascript设计模式与开发实践》第14章。《javascript设计模式》动物书 第9章。9.6</p>
+<p>看一个简单的例子<br>这是一个捉对厮杀的游戏。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Player</span>(<span class="params"> name </span>)</span>&#123; <span class="comment">//玩家构造函数</span></div><div class="line">		<span class="keyword">this</span>.name = name <span class="comment">//玩家名字</span></div><div class="line">		<span class="keyword">this</span>.enemy = <span class="literal">null</span>; <span class="comment">// 敌人</span></div><div class="line">	&#125;;</div><div class="line"></div><div class="line">	Player.prototype.win = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; <span class="comment">//获胜函数</span></div><div class="line">		<span class="built_in">console</span>.log( <span class="keyword">this</span>.name + <span class="string">' won '</span> );</div><div class="line">	&#125;;</div><div class="line">	Player.prototype.lose = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="comment">//失败函数</span></div><div class="line">		<span class="built_in">console</span>.log( <span class="keyword">this</span>.name +<span class="string">' lost'</span> );</div><div class="line">	&#125;;</div><div class="line">	Player.prototype.die = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="comment">//失败函数</span></div><div class="line">		<span class="keyword">this</span>.lose();</div><div class="line">		<span class="keyword">this</span>.enemy.win();</div><div class="line">	&#125;;</div><div class="line">	<span class="comment">//接下来创建2 个玩家对象：</span></div><div class="line">	<span class="keyword">var</span> player1 = <span class="keyword">new</span> Player( <span class="string">'皮蛋'</span> );</div><div class="line">	<span class="keyword">var</span> player2 = <span class="keyword">new</span> Player( <span class="string">'小乖'</span> );</div><div class="line">	<span class="comment">//给玩家相互设置敌人：</span></div><div class="line">	player1.enemy = player2;</div><div class="line">	player2.enemy = player1;</div><div class="line"></div><div class="line">	player1.die();<span class="comment">// 输出：皮蛋 lost、小乖 won</span></div></pre></td></tr></table></figure></p>
+<p>这样两个对象之间的相互作用还是比较简单的。<br>当增加玩家组队的时候，就比较复杂了，看看依照上面的思路的代码<br><figure class="highlight haxe"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> players = []; <span class="comment">//玩家的数组，使用的时候是二维数组，一维是队颜色</span></div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">function</span> <span class="title">Player</span></span>( name, teamColor )&#123;<span class="comment">//构造函数</span></div><div class="line">		<span class="built_in">this</span>.partners = []; <span class="comment">// 队友列表</span></div><div class="line">		<span class="built_in">this</span>.enemies = []; <span class="comment">// 敌人列表</span></div><div class="line">		<span class="built_in">this</span>.state = <span class="string">'live'</span>; <span class="comment">// 玩家状态</span></div><div class="line">		<span class="built_in">this</span>.name = name; <span class="comment">// 角色名字</span></div><div class="line">		<span class="built_in">this</span>.teamColor = teamColor; <span class="comment">// 队伍颜色</span></div><div class="line">	&#125;;</div><div class="line"></div><div class="line">	Player.prototype.win = <span class="function"><span class="keyword">function</span></span>()&#123; <span class="comment">// 玩家团队胜利</span></div><div class="line">		console.log( <span class="string">'winner: '</span> + <span class="built_in">this</span>.name );</div><div class="line">	&#125;;</div><div class="line">	Player.prototype.lose = <span class="function"><span class="keyword">function</span></span>()&#123; <span class="comment">// 玩家团队失败</span></div><div class="line">		console.log( <span class="string">'loser: '</span> + <span class="built_in">this</span>.name );</div><div class="line">	&#125;;</div><div class="line"></div><div class="line">	Player.prototype.die = <span class="function"><span class="keyword">function</span></span>()&#123; <span class="comment">// 玩家死亡</span></div><div class="line">		<span class="keyword">var</span> all_dead = <span class="literal">true</span>;</div><div class="line"></div><div class="line">		<span class="built_in">this</span>.state = <span class="string">'dead'</span>; <span class="comment">// 设置玩家状态为死亡，标记变量</span></div><div class="line">		<span class="keyword">for</span> ( <span class="keyword">var</span> i = <span class="number">0</span>, partner; partner = <span class="built_in">this</span>.partners[ i++ ]; )&#123; </div><div class="line">      <span class="comment">// 遍历队友列表</span></div><div class="line">			<span class="keyword">if</span> ( partner.state !== <span class="string">'dead'</span> )&#123; </div><div class="line">    <span class="comment">// 如果还有一个队友没有死亡，则游戏还未失败</span></div><div class="line">				all_dead = <span class="literal">false</span>;</div><div class="line">				<span class="keyword">break</span>;</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">if</span> ( all_dead === <span class="literal">true</span> )&#123; <span class="comment">// 如果队友全部死亡</span></div><div class="line">			<span class="built_in">this</span>.lose(); <span class="comment">// 通知自己游戏失败</span></div><div class="line">			<span class="keyword">for</span> ( <span class="keyword">var</span> i = <span class="number">0</span>, partner; partner = <span class="built_in">this</span>.partners[ i++ ]; )&#123;</div><div class="line"> <span class="comment">// 通知所有队友玩家游戏失败</span></div><div class="line">				partner.lose();</div><div class="line">			&#125;</div><div class="line">			<span class="keyword">for</span> ( <span class="keyword">var</span> i = <span class="number">0</span>, enemy; enemy = <span class="built_in">this</span>.enemies[ i++ ]; )&#123;</div><div class="line"> <span class="comment">// 通知所有敌人游戏胜利</span></div><div class="line">				enemy.win();</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">	&#125;;</div><div class="line"></div><div class="line"></div><div class="line">	<span class="keyword">var</span> playerFactory = <span class="function"><span class="keyword">function</span></span>( name, teamColor )&#123;<span class="comment">//玩家对象工厂</span></div><div class="line">		<span class="keyword">var</span> <span class="keyword">new</span><span class="type">Player</span> = <span class="keyword">new</span> <span class="type">Player</span>( name, teamColor ); </div><div class="line"><span class="comment">// 创建新玩家</span></div><div class="line">		<span class="keyword">for</span> ( <span class="keyword">var</span> i = <span class="number">0</span>, player; player = players[ i++ ]; )&#123;</div><div class="line"> <span class="comment">// 通知所有的玩家，有新角色加入</span></div><div class="line">			<span class="keyword">if</span> ( player.teamColor === <span class="keyword">new</span><span class="type">Player</span>.teamColor )&#123; </div><div class="line"><span class="comment">// 如果是同一队的玩家</span></div><div class="line">				player.partners.push( <span class="keyword">new</span><span class="type">Player</span> ); </div><div class="line"><span class="comment">// 相互添加到队友列表</span></div><div class="line">				<span class="keyword">new</span><span class="type">Player</span>.partners.push( player );</div><div class="line">			&#125;<span class="keyword">else</span>&#123;</div><div class="line">				player.enemies.push( <span class="keyword">new</span><span class="type">Player</span> ); </div><div class="line"><span class="comment">// 相互添加到敌人列表</span></div><div class="line">				<span class="keyword">new</span><span class="type">Player</span>.enemies.push( player );</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">		players.push( <span class="keyword">new</span><span class="type">Player</span> );</div><div class="line">		<span class="keyword">return</span> <span class="keyword">new</span><span class="type">Player</span>;</div><div class="line">	&#125;;</div><div class="line"></div><div class="line">	<span class="comment">//红队：4个玩家</span></div><div class="line">	<span class="keyword">var</span> player1 = playerFactory( <span class="string">'皮蛋'</span>, <span class="string">'red'</span> ),</div><div class="line">	player2 = playerFactory( <span class="string">'小乖'</span>, <span class="string">'red'</span> ),</div><div class="line">	player3 = playerFactory( <span class="string">'宝宝'</span>, <span class="string">'red'</span> ),</div><div class="line">	player4 = playerFactory( <span class="string">'小强'</span>, <span class="string">'red'</span> );</div><div class="line">	<span class="comment">//蓝队：4个玩家</span></div><div class="line">	<span class="keyword">var</span> player5 = playerFactory( <span class="string">'黑妞'</span>, <span class="string">'blue'</span> ),</div><div class="line">	player6 = playerFactory( <span class="string">'葱头'</span>, <span class="string">'blue'</span> ),</div><div class="line">	player7 = playerFactory( <span class="string">'胖墩'</span>, <span class="string">'blue'</span> ),</div><div class="line">	player8 = playerFactory( <span class="string">'海盗'</span>, <span class="string">'blue'</span> );</div><div class="line"></div><div class="line">	player1.die();</div><div class="line">	player2.die();</div><div class="line">	player4.die();</div><div class="line">	player3.die();</div></pre></td></tr></table></figure></p>
+<blockquote>
+<p>以上的代码就有点复杂了。当玩家失败(死亡)以后要遍历其他队友等等。加入队伍的时候也比较麻烦，要相互确认。队友之间的相互交叉变化很麻烦。</p>
+</blockquote>
+<p>下面看看中介者模式改造的代码。<br>重要的是添加了playerDirector这个中介者对象。<br>playerDirector中介者对象中添加接口，receiveMessage()通知中介者来进行相关操作。可以先在中介者对象中看看这个方法<br>reciveMessage( ‘playerDead’, this )；第一个参数是通知中介者的方法。第二个参数就是创建的玩家对象。<br><figure class="highlight dart"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div></pre></td><td class="code"><pre><div class="line">  <span class="comment"><span class="markdown">/<span class="strong">*****</span><span class="strong">*****</span><span class="strong">*****</span><span class="strong">*****</span>中介者模式<span class="strong">*****</span><span class="strong">*****</span><span class="strong">*****</span><span class="strong">*****</span>/</span></span></div><div class="line"> function Player( name, teamColor )&#123;<span class="comment">//构造函数</span></div><div class="line">		<span class="keyword">this</span>.name = name; <span class="comment">// 角色名字</span></div><div class="line">		<span class="keyword">this</span>.teamColor = teamColor; <span class="comment">// 队伍颜色，玩家数组的第一维</span></div><div class="line">		<span class="keyword">this</span>.state = <span class="string">'alive'</span>; <span class="comment">// 玩家生存状态</span></div><div class="line">	&#125;;</div><div class="line"></div><div class="line">	Player.prototype.win = function()&#123;<span class="comment">//胜利</span></div><div class="line">		console.log( <span class="keyword">this</span>.name + <span class="string">' won '</span> );</div><div class="line">	&#125;;</div><div class="line"></div><div class="line">	Player.prototype.lose = function()&#123; <span class="comment">//失败</span></div><div class="line">		console.log( <span class="keyword">this</span>.name +<span class="string">' lost'</span> );</div><div class="line">	&#125;;</div><div class="line">	<span class="comment"><span class="markdown">/<span class="strong">*****</span><span class="strong">*****</span><span class="strong">*****</span><span class="strong">****玩家死亡**</span><span class="strong">*****</span><span class="strong">*****</span><span class="strong">*****</span>/</span></span></div><div class="line">	Player.prototype.die = function()&#123;</div><div class="line">		<span class="keyword">this</span>.state = <span class="string">'dead'</span>;</div><div class="line">		playerDirector.reciveMessage( <span class="string">'playerDead'</span>, <span class="keyword">this</span> ); </div><div class="line">              <span class="comment">// 给中介者发送消息，玩家死亡</span></div><div class="line">	&#125;;</div><div class="line">	<span class="comment"><span class="markdown">/<span class="strong">*****</span><span class="strong">*****</span><span class="strong">*****</span><span class="strong">****移除玩家**</span><span class="strong">*****</span><span class="strong">*****</span><span class="strong">*****</span>/</span></span></div><div class="line">	Player.prototype.remove = function()&#123;</div><div class="line">		playerDirector.reciveMessage( <span class="string">'removePlayer'</span>, <span class="keyword">this</span> );     </div><div class="line">               <span class="comment">// 给中介者发送消息，移除一个玩家</span></div><div class="line">	&#125;;</div><div class="line"></div><div class="line">	<span class="comment"><span class="markdown">/<span class="strong">*****</span><span class="strong">*****</span><span class="strong">*****</span><span class="strong">****玩家换队**</span><span class="strong">*****</span><span class="strong">*****</span><span class="strong">*****</span>/</span></span></div><div class="line">	Player.prototype.changeTeam = function( color )&#123;</div><div class="line">		playerDirector.reciveMessage( <span class="string">'changeTeam'</span>, <span class="keyword">this</span>, color );     </div><div class="line">          <span class="comment">// 给中介者发送消息，玩家换队</span></div><div class="line">	&#125;;</div><div class="line">       </div><div class="line">	<span class="keyword">var</span> playerDirector= ( function()&#123; <span class="comment">//中介者构造函数</span></div><div class="line">		<span class="keyword">var</span> players = &#123;&#125;, <span class="comment">// 保存所有玩家</span></div><div class="line">			operations = &#123;&#125;; <span class="comment">// 中介者可以执行的操作</span></div><div class="line">		<span class="comment"><span class="markdown">/<span class="strong">*****</span><span class="strong">*****</span><span class="strong">*****</span><span class="emphasis">*新增一个玩家*</span><span class="strong">*****</span><span class="strong">*****</span><span class="strong">*****</span><span class="strong">*****</span><span class="strong">*****</span>*/</span></span></div><div class="line">		operations.addPlayer = function( player )&#123;</div><div class="line">			<span class="keyword">var</span> teamColor = player.teamColor; <span class="comment">// 玩家的队伍颜色</span></div><div class="line">			players[ teamColor ] = players[ teamColor ] || []; </div><div class="line">                   <span class="comment">// 如果该颜色的玩家还没有成立队伍，则创建</span></div><div class="line"></div><div class="line">			players[ teamColor ].push( player ); <span class="comment">// 添加玩家进队伍</span></div><div class="line">		&#125;;</div><div class="line"><span class="comment"><span class="markdown">/<span class="strong">*****</span><span class="strong">*****</span><span class="strong">*****</span><span class="emphasis">*移除一个玩家*</span><span class="strong">*****</span><span class="strong">*****</span><span class="strong">*****</span><span class="strong">*****</span><span class="strong">*****</span>*/</span></span></div><div class="line">	operations.removePlayer = function( player )&#123;</div><div class="line">		<span class="keyword">var</span> teamColor = player.teamColor, <span class="comment">// 玩家的队伍颜色</span></div><div class="line">		teamPlayers = players[ teamColor ] || []; <span class="comment">// 该队伍所有成员</span></div><div class="line">		<span class="keyword">for</span> ( <span class="keyword">var</span> i = teamPlayers.length - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i-- )&#123; <span class="comment">// 遍历删除</span></div><div class="line">			<span class="keyword">if</span> ( teamPlayers[ i ] === player )&#123;</div><div class="line">				teamPlayers.splice( i, <span class="number">1</span> );</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">	&#125;;</div><div class="line"><span class="comment"><span class="markdown">/<span class="strong">*****</span><span class="strong">*****</span><span class="strong">*****</span><span class="emphasis">*玩家换队*</span><span class="strong">*****</span><span class="strong">*****</span><span class="strong">*****</span><span class="strong">*****</span><span class="strong">*****</span>*/</span></span></div><div class="line">	operations.changeTeam = function( player, newTeamColor )&#123; <span class="comment">// 玩家换队</span></div><div class="line">		operations.removePlayer( player ); <span class="comment">// 从原队伍中删除</span></div><div class="line">		player.teamColor = newTeamColor; <span class="comment">// 改变队伍颜色</span></div><div class="line">		operations.addPlayer( player ); <span class="comment">// 增加到新队伍中</span></div><div class="line">	&#125;;</div><div class="line"></div><div class="line">	operations.playerDead = function( player )&#123; <span class="comment">// 玩家死亡</span></div><div class="line">		<span class="keyword">var</span> teamColor = player.teamColor,</div><div class="line">		teamPlayers = players[ teamColor ]; <span class="comment">// 玩家所在队伍</span></div><div class="line">		<span class="keyword">var</span> all_dead = <span class="keyword">true</span>;</div><div class="line">		<span class="keyword">for</span> ( <span class="keyword">var</span> i = <span class="number">0</span>, player; player = teamPlayers[ i++ ]; )&#123;</div><div class="line">			<span class="keyword">if</span> ( player.state !== <span class="string">'dead'</span> )&#123;</div><div class="line">				all_dead = <span class="keyword">false</span>;</div><div class="line">				<span class="keyword">break</span>;</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">if</span> ( all_dead === <span class="keyword">true</span> )&#123; <span class="comment">// 全部死亡</span></div><div class="line">			<span class="keyword">for</span> ( <span class="keyword">var</span> i = <span class="number">0</span>, player; player = teamPlayers[ i++ ]; )&#123;</div><div class="line">				player.lose(); <span class="comment">// 本队所有玩家lose</span></div><div class="line">			&#125;</div><div class="line">			<span class="keyword">for</span> ( <span class="keyword">var</span> color <span class="keyword">in</span> players )&#123;</div><div class="line">				<span class="keyword">if</span> ( color !== teamColor )&#123;</div><div class="line">					<span class="keyword">var</span> teamPlayers = players[ color ]; </div><div class="line">                                         <span class="comment">// 其他队伍的玩家</span></div><div class="line">					<span class="keyword">for</span> ( <span class="keyword">var</span> i = <span class="number">0</span>, player; player = teamPlayers[ i++ ]; )&#123;</div><div class="line">						player.win(); <span class="comment">// 其他队伍所有玩家win</span></div><div class="line">					&#125;</div><div class="line">				&#125;</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">	&#125;;</div><div class="line">         </div><div class="line">	   <span class="keyword">var</span> reciveMessage = function()&#123;</div><div class="line">            <span class="comment">//被中介者中使用通知中介者的方法</span></div><div class="line">		<span class="keyword">var</span> message = Array.prototype.shift.call( arguments ); <span class="comment">// arguments 的第一个参数为消息名称</span></div><div class="line">		operations[ message ].apply( <span class="keyword">this</span>, arguments );</div><div class="line">	&#125;;</div><div class="line"></div><div class="line">	<span class="keyword">return</span> &#123;</div><div class="line">		reciveMessage: reciveMessage<span class="comment">//揭示模式的方法</span></div><div class="line">	&#125;</div><div class="line"></div><div class="line">&#125;)();</div><div class="line"></div><div class="line">	<span class="comment">// 红队：</span></div><div class="line">	<span class="keyword">var</span> player1 = playerFactory( <span class="string">'皮蛋'</span>, <span class="string">'red'</span> ),</div><div class="line">	player2 = playerFactory( <span class="string">'小乖'</span>, <span class="string">'red'</span> ),</div><div class="line">	player3 = playerFactory( <span class="string">'宝宝'</span>, <span class="string">'red'</span> ),</div><div class="line">	player4 = playerFactory( <span class="string">'小强'</span>, <span class="string">'red'</span> );</div><div class="line">	<span class="comment">// 蓝队：</span></div><div class="line">	<span class="keyword">var</span> player5 = playerFactory( <span class="string">'黑妞'</span>, <span class="string">'blue'</span> ),</div><div class="line">	player6 = playerFactory( <span class="string">'葱头'</span>, <span class="string">'blue'</span> ),</div><div class="line">	player7 = playerFactory( <span class="string">'胖墩'</span>, <span class="string">'blue'</span> ),</div><div class="line">	player8 = playerFactory( <span class="string">'海盗'</span>, <span class="string">'blue'</span> );</div><div class="line">	player1.die();</div><div class="line">	player2.die();</div><div class="line">	player3.die();</div><div class="line">	player4.die();</div><div class="line"></div><div class="line">	player1.remove();</div><div class="line">	player2.remove();</div><div class="line">	player3.die();</div><div class="line">	player4.die();</div><div class="line"></div><div class="line">	player1.changeTeam( <span class="string">'blue'</span> );</div><div class="line">	player2.die();</div><div class="line">	player3.die();</div><div class="line">	player4.die();</div></pre></td></tr></table></figure></p>
+<p>中介者模式中，使用者之间是不发生任何关系的。发生任何的操作都是通知中介者。中介者再通知其他使用者。<br>使用者之间的耦合解除了。</p>
+<p>数组的使用上灵活度很大要注意，其他的地方还是很好理解的。</p>
+<p>我感觉react组件和redux模块的相互关系就是中介者模式，您觉得呢？</p>
 
+        
+      </div>
+      <p class="repo-list-meta">
+        <span class="meta-info">
+          <span class="octicon octicon-calendar"></span>
+           <time datetime="2017-03-10T21:04:10.000Z" itemprop="datePublished">2017-03-10</time>
+        </span>
 
+        
+          <span class="meta-info">
+            <span class="octicon octicon-file-directory"></span>
+            <a href='/categories/Designpattern/' title=''>Designpattern</a>
+          </span>
+        
+      
+        <!--
+          
+            <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
+          
+        -->
 
-
-
-
-
-
-
+      </p>
+    </div>
+  </article>
+            
+                  <article id="post-javascript发布-订阅者模式" class="repo-list">
+    <div class="repo-list-item" >
+      <h3 class="repo-list-name" itemprop="name">
+        
+  
+      <a class="article-title" href="/2017/03/10/javascript发布-订阅者模式/">javascript发布-订阅者模式</a>
   
 
+      </h3>
+      <div class="repo-list-description">
+        
+          <blockquote>
+<p>这个模式看了很长时间，卡在什么地方呢？在我看来，其他的模式为了简化编程的复杂性，都是鼓励函数或者对象间<code>解耦和</code>的，但是发布-订阅者模式虽然发布者和订阅者对象分开了，但是之间的依赖关系反而更强了。 </p>
+</blockquote>
+<p><em>关键点</em>：1.订阅者在订阅事件的时候实际是在发布者对象的数组中写入要订阅的事件。 2.发布者在发布或者叫trigger事件的时候，实际是在发布者中遍历数组中订阅者的事件方法。<code>涉及的是消息数组的写入和遍历读出过程</code>。</p>
+<p>另外一点就是，由于javascript的函数一类对象，可以直接写入数组，这样咋发布-订阅者模式中操作起来相当的方便，js真是厉害。</p>
+<p>关于发布-订阅者模式和观察者模式的区别我没搞懂。这里的例子或许是观察者模式，或许是发布-订阅者模式。</p>
+<blockquote>
+<p>参考 《javascript设计模式》<code>pro javascript design patterns</code> 第十五章</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//发布者构造函数</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Publisher</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">this</span>.subscribers = []; <span class="comment">//订阅和发布都是围绕这个数组进项</span></div><div class="line">&#125;</div><div class="line"><span class="comment">//执行发布的方法，遍历订阅者对方法</span></div><div class="line">Publisher.prototype.deliver = <span class="function"><span class="keyword">function</span>(<span class="params">data</span>) </span>&#123;</div><div class="line">  <span class="keyword">this</span>.subscribers.forEach(</div><div class="line">    <span class="function"><span class="keyword">function</span>(<span class="params">fn</span>) </span>&#123;</div><div class="line">      fn(data);</div><div class="line">    &#125;</div><div class="line">  );</div><div class="line">  <span class="keyword">return</span> <span class="keyword">this</span>;</div><div class="line">&#125;;</div><div class="line"><span class="comment">//订阅的方法，订阅者对象写入subscribers数组</span></div><div class="line"><span class="comment">//下面这两个方法挂载在Function原型上</span></div><div class="line"><span class="built_in">Function</span>.prototype.subscribe = <span class="function"><span class="keyword">function</span>(<span class="params">publisher</span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> that = <span class="keyword">this</span>;</div><div class="line">  <span class="keyword">var</span> alreadyExists = publisher.subscribers.some(</div><div class="line">    <span class="function"><span class="keyword">function</span>(<span class="params">el</span>) </span>&#123;</div><div class="line">      <span class="keyword">if</span> ( el === that ) &#123; <span class="comment">//如果已经订阅的话，立即返回</span></div><div class="line">        <span class="keyword">return</span>;</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">  );</div><div class="line">  <span class="keyword">if</span> ( !alreadyExists ) &#123; <span class="comment">//订阅者的订阅对象插入数组</span></div><div class="line">    publisher.subscribers.push(<span class="keyword">this</span>);<span class="comment">//注意命名空间</span></div><div class="line">  &#125;</div><div class="line">  <span class="keyword">return</span> <span class="keyword">this</span>;</div><div class="line">&#125;;</div><div class="line"><span class="comment">//取消订阅的方法</span></div><div class="line"><span class="built_in">Function</span>.prototype.unsubscribe = <span class="function"><span class="keyword">function</span>(<span class="params">publisher</span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> that = <span class="keyword">this</span>;</div><div class="line">  publisher.subscribers = publisher.subscribers.filter(</div><div class="line">    <span class="function"><span class="keyword">function</span>(<span class="params">el</span>) </span>&#123;</div><div class="line">      <span class="keyword">if</span> ( el !== that ) &#123; <span class="comment">//如果是订阅对象就过滤掉</span></div><div class="line">        <span class="keyword">return</span> el;</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">  );</div><div class="line">  <span class="keyword">return</span> <span class="keyword">this</span>;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="keyword">var</span> publisherObject = <span class="keyword">new</span> Publisher;<span class="comment">//发布者对象</span></div><div class="line"></div><div class="line"><span class="keyword">var</span> observerObject = <span class="function"><span class="keyword">function</span>(<span class="params">data</span>) </span>&#123;<span class="comment">//订阅者对象 </span></div><div class="line">  <span class="comment">// process data</span></div><div class="line">  <span class="built_in">console</span>.log(data);</div><div class="line">  <span class="comment">// unsubscribe from this publisher</span></div><div class="line">  <span class="built_in">arguments</span>.callee.unsubscribe(publisherObject);</div><div class="line">  <span class="comment">//在订阅对象中取消订阅，其实就是只执行一次发布操作</span></div><div class="line">&#125;;</div><div class="line"></div><div class="line">observerObject.subscribe(publisherObject);  </div><div class="line"><span class="comment">//执行订阅，注意这个订阅方法挂载的原型，我开始搞混了，以为代码有错</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p>js的数组操作和高阶函数的特性使得发布-订阅者模式很好实现。<br>  这个模式我在react/redux的数据流程中觉得是有的，但是反而在模式学习中是最难的。解耦和也不是绝对的一点联系都没有，关系是<code>藕断丝连</code>，要看到断开的<code>两节藕</code>，还要看到之间的的<code>丝</code>.react/redux的学习中就要找到这层关系。</p>
+</blockquote>
 
+        
+      </div>
+      <p class="repo-list-meta">
+        <span class="meta-info">
+          <span class="octicon octicon-calendar"></span>
+           <time datetime="2017-03-10T00:04:10.000Z" itemprop="datePublished">2017-03-10</time>
+        </span>
 
+        
+          <span class="meta-info">
+            <span class="octicon octicon-file-directory"></span>
+            <a href='/categories/Designpattern/' title=''>Designpattern</a>
+          </span>
+        
+      
+        <!--
+          
+            <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
+          
+        -->
 
+      </p>
+    </div>
+  </article>
+            
+                  <article id="post-javascript适配器模式" class="repo-list">
+    <div class="repo-list-item" >
+      <h3 class="repo-list-name" itemprop="name">
+        
   
-  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-
-  
-  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-
-  
-  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
-
-
-
-  
-  
-
-
-  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
-
-  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
-
-
-
-  
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
-
-
-
+      <a class="article-title" href="/2017/03/10/javascript适配器模式/">javascript适配器模式</a>
   
 
+      </h3>
+      <div class="repo-list-description">
+        
+          <blockquote>
+<p>适配器模式是为了解决软件实体间的接口不兼容性。使用适配器以后原本不兼容的两个软件的接口可以工作在一起了。<br>宗旨是不要改变原软件接口的程序代码，在外部使用适配器对数据结构做调整。<br>参考《javascript模式设计与开发实践》第17章</p>
+</blockquote>
+<p>第一段代码，两个地图接口之间的适配</p>
+ <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> googleMap = &#123;</div><div class="line">		<span class="attr">show</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)方法是<span class="title">show</span></span></div><div class="line">			<span class="title">console</span>.<span class="title">log</span>(<span class="params"> <span class="string">'开始渲染谷歌地图'</span> </span>);</div><div class="line">		&#125;</div><div class="line">	&#125;;</div><div class="line">	<span class="title">var</span> <span class="title">baiduMap</span> = &#123;</div><div class="line">		display: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; <span class="comment">//方法是display</span></div><div class="line">			<span class="built_in">console</span>.log( <span class="string">'开始渲染百度地图'</span> );</div><div class="line">		&#125;</div><div class="line">	&#125;;</div><div class="line">	<span class="keyword">var</span> baiduMapAdapter = &#123;</div><div class="line">		<span class="attr">show</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="comment">//适配器也改为show,返回的是display</span></div><div class="line">			<span class="keyword">return</span> baiduMap.display();</div><div class="line"></div><div class="line">		&#125;</div><div class="line">	&#125;;</div><div class="line">	<span class="comment">//下面是渲染地图的方法，传入地图对象</span></div><div class="line">	<span class="keyword">var</span> renderMap = <span class="function"><span class="keyword">function</span>(<span class="params"> map </span>)</span>&#123;<span class="comment">//传入地图对象</span></div><div class="line">		<span class="keyword">if</span> ( map.show <span class="keyword">instanceof</span> <span class="built_in">Function</span> )&#123; <span class="comment">//判断</span></div><div class="line">			map.show();  <span class="comment">//地图对象的show方法</span></div><div class="line">			<span class="comment">//在传入baiduMapAdapter对象的时候，调用show方法，返回的</span></div><div class="line">			<span class="comment">//实际是baiduMap的display方法。</span></div><div class="line">		&#125;</div><div class="line">	&#125;;</div><div class="line"></div><div class="line">	renderMap( googleMap ); <span class="comment">// 输出：开始渲染谷歌地图</span></div><div class="line">	renderMap( baiduMapAdapter ); <span class="comment">// 输出：开始渲染百度地图 </span></div><div class="line"> </div><div class="line"> <span class="string">``</span><span class="string">`   </span></div><div class="line">	</div><div class="line">	</div><div class="line">	</div><div class="line">数据结构如果不同，也可以不要改动API的输出代码，只改动输出以后的数据呈现结构</div></pre></td></tr></table></figure>
+<p> //其中一个API返回的数据<br> var getGuangdongCity = function(){<br>        var guangdongCity = [<br>        {<br>            name: ‘shenzhen’,<br>            id: 11,<br>        }, {<br>            name: ‘guangzhou’,<br>            id: 12,<br>        }<br>        ];<br>        return guangdongCity;<br>    };<br>    var render = function( fn ){<br>        console.log( ‘开始渲染广东省地图’ );<br>        document.write( JSON.stringify( fn() ) );<br>    };<br>    render( getGuangdongCity );</p>
+<pre><code>//另一个api获得的数据
+var guangdongCity = {
+    shenzhen: 11,
+    guangzhou: 12,
+    zhuhai: 13
+};
 
+//这两个API返回的数据不同，不需要改动API的输出代码，要在输
+</code></pre><p>//出以后做适配。 我们自己的API可以改动，但是如果是第三方的API就<br>//没有办法要求改动输出结构。所以最好是做适配。这个过程可能很复杂，这里只是说明有这个思路。</p>
+<pre><code><figure class="highlight qml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div></pre></td><td class="code"><pre><div class="line">  <span class="comment">//new data</span></div><div class="line">  <span class="built_in">var</span> guangdongCity = &#123;</div><div class="line">	<span class="attribute">shenzhen</span>: <span class="number">11</span>,</div><div class="line">	<span class="attribute">guangzhou</span>: <span class="number">12</span>,</div><div class="line">	<span class="attribute">zhuhai</span>: <span class="number">13</span></div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="comment">//按照需要把下面的输出格式改为上面代码里的格式</span></div><div class="line"><span class="comment">//old data</span></div><div class="line"><span class="built_in">var</span> getGuangdongCity = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	<span class="built_in">var</span> guangdongCity = [</div><div class="line">	&#123;</div><div class="line">		<span class="attribute">name</span>: <span class="string">'shenzhen'</span>,</div><div class="line">		<span class="attribute">id:</span><span class="string"> 11,</span></div><div class="line">	&#125;, &#123;</div><div class="line">		name: <span class="string">'guangzhou'</span>,</div><div class="line">		<span class="attribute">id:</span><span class="string"> 12,</span></div><div class="line">	&#125;</div><div class="line"></div><div class="line">	];</div><div class="line">	return guangdongCity;</div><div class="line">&#125;;</div><div class="line"><span class="comment">//新旧数据统一的渲染方法</span></div><div class="line"><span class="built_in">var</span> render = <span class="function"><span class="keyword">function</span>(<span class="params"> fn </span>)</span>&#123;</div><div class="line">	<span class="built_in">console</span>.log( <span class="string">'开始渲染广东省地图'</span> );</div><div class="line">	<span class="built_in">document</span>.write( <span class="built_in">JSON</span>.stringify( fn() ) );</div><div class="line">&#125;;</div><div class="line"> <span class="comment">//输出数据结构的适配器，把旧数据按照新数据结构的格式做适配</span></div><div class="line"><span class="built_in">var</span> addressAdapter = <span class="function"><span class="keyword">function</span>(<span class="params"> oldAddressfn </span>)</span>&#123;</div><div class="line">	<span class="built_in">var</span> address = &#123;&#125;,</div><div class="line">	oldAddress = oldAddressfn();<span class="comment">//获取就数据</span></div><div class="line">	<span class="comment">//适配的具体代码</span></div><div class="line">	<span class="keyword">for</span> ( <span class="built_in">var</span> i = <span class="number">0</span>, c; c = oldAddress[ i++ ]; )&#123;</div><div class="line">		address[ c.name ] = c.id;由数组对象改为对象存储</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">		<span class="keyword">return</span> address;</div><div class="line">	&#125;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="comment">//通过适配器渲染旧数据，输出的是新数据的结构</span></div><div class="line">render( addressAdapter( getGuangdongCity ) );</div></pre></td></tr></table></figure>
+</code></pre><p>  就我个人来看， 适配器的思路是最简单的，但是实际操作起来可能是最复杂的，数据之间的适配可能比想象中的麻烦很多。但是了解到这个思路对于编程的灵活性有了认识，如果是以前可能遇到这样的问题的时候，首先考虑到的是怎么去修改原来的的代码。一个小思路，方法完全不同了。</p>
 
+        
+      </div>
+      <p class="repo-list-meta">
+        <span class="meta-info">
+          <span class="octicon octicon-calendar"></span>
+           <time datetime="2017-03-09T17:04:10.000Z" itemprop="datePublished">2017-03-09</time>
+        </span>
+
+        
+          <span class="meta-info">
+            <span class="octicon octicon-file-directory"></span>
+            <a href='/categories/Designpattern/' title=''>Designpattern</a>
+          </span>
+        
+      
+        <!--
+          
+            <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
+          
+        -->
+
+      </p>
+    </div>
+  </article>
+            
+                  <article id="post-javascript设计原则-单一职责" class="repo-list">
+    <div class="repo-list-item" >
+      <h3 class="repo-list-name" itemprop="name">
+        
+  
+      <a class="article-title" href="/2017/03/09/javascript设计原则-单一职责/">javascript设计原则-单一职责</a>
   
 
+      </h3>
+      <div class="repo-list-description">
+        
+          <p>前面把javascript的设计模式基本过了一遍，可以说是感慨很多，许多的思想都是从未接触过的，学起来难度也不小，但是我觉得这个过程是很值得的。如果以前是在足球场上踢野球的话，现在总算找到一个像模像样的教练在指导了，不一定会成为一个世界级的球星，但是水平至少也会比以前提高很多。<br>接下来会看看一些设计原则，设计原则是比模式更高一级的方法，是纲领性的内容。</p>
+<blockquote>
+<p>单一职责(single responsable princple)被定为为“引起变化的原因”。如果一个方法承担了过多的职责，那么在需求发生变化的过程中，需要改写这个方法的可能性就越大。<br>因此SRP原则体现为：一个对象(方法)只做一件事情。<br>参考《javascript设计模式与开发实践》第18章</p>
+</blockquote>
+<p>#####设计模式中的SRP原则</p>
+<p>代理模式<br>下面这个例子是要在文档中创建一个img标签，并且要插入图片<br>在加载图片的时候，由于网速的限制需要预先加载一张本地图片，稍后会加载网络图片。 在这个过程中<code>创建img标签</code>和<code>更换图片源</code>是<code>没有关系</code>的。所以最好是把这两个过程分为两个对象来处理。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//创建img标签的对象</span></div><div class="line"><span class="keyword">var</span> myImage = (<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">		<span class="keyword">var</span> imgNode = <span class="built_in">document</span>.createElement( <span class="string">'img'</span> );</div><div class="line">		<span class="built_in">document</span>.body.appendChild( imgNode );</div><div class="line">		<span class="keyword">return</span> &#123;</div><div class="line">			<span class="attr">setSrc</span>: <span class="function"><span class="keyword">function</span>(<span class="params"> src </span>)</span>&#123;</div><div class="line"></div><div class="line">				imgNode.src = src;</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">	&#125;)();</div><div class="line">  <span class="comment">//添加图片路径的对象</span></div><div class="line">	<span class="keyword">var</span> proxyImage = (<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">		<span class="keyword">var</span> img = <span class="keyword">new</span> Image; <span class="comment">//实例化标签对象</span></div><div class="line">		img.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">			myImage.setSrc( <span class="keyword">this</span>.src ); <span class="comment">//加载默认图片</span></div><div class="line">		&#125;</div><div class="line">		<span class="keyword">return</span> &#123;</div><div class="line">			<span class="attr">setSrc</span>: <span class="function"><span class="keyword">function</span>(<span class="params"> src </span>)</span>&#123;</div><div class="line">				myImage.setSrc( <span class="string">'file:// /C:/Users/svenzeng/Desktop/loading.gif'</span> );</div><div class="line">				img.src = src;</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">	&#125;)();</div><div class="line">	<span class="comment">//更改图片的路径，这个过程就和img标签的创建对象没有关系了。</span></div><div class="line">	proxyImage.setSrc( <span class="string">'http:// imgcache.qq.com/music/photo/000GGDys0yA0Nk.jpg'</span> );</div></pre></td></tr></table></figure></p>
+<p>迭代器模式<br>看下面段代码<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//这段代码往文档中添加div元素，但是有限制，这里就只能添加数组</span></div><div class="line"><span class="comment">//有两个职责一个是添加元素，一个是遍历数据，所有有必要分开</span></div><div class="line"> <span class="keyword">var</span> appendDiv=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  <span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>;l=data.length;i&lt;l;i++)&#123;</div><div class="line">   <span class="keyword">var</span> div=<span class="built_in">document</span>.createElement(<span class="string">'div'</span>);</div><div class="line">   div.innerHTML=data[i];</div><div class="line">   <span class="built_in">document</span>.body.appendChild(div);</div><div class="line">  &#125;</div><div class="line"> &#125;;</div><div class="line"> </div><div class="line"> appenDiv([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>])</div></pre></td></tr></table></figure></p>
+<p>使用单一职责原则改变代码<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> each = <span class="function"><span class="keyword">function</span>(<span class="params"> obj, callback </span>) </span>&#123;<span class="comment">//遍历的方法</span></div><div class="line"><span class="comment">//对象和数组都可以输入，灵活性加大，并且还可以修改</span></div><div class="line">		<span class="keyword">var</span> value,</div><div class="line">		i = <span class="number">0</span>,</div><div class="line">		length = obj.length,</div><div class="line">		isArray = isArraylike( obj ); <span class="comment">// isArraylike 函数未实现，可以翻阅jQuery 源代码</span></div><div class="line">		<span class="keyword">if</span> ( isArray ) &#123; <span class="comment">// 迭代类数组</span></div><div class="line">			<span class="keyword">for</span> ( ; i &lt; length; i++ ) &#123;</div><div class="line">				callback.call( obj[ i ], i, obj[ i ] );</div><div class="line">			&#125;</div><div class="line">		&#125; <span class="keyword">else</span> &#123;</div><div class="line">			<span class="keyword">for</span> ( i <span class="keyword">in</span> obj ) &#123; <span class="comment">// 迭代object 对象</span></div><div class="line">				value = callback.call( obj[ i ], i, obj[ i ] );</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">return</span> obj;</div><div class="line">	&#125;;</div><div class="line"> <span class="comment">//根据输入数据的元素添加方法</span></div><div class="line">	<span class="keyword">var</span> appendDiv = <span class="function"><span class="keyword">function</span>(<span class="params"> data </span>)</span>&#123;</div><div class="line">		each( data, <span class="function"><span class="keyword">function</span>(<span class="params"> i, n </span>)</span>&#123; <span class="comment">//使用each方法来执行遍历</span></div><div class="line">		<span class="comment">//在回调函数中根据遍历数据添加元素至文档中</span></div><div class="line">			<span class="keyword">var</span> div = <span class="built_in">document</span>.createElement( <span class="string">'div'</span> );</div><div class="line">			div.innerHTML = n;</div><div class="line">			<span class="built_in">document</span>.body.appendChild( div );</div><div class="line">		&#125;);</div><div class="line">	&#125;;</div><div class="line"></div><div class="line">	appendDiv( [ <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span> ] );<span class="comment">//数组数据</span></div><div class="line">	appendDiv(&#123;<span class="attr">a</span>:<span class="number">1</span>,<span class="attr">b</span>:<span class="number">2</span>,<span class="attr">c</span>:<span class="number">3</span>,<span class="attr">d</span>:<span class="number">4</span>&#125; ); <span class="comment">//对象数据</span></div></pre></td></tr></table></figure></p>
+<p>单例模式</p>
+<p>在前面已经有笔记了。实际是把实际操作和创建单例的方法分别封装在两个方法里。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> createLoginLayer = (<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="comment">//创建元素的方法</span></div><div class="line">		<span class="keyword">var</span> div;</div><div class="line">		<span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">			<span class="keyword">if</span> ( !div )&#123;</div><div class="line">				div = <span class="built_in">document</span>.createElement( <span class="string">'div'</span> );</div><div class="line">				div.innerHTML = <span class="string">'我是登录浮窗'</span>;</div><div class="line">				div.style.display = <span class="string">'none'</span>;</div><div class="line">				<span class="built_in">document</span>.body.appendChild( div );</div><div class="line">			&#125;</div><div class="line">			<span class="keyword">return</span> div; <span class="comment">//单例的判断依据</span></div><div class="line">		&#125;</div><div class="line">	&#125;)();</div><div class="line">  </div><div class="line">        <span class="comment">//创建和检测单例的方法，参数为创建元素的方法</span></div><div class="line">	<span class="keyword">var</span> getSingle = <span class="function"><span class="keyword">function</span>(<span class="params"> fn </span>)</span>&#123; <span class="comment">// 获取单例</span></div><div class="line">		<span class="keyword">var</span> result;</div><div class="line">		<span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">			<span class="keyword">return</span> result || ( result = fn .apply(<span class="keyword">this</span>, <span class="built_in">arguments</span> ) ); </div><div class="line">                        <span class="comment">//这个地方要注意apply和arguments的应用</span></div><div class="line">		&#125;</div><div class="line">	&#125;;</div><div class="line">	<span class="keyword">var</span> createLoginLayer = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; <span class="comment">// 创建登录浮窗</span></div><div class="line">		<span class="keyword">var</span> div = <span class="built_in">document</span>.createElement( <span class="string">'div'</span> );</div><div class="line">		div.innerHTML = <span class="string">'我是登录浮窗'</span>;</div><div class="line">		<span class="built_in">document</span>.body.appendChild( div );</div><div class="line">		<span class="keyword">return</span> div;</div><div class="line">	&#125;;</div><div class="line">	</div><div class="line">	<span class="keyword">var</span> createSingleLoginLayer = getSingle( createLoginLayer );</div><div class="line">	<span class="keyword">var</span> loginLayer1 = createSingleLoginLayer();</div><div class="line">	<span class="keyword">var</span> loginLayer2 = createSingleLoginLayer();</div><div class="line">	alert ( loginLayer1 === loginLayer2 ); <span class="comment">// 输出： true  //为同一对象</span></div></pre></td></tr></table></figure></p>
+<p>装饰者模式<br>前面的设计模式里也有介绍<br>装饰者模式可以动态为对象添加方法或指责。从而也使的对象的功能单一化。<br>下面两个函数调用的时候指向同一个对象。<br> <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"> <span class="built_in">Function</span>.prototype.after = <span class="function"><span class="keyword">function</span>(<span class="params"> afterfn </span>)</span>&#123;</div><div class="line">		<span class="keyword">var</span> __self = <span class="keyword">this</span>;</div><div class="line">		<span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">			<span class="keyword">var</span> ret = __self.apply( <span class="keyword">this</span>, <span class="built_in">arguments</span> );</div><div class="line">			 <span class="comment">//执行原函数</span></div><div class="line">			afterfn.apply( <span class="keyword">this</span>, <span class="built_in">arguments</span> );<span class="comment">//执行after函数</span></div><div class="line">			<span class="keyword">return</span> ret;</div><div class="line">		&#125;</div><div class="line">	&#125;;</div><div class="line">	<span class="keyword">var</span> showLogin = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">		<span class="built_in">console</span>.log( <span class="string">'打开登录浮层'</span> );</div><div class="line">	&#125;;</div><div class="line">	<span class="keyword">var</span> log = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">		<span class="built_in">console</span>.log( <span class="string">'上报标签为: '</span> + <span class="keyword">this</span>.getAttribute( <span class="string">'tag'</span> ) );</div><div class="line"></div><div class="line">	&#125;;</div><div class="line">	<span class="built_in">document</span>.getElementById( <span class="string">'button'</span> ).onclick = showLogin.after( log );</div><div class="line"><span class="comment">// 打开登录浮层之后上报数据</span></div></pre></td></tr></table></figure></p>
+<p>#####单一职责原则减低了单个类或者对象的复杂度，按照指责把对象分解成更小的粒度。有助于代码的复用，修改和测试。但是代码复杂度是提高了。怎么平衡呢？这是个问题。</p>
 
+        
+      </div>
+      <p class="repo-list-meta">
+        <span class="meta-info">
+          <span class="octicon octicon-calendar"></span>
+           <time datetime="2017-03-08T20:04:10.000Z" itemprop="datePublished">2017-03-08</time>
+        </span>
 
+        
+          <span class="meta-info">
+            <span class="octicon octicon-file-directory"></span>
+            <a href='/categories/Designpattern/' title=''>Designpattern</a>
+          </span>
+        
+      
+        <!--
+          
+            <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
+          
+        -->
+
+      </p>
+    </div>
+  </article>
+            
+                  <article id="post-javascript最少知识原则" class="repo-list">
+    <div class="repo-list-item" >
+      <h3 class="repo-list-name" itemprop="name">
+        
+  
+      <a class="article-title" href="/2017/03/09/javascript最少知识原则/">javascript最少知识原则</a>
+  
+
+      </h3>
+      <div class="repo-list-description">
+        
+          <blockquote>
+<p>最少知识原则说的是一个软件实体应当尽可能的与其他实体减少相互作用。<br>这里的软件实体是一个广义概念，不仅包括对象，还包括系统，类，模块，函数，变量灯。这样来说最少知识原则涵盖的范围就很大了。下面看看和javascript相关的内容<br>参考《javascirpt模式设计与开发实践》第19章</p>
+</blockquote>
+<ol>
+<li><p>减少对象之间的联系<br>最少知识原则指导我们，如果两个对象之间不必彼此通讯，那么这两个对象之间就不要发生直接联系。常见的做法是引入一个第三者来承担彼此的通信任务。</p>
+</li>
+<li><p>javascript设计模式中的最少知识原则</p>
+</li>
+</ol>
+<p><strong>中介者模式</strong><br>这个模式是使用者们是不发生任何联系的，所有的信息都是由中介者来完成。<br>react通过引入redux应该就是这种模式。react组件之间不再发生任何的联系，所有与组件state变化的通讯请求都是通过redux来完成的。这样一来，组件可以应对复杂的state变化。</p>
+<p><strong>外观模式</strong><br>这是针对使用者而言的。外观模式作用是对交互使用者隐藏子系统的复杂性。</p>
+<ul>
+<li>[ ] 外观模式为一组系统提供一个便利的入口。在jquery中兼容了浏览器的差异，但是使用者使用的是同一个api接口，就是一个体现</li>
+<li>[ ] 隔离使用者和复杂系统的联系，使用者不需要去了解具体的差异</li>
+</ul>
+<p>javascript的函数封装</p>
+<p>javascript函数有着至高无上的权利，灵活性很大。通过使用闭包隐藏变量，通过单例模式，揭示模式，策略模式.javascript使用函数和对象字面量的方法隐藏具体的实现逻辑。只暴露相关的方法。</p>
+<p>这就是最少知识原则。这也是基础原则在javascript程序设计中应该是时刻都要体现这种原则。</p>
+
+        
+      </div>
+      <p class="repo-list-meta">
+        <span class="meta-info">
+          <span class="octicon octicon-calendar"></span>
+           <time datetime="2017-03-08T19:04:10.000Z" itemprop="datePublished">2017-03-08</time>
+        </span>
+
+        
+          <span class="meta-info">
+            <span class="octicon octicon-file-directory"></span>
+            <a href='/categories/Designpattern/' title=''>Designpattern</a>
+          </span>
+        
+      
+        <!--
+          
+            <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
+          
+        -->
+
+      </p>
+    </div>
+  </article>
+            
+                  <article id="post-javascript设计模式-单例模式" class="repo-list">
+    <div class="repo-list-item" >
+      <h3 class="repo-list-name" itemprop="name">
+        
+  
+      <a class="article-title" href="/2017/03/08/javascript设计模式-单例模式/">javascript设计模式-单例模式</a>
+  
+
+      </h3>
+      <div class="repo-list-description">
+        
+          <blockquote>
+<p>单例模式的定义：保证一个类仅有一个实例，并提供一个访问他的全局访问点<br>参考书籍《javascript设计模式与开发实践》<br>有一些对象我们只需要一个，例如线程池，全局缓存等。</p>
+</blockquote>
+<ol>
+<li>实例单例模式</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> Singleton = <span class="function"><span class="keyword">function</span>(<span class="params"> name </span>)</span>&#123;</div><div class="line">		<span class="keyword">this</span>.name = name;</div><div class="line">		<span class="keyword">this</span>.instance = <span class="literal">null</span>;</div><div class="line">	&#125;;</div><div class="line">	Singleton.prototype.getName = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">		alert ( <span class="keyword">this</span>.name );</div><div class="line">	&#125;;</div><div class="line">	Singleton.getInstance = <span class="function"><span class="keyword">function</span>(<span class="params"> name </span>)</span>&#123;</div><div class="line">		<span class="keyword">if</span> ( !<span class="keyword">this</span>.instance )&#123;  <span class="comment">//对实例进行检测</span></div><div class="line">			<span class="keyword">this</span>.instance = <span class="keyword">new</span> Singleton( name ); <span class="comment">//全局缓存new 对象</span></div><div class="line">		&#125;</div><div class="line">		<span class="keyword">return</span> <span class="keyword">this</span>.instance;</div><div class="line">	&#125;;</div><div class="line"></div><div class="line">	<span class="keyword">var</span> a = Singleton.getInstance( <span class="string">'sven1'</span> );  <span class="comment">//第一次实例化，检测没有实例化的对象，自己实例化一个，然后缓存</span></div><div class="line">	<span class="keyword">var</span> b = Singleton.getInstance( <span class="string">'sven2'</span> );<span class="comment">//第二次实例化，检测已经有全局的实例化的对象，直接返回，不进行具体实例化</span></div><div class="line">	alert ( a === b ); <span class="comment">// true    //统一实例对象</span></div></pre></td></tr></table></figure>
+
+        
+      </div>
+      <p class="repo-list-meta">
+        <span class="meta-info">
+          <span class="octicon octicon-calendar"></span>
+           <time datetime="2017-03-08T11:04:10.000Z" itemprop="datePublished">2017-03-08</time>
+        </span>
+
+        
+          <span class="meta-info">
+            <span class="octicon octicon-file-directory"></span>
+            <a href='/categories/Designpattern/' title=''>Designpattern</a>
+          </span>
+        
+      
+        <!--
+          
+            <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
+          
+        -->
+
+      </p>
+    </div>
+  </article>
+            
+                  <article id="post-javascript-中的apply和call方法" class="repo-list">
+    <div class="repo-list-item" >
+      <h3 class="repo-list-name" itemprop="name">
+        
+  
+      <a class="article-title" href="/2017/03/08/javascript-中的apply和call方法/">javascript的apply和call方法</a>
+  
+
+      </h3>
+      <div class="repo-list-description">
+        
+          <blockquote>
+<p>在javascript模式设计的学习中，深感javascript的语法的灵活性，在模式设计的方法中对于高阶函数的使用到了令人发指的地步，几乎每个示例中都离不开函数作为参数的调用方法，apply和call方法是使用最多的。这两个函数调用形式不太一样，但是目的都是一样的。apply和call函数是javascript中的硬绑定方式，可以灵活,动态的改变函数运行时候的作用域对象。并且和argument对象结合起来使用，威力会更大。<br>结合《javascript函数式编程》的一个例子说说。 p2<br>使用apply方法可以创建一个函数，他接收另一个函数，并且返回另一函数，该函数接受一个数组，并用apply来执行函数</p>
+</blockquote>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">function  splat(<span class="function"><span class="keyword">fun</span>)&#123; //splat函数接受一个函数作为参数</span></div><div class="line">  <span class="keyword">return</span> function(array)&#123; <span class="comment">//返回另一个函数，array作为形参</span></div><div class="line">     <span class="keyword">return</span> <span class="function"><span class="keyword">fun</span>.<span class="title">apply</span><span class="params">(<span class="literal">null</span>,array)</span></span>;<span class="comment">//apply方法传入数组参数</span></div><div class="line">  &#125;;</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> addArrayElements=splat(function(x,y)&#123;<span class="keyword">return</span> x+y;&#125;); <span class="comment">//传入函数加</span></div><div class="line"><span class="comment">//法函数作为参数</span></div><div class="line"></div><div class="line">addArrayElements([<span class="number">1</span>,<span class="number">2</span>]); <span class="comment">//调用函数，=&gt;3</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p>另外一个展现js灵活性的地方是，我们可以随时以任意多个任意类型的参数来调用任意一个函数。这里的三个任意体现了js函数使用的灵活性。<br>每个js函数都可以访问一个arguments局部对象，他类似数组，存储了调用函数是的实际参数。</p>
+</blockquote>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">   function  unsplat(<span class="function"><span class="keyword">fun</span>)&#123;//接受一个函数作为参数</span></div><div class="line">  <span class="keyword">return</span> function()&#123;<span class="comment">//返回另一个函数</span></div><div class="line">     <span class="comment">//返回的函数为传入的函数绑定arguments对象，这里经过</span></div><div class="line">     <span class="comment">//underscore的toArray方法转为数组对象</span></div><div class="line">     <span class="keyword">return</span> <span class="function"><span class="keyword">fun</span>.<span class="title">call</span><span class="params">(<span class="literal">null</span>,_.toArray(arguments)</span></span>);</div><div class="line">  &#125;;</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> joinElements=unsplat(function(array)&#123;<span class="keyword">return</span> array.join(<span class="string">' '</span>);&#125;); <span class="comment">//调用</span></div><div class="line"><span class="comment">//时传入函数实参</span></div><div class="line"></div><div class="line">alert(joinElements(<span class="number">1</span>,<span class="number">2</span>)); <span class="comment">//传入调用的参数，参数长度是不定的</span></div></pre></td></tr></table></figure>
+<p>#####这两个方法在模式设计的代码里用的太多了，所以要好好研究研究.</p>
+
+        
+      </div>
+      <p class="repo-list-meta">
+        <span class="meta-info">
+          <span class="octicon octicon-calendar"></span>
+           <time datetime="2017-03-08T00:04:10.000Z" itemprop="datePublished">2017-03-08</time>
+        </span>
+
+        
+          <span class="meta-info">
+            <span class="octicon octicon-file-directory"></span>
+            <a href='/categories/Designpattern/' title=''>Designpattern</a>
+          </span>
+        
+      
+        <!--
+          
+            <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
+          
+        -->
+
+      </p>
+    </div>
+  </article>
+            
+        </div>
+        <div class="column one-third">
+          <!--处理未安装 search 插件 默认 Google 搜索-->
+ 
+
+<h3>Search</h3>
+
+<div id="site_search">
+
+	<!-- Google -->
+	
+
+	<!-- 本地搜索 -->
+	
+		<form id="search-form" >
+			<input type="text" id="search" placeholder="Search" >
+			<button type="button" class="btn btn-default" id="site_search_do"><span class="octicon octicon-search"></span></button>
+		</form>
+
+		<div id="local-search-result"></div>
+
+		<script src="/js/search.js"></script>	
+		<script type="text/javascript">
+			$(function(){
+				var currentIndex = -1;
+				var search_path = "search.xml";
+				if (!search_path) search_path = "search.xml";
+				var path = "/" + search_path;
+				searchFunc(path, 'search', 'local-search-result');
+
+				$(document).delegate("#local-search-result>.search-result-list li","hover",function(){
+					var liNode = $("#local-search-result>.search-result-list li");
+					liNode.removeClass("hover");
+					currentIndex = $("#local-search-result>.search-result-list li").index($(this));
+					liNode.eq(currentIndex).addClass("hover");
+				})
+
+				$("#search-form").submit(function(){
+					return false;
+				})
+
+				$("#search").keydown(function(event){
+					var keyCode = event.keyCode;
+					var liNode = $("#local-search-result>.search-result-list li");
+					if(keyCode == 38 || keyCode == 40 || keyCode == 13){
+						liNode.removeClass("hover");
+						if(keyCode == 38){
+							if(currentIndex - 1 >= 0) currentIndex --;
+						}
+						if(keyCode == 40){
+							if(currentIndex + 1 < liNode.length) currentIndex ++;
+						}
+						if(keyCode == 13){
+							location.href = liNode.eq(currentIndex).find("a").attr("href");
+						}
+						liNode.eq(currentIndex).addClass("hover");
+						return false;
+					}else{
+						currentIndex = -1;
+					}
+				})
+			})
+		</script>
 
 	
 
+</div>
 
+<h3>Popular Repositories</h3>
+    <div class="popular-container"></div>
+    
+    <script type="text/template" id="popular-list-template">
+        <a href="{%=clone_url%}" class="card text-center" target="_blank">
+            <div class="thumbnail">
+                <div class="card-image geopattern" data-pattern-id="{%=name%}">
+                    <div class="card-image-cell">
+                        <h3 class="card-title">
+                            {%=name%}
+                        </h3>
+                    </div>
+                </div>
+                <div class="caption">
+                    <div class="card-description">
+                        <p class="card-text">
+                            {%=description%}
+                        </p>
+                    </div>
+                    <div class="card-text">
+                        <span class="meta-info tooltipped tooltipped-n" aria-label="{%=stargazers_count%} stars">
+                            <span class="octicon octicon-star"></span> {%=stargazers_count%}
+                        </span>
+                        <span class="meta-info tooltipped tooltipped-n" aria-label="{%=forks_count%} forks">
+                            <span class="octicon octicon-git-branch"></span> {%=forks_count%}
+                        </span>
+                        <span class="meta-info tooltipped tooltipped-n" aria-label="最后更新时间：{%=updated_at%}">
+                            <span class="octicon octicon-clock"></span>
+                            <time datetime="{%=updated_at%}">{%=updated_at%}</time>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </script>
 
+    <script src="/js/baiduTemplate.js"></script>
+    <script type="text/javascript">
+        var popular_repos = function(){
 
+            var baiduTpl = new Object();
 
-  
-
-
-
-
-
-  
-
-
-
-
-
-  
-
-
-
-
-
-
-  
-
-  <script type="text/javascript">
-    // Popup Window;
-    var isfetched = false;
-    // Search DB path;
-    var search_path = "search.xml";
-    if (search_path.length == 0) {
-      search_path = "search.xml";
-    }
-    var path = "/" + search_path;
-    // monitor main search box;
-
-    function proceedsearch() {
-      $("body")
-        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
-        .css('overflow', 'hidden');
-      $('.popup').toggle();
-    }
-    // search function;
-    var searchFunc = function(path, search_id, content_id) {
-      'use strict';
-      $.ajax({
-        url: path,
-        dataType: "xml",
-        async: true,
-        success: function( xmlResponse ) {
-          // get the contents from search data
-          isfetched = true;
-          $('.popup').detach().appendTo('.header-inner');
-          var datas = $( "entry", xmlResponse ).map(function() {
-            return {
-              title: $( "title", this ).text(),
-              content: $("content",this).text(),
-              url: $( "url" , this).text()
+            var handleTpl = function(){
+                baiduTpl.popular_list = baidu.template("popular-list-template");
             };
-          }).get();
-          var $input = document.getElementById(search_id);
-          var $resultContent = document.getElementById(content_id);
-          $input.addEventListener('input', function(){
-            var matchcounts = 0;
-            var str='<ul class=\"search-result-list\">';
-            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
-            $resultContent.innerHTML = "";
-            if (this.value.trim().length > 1) {
-              // perform local searching
-              datas.forEach(function(data) {
-                var isMatch = false;
-                var content_index = [];
-                var data_title = data.title.trim().toLowerCase();
-                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
-                var data_url = decodeURIComponent(data.url);
-                var index_title = -1;
-                var index_content = -1;
-                var first_occur = -1;
-                // only match artiles with not empty titles and contents
-                if(data_title != '') {
-                  keywords.forEach(function(keyword, i) {
-                    index_title = data_title.indexOf(keyword);
-                    index_content = data_content.indexOf(keyword);
-                    if( index_title >= 0 || index_content >= 0 ){
-                      isMatch = true;
-                      if (i == 0) {
-                        first_occur = index_content;
-                      }
-                    }
 
-                  });
+            var handleGithub = function(){
+                var popularContainer = $(".popular-container");
+
+                var repos = "hexo-theme-primer".split(",");
+                for(var i in repos){
+                    var name = repos[i];
+                    $.get("https://api.github.com/repos/yumemor/"+name,handle);
                 }
-                // show search results
-                if (isMatch) {
-                  matchcounts += 1;
-                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
-                  var content = data.content.trim().replace(/<[^>]+>/g,"");
-                  if (first_occur >= 0) {
-                    // cut out 100 characters
-                    var start = first_occur - 20;
-                    var end = first_occur + 80;
-                    if(start < 0){
-                      start = 0;
-                    }
-                    if(start == 0){
-                      end = 50;
-                    }
-                    if(end > content.length){
-                      end = content.length;
-                    }
-                    var match_content = content.substring(start, end);
-                    // highlight all keywords
-                    keywords.forEach(function(keyword){
-                      var regS = new RegExp(keyword, "gi");
-                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
-                    });
 
-                    str += "<p class=\"search-result\">" + match_content +"...</p>"
-                  }
-                  str += "</li>";
+                function handle(result){
+                    result.updated_at = result.updated_at.split("T")[0];
+                    if(result){
+                        var html = baiduTpl.popular_list(result);
+                        popularContainer.append(html);
+                        $(".geopattern").each(function(){           
+                            $(this).geopattern($(this).data('pattern-id'));
+                        });
+                    }
                 }
-              })};
-            str += "</ul>";
-            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
-            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
-            $resultContent.innerHTML = str;
-          });
-          proceedsearch();
-        }
-      });}
+            };
 
-    // handle and trigger popup window;
-    $('.popup-trigger').click(function(e) {
-      e.stopPropagation();
-      if (isfetched == false) {
-        searchFunc(path, 'local-search-input', 'local-search-result');
-      } else {
-        proceedsearch();
-      };
-    });
+            return {
+                init:function(){
+                    handleTpl();
+                    handleGithub();
+                }
+            }
+        }; 
+        $(popular_repos().init);
+    </script>
 
-    $('.popup-btn-close').click(function(e){
-      $('.popup').hide();
-      $(".local-search-pop-overlay").remove();
-      $('body').css('overflow', '');
-    });
-    $('.popup').click(function(e){
-      e.stopPropagation();
-    });
-  </script>
+        </div>
+    </div>
 
+    
+      <div class="pagination text-align">
+          <div class="btn-group">
+              <a class="extend prev" rel="prev" href="/tags/javascript/">&laquo;</a><a class="page-number" href="/tags/javascript/">1</a><span class="page-number current">2</span><a class="page-number" href="/tags/javascript/page/3/">3</a><a class="extend next" rel="next" href="/tags/javascript/page/3/">&raquo;</a>
+          </div>
+      </div>
+    
+</section>
 
+<footer class="container">
+    <div class="site-footer" role="contentinfo">
+        <div class="copyright left mobile-block">
+                © 2016
+                <span title="yumemor">yumemor</span>
+                <a href="javascript:window.scrollTo(0,0)" class="right mobile-visible">TOP</a>
+        </div>
 
+        <ul class="site-footer-links right mobile-hidden">
+            <li>
+                <a href="javascript:window.scrollTo(0,0)" >TOP</a>
+            </li>
+        </ul>
 
+        <a href="https://github.com/yumemor/hexo-theme-primer" target="_blank" aria-label="view source code">
+            <span class="mega-octicon octicon-mark-github" title="GitHub"></span>
+        </a>
 
-  
+        <ul class="site-footer-links mobile-hidden">
+            
+                  
+                  <li>
+                    <a href="/"  title="首页">首页</a>
+                  </li>
+            
+                  
+                  <li>
+                    <a href="/category/" target="true" title="分类">分类</a>
+                  </li>
+            
+                  
+                  <li>
+                    <a href="/open-source/"  title="开源项目">开源项目</a>
+                  </li>
+            
+                  
+                  <li>
+                    <a href="/message/"  title="留言板">留言板</a>
+                  </li>
+            
+            <li>
+                <a href="/atom.xml">
+                    <span class="octicon octicon-rss" style="color:orange;"></span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</footer>
 
-  
+		<script src="/js/geopattern.js"></script>
+		<script src="/js/highlight.pack.js"></script>
+		<script src="/lib/fancybox/jquery.fancybox-1.3.4.pack.js"></script>
 
-  
+		
 
-  
+		<script src="/js/index.js"></script>
 
-</body>
+		 <script src="/js/popular_repo.js"></script> 
+
+	</body>
 </html>

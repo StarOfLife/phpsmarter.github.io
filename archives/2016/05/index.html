@@ -1,834 +1,496 @@
-<!doctype html>
-
-
-
-  
-
-
-<html class="theme-next pisces use-motion" lang="zh-Hans">
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans" prefix="og: http://ogp.me/ns#" class="han-init">
 <head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+  <meta charset="utf-8">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
-
-
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  <link rel="icon" href="/favicon.ico">
   
-  
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
-
-
-
-
-  
-  
-  
-  
-
-  
-    
-    
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-    
-    
-    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
-  
-
-
-
-
-
-
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
-
-
-  <meta name="keywords" content="Hexo, NexT" />
-
-
-
-
-
-  <link rel="alternate" href="/atom.xml" title="phpsmarter" type="application/atom+xml" />
-
-
-
-
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
-
-
-
-
-
-
-<meta property="og:type" content="website">
-<meta property="og:title" content="phpsmarter">
-<meta property="og:url" content="http://yoursite.com/archives/2016/05/index.html">
-<meta property="og:site_name" content="phpsmarter">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="phpsmarter">
-
-
-
-<script type="text/javascript" id="hexo.configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '/',
-    scheme: 'Pisces',
-    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
-    fancybox: true,
-    motion: true,
-    duoshuo: {
-      userId: '0',
-      author: '博主'
-    },
-    algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    }
-  };
-</script>
-
-
-
-  <link rel="canonical" href="http://yoursite.com/archives/2016/05/"/>
-
-
-
-
-
-  <title> 归档 | phpsmarter </title>
+  <title>phpsmarter</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/lib/fancybox/jquery.fancybox-1.3.4.css">
+  <!--在这里倒入jquery 方便处理部分页面的jquery-->
+  <script src="https://cdn.staticfile.org/jquery/1.7/jquery.min.js" type="text/javascript" ></script>
 </head>
-
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-    
-  
-
-  <div class="container sidebar-position-left  page-archive  ">
-    <div class="headband"></div>
-
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta ">
-    
-
-    <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">phpsmarter</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
-    </div>
-      
-        <p class="site-subtitle">A beginner of React-native</p>
-      
+<body class="home">
+	<header class="site-header navfixed-false">
+  <div class="container">
+      <h1><a href="/" title="phpsmarter"><span class="octicon octicon-mark-github"></span> phpsmarter</a></h1>
+      <nav class="site-header-nav" role="navigation">
+        
+              
+              <a href="/"  class=" site-header-nav-item hvr-underline-from-center" title="首页">首页</a>
+        
+              
+              <a href="/category/" target="true" class=" site-header-nav-item hvr-underline-from-center" title="分类">分类</a>
+        
+              
+              <a href="/open-source/"  class=" site-header-nav-item hvr-underline-from-center" title="开源项目">开源项目</a>
+        
+              
+              <a href="/message/"  class=" site-header-nav-item hvr-underline-from-center" title="留言板">留言板</a>
+        
+      </nav>
   </div>
+</header>
 
-  <div class="site-nav-toggle">
-    <button>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-    </button>
-  </div>
-</div>
-
-<nav class="site-nav">
-  
-
-  
-    <ul id="menu" class="menu">
-      
-        
-        <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
-            
-            首页
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-categories">
-          <a href="/categories" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
-            
-            分类
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-about">
-          <a href="/about" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
-            
-            关于
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-archives">
-          <a href="/archives" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
-            
-            归档
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-tags">
-          <a href="/tags" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
-            
-            标签
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-sitemap">
-          <a href="/sitemap.xml" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br />
-            
-            站点地图
-          </a>
-        </li>
-      
-
-      
-        <li class="menu-item menu-item-search">
-          
-            <a href="javascript:;" class="popup-trigger">
-          
-            
-              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
-            
-            搜索
-          </a>
-        </li>
-      
-    </ul>
-  
-
-  
-    <div class="site-search">
-      
-  <div class="popup search-popup local-search-popup">
-  <div class="local-search-header clearfix">
-    <span class="search-icon">
-      <i class="fa fa-search"></i>
-    </span>
-    <span class="popup-btn-close">
-      <i class="fa fa-times-circle"></i>
-    </span>
-    <div class="local-search-input-wrapper">
-      <input autocapitalize="off" autocomplete="off" autocorrect="off"
-             placeholder="搜索..." spellcheck="false"
-             type="text" id="local-search-input">
-    </div>
-  </div>
-  <div id="local-search-result"></div>
-</div>
-
-
-
-    </div>
-  
-</nav>
-
-
-
- </div>
-    </header>
-
-    <main id="main" class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          <div id="content" class="content">
-            
-
-  <section id="posts" class="posts-collapse">
-    <span class="archive-move-on"></span>
-
-    <span class="archive-page-counter">
-      
-      
-       
-        
-      好! 目前共计 58 篇日志。 继续努力。
-    </span>
-
-    
-
-      
-      
-      
-
-      
-        
-        <div class="collection-title">
-          <h2 class="archive-year motion-element" id="archive-year-2016">2016</h2>
-        </div>
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2016/05/29/understanding React(2)/" itemprop="url">
-              
-                <span itemprop="name">understanding React(2)</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-05-28T23:53:25Z"
-              content="2016-05-28" >
-          05-28
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2016/05/29/understanding React(1)/" itemprop="url">
-              
-                <span itemprop="name">understanding React(1)</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-05-28T23:53:25Z"
-              content="2016-05-28" >
-          05-28
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2016/05/29/Redux和React编程/" itemprop="url">
-              
-                <span itemprop="name">Redux Persist</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-05-28T23:53:25Z"
-              content="2016-05-28" >
-          05-28
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-  </section>
-
-  
-
-
-
-          </div>
-          
-
-
-          
-
-        </div>
-        
-          
-  
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
-    </div>
-  </div>
-
-  <aside id="sidebar" class="sidebar">
-    <div class="sidebar-inner">
-
-      
-
-      
-
-      <section class="site-overview sidebar-panel sidebar-panel-active">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image"
-               src="/images/avatar.jpeg"
-               alt="phpsmarter" />
-          <p class="site-author-name" itemprop="name">phpsmarter</p>
-           
-              <p class="site-description motion-element" itemprop="description"></p>
-          
-        </div>
-        <nav class="site-state motion-element">
-
-          
-            <div class="site-state-item site-state-posts">
-              <a href="/archives">
-                <span class="site-state-item-count">58</span>
-                <span class="site-state-item-name">日志</span>
-              </a>
+	<section class="banner-false">
+    <div class="collection-head">
+        <div class="container">
+            <div class="collection-title">
+                <h1 class="collection-header" id="site-description">
+                    
+                </h1>
+                <div class="collection-info">
+                    
+                    
+                        <span class="meta-info">
+                            
+                                <span class="octicon octicon-location">
+                                   
+                                        ChengDu, China
+                                    
+                                </span>
+                                
+                            
+                        </span>
+                    
+                        <span class="meta-info">
+                            
+                                <span class="octicon octicon-mark-github">
+                                   
+                                </span>
+                                
+                                    <a href="http://github.com/yumemor" target="_blank">yumemor</a>
+                                
+                            
+                        </span>
+                    
+                </div>
             </div>
-          
-
-          
-            
-            
-            <div class="site-state-item site-state-categories">
-              <a href="/categories/index.html">
-                <span class="site-state-item-count">7</span>
-                <span class="site-state-item-name">分类</span>
-              </a>
-            </div>
-          
-
-          
-            
-            
-            <div class="site-state-item site-state-tags">
-              <a href="/tags/index.html">
-                <span class="site-state-item-count">4</span>
-                <span class="site-state-item-name">标签</span>
-              </a>
-            </div>
-          
-
-        </nav>
-
-        
-          <div class="feed-link motion-element">
-            <a href="/atom.xml" rel="alternate">
-              <i class="fa fa-rss"></i>
-              RSS
-            </a>
-          </div>
-        
-
-        <div class="links-of-author motion-element">
-          
         </div>
-
-        
-        
-
-        
-        
-
-        
-
-
-      </section>
-
-      
-
-      
-
     </div>
-  </aside>
+</section>
+	   <section class="container">
+    <div class="columns">
+        <div class="column two-thirds">
+            
+                  <article id="post-understanding React(2)" class="repo-list">
+    <div class="repo-list-item" >
+      <h3 class="repo-list-name" itemprop="name">
+        
+  
+      <a class="article-title" href="/2016/05/29/understanding React(2)/">understanding React(2)</a>
+  
 
+      </h3>
+      <div class="repo-list-description">
+        
+          <p>#####understanding React2</p>
 
         
       </div>
-    </main>
-
-    <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright" >
-  
-  &copy; 
-  <span itemprop="copyrightYear">2017</span>
-  <span class="with-love">
-    <i class="fa fa-heart"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">phpsmarter</span>
-</div>
-
-
-<div class="powered-by">
-  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
-</div>
-
-<div class="theme-info">
-  主题 -
-  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Pisces
-  </a>
-</div>
-
+      <p class="repo-list-meta">
+        <span class="meta-info">
+          <span class="octicon octicon-calendar"></span>
+           <time datetime="2016-05-28T23:53:25.000Z" itemprop="datePublished">2016-05-28</time>
+        </span>
 
         
+          <span class="meta-info">
+            <span class="octicon octicon-file-directory"></span>
+            <a href='/categories/javascript/' title=''>javascript</a>
+          </span>
+        
+      
+        <!--
+          
+        -->
+
+      </p>
+    </div>
+  </article>
+            
+                  <article id="post-understanding React(1)" class="repo-list">
+    <div class="repo-list-item" >
+      <h3 class="repo-list-name" itemprop="name">
+        
+  
+      <a class="article-title" href="/2016/05/29/understanding React(1)/">understanding React(1)</a>
+  
+
+      </h3>
+      <div class="repo-list-description">
+        
+          <p>Rect/Redux的系列文章
+        
+      </div>
+      <p class="repo-list-meta">
+        <span class="meta-info">
+          <span class="octicon octicon-calendar"></span>
+           <time datetime="2016-05-28T23:53:25.000Z" itemprop="datePublished">2016-05-28</time>
+        </span>
+
+        
+          <span class="meta-info">
+            <span class="octicon octicon-file-directory"></span>
+            <a href='/categories/javascript/' title=''>javascript</a>
+          </span>
+        
+      
+        <!--
+          
+        -->
+
+      </p>
+    </div>
+  </article>
+            
+                  <article id="post-Redux和React编程" class="repo-list">
+    <div class="repo-list-item" >
+      <h3 class="repo-list-name" itemprop="name">
+        
+  
+      <a class="article-title" href="/2016/05/29/Redux和React编程/">Redux Persist</a>
+  
+
+      </h3>
+      <div class="repo-list-description">
+        
+          <h1 id="Redux-Persist"><a href="#Redux-Persist" class="headerlink" title="Redux Persist"></a>Redux Persist</h1><p>Persist and rehydrate a redux store.</p>
+<p>Redux Persist is <a href="#why-redux-persist">performant</a>, easy to <a href="#basic-usage">implement</a>, and easy to <a href="./docs/ecosystem.md">extend</a>.</p>
+<p><code>npm i --save redux-persist</code></p>
+<p><a href="https://travis-ci.org/rt2zz/redux-persist" target="_blank" rel="external"><img src="https://img.shields.io/travis/rt2zz/redux-persist/master.svg?style=flat-square" alt="build status"></a><br><a href="https://www.npmjs.com/package/redux-persist" target="_blank" rel="external"><img src="https://img.shields.io/npm/v/redux-persist.svg?style=flat-square" alt="npm version"></a><br><a href="https://www.npmjs.com/package/redux-persist" target="_blank" rel="external"><img src="https://img.shields.io/npm/dm/redux-persist.svg?style=flat-square" alt="npm downloads"></a></p>
+<h2 id="Basic-Usage"><a href="#Basic-Usage" class="headerlink" title="Basic Usage"></a>Basic Usage</h2><p>Basic usage requires adding a few lines to a traditional redux application:<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> &#123;compose, applyMiddleware, createStore&#125; <span class="keyword">from</span> <span class="string">'redux'</span></div><div class="line"><span class="keyword">import</span> &#123;persistStore, autoRehydrate&#125; <span class="keyword">from</span> <span class="string">'redux-persist'</span></div><div class="line"></div><div class="line"><span class="comment">// add `autoRehydrate` as an enhancer to your store (note: `autoRehydrate` is not a middleware)</span></div><div class="line"><span class="keyword">const</span> store = createStore(</div><div class="line">  reducer,</div><div class="line">  <span class="literal">undefined</span>,</div><div class="line">  compose(</div><div class="line">    applyMiddleware(...),</div><div class="line">    autoRehydrate()</div><div class="line">  )</div><div class="line">)</div><div class="line"></div><div class="line"><span class="comment">// begin periodically persisting the store</span></div><div class="line">persistStore(store)</div></pre></td></tr></table></figure></p>
+<p>For per reducer rehydration logic, you can opt-in by adding a handler to your reducer:<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> &#123;REHYDRATE&#125; <span class="keyword">from</span> <span class="string">'redux-persist/constants'</span></div><div class="line"><span class="comment">//...</span></div><div class="line"><span class="keyword">case</span> REHYDRATE:</div><div class="line">  <span class="keyword">var</span> incoming = action.payload.myReducer</div><div class="line">  <span class="keyword">if</span> (incoming) <span class="keyword">return</span> &#123;...state, ...incoming, <span class="attr">specialKey</span>: processSpecial(incoming.specialKey)&#125;</div><div class="line">  <span class="keyword">return</span> state</div></pre></td></tr></table></figure></p>
+<p>You may also need to configure the persistence layer, or take action after rehydration has completed:<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">persistStore(store, &#123;<span class="attr">blacklist</span>: [<span class="string">'someTransientReducer'</span>]&#125;, () =&gt; &#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'rehydration complete'</span>)</div><div class="line">&#125;)</div></pre></td></tr></table></figure></p>
+<p>And if things get out of wack, just purge the storage<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">persistStore(store, config, callback).purge()</div></pre></td></tr></table></figure></p>
+<h2 id="API"><a href="#API" class="headerlink" title="API"></a>API</h2><p><a href="./docs/api.md">Full API</a></p>
+<h4 id="persistStore-store-config-callback"><a href="#persistStore-store-config-callback" class="headerlink" title="persistStore(store, [config, callback])"></a><code>persistStore(store, [config, callback])</code></h4><ul>
+<li>arguments<ul>
+<li><strong>store</strong> <em>redux store</em> The store to be persisted.</li>
+<li><strong>config</strong> <em>object</em><ul>
+<li><strong>blacklist</strong> <em>array</em> keys (read: reducers) to ignore</li>
+<li><strong>whitelist</strong> <em>array</em> keys (read: reducers) to persist, if set all other keys will be ignored.</li>
+<li><strong>storage</strong> <em>object</em> a <a href="https://github.com/rt2zz/redux-persist#storage-engines" target="_blank" rel="external">conforming</a> storage engine.</li>
+<li><strong>transforms</strong> <em>array</em> transforms to be applied during storage and during rehydration.</li>
+<li><strong>debounce</strong> <em>integer</em> debounce interval applied to storage calls (in miliseconds).</li>
+<li><strong>keyPrefix</strong> <em>string</em> change localstorage default key (default: <strong>reduxPersist:</strong>) <a href="https://github.com/rt2zz/redux-persist/issues/137" target="_blank" rel="external">Discussion on why we need this feature ?</a></li>
+</ul>
+</li>
+<li><strong>callback</strong> <em>function</em> will be called after rehydration is finished.</li>
+</ul>
+</li>
+<li>returns <strong>persistor</strong> object</li>
+</ul>
+<h4 id="persistor-object"><a href="#persistor-object" class="headerlink" title="persistor object"></a><code>persistor object</code></h4><ul>
+<li>the persistor object is returned by persistStore with the following methods:<ul>
+<li><code>.purge(keys)</code><ul>
+<li><strong>keys</strong> <em>array</em> An array of keys to be purged from storage. If not provided all keys will be purged.</li>
+</ul>
+</li>
+<li><code>.rehydrate(incoming, options)</code><ul>
+<li><strong>incoming</strong> <em>object</em> Data to be rehydrated into the store.</li>
+<li><strong>options</strong> <em>object</em> If <code>serial:true</code>, incoming should be a <em>string</em>, that will be deserialized and passed through the transforms defined in the persistor.</li>
+<li>Manually rehydrates the store with the passed data, dispatching the rehydrate action.</li>
+</ul>
+</li>
+<li><code>pause()</code><ul>
+<li>pauses persistence</li>
+</ul>
+</li>
+<li><code>resume()</code><ul>
+<li>resumes persistence</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="autoRehydrate-config"><a href="#autoRehydrate-config" class="headerlink" title="autoRehydrate(config)"></a><code>autoRehydrate(config)</code></h4><ul>
+<li>This is a store enhancer that will automatically shallow merge the persisted state for each key. Additionally it queues any actions that are dispatched before rehydration is complete, and fires them after rehydration is finished.</li>
+<li>arguments<ul>
+<li><strong>config</strong> <em>object</em><ul>
+<li><strong>log</strong> <em>boolean</em> Turn on debug mode. Default: <em>false</em>.</li>
+<li><strong>stateReconciler</strong> <em>function</em> override the default shallow merge state reconciliation.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="constants"><a href="#constants" class="headerlink" title="constants"></a><code>constants</code></h4><ul>
+<li><code>import * as constants from &#39;redux-persist/constants&#39;</code>. This includes <code>REHYDRATE</code> and <code>KEY_PREFIX</code>.</li>
+</ul>
+<h2 id="Alternate-Usage"><a href="#Alternate-Usage" class="headerlink" title="Alternate Usage"></a>Alternate Usage</h2><h4 id="getStoredState-createPersistor"><a href="#getStoredState-createPersistor" class="headerlink" title="getStoredState / createPersistor"></a>getStoredState / createPersistor</h4><p>If you need more control over persistence flow, you can implement <code>getStoredState</code> and <code>createPersistor</code>. For example you can skip autoRehydrate and directly pass restoredState into your store as initialState:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> &#123;getStoredState, autoRehydrate, createPersistor&#125; <span class="keyword">from</span> <span class="string">'redux-persist'</span></div><div class="line"></div><div class="line"><span class="keyword">const</span> persistConfig = &#123; <span class="comment">/* ... */</span> &#125;</div><div class="line"></div><div class="line">getStoredState(persistConfig, (err, restoredState) =&gt; &#123;</div><div class="line">  <span class="keyword">const</span> store = createStore(reducer, restoredState)</div><div class="line">  <span class="keyword">const</span> persistor = createPersistor(store, persistConfig)</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<h4 id="Secondary-Persistor"><a href="#Secondary-Persistor" class="headerlink" title="Secondary Persistor"></a>Secondary Persistor</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> &#123;persistStore, createPersistor&#125; <span class="keyword">from</span> <span class="string">'redux-persist'</span></div><div class="line"><span class="keyword">const</span> persistor = persistStore(store) <span class="comment">// persistStore restores and persists</span></div><div class="line"><span class="keyword">const</span> secondaryPersistor = createPersistor(store, &#123;<span class="attr">storage</span>: specialBackupStorage&#125;) <span class="comment">// createPersistor only persists</span></div></pre></td></tr></table></figure>
+<h2 id="Storage-Engines"><a href="#Storage-Engines" class="headerlink" title="Storage Engines"></a>Storage Engines</h2><ul>
+<li><strong>localStorage</strong> (default) web</li>
+<li><strong>sessionStorage</strong></li>
+<li><strong><a href="https://github.com/mozilla/localForage" target="_blank" rel="external">localForage</a></strong> (recommended) web, see usage below</li>
+<li><strong><a href="http://facebook.github.io/react-native/docs/asyncstorage.html#content" target="_blank" rel="external">AsyncStorage</a></strong> for react-native</li>
+<li><strong><a href="https://github.com/pellejacobs/redux-persist-node-storage" target="_blank" rel="external">redux-persist-node-storage</a></strong> for use in nodejs environments.</li>
+<li><strong>custom</strong> any conforming storage api implementing the following methods: <code>setItem</code> <code>getItem</code> <code>removeItem</code> <code>getAllKeys</code>. [<a href="https://github.com/facebook/react-native/blob/master/Libraries/Storage/AsyncStorage.js" target="_blank" rel="external">example</a>]</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// sessionStorage</span></div><div class="line"><span class="keyword">import</span> &#123; persistStore &#125; <span class="keyword">from</span> <span class="string">'redux-persist'</span></div><div class="line"><span class="keyword">import</span> &#123; asyncSessionStorage &#125; <span class="keyword">from</span> <span class="string">'redux-persist/storages'</span></div><div class="line">persistStore(store, &#123;<span class="attr">storage</span>: asyncSessionStorage&#125;)</div><div class="line"></div><div class="line"><span class="comment">// react-native</span></div><div class="line"><span class="keyword">import</span> &#123;AsyncStorage&#125; <span class="keyword">from</span> <span class="string">'react-native'</span></div><div class="line">persistStore(store, &#123;<span class="attr">storage</span>: AsyncStorage&#125;)</div><div class="line"></div><div class="line"><span class="comment">// web with recommended localForage</span></div><div class="line"><span class="keyword">import</span> localForage <span class="keyword">from</span> <span class="string">'localForage'</span></div><div class="line">persistStore(store, &#123;<span class="attr">storage</span>: localForage&#125;)</div></pre></td></tr></table></figure>
+<h2 id="Transforms"><a href="#Transforms" class="headerlink" title="Transforms"></a>Transforms</h2><p>Transforms allow for arbitrary state transforms before saving and during rehydration.</p>
+<ul>
+<li><a href="https://github.com/rt2zz/redux-persist-transform-immutable" target="_blank" rel="external">immutable</a> - support immutable reducers</li>
+<li><a href="https://github.com/rt2zz/redux-persist-transform-compress" target="_blank" rel="external">compress</a> - compress your serialized state with lz-string</li>
+<li><a href="https://github.com/maxdeviant/redux-persist-transform-encrypt" target="_blank" rel="external">encrypt</a> - encrypt your serialized state with AES</li>
+<li><a href="https://github.com/edy/redux-persist-transform-filter" target="_blank" rel="external">filter</a> - store or load a subset of your state</li>
+<li><a href="https://github.com/actra-development/redux-persist-transform-filter-immutable" target="_blank" rel="external">filter-immutable</a> - store or load a subset of your state with support for immutablejs</li>
+<li><a href="https://github.com/gabceb/redux-persist-transform-expire" target="_blank" rel="external">expire</a> - expire a specific subset of your state based on a property</li>
+<li>custom transforms:<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> &#123; createTransform, persistStore &#125; <span class="keyword">from</span> <span class="string">'redux-persist'</span></div><div class="line"></div><div class="line"><span class="keyword">let</span> myTransform = createTransform(</div><div class="line">  <span class="comment">// transform state coming from redux on its way to being serialized and stored</span></div><div class="line">  (inboundState, key) =&gt; specialSerialize(inboundState, key),</div><div class="line">  <span class="comment">// transform state coming from storage, on its way to be rehydrated into redux</span></div><div class="line">  (outboundState, key) =&gt; specialDeserialize(outboundState, key),</div><div class="line">  <span class="comment">// configuration options</span></div><div class="line">  &#123;<span class="attr">whitelist</span>: [<span class="string">'specialReducer'</span>]&#125;</div><div class="line">)</div><div class="line"></div><div class="line">persistStore(store, &#123;<span class="attr">transforms</span>: [myTransform]&#125;)</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="Migrations"><a href="#Migrations" class="headerlink" title="Migrations"></a>Migrations</h2><p>One challenge developers encounter when persisting state for the first time is what happens when the shape of the application state changes between deployments? Solution: <a href="https://github.com/wildlifela/redux-persist-migrate" target="_blank" rel="external">redux-persist-migrate</a></p>
+<h2 id="Action-Buffer"><a href="#Action-Buffer" class="headerlink" title="Action Buffer"></a>Action Buffer</h2><p>A common mistake is to fire actions that modify state before rehydration is complete which then will be overwritten by the rehydrate action. You can either defer firing of those actions until rehydration is complete, or you can use an <a href="https://github.com/rt2zz/redux-action-buffer/blob/master/README.md#redux-persist-example" target="_blank" rel="external">action buffer</a>.</p>
+<h2 id="Why-Redux-Persist"><a href="#Why-Redux-Persist" class="headerlink" title="Why Redux Persist"></a>Why Redux Persist</h2><ul>
+<li>Performant out of the box (uses a time iterator and operates on state partials)</li>
+<li>Keeps custom rehydration logic in the reducers (where it intuitively belongs)</li>
+<li>Supports localStorage, react-native AsyncStorage, or any conforming storage api</li>
+</ul>
+<p>Because persisting state is inherently stateful, <code>persistStore</code> lives outside of the redux store. Importantly this keeps the store ‘pure’ and makes testing and extending the persistor much easier.</p>
+<h2 id="About-Auto-Rehydrate"><a href="#About-Auto-Rehydrate" class="headerlink" title="About Auto Rehydrate"></a>About Auto Rehydrate</h2><p>autoRehydrate is a store enhancer that automatically rehydrates state.</p>
+<p>While auto rehydration works out of the box, individual reducers can opt in to handling their own rehydration, allowing for more complex operations like data transforms and cache invalidation. Simply define a handler for the rehydrate action in your reducer, and if the state is mutated, auto rehydrate will skip that key.</p>
+<p>Auto rehydrate is provided as a convenience. In a large application, or one with atypical reducer composition, auto rehydration may not be convenient. In this case, simply omit autoRehydrate. Rehydration actions will still be fired by <code>persistStore</code>, and can then be handled individually by reducers or using a custom rehydration handler.</p>
 
         
       </div>
-    </footer>
+      <p class="repo-list-meta">
+        <span class="meta-info">
+          <span class="octicon octicon-calendar"></span>
+           <time datetime="2016-05-28T23:53:25.000Z" itemprop="datePublished">2016-05-28</time>
+        </span>
 
-    
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
         
-      </div>
-    
+          <span class="meta-info">
+            <span class="octicon octicon-file-directory"></span>
+            <a href='/categories/Redux/' title=''>Redux</a>
+          </span>
+        
+      
+        <!--
+          
+            <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Redux/">Redux</a></li></ul>
+          
+        -->
 
-  </div>
+      </p>
+    </div>
+  </article>
+            
+        </div>
+        <div class="column one-third">
+          <!--处理未安装 search 插件 默认 Google 搜索-->
+ 
 
-  
+<h3>Search</h3>
 
-<script type="text/javascript">
-  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
-    window.Promise = null;
-  }
-</script>
+<div id="site_search">
 
+	<!-- Google -->
+	
 
+	<!-- 本地搜索 -->
+	
+		<form id="search-form" >
+			<input type="text" id="search" placeholder="Search" >
+			<button type="button" class="btn btn-default" id="site_search_do"><span class="octicon octicon-search"></span></button>
+		</form>
 
+		<div id="local-search-result"></div>
 
+		<script src="/js/search.js"></script>	
+		<script type="text/javascript">
+			$(function(){
+				var currentIndex = -1;
+				var search_path = "search.xml";
+				if (!search_path) search_path = "search.xml";
+				var path = "/" + search_path;
+				searchFunc(path, 'search', 'local-search-result');
 
+				$(document).delegate("#local-search-result>.search-result-list li","hover",function(){
+					var liNode = $("#local-search-result>.search-result-list li");
+					liNode.removeClass("hover");
+					currentIndex = $("#local-search-result>.search-result-list li").index($(this));
+					liNode.eq(currentIndex).addClass("hover");
+				})
 
+				$("#search-form").submit(function(){
+					return false;
+				})
 
-
-
-  
-
-
-
-
-  
-  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-
-  
-  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-
-  
-  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
-
-
-
-  
-  
-
-
-  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
-
-  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
-
-
-
-  
-  
-    <script type="text/javascript" id="motion.page.archive">
-      $('.archive-year').velocity('transition.slideLeftIn');
-    </script>
-  
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
-
-
-
-  
-
-
-
-  
-
-
-
+				$("#search").keydown(function(event){
+					var keyCode = event.keyCode;
+					var liNode = $("#local-search-result>.search-result-list li");
+					if(keyCode == 38 || keyCode == 40 || keyCode == 13){
+						liNode.removeClass("hover");
+						if(keyCode == 38){
+							if(currentIndex - 1 >= 0) currentIndex --;
+						}
+						if(keyCode == 40){
+							if(currentIndex + 1 < liNode.length) currentIndex ++;
+						}
+						if(keyCode == 13){
+							location.href = liNode.eq(currentIndex).find("a").attr("href");
+						}
+						liNode.eq(currentIndex).addClass("hover");
+						return false;
+					}else{
+						currentIndex = -1;
+					}
+				})
+			})
+		</script>
 
 	
 
+</div>
 
+<h3>Popular Repositories</h3>
+    <div class="popular-container"></div>
+    
+    <script type="text/template" id="popular-list-template">
+        <a href="{%=clone_url%}" class="card text-center" target="_blank">
+            <div class="thumbnail">
+                <div class="card-image geopattern" data-pattern-id="{%=name%}">
+                    <div class="card-image-cell">
+                        <h3 class="card-title">
+                            {%=name%}
+                        </h3>
+                    </div>
+                </div>
+                <div class="caption">
+                    <div class="card-description">
+                        <p class="card-text">
+                            {%=description%}
+                        </p>
+                    </div>
+                    <div class="card-text">
+                        <span class="meta-info tooltipped tooltipped-n" aria-label="{%=stargazers_count%} stars">
+                            <span class="octicon octicon-star"></span> {%=stargazers_count%}
+                        </span>
+                        <span class="meta-info tooltipped tooltipped-n" aria-label="{%=forks_count%} forks">
+                            <span class="octicon octicon-git-branch"></span> {%=forks_count%}
+                        </span>
+                        <span class="meta-info tooltipped tooltipped-n" aria-label="最后更新时间：{%=updated_at%}">
+                            <span class="octicon octicon-clock"></span>
+                            <time datetime="{%=updated_at%}">{%=updated_at%}</time>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </script>
 
+    <script src="/js/baiduTemplate.js"></script>
+    <script type="text/javascript">
+        var popular_repos = function(){
 
+            var baiduTpl = new Object();
 
-  
-
-
-
-
-
-  
-
-
-
-
-
-  
-
-
-
-
-
-
-  
-
-  <script type="text/javascript">
-    // Popup Window;
-    var isfetched = false;
-    // Search DB path;
-    var search_path = "search.xml";
-    if (search_path.length == 0) {
-      search_path = "search.xml";
-    }
-    var path = "/" + search_path;
-    // monitor main search box;
-
-    function proceedsearch() {
-      $("body")
-        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
-        .css('overflow', 'hidden');
-      $('.popup').toggle();
-    }
-    // search function;
-    var searchFunc = function(path, search_id, content_id) {
-      'use strict';
-      $.ajax({
-        url: path,
-        dataType: "xml",
-        async: true,
-        success: function( xmlResponse ) {
-          // get the contents from search data
-          isfetched = true;
-          $('.popup').detach().appendTo('.header-inner');
-          var datas = $( "entry", xmlResponse ).map(function() {
-            return {
-              title: $( "title", this ).text(),
-              content: $("content",this).text(),
-              url: $( "url" , this).text()
+            var handleTpl = function(){
+                baiduTpl.popular_list = baidu.template("popular-list-template");
             };
-          }).get();
-          var $input = document.getElementById(search_id);
-          var $resultContent = document.getElementById(content_id);
-          $input.addEventListener('input', function(){
-            var matchcounts = 0;
-            var str='<ul class=\"search-result-list\">';
-            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
-            $resultContent.innerHTML = "";
-            if (this.value.trim().length > 1) {
-              // perform local searching
-              datas.forEach(function(data) {
-                var isMatch = false;
-                var content_index = [];
-                var data_title = data.title.trim().toLowerCase();
-                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
-                var data_url = decodeURIComponent(data.url);
-                var index_title = -1;
-                var index_content = -1;
-                var first_occur = -1;
-                // only match artiles with not empty titles and contents
-                if(data_title != '') {
-                  keywords.forEach(function(keyword, i) {
-                    index_title = data_title.indexOf(keyword);
-                    index_content = data_content.indexOf(keyword);
-                    if( index_title >= 0 || index_content >= 0 ){
-                      isMatch = true;
-                      if (i == 0) {
-                        first_occur = index_content;
-                      }
-                    }
 
-                  });
+            var handleGithub = function(){
+                var popularContainer = $(".popular-container");
+
+                var repos = "hexo-theme-primer".split(",");
+                for(var i in repos){
+                    var name = repos[i];
+                    $.get("https://api.github.com/repos/yumemor/"+name,handle);
                 }
-                // show search results
-                if (isMatch) {
-                  matchcounts += 1;
-                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
-                  var content = data.content.trim().replace(/<[^>]+>/g,"");
-                  if (first_occur >= 0) {
-                    // cut out 100 characters
-                    var start = first_occur - 20;
-                    var end = first_occur + 80;
-                    if(start < 0){
-                      start = 0;
-                    }
-                    if(start == 0){
-                      end = 50;
-                    }
-                    if(end > content.length){
-                      end = content.length;
-                    }
-                    var match_content = content.substring(start, end);
-                    // highlight all keywords
-                    keywords.forEach(function(keyword){
-                      var regS = new RegExp(keyword, "gi");
-                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
-                    });
 
-                    str += "<p class=\"search-result\">" + match_content +"...</p>"
-                  }
-                  str += "</li>";
+                function handle(result){
+                    result.updated_at = result.updated_at.split("T")[0];
+                    if(result){
+                        var html = baiduTpl.popular_list(result);
+                        popularContainer.append(html);
+                        $(".geopattern").each(function(){           
+                            $(this).geopattern($(this).data('pattern-id'));
+                        });
+                    }
                 }
-              })};
-            str += "</ul>";
-            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
-            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
-            $resultContent.innerHTML = str;
-          });
-          proceedsearch();
-        }
-      });}
+            };
 
-    // handle and trigger popup window;
-    $('.popup-trigger').click(function(e) {
-      e.stopPropagation();
-      if (isfetched == false) {
-        searchFunc(path, 'local-search-input', 'local-search-result');
-      } else {
-        proceedsearch();
-      };
-    });
+            return {
+                init:function(){
+                    handleTpl();
+                    handleGithub();
+                }
+            }
+        }; 
+        $(popular_repos().init);
+    </script>
 
-    $('.popup-btn-close').click(function(e){
-      $('.popup').hide();
-      $(".local-search-pop-overlay").remove();
-      $('body').css('overflow', '');
-    });
-    $('.popup').click(function(e){
-      e.stopPropagation();
-    });
-  </script>
+        </div>
+    </div>
 
+    
+</section>
 
+<footer class="container">
+    <div class="site-footer" role="contentinfo">
+        <div class="copyright left mobile-block">
+                © 2016
+                <span title="yumemor">yumemor</span>
+                <a href="javascript:window.scrollTo(0,0)" class="right mobile-visible">TOP</a>
+        </div>
 
+        <ul class="site-footer-links right mobile-hidden">
+            <li>
+                <a href="javascript:window.scrollTo(0,0)" >TOP</a>
+            </li>
+        </ul>
 
+        <a href="https://github.com/yumemor/hexo-theme-primer" target="_blank" aria-label="view source code">
+            <span class="mega-octicon octicon-mark-github" title="GitHub"></span>
+        </a>
 
-  
+        <ul class="site-footer-links mobile-hidden">
+            
+                  
+                  <li>
+                    <a href="/"  title="首页">首页</a>
+                  </li>
+            
+                  
+                  <li>
+                    <a href="/category/" target="true" title="分类">分类</a>
+                  </li>
+            
+                  
+                  <li>
+                    <a href="/open-source/"  title="开源项目">开源项目</a>
+                  </li>
+            
+                  
+                  <li>
+                    <a href="/message/"  title="留言板">留言板</a>
+                  </li>
+            
+            <li>
+                <a href="/atom.xml">
+                    <span class="octicon octicon-rss" style="color:orange;"></span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</footer>
 
-  
+		<script src="/js/geopattern.js"></script>
+		<script src="/js/highlight.pack.js"></script>
+		<script src="/lib/fancybox/jquery.fancybox-1.3.4.pack.js"></script>
 
-  
+		
 
-  
+		<script src="/js/index.js"></script>
 
-</body>
+		 <script src="/js/popular_repo.js"></script> 
+
+	</body>
 </html>
