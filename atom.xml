@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-02-19T16:47:49.000Z</updated>
+  <updated>2017-03-23T07:31:30.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,20 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>new article</title>
+    <link href="http://yoursite.com/2017/03/23/new-article-2/"/>
+    <id>http://yoursite.com/2017/03/23/new-article-2/</id>
+    <published>2017-03-23T15:31:30.000Z</published>
+    <updated>2017-03-23T07:31:30.000Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>new article</title>
@@ -121,7 +135,7 @@
 <p>我总结这是<code>社会进化论</code>.现代的教育系统片面的把多样性的衡量标准简化为分数就扼杀了社会的多样性，假如面对社会文明的变革，没有多样性的思想，那就比较可怕了。当然我这种思想也是片面的片面，如果目前的教育方式是对的呢?<br>到底应该怎么做呢？ 一个人的生命历程在宇宙中无不足道，一个地球6000年的文明史会比一个人的历程显著多少呢？<br>没有对与错，只能一直保持思考。或许我们的这个宇宙是<code>嵌套在某个人的思想中呢</code>。哈哈，写下这句话我想笑。javascript中的内部函数，闭包。呵呵。</p>
 <p>总结一下，不要相信成功学，要有个性的思维方式。保持社会思维的多样性。</p>
 <p>#####2016年函数</p>
-<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">  <span class="keyword">var</span> myJavascript = <span class="function"><span class="keyword">function</span><span class="params">(jsgrammar, react, jspattern)</span> </span>&#123;</div><div class="line">  <span class="keyword">this</span>.jsgrammar = jsgrammar;</div><div class="line">  <span class="keyword">this</span>.react = react;</div><div class="line">  <span class="keyword">this</span>.jspattern = jspattern;</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> myRunning = <span class="function"><span class="keyword">function</span><span class="params">(running)</span> </span>&#123;</div><div class="line">  <span class="keyword">this</span>.running = running;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="keyword">var</span> year2016Class = <span class="function"><span class="keyword">function</span><span class="params">(jsgrammar, react, jspattern, running)</span> </span>&#123;</div><div class="line">  <span class="keyword">this</span>.one = <span class="keyword">new</span> myJavascirpt(jsgrammar, react, jspattern);</div><div class="line">  <span class="keyword">this</span>.two = <span class="keyword">new</span> myRunning(running);</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">  <span class="keyword">var</span> myJavascript = <span class="function"><span class="keyword">function</span>(<span class="params">jsgrammar, react, jspattern</span>) </span>&#123;</div><div class="line">  <span class="keyword">this</span>.jsgrammar = jsgrammar;</div><div class="line">  <span class="keyword">this</span>.react = react;</div><div class="line">  <span class="keyword">this</span>.jspattern = jspattern;</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> myRunning = <span class="function"><span class="keyword">function</span>(<span class="params">running</span>) </span>&#123;</div><div class="line">  <span class="keyword">this</span>.running = running;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="keyword">var</span> year2016Class = <span class="function"><span class="keyword">function</span>(<span class="params">jsgrammar, react, jspattern, running</span>) </span>&#123;</div><div class="line">  <span class="keyword">this</span>.one = <span class="keyword">new</span> myJavascirpt(jsgrammar, react, jspattern);</div><div class="line">  <span class="keyword">this</span>.two = <span class="keyword">new</span> myRunning(running);</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
 <p>好吧，有点啰嗦。最近生活里全都是javascript的模式了。<br>整年的生活其实就是这两个函数。</p>
 <p>下面开始代码注释了</p>
 <ol>
@@ -181,7 +195,7 @@
 <p>Redux Persist is <a href="#why-redux-persist">performant</a>, easy to <a href="#basic-usage">implement</a>, and easy to <a href="./docs/ecosystem.md">extend</a>.</p>
 <p><code>npm i --save redux-persist</code></p>
 <p><a href="https://travis-ci.org/rt2zz/redux-persist" target="_blank" rel="external"><img src="https://img.shields.io/travis/rt2zz/redux-persist/master.svg?style=flat-square" alt="build status"></a><br><a href="https://www.npmjs.com/package/redux-persist" target="_blank" rel="external"><img src="https://img.shields.io/npm/v/redux-persist.svg?style=flat-square" alt="npm version"></a><br><a href="https://www.npmjs.com/package/redux-persist" target="_blank" rel="external"><img src="https://img.shields.io/npm/dm/redux-persist.svg?style=flat-square" alt="npm downloads"></a></p>
-<h2 id="Basic-Usage"><a href="#Basic-Usage" class="headerlink" title="Basic Usage"></a>Basic Usage</h2><p>Basic usage requires adding a few lines to a traditional redux application:<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> &#123;compose, applyMiddleware, createStore&#125; <span class="keyword">from</span> <span class="string">'redux'</span></div><div class="line"><span class="keyword">import</span> &#123;persistStore, autoRehydrate&#125; <span class="keyword">from</span> <span class="string">'redux-persist'</span></div><div class="line"></div><div class="line"><span class="comment">// add `autoRehydrate` as an enhancer to your store (<span class="doctag">note:</span> `autoRehydrate` is not a middleware)</span></div><div class="line"><span class="keyword">const</span> store = createStore(</div><div class="line">  reducer,</div><div class="line">  <span class="literal">undefined</span>,</div><div class="line">  compose(</div><div class="line">    applyMiddleware(...),</div><div class="line">    autoRehydrate()</div><div class="line">  )</div><div class="line">)</div><div class="line"></div><div class="line"><span class="comment">// begin periodically persisting the store</span></div><div class="line">persistStore(store)</div></pre></td></tr></table></figure></p>
+<h2 id="Basic-Usage"><a href="#Basic-Usage" class="headerlink" title="Basic Usage"></a>Basic Usage</h2><p>Basic usage requires adding a few lines to a traditional redux application:<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> &#123;compose, applyMiddleware, createStore&#125; <span class="keyword">from</span> <span class="string">'redux'</span></div><div class="line"><span class="keyword">import</span> &#123;persistStore, autoRehydrate&#125; <span class="keyword">from</span> <span class="string">'redux-persist'</span></div><div class="line"></div><div class="line"><span class="comment">// add `autoRehydrate` as an enhancer to your store (note: `autoRehydrate` is not a middleware)</span></div><div class="line"><span class="keyword">const</span> store = createStore(</div><div class="line">  reducer,</div><div class="line">  <span class="literal">undefined</span>,</div><div class="line">  compose(</div><div class="line">    applyMiddleware(...),</div><div class="line">    autoRehydrate()</div><div class="line">  )</div><div class="line">)</div><div class="line"></div><div class="line"><span class="comment">// begin periodically persisting the store</span></div><div class="line">persistStore(store)</div></pre></td></tr></table></figure></p>
 <p>For per reducer rehydration logic, you can opt-in by adding a handler to your reducer:<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> &#123;REHYDRATE&#125; <span class="keyword">from</span> <span class="string">'redux-persist/constants'</span></div><div class="line"><span class="comment">//...</span></div><div class="line"><span class="keyword">case</span> REHYDRATE:</div><div class="line">  <span class="keyword">var</span> incoming = action.payload.myReducer</div><div class="line">  <span class="keyword">if</span> (incoming) <span class="keyword">return</span> &#123;...state, ...incoming, <span class="attr">specialKey</span>: processSpecial(incoming.specialKey)&#125;</div><div class="line">  <span class="keyword">return</span> state</div></pre></td></tr></table></figure></p>
 <p>You may also need to configure the persistence layer, or take action after rehydration has completed:<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">persistStore(store, &#123;<span class="attr">blacklist</span>: [<span class="string">'someTransientReducer'</span>]&#125;, () =&gt; &#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'rehydration complete'</span>)</div><div class="line">&#125;)</div></pre></td></tr></table></figure></p>
 <p>And if things get out of wack, just purge the storage<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">persistStore(store, config, callback).purge()</div></pre></td></tr></table></figure></p>
@@ -290,28 +304,6 @@
   </entry>
   
   <entry>
-    <title>understanding React(2)</title>
-    <link href="http://yoursite.com/2016/05/29/understanding%20React(2)/"/>
-    <id>http://yoursite.com/2016/05/29/understanding React(2)/</id>
-    <published>2016-05-28T23:53:25.000Z</published>
-    <updated>2017-03-23T02:45:02.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>#####understanding React2</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;#####understanding React2&lt;/p&gt;
-
-    
-    </summary>
-    
-      <category term="javascript" scheme="http://yoursite.com/categories/javascript/"/>
-    
-    
-  </entry>
-  
-  <entry>
     <title>understanding React(1)</title>
     <link href="http://yoursite.com/2016/05/29/understanding%20React(1)/"/>
     <id>http://yoursite.com/2016/05/29/understanding React(1)/</id>
@@ -338,6 +330,28 @@
     <summary type="html">
     
       &lt;p&gt;Rect/Redux的系列文章
+    
+    </summary>
+    
+      <category term="javascript" scheme="http://yoursite.com/categories/javascript/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>understanding React(2)</title>
+    <link href="http://yoursite.com/2016/05/29/understanding%20React(2)/"/>
+    <id>http://yoursite.com/2016/05/29/understanding React(2)/</id>
+    <published>2016-05-28T23:53:25.000Z</published>
+    <updated>2017-03-23T02:45:02.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>#####understanding React2</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;#####understanding React2&lt;/p&gt;
+
     
     </summary>
     
