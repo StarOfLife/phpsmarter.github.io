@@ -27,6 +27,9 @@
 
 
 
+
+
+
   
   
   <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
@@ -110,7 +113,7 @@ lib/mongo.js
   var CONFIG = {
     root: '/',
     scheme: 'Pisces',
-    sidebar: {"position":"left","display":"post"},
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
     fancybox: true,
     motion: true,
     duoshuo: {
@@ -157,36 +160,42 @@ lib/mongo.js
 
 
 
+
+
+
+
   
   
     
   
 
-  <div class="container one-collumn sidebar-position-left  ">
+  <div class="container sidebar-position-left  ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-meta ">
-  
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
 
-  <div class="custom-logo-site-title">
-    <a href="/"  class="brand" rel="start">
-      <span class="logo-line-before"><i></i></span>
-      <span class="site-title">phpsmarter</span>
-      <span class="logo-line-after"><i></i></span>
-    </a>
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">phpsmarter</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
   </div>
-    
-      <p class="site-subtitle"></p>
-    
-</div>
 
-<div class="site-nav-toggle">
-  <button>
-    <span class="btn-bar"></span>
-    <span class="btn-bar"></span>
-    <span class="btn-bar"></span>
-  </button>
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
 </div>
 
 <nav class="site-nav">
@@ -251,7 +260,7 @@ lib/mongo.js
             
               <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br />
             
-            Sitemap
+            站点地图
           </a>
         </li>
       
@@ -274,12 +283,23 @@ lib/mongo.js
   
     <div class="site-search">
       
-  <div class="popup">
- <span class="search-icon fa fa-search"></span>
- <input type="text" id="local-search-input">
- <div id="local-search-result"></div>
- <span class="popup-btn-close">close</span>
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
 </div>
+
 
 
     </div>
@@ -300,7 +320,7 @@ lib/mongo.js
   <div id="posts" class="posts-expand">
   <header class="post-header">
 
-	<h2 class="post-title" itemprop="name headline"></h2>
+	<h1 class="post-title" itemprop="name headline"></h1>
 
 
 
@@ -324,7 +344,7 @@ lib/mongo.js
 </li>
 </ol>
 <p>或者：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">MongoClient.connect(<span class="string">'mongodb://localhost:27017'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">err, mongodb</span>) </span>&#123;</div><div class="line">  <span class="keyword">if</span> (err) &#123;</div><div class="line">    <span class="keyword">return</span> callback(err);</div><div class="line">  &#125;</div><div class="line">  mongodb.db(<span class="string">'test'</span>).collection(<span class="string">'users'</span>).find(&#123; <span class="attr">name</span>: <span class="string">'xxx'</span> &#125;, <span class="function"><span class="keyword">function</span> (<span class="params">err, users</span>) </span>&#123;</div><div class="line">    <span class="keyword">if</span> (err) &#123;</div><div class="line">      <span class="keyword">return</span> callback(err);</div><div class="line">    &#125;</div><div class="line">  &#125;)</div><div class="line">  ...</div></pre></td></tr></table></figure>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">MongoClient.connect(<span class="string">'mongodb://localhost:27017'</span>, <span class="function"><span class="keyword">function</span> <span class="params">(err, mongodb)</span> </span>&#123;</div><div class="line">  <span class="keyword">if</span> (err) &#123;</div><div class="line">    <span class="keyword">return</span> callback(err);</div><div class="line">  &#125;</div><div class="line">  mongodb.db(<span class="string">'test'</span>).collection(<span class="string">'users'</span>).find(&#123; name: <span class="string">'xxx'</span> &#125;, <span class="function"><span class="keyword">function</span> <span class="params">(err, users)</span> </span>&#123;</div><div class="line">    <span class="keyword">if</span> (err) &#123;</div><div class="line">      <span class="keyword">return</span> callback(err);</div><div class="line">    &#125;</div><div class="line">  &#125;)</div><div class="line">  ...</div></pre></td></tr></table></figure>
 <p>现在支持 Promise 了，和 co 一起使用好很多。</p>
 <ol>
 <li>不支持文档校验。Mongoose 通过 Schema 支持文档校验，虽说 mongodb 是 no schema 的，但在生产环境中使用 Schema 有两点好处。一是对文档做校验，防止非正常情况下写入错误的数据到数据库，二是可以简化一些代码，如类型为 ObjectId 的字段查询或更新时可通过对应的字符串操作，不用每次包装成 ObjectId 对象。</li>
@@ -365,7 +385,7 @@ lib/mongo.js
     
   </div>
 
-          
+
           </div>
           
 
@@ -401,10 +421,12 @@ lib/mongo.js
                src="/images/avatar.gif"
                alt="phpsmarter" />
           <p class="site-author-name" itemprop="name">phpsmarter</p>
-          <p class="site-description motion-element" itemprop="description"></p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
         </div>
         <nav class="site-state motion-element">
-        
+
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
@@ -415,8 +437,10 @@ lib/mongo.js
           
 
           
+            
+            
             <div class="site-state-item site-state-categories">
-              <a href="/categories">
+              <a href="/categories/index.html">
                 <span class="site-state-item-count">2</span>
                 <span class="site-state-item-name">分类</span>
               </a>
@@ -424,8 +448,10 @@ lib/mongo.js
           
 
           
+            
+            
             <div class="site-state-item site-state-tags">
-              <a href="/tags">
+              <a href="/tags/index.html">
                 <span class="site-state-item-count">1</span>
                 <span class="site-state-item-name">标签</span>
               </a>
@@ -457,6 +483,8 @@ lib/mongo.js
 
 
       </section>
+
+      
 
       
 
@@ -499,9 +527,13 @@ lib/mongo.js
       </div>
     </footer>
 
-    <div class="back-to-top">
-      <i class="fa fa-arrow-up"></i>
-    </div>
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
   </div>
 
   
@@ -595,17 +627,19 @@ lib/mongo.js
 
   
 
-  
-      <!-- UY BEGIN -->
-      <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid="></script>
-      <!-- UY END -->
-  
 
 
 
 
   
+
+
+
+
+
+
   
+
   <script type="text/javascript">
     // Popup Window;
     var isfetched = false;
@@ -618,7 +652,9 @@ lib/mongo.js
     // monitor main search box;
 
     function proceedsearch() {
-      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
       $('.popup').toggle();
     }
     // search function;
@@ -722,7 +758,7 @@ lib/mongo.js
 
     $('.popup-btn-close').click(function(e){
       $('.popup').hide();
-      $(".popoverlay").remove();
+      $(".local-search-pop-overlay").remove();
       $('body').css('overflow', '');
     });
     $('.popup').click(function(e){
@@ -731,7 +767,8 @@ lib/mongo.js
   </script>
 
 
-  
+
+
 
   
 
@@ -739,6 +776,7 @@ lib/mongo.js
 
   
 
+  
 
 </body>
 </html>

@@ -27,6 +27,9 @@
 
 
 
+
+
+
   
   
   <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
@@ -110,7 +113,7 @@
   var CONFIG = {
     root: '/',
     scheme: 'Pisces',
-    sidebar: {"position":"left","display":"post"},
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
     fancybox: true,
     motion: true,
     duoshuo: {
@@ -151,36 +154,42 @@
 
 
 
+
+
+
+
   
   
     
   
 
-  <div class="container one-collumn sidebar-position-left page-post-detail ">
+  <div class="container sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-meta ">
-  
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
 
-  <div class="custom-logo-site-title">
-    <a href="/"  class="brand" rel="start">
-      <span class="logo-line-before"><i></i></span>
-      <span class="site-title">phpsmarter</span>
-      <span class="logo-line-after"><i></i></span>
-    </a>
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">phpsmarter</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
   </div>
-    
-      <p class="site-subtitle"></p>
-    
-</div>
 
-<div class="site-nav-toggle">
-  <button>
-    <span class="btn-bar"></span>
-    <span class="btn-bar"></span>
-    <span class="btn-bar"></span>
-  </button>
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
 </div>
 
 <nav class="site-nav">
@@ -245,7 +254,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br />
             
-            Sitemap
+            站点地图
           </a>
         </li>
       
@@ -268,12 +277,23 @@
   
     <div class="site-search">
       
-  <div class="popup">
- <span class="search-icon fa fa-search"></span>
- <input type="text" id="local-search-input">
- <div id="local-search-result"></div>
- <span class="popup-btn-close">close</span>
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
 </div>
+
 
 
     </div>
@@ -301,20 +321,17 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/12/23/Myyear2016javascript/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/12/23/Myyear2016javascript/">
 
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="phpsmarter">
-    <meta itemprop="description" content="">
-    <meta itemprop="image" content="/images/avatar.gif">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="phpsmarter">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="phpsmarter" src="">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="phpsmarter">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
     </span>
-  </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="phpsmarter">
+    </span>
 
     
       <header class="post-header">
@@ -340,7 +357,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-12-23T09:10:36+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-12-23T09:10:36+08:00">
                 2016-12-23
               </time>
             
@@ -357,10 +374,28 @@
           
 
           
-
-          
           
 
+          
+
+          
+            <div class="post-wordcount">
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  
+                </span>
+              
+
+              
+
+              
+            </div>
           
 
           
@@ -390,7 +425,7 @@
 <p>我总结这是<code>社会进化论</code>.现代的教育系统片面的把多样性的衡量标准简化为分数就扼杀了社会的多样性，假如面对社会文明的变革，没有多样性的思想，那就比较可怕了。当然我这种思想也是片面的片面，如果目前的教育方式是对的呢?<br>到底应该怎么做呢？ 一个人的生命历程在宇宙中无不足道，一个地球6000年的文明史会比一个人的历程显著多少呢？<br>没有对与错，只能一直保持思考。或许我们的这个宇宙是<code>嵌套在某个人的思想中呢</code>。哈哈，写下这句话我想笑。javascript中的内部函数，闭包。呵呵。</p>
 <p>总结一下，不要相信成功学，要有个性的思维方式。保持社会思维的多样性。</p>
 <p>#####2016年函数</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">  <span class="keyword">var</span> myJavascript = <span class="function"><span class="keyword">function</span>(<span class="params">jsgrammar, react, jspattern</span>) </span>&#123;</div><div class="line">  <span class="keyword">this</span>.jsgrammar = jsgrammar;</div><div class="line">  <span class="keyword">this</span>.react = react;</div><div class="line">  <span class="keyword">this</span>.jspattern = jspattern;</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> myRunning = <span class="function"><span class="keyword">function</span>(<span class="params">running</span>) </span>&#123;</div><div class="line">  <span class="keyword">this</span>.running = running;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="keyword">var</span> year2016Class = <span class="function"><span class="keyword">function</span>(<span class="params">jsgrammar, react, jspattern, running</span>) </span>&#123;</div><div class="line">  <span class="keyword">this</span>.one = <span class="keyword">new</span> myJavascirpt(jsgrammar, react, jspattern);</div><div class="line">  <span class="keyword">this</span>.two = <span class="keyword">new</span> myRunning(running);</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">  <span class="keyword">var</span> myJavascript = <span class="function"><span class="keyword">function</span><span class="params">(jsgrammar, react, jspattern)</span> </span>&#123;</div><div class="line">  <span class="keyword">this</span>.jsgrammar = jsgrammar;</div><div class="line">  <span class="keyword">this</span>.react = react;</div><div class="line">  <span class="keyword">this</span>.jspattern = jspattern;</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> myRunning = <span class="function"><span class="keyword">function</span><span class="params">(running)</span> </span>&#123;</div><div class="line">  <span class="keyword">this</span>.running = running;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="keyword">var</span> year2016Class = <span class="function"><span class="keyword">function</span><span class="params">(jsgrammar, react, jspattern, running)</span> </span>&#123;</div><div class="line">  <span class="keyword">this</span>.one = <span class="keyword">new</span> myJavascirpt(jsgrammar, react, jspattern);</div><div class="line">  <span class="keyword">this</span>.two = <span class="keyword">new</span> myRunning(running);</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
 <p>好吧，有点啰嗦。最近生活里全都是javascript的模式了。<br>整年的生活其实就是这两个函数。</p>
 <p>下面开始代码注释了</p>
 <ol>
@@ -443,8 +478,18 @@
       
     </div>
 
+    <div>
+      
+        
+
+      
+    </div>
 
     <footer class="post-footer">
+      
+
+      
+        
       
 
       
@@ -481,7 +526,7 @@
     </div>
   </div>
 
-          
+
           </div>
           
 
@@ -517,10 +562,12 @@
                src="/images/avatar.gif"
                alt="phpsmarter" />
           <p class="site-author-name" itemprop="name">phpsmarter</p>
-          <p class="site-description motion-element" itemprop="description"></p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
         </div>
         <nav class="site-state motion-element">
-        
+
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
@@ -531,8 +578,10 @@
           
 
           
+            
+            
             <div class="site-state-item site-state-categories">
-              <a href="/categories">
+              <a href="/categories/index.html">
                 <span class="site-state-item-count">2</span>
                 <span class="site-state-item-name">分类</span>
               </a>
@@ -540,8 +589,10 @@
           
 
           
+            
+            
             <div class="site-state-item site-state-tags">
-              <a href="/tags">
+              <a href="/tags/index.html">
                 <span class="site-state-item-count">1</span>
                 <span class="site-state-item-name">标签</span>
               </a>
@@ -573,6 +624,8 @@
 
 
       </section>
+
+      
 
       
 
@@ -615,9 +668,13 @@
       </div>
     </footer>
 
-    <div class="back-to-top">
-      <i class="fa fa-arrow-up"></i>
-    </div>
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
   </div>
 
   
@@ -715,17 +772,19 @@
 
   
 
-  
-      <!-- UY BEGIN -->
-      <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid="></script>
-      <!-- UY END -->
-  
 
 
 
 
   
+
+
+
+
+
+
   
+
   <script type="text/javascript">
     // Popup Window;
     var isfetched = false;
@@ -738,7 +797,9 @@
     // monitor main search box;
 
     function proceedsearch() {
-      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
       $('.popup').toggle();
     }
     // search function;
@@ -842,7 +903,7 @@
 
     $('.popup-btn-close').click(function(e){
       $('.popup').hide();
-      $(".popoverlay").remove();
+      $(".local-search-pop-overlay").remove();
       $('body').css('overflow', '');
     });
     $('.popup').click(function(e){
@@ -851,7 +912,8 @@
   </script>
 
 
-  
+
+
 
   
 
@@ -859,6 +921,7 @@
 
   
 
+  
 
 </body>
 </html>

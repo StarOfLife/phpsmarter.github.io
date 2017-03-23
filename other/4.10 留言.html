@@ -27,6 +27,9 @@
 
 
 
+
+
+
   
   
   <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
@@ -110,7 +113,7 @@ lib/mongo.js
   var CONFIG = {
     root: '/',
     scheme: 'Pisces',
-    sidebar: {"position":"left","display":"post"},
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
     fancybox: true,
     motion: true,
     duoshuo: {
@@ -157,36 +160,42 @@ lib/mongo.js
 
 
 
+
+
+
+
   
   
     
   
 
-  <div class="container one-collumn sidebar-position-left  ">
+  <div class="container sidebar-position-left  ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-meta ">
-  
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
 
-  <div class="custom-logo-site-title">
-    <a href="/"  class="brand" rel="start">
-      <span class="logo-line-before"><i></i></span>
-      <span class="site-title">phpsmarter</span>
-      <span class="logo-line-after"><i></i></span>
-    </a>
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">phpsmarter</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
   </div>
-    
-      <p class="site-subtitle"></p>
-    
-</div>
 
-<div class="site-nav-toggle">
-  <button>
-    <span class="btn-bar"></span>
-    <span class="btn-bar"></span>
-    <span class="btn-bar"></span>
-  </button>
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
 </div>
 
 <nav class="site-nav">
@@ -251,7 +260,7 @@ lib/mongo.js
             
               <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br />
             
-            Sitemap
+            站点地图
           </a>
         </li>
       
@@ -274,12 +283,23 @@ lib/mongo.js
   
     <div class="site-search">
       
-  <div class="popup">
- <span class="search-icon fa fa-search"></span>
- <input type="text" id="local-search-input">
- <div id="local-search-result"></div>
- <span class="popup-btn-close">close</span>
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
 </div>
+
 
 
     </div>
@@ -300,7 +320,7 @@ lib/mongo.js
   <div id="posts" class="posts-expand">
   <header class="post-header">
 
-	<h2 class="post-title" itemprop="name headline"></h2>
+	<h1 class="post-title" itemprop="name headline"></h1>
 
 
 
@@ -326,7 +346,7 @@ lib/mongo.js
 </blockquote>
 <p>修改 models/posts.js，在：</p>
 <p><strong>models/posts.js</strong></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> Post = <span class="built_in">require</span>(<span class="string">'../lib/mongo'</span>).Post;</div></pre></td></tr></table></figure>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="attribute">var Post</span> = require(<span class="string">'../lib/mongo'</span>).Post;</div></pre></td></tr></table></figure>
 <p>下添加如下代码：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> CommentModel = <span class="built_in">require</span>(<span class="string">'./comments'</span>);</div><div class="line"></div><div class="line"><span class="comment">// 给 post 添加留言数 commentsCount</span></div><div class="line">Post.plugin(<span class="string">'addCommentsCount'</span>, &#123;</div><div class="line">  <span class="attr">afterFind</span>: <span class="function"><span class="keyword">function</span> (<span class="params">posts</span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="built_in">Promise</span>.all(posts.map(<span class="function"><span class="keyword">function</span> (<span class="params">post</span>) </span>&#123;</div><div class="line">      <span class="keyword">return</span> CommentModel.getCommentsCount(post._id).then(<span class="function"><span class="keyword">function</span> (<span class="params">commentsCount</span>) </span>&#123;</div><div class="line">        post.commentsCount = commentsCount;</div><div class="line">        <span class="keyword">return</span> post;</div><div class="line">      &#125;);</div><div class="line">    &#125;));</div><div class="line">  &#125;,</div><div class="line">  <span class="attr">afterFindOne</span>: <span class="function"><span class="keyword">function</span> (<span class="params">post</span>) </span>&#123;</div><div class="line">    <span class="keyword">if</span> (post) &#123;</div><div class="line">      <span class="keyword">return</span> CommentModel.getCommentsCount(post._id).then(<span class="function"><span class="keyword">function</span> (<span class="params">count</span>) </span>&#123;</div><div class="line">        post.commentsCount = count;</div><div class="line">        <span class="keyword">return</span> post;</div><div class="line">      &#125;);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> post;</div><div class="line">  &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
 <p>在 PostModel 上注册了 <code>addCommentsCount</code> 用来给每篇文章添加留言数 <code>commentsCount</code>，在 <code>getPostById</code> 和 <code>getPosts</code> 方法里的：</p>
@@ -339,9 +359,9 @@ lib/mongo.js
 </blockquote>
 <p>修改 routes/posts.js，在：</p>
 <p><strong>routes/posts.js</strong></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> PostModel = <span class="built_in">require</span>(<span class="string">'../models/posts'</span>);</div></pre></td></tr></table></figure>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="attribute">var PostModel</span> = require(<span class="string">'../models/posts'</span>);</div></pre></td></tr></table></figure>
 <p>下引入 CommentModel:</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> CommentModel = <span class="built_in">require</span>(<span class="string">'../models/comments'</span>);</div></pre></td></tr></table></figure>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="attribute">var CommentModel</span> = require(<span class="string">'../models/comments'</span>);</div></pre></td></tr></table></figure>
 <p>在文章页传入留言列表，将：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// GET /posts/:postId 单独一篇的文章页</span></div><div class="line">router.get(<span class="string">'/:postId'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">req, res, next</span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> postId = req.params.postId;</div><div class="line"></div><div class="line">  <span class="built_in">Promise</span>.all([</div><div class="line">    PostModel.getPostById(postId),<span class="comment">// 获取文章信息</span></div><div class="line">    PostModel.incPv(postId)<span class="comment">// pv 加 1</span></div><div class="line">  ])</div><div class="line">  .then(<span class="function"><span class="keyword">function</span> (<span class="params">result</span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> post = result[<span class="number">0</span>];</div><div class="line">    <span class="keyword">if</span> (!post) &#123;</div><div class="line">      <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'该文章不存在'</span>);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    res.render(<span class="string">'post'</span>, &#123;</div><div class="line">      <span class="attr">post</span>: post</div><div class="line">    &#125;);</div><div class="line">  &#125;)</div><div class="line">  .catch(next);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
 <p>修改为：</p>
@@ -358,7 +378,7 @@ lib/mongo.js
     
   </div>
 
-          
+
           </div>
           
 
@@ -394,10 +414,12 @@ lib/mongo.js
                src="/images/avatar.gif"
                alt="phpsmarter" />
           <p class="site-author-name" itemprop="name">phpsmarter</p>
-          <p class="site-description motion-element" itemprop="description"></p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
         </div>
         <nav class="site-state motion-element">
-        
+
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
@@ -408,8 +430,10 @@ lib/mongo.js
           
 
           
+            
+            
             <div class="site-state-item site-state-categories">
-              <a href="/categories">
+              <a href="/categories/index.html">
                 <span class="site-state-item-count">2</span>
                 <span class="site-state-item-name">分类</span>
               </a>
@@ -417,8 +441,10 @@ lib/mongo.js
           
 
           
+            
+            
             <div class="site-state-item site-state-tags">
-              <a href="/tags">
+              <a href="/tags/index.html">
                 <span class="site-state-item-count">1</span>
                 <span class="site-state-item-name">标签</span>
               </a>
@@ -450,6 +476,8 @@ lib/mongo.js
 
 
       </section>
+
+      
 
       
 
@@ -492,9 +520,13 @@ lib/mongo.js
       </div>
     </footer>
 
-    <div class="back-to-top">
-      <i class="fa fa-arrow-up"></i>
-    </div>
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
   </div>
 
   
@@ -588,17 +620,19 @@ lib/mongo.js
 
   
 
-  
-      <!-- UY BEGIN -->
-      <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid="></script>
-      <!-- UY END -->
-  
 
 
 
 
   
+
+
+
+
+
+
   
+
   <script type="text/javascript">
     // Popup Window;
     var isfetched = false;
@@ -611,7 +645,9 @@ lib/mongo.js
     // monitor main search box;
 
     function proceedsearch() {
-      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
       $('.popup').toggle();
     }
     // search function;
@@ -715,7 +751,7 @@ lib/mongo.js
 
     $('.popup-btn-close').click(function(e){
       $('.popup').hide();
-      $(".popoverlay").remove();
+      $(".local-search-pop-overlay").remove();
       $('body').css('overflow', '');
     });
     $('.popup').click(function(e){
@@ -724,7 +760,8 @@ lib/mongo.js
   </script>
 
 
-  
+
+
 
   
 
@@ -732,6 +769,7 @@ lib/mongo.js
 
   
 
+  
 
 </body>
 </html>
