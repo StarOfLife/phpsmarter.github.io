@@ -1,0 +1,1005 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="phpsmarter" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="为什么要用Immutable.js来代替Javascript的对象
+
+翻译版本,原文请见
+
+把你的数据看成是不可变的会带来很多的好处.实际上在React背后有个原则:React的元素是不可变的.你可能也会对学习不可变App构架有很大兴趣.
+
+但是使用Immutable.js的好处是:
+1234567 function toggleTodo (todos, id) &amp;#123;  return to">
+<meta property="og:type" content="article">
+<meta property="og:title" content="翻译-Immutable-js,持久化数据结构和结构共享">
+<meta property="og:url" content="http://yoursite.com/2017/03/08/翻译-Immutable-js,持久化数据结构和结构共享/index.html">
+<meta property="og:site_name" content="phpsmarter">
+<meta property="og:description" content="为什么要用Immutable.js来代替Javascript的对象
+
+翻译版本,原文请见
+
+把你的数据看成是不可变的会带来很多的好处.实际上在React背后有个原则:React的元素是不可变的.你可能也会对学习不可变App构架有很大兴趣.
+
+但是使用Immutable.js的好处是:
+1234567 function toggleTodo (todos, id) &amp;#123;  return to">
+<meta property="og:image" content="https://ww3.sinaimg.cn/large/006tKfTcly1fdobo2he6bj312w0i2dgz.jpg">
+<meta property="og:image" content="https://ww1.sinaimg.cn/large/006tKfTcly1fdocl8z802j304d08fglh.jpg">
+<meta property="og:image" content="https://ww1.sinaimg.cn/large/006tKfTcly1fdocnlha2cj30eo0bhdg5.jpg">
+<meta property="og:image" content="https://ww1.sinaimg.cn/large/006tNc79ly1fdocttxa1tj30cq0a7mxf.jpg">
+<meta property="og:image" content="https://ww4.sinaimg.cn/large/006tNc79ly1fdocuasnscj30f00clwf2.jpg">
+<meta property="og:image" content="https://ww4.sinaimg.cn/large/006tNc79ly1fdodbub78oj30h20cpab6.jpg">
+<meta property="og:image" content="https://ww1.sinaimg.cn/large/006tNc79ly1fdoe03ud5ej30h907wt9c.jpg">
+<meta property="og:updated_time" content="2017-03-23T11:30:51.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="翻译-Immutable-js,持久化数据结构和结构共享">
+<meta name="twitter:description" content="为什么要用Immutable.js来代替Javascript的对象
+
+翻译版本,原文请见
+
+把你的数据看成是不可变的会带来很多的好处.实际上在React背后有个原则:React的元素是不可变的.你可能也会对学习不可变App构架有很大兴趣.
+
+但是使用Immutable.js的好处是:
+1234567 function toggleTodo (todos, id) &amp;#123;  return to">
+<meta name="twitter:image" content="https://ww3.sinaimg.cn/large/006tKfTcly1fdobo2he6bj312w0i2dgz.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/03/08/翻译-Immutable-js,持久化数据结构和结构共享/"/>
+
+
+
+
+
+  <title> 翻译-Immutable-js,持久化数据结构和结构共享 | phpsmarter </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">phpsmarter</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">A beginner of React-native</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-sitemap">
+          <a href="/sitemap.xml" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br />
+            
+            站点地图
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/08/翻译-Immutable-js,持久化数据结构和结构共享/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="phpsmarter">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="phpsmarter">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                翻译-Immutable-js,持久化数据结构和结构共享
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-08T08:04:10+08:00">
+                2017-03-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/翻译/" itemprop="url" rel="index">
+                    <span itemprop="name">翻译</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><em>为什么要用Immutable.js来代替Javascript的对象</em></p>
+<blockquote>
+<p>翻译版本,<a href="https://medium.com/@dtinth/immutable-js-persistent-data-structures-and-structural-sharing-6d163fbd73d2#.inlzpjxr8" target="_blank" rel="external">原文请见</a></p>
+<hr>
+<p>把你的数据看成是不可变的会带来很多的好处.实际上在React背后有个原则:React的元素是不可变的.你可能也会对学习不可变App构架有很大兴趣.</p>
+</blockquote>
+<p>但是使用Immutable.js的好处是:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"> <span class="function"><span class="keyword">function</span> <span class="title">toggleTodo</span> (<span class="params">todos, id</span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> todos.update(id,</div><div class="line">    (todo) =&gt; todo.update(<span class="string">'completed'</span>,<span class="comment">//update是immutable的方法</span></div><div class="line">      (completed) =&gt; !completed</div><div class="line">    )</div><div class="line">  )</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<hr>
+<p>跳过使用普通的Javascript对象(把他们看作为immutable,可以选则使用例如seamless-immutable之类的助手函数),像这样？:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"> <span class="function"><span class="keyword">function</span> <span class="title">toggleTodo</span> (<span class="params">todos, id</span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> <span class="built_in">Object</span>.assign(&#123; &#125;, todos, &#123;</div><div class="line">    [id]: <span class="built_in">Object</span>.assign(&#123; &#125;, todos[id], &#123;</div><div class="line">      <span class="attr">completed</span>: !todos[id].completed</div><div class="line">    &#125;)</div><div class="line">  &#125;)</div><div class="line">&#125;</div><div class="line"><span class="comment">// Using updeep</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">toggleTodo</span> (<span class="params">todos, id</span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> u(&#123;</div><div class="line">    [id]: &#123;</div><div class="line">      <span class="attr">completed</span>: <span class="function">(<span class="params">completed</span>) =&gt;</span> !completed</div><div class="line">    &#125;</div><div class="line">  &#125;, todos)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<hr>
+<h3 id="一个非常大的对象…"><a href="#一个非常大的对象…" class="headerlink" title="一个非常大的对象…"></a>一个非常大的对象…</h3><p>让我们假设todo list 里面有100,00个任务:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"> <span class="keyword">var</span> todos = &#123;</div><div class="line">  ⋮</div><div class="line">  t79444dae: &#123; <span class="attr">title</span>: <span class="string">'Task 50001'</span>, <span class="attr">completed</span>: <span class="literal">false</span> &#125;,</div><div class="line">  <span class="attr">t7eaf70c3</span>: &#123; <span class="attr">title</span>: <span class="string">'Task 50002'</span>, <span class="attr">completed</span>: <span class="literal">false</span> &#125;,</div><div class="line">  <span class="attr">t2fd2ffa0</span>: &#123; <span class="attr">title</span>: <span class="string">'Task 50003'</span>, <span class="attr">completed</span>: <span class="literal">false</span> &#125;,</div><div class="line">  <span class="attr">t6321775c</span>: &#123; <span class="attr">title</span>: <span class="string">'Task 50004'</span>, <span class="attr">completed</span>: <span class="literal">false</span> &#125;,</div><div class="line">  <span class="attr">t2148bf88</span>: &#123; <span class="attr">title</span>: <span class="string">'Task 50005'</span>, <span class="attr">completed</span>: <span class="literal">false</span> &#125;,</div><div class="line">  <span class="attr">t9e37b9b6</span>: &#123; <span class="attr">title</span>: <span class="string">'Task 50006'</span>, <span class="attr">completed</span>: <span class="literal">false</span> &#125;,</div><div class="line">  <span class="attr">tb5b1b6ae</span>: &#123; <span class="attr">title</span>: <span class="string">'Task 50007'</span>, <span class="attr">completed</span>: <span class="literal">false</span> &#125;,</div><div class="line">  <span class="attr">tfe88b26d</span>: &#123; <span class="attr">title</span>: <span class="string">'Task 50008'</span>, <span class="attr">completed</span>: <span class="literal">false</span> &#125;,</div><div class="line">  ⋮</div><div class="line">  (<span class="number">100</span>,<span class="number">000</span> items)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<hr>
+<p>我刚刚完成第50005件任务.<br>现在我想把它标记位完成.</p>
+<h3 id="使用普通Javascript-对象"><a href="#使用普通Javascript-对象" class="headerlink" title="使用普通Javascript 对象"></a>使用普通Javascript 对象</h3><p><code>var nextState=toggleTodo(todos,&#39;t2148bf88&#39;)</code></p>
+<p>这个单一的操作哟花费134ms来运行.</p>
+<p>为什么？因为当你使用<code>Object.assign</code>,Javascript的浅复制拷贝每一个源的每个属性到目的地.一次一个.</p>
+<p>我们有100,000个todos,所以意味着有100,000个属性要拷贝.<br>这就是为什么要花这么长的时间.</p>
+<hr>
+<h3 id="为什么要这么做？"><a href="#为什么要这么做？" class="headerlink" title="为什么要这么做？"></a>为什么要这么做？</h3><p>在Javascript中,对象默认是可以突变(mutable)的.<br>当你克隆一个对象,Javascript有每一个属性的拷贝,所以两个对象变得完全分离的.看下图<br><img src="https://ww3.sinaimg.cn/large/006tKfTcly1fdobo2he6bj312w0i2dgz.jpg" alt="100,000个属性被(浅)复制到目的地"></p>
+<p>这就允许你在拷贝以后改变任何对象的属性,对象之间也不会相互影响.甚至在把这些对象处理为不可变(immutable),Javascript也还是按照mutable来处理.</p>
+<hr>
+<h3 id="使用Immutable-js"><a href="#使用Immutable-js" class="headerlink" title="使用Immutable.js"></a>使用Immutable.js</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"> <span class="keyword">var</span> todos = Immutable.fromJS(&#123;</div><div class="line">  ⋮</div><div class="line">  t79444dae: &#123; <span class="attr">title</span>: <span class="string">'Task 50001'</span>, <span class="attr">completed</span>: <span class="literal">false</span> &#125;,</div><div class="line">  <span class="attr">t7eaf70c3</span>: &#123; <span class="attr">title</span>: <span class="string">'Task 50002'</span>, <span class="attr">completed</span>: <span class="literal">false</span> &#125;,</div><div class="line">  <span class="attr">t2fd2ffa0</span>: &#123; <span class="attr">title</span>: <span class="string">'Task 50003'</span>, <span class="attr">completed</span>: <span class="literal">false</span> &#125;,</div><div class="line">  <span class="attr">t6321775c</span>: &#123; <span class="attr">title</span>: <span class="string">'Task 50004'</span>, <span class="attr">completed</span>: <span class="literal">false</span> &#125;,</div><div class="line">  <span class="attr">t2148bf88</span>: &#123; <span class="attr">title</span>: <span class="string">'Task 50005'</span>, <span class="attr">completed</span>: <span class="literal">false</span> &#125;,</div><div class="line">  <span class="attr">t9e37b9b6</span>: &#123; <span class="attr">title</span>: <span class="string">'Task 50006'</span>, <span class="attr">completed</span>: <span class="literal">false</span> &#125;,</div><div class="line">  <span class="attr">tb5b1b6ae</span>: &#123; <span class="attr">title</span>: <span class="string">'Task 50007'</span>, <span class="attr">completed</span>: <span class="literal">false</span> &#125;,</div><div class="line">  <span class="attr">tfe88b26d</span>: &#123; <span class="attr">title</span>: <span class="string">'Task 50008'</span>, <span class="attr">completed</span>: <span class="literal">false</span> &#125;,</div><div class="line">  ⋮</div><div class="line">  (<span class="number">100</span>,<span class="number">000</span> items)</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<hr>
+<p>使用<code>Immutable.Map</code>来代表我们的数据,更新第50005条任务<br><code>var nextState=toggleTodo(todos,&#39;t2148bf88&#39;)</code></p>
+<p>这个操作仅花费1.2ms时间去运行.速度提升了100倍以上！</p>
+<p>为什么会这么快？</p>
+<h3 id="持久数据结构"><a href="#持久数据结构" class="headerlink" title="持久数据结构"></a>持久数据结构</h3><p>持久数据结构(Persistent data structures)强力限制所有的操作都要返回数据结构的新版本,保持原数据结构的完整性,不能更改原数据结构.</p>
+<p>这一点暗示所有的持久化数据都是不可变的.</p>
+<p>在这个给定的限制下,实现持久化数据结构的库可以进行很好的优化,因为这些库知道我们不会改变我们的数据.</p>
+<p>让我们看一个优化</p>
+<h3 id="使用tries来优化"><a href="#使用tries来优化" class="headerlink" title="使用tries来优化"></a>使用tries来优化</h3><p>为了直观一点,试一个小例子</p>
+<p>想象存储一个键-值映射:</p>
+<p><img src="https://ww1.sinaimg.cn/large/006tKfTcly1fdocl8z802j304d08fglh.jpg" alt=""></p>
+<p>我们可以把这个数据结构存储到单一的Javascirpt对象中:<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"> <span class="keyword">const</span> data = &#123;</div><div class="line">  <span class="attr">to</span>: <span class="number">7</span>,</div><div class="line">  <span class="attr">tea</span>: <span class="number">3</span>,</div><div class="line">  <span class="attr">ted</span>: <span class="number">4</span>,</div><div class="line">  <span class="attr">ten</span>: <span class="number">12</span>,</div><div class="line">  <span class="attr">A</span>: <span class="number">15</span>,</div><div class="line">  <span class="attr">i</span>: <span class="number">11</span>,</div><div class="line">  <span class="attr">in</span>: <span class="number">5</span>,</div><div class="line">  <span class="attr">inn</span>: <span class="number">9</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>但是我们怎么才能创建一个trie来代替js的对象呢？他的结构看起来是这个样子的：<br><img src="https://ww1.sinaimg.cn/large/006tKfTcly1fdocnlha2cj30eo0bhdg5.jpg" alt=""></p>
+<p>基本上你可根据图上的路径从root开始获取到你需要的值.</p>
+<p>如果你从root开始找<code>data.in</code>,根据标记<code>i</code>和<code>n</code>的路径.可以找到包含<code>5</code>的节点.</p>
+<p>那么,怎么修改呢？</p>
+<p>让我们思考一下把键<code>tea</code>的值从<code>3</code>改为<code>14</code>.</p>
+<p>我们可以创建一个新的trie，尽可能的使用存在的节点.</p>
+<p><img src="https://ww1.sinaimg.cn/large/006tNc79ly1fdocttxa1tj30cq0a7mxf.jpg" alt=""></p>
+<p>老的树形结构仍然存在,而且没有变化.在实例中你可以保留一个引用</p>
+<p><img src="https://ww4.sinaimg.cn/large/006tNc79ly1fdocuasnscj30f00clwf2.jpg" alt=""></p>
+<p>在上图中如绿色部分所示,我们仅仅只需要更新4个节点来更新这个数.其他的节点是可以重新利用的。</p>
+<p>下面这个图展示Immutable.js怎么实施<code>Immutable.Map</code>.创建一个每个节点有32个分支的树.</p>
+<p><img src="https://ww4.sinaimg.cn/large/006tNc79ly1fdodbub78oj30h20cpab6.jpg" alt="Immutable.Map的实施"></p>
+<p> 当我们更新一个单个项目,仅仅只要一些节点需要被重新创建.</p>
+<p> Immutable.js借助crazy advanced techniques保持树形结构的紧凑,根据各种子树的各种属性来创建多种类型的节点.</p>
+<p> <img src="https://ww1.sinaimg.cn/large/006tNc79ly1fdoe03ud5ej30h907wt9c.jpg" alt=""></p>
+<h3 id="并不总是如此…"><a href="#并不总是如此…" class="headerlink" title="并不总是如此…"></a>并不总是如此…</h3><p> 不要把本问的本意理解为“你总是需要Immutable.js“.不是这个意思,我只是想强调一下他的好处.解释一下为什么推荐要使用他.</p>
+<p>  数据结构是很重要的,但是当我编写软件的时候,我首先要尝试最简单的方式.我过去使用数组和对象,之后当我需要速度提升的时候,我使用Immutable.js,或者是在我遇到到我需要他的时候.在只要少数的条目,还有小的对象和集合的时候,我就不会使用Immutable.js.</p>
+<h2 id="是不是意思是我可能会返回去并且在后面在改变"><a href="#是不是意思是我可能会返回去并且在后面在改变" class="headerlink" title="是不是意思是我可能会返回去并且在后面在改变?"></a>是不是意思是我可能会返回去并且在后面在改变?</h2><p>  对！非常好！如果你的数据接入是通过单一,组织良好的模块.例如:</p>
+  <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">   <span class="comment">// -- Todos.js --</span></div><div class="line"><span class="keyword">export</span> <span class="keyword">const</span> empty = &#123; &#125;</div><div class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">add</span> (<span class="params">todos, id, todo</span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> <span class="built_in">Object</span>.assign(&#123; &#125;, todos, &#123; [id]: todo &#125;)</div><div class="line">&#125;</div><div class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">getById</span> (<span class="params">todos, id</span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> todos[id]</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<hr>
+<p>估计所有的应用代码总是要使用这个模块来获取数据.当你想改变内含的数据结构时,你仅仅需要更新这个文件.</p>
+<p>这个我们叫做”实体模块“,封装了代表整个软件系统的所有内容.这个概念来自”Clean Architecture“.我计划以后来写写这个问题.</p>
+<h2 id="不要把应用的逻辑和数据结构耦合在一起"><a href="#不要把应用的逻辑和数据结构耦合在一起" class="headerlink" title="不要把应用的逻辑和数据结构耦合在一起"></a><code>不要把应用的逻辑和数据结构耦合在一起</code></h2><p>我很了解应用逻辑和数据结构不耦合在一起的艰难之处.这是因为我们不知道在未来数据怎么来获取.</p>
+<p>例如:我们的todo app现在管理着100,000任务.我们改为使用Immytable.js.现在每个部分都足够好和足够快.</p>
+<p>突然需求来了:”任务要有一个安排者”.(类似老师布置作业给学生),”用户应该可以看到任务是谁给安排的”.</p>
+<pre><code class="js"> <span class="function"><span class="keyword">function</span> <span class="title">findByAssigneeAsArray</span> (<span class="params">todos, assigneeId</span>) </span>{
+  <span class="keyword">return</span> todos.filter(
+    <span class="function">(<span class="params">task</span>) =&gt;</span> Task.containsAssignee(task, assigneeId)
+  ).toArray()
+}
+</code></pre>
+<hr>
+<p>用户开始抱怨app变慢了,分析揭示上面这个函数是个大问题.</p>
+<p>使用上面这段代码需要序列搜索100，000任务.这样做怎么能快的起来？</p>
+<h3 id="要优化这个案例-我们需要改变内在的数据结构"><a href="#要优化这个案例-我们需要改变内在的数据结构" class="headerlink" title="要优化这个案例,我们需要改变内在的数据结构"></a>要优化这个案例,我们需要改变内在的数据结构</h3><p>这需要保持一个反向的查询表,连接任务安排人和任务列表的TaksID.这个优化的修改实例来自于<code>[Taskworld](https://taskworld.com/)</code>.</p>
+<p>如果我们的reducer/selector/view代码和数据结构直接连系在一起,要做出这样的改变非常难.</p>
+<p>所以,如果我们想快速迭代,我们需要确保很容易做出修改.从开始就保持代码整洁,书写测试,建立持续集成.</p>
+<h3 id="感谢阅读！"><a href="#感谢阅读！" class="headerlink" title="感谢阅读！"></a>感谢阅读！</h3><p> 更多的讨论在<a href="https://www.reddit.com/r/reactjs/comments/5h7pqz/persistent_data_structures_and_structural_sharing/" target="_blank" rel="external">Reddit</a>.</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/03/08/翻译-Redux-Saga-hello，world!/" rel="next" title="翻译-Redux-Saga-hello，world!">
+                <i class="fa fa-chevron-left"></i> 翻译-Redux-Saga-hello，world!
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/03/08/翻译-开启React,Redux和Immutable之旅-测试驱动教程(part2)/" rel="prev" title="翻译-开启React,Redux和Immutable之旅-测试驱动教程(part2)">
+                翻译-开启React,Redux和Immutable之旅-测试驱动教程(part2) <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpeg"
+               alt="phpsmarter" />
+          <p class="site-author-name" itemprop="name">phpsmarter</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">18</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一个非常大的对象…"><span class="nav-number">1.</span> <span class="nav-text">一个非常大的对象…</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用普通Javascript-对象"><span class="nav-number">2.</span> <span class="nav-text">使用普通Javascript 对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#为什么要这么做？"><span class="nav-number">3.</span> <span class="nav-text">为什么要这么做？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用Immutable-js"><span class="nav-number">4.</span> <span class="nav-text">使用Immutable.js</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#持久数据结构"><span class="nav-number">5.</span> <span class="nav-text">持久数据结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用tries来优化"><span class="nav-number">6.</span> <span class="nav-text">使用tries来优化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#并不总是如此…"><span class="nav-number">7.</span> <span class="nav-text">并不总是如此…</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#是不是意思是我可能会返回去并且在后面在改变"><span class="nav-number"></span> <span class="nav-text">是不是意思是我可能会返回去并且在后面在改变?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#不要把应用的逻辑和数据结构耦合在一起"><span class="nav-number"></span> <span class="nav-text">不要把应用的逻辑和数据结构耦合在一起</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#要优化这个案例-我们需要改变内在的数据结构"><span class="nav-number">1.</span> <span class="nav-text">要优化这个案例,我们需要改变内在的数据结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#感谢阅读！"><span class="nav-number">2.</span> <span class="nav-text">感谢阅读！</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">phpsmarter</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

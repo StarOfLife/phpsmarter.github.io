@@ -1,0 +1,1010 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="phpsmarter" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="本文是翻译版本,原文请见By Dan Prince  May 03, 2016
+
+React使用组件和单向数据流方式描述用户界面,但是React对state的处理非常的简单.这一点让我们知道,React仅仅只当于传统的Model-View-Controller构架的View层.
+仅仅使用React也可以构建大型的app,但是很快我们会发现,要保持代码的简洁,我们需要在其他地方管理state(把s">
+<meta property="og:type" content="article">
+<meta property="og:title" content="翻译-如何使用React,Redux和Immutable-js构建Todo-App">
+<meta property="og:url" content="http://yoursite.com/2017/03/23/翻译-如何使用React,Redux和Immutable-js构建Todo-App/index.html">
+<meta property="og:site_name" content="phpsmarter">
+<meta property="og:description" content="本文是翻译版本,原文请见By Dan Prince  May 03, 2016
+
+React使用组件和单向数据流方式描述用户界面,但是React对state的处理非常的简单.这一点让我们知道,React仅仅只当于传统的Model-View-Controller构架的View层.
+仅仅使用React也可以构建大型的app,但是很快我们会发现,要保持代码的简洁,我们需要在其他地方管理state(把s">
+<meta property="og:updated_time" content="2017-03-23T11:29:39.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="翻译-如何使用React,Redux和Immutable-js构建Todo-App">
+<meta name="twitter:description" content="本文是翻译版本,原文请见By Dan Prince  May 03, 2016
+
+React使用组件和单向数据流方式描述用户界面,但是React对state的处理非常的简单.这一点让我们知道,React仅仅只当于传统的Model-View-Controller构架的View层.
+仅仅使用React也可以构建大型的app,但是很快我们会发现,要保持代码的简洁,我们需要在其他地方管理state(把s">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/03/23/翻译-如何使用React,Redux和Immutable-js构建Todo-App/"/>
+
+
+
+
+
+  <title> 翻译-如何使用React,Redux和Immutable-js构建Todo-App | phpsmarter </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">phpsmarter</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">A beginner of React-native</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-sitemap">
+          <a href="/sitemap.xml" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br />
+            
+            站点地图
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/23/翻译-如何使用React,Redux和Immutable-js构建Todo-App/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="phpsmarter">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="phpsmarter">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                翻译-如何使用React,Redux和Immutable-js构建Todo-App
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-23T08:04:10+08:00">
+                2017-03-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/翻译/" itemprop="url" rel="index">
+                    <span itemprop="name">翻译</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>本文是翻译版本,<a href="https://www.sitepoint.com/how-to-build-a-todo-app-using-react-redux-and-immutable-js/" target="_blank" rel="external">原文请见</a><br><em>By Dan Prince  May 03, 2016</em></p>
+</blockquote>
+<p>React使用组件和单向数据流方式描述用户界面,但是React对state的处理非常的简单.这一点让我们知道,React仅仅只当于传统的<code>Model-View-Controller</code>构架的<code>View</code>层.</p>
+<p>仅仅使用React也可以构建大型的app,但是很快我们会发现,要保持代码的简洁,我们需要在其他地方管理state(把state的管理独立出来).</p>
+<p>没有官方管理应用state的工具,但是有几个库工作的的不错.今天我们添加两个库和React一起来构建一个简单的app.</p>
+<h2 id="Redux"><a href="#Redux" class="headerlink" title="Redux"></a>Redux</h2><p>Redux是一个小型的js库,作为app的state容器.糅合了Fluc和Elm的概念.我们可以使用Redux管理任何app的state,只要我们紧扣下面的指导：</p>
+<ol>
+<li>我们的state保持在一个单一的store中</li>
+<li>state的改变只会来自于actions</li>
+</ol>
+<p>Redux的核心 store是一个函数,它接收当前的application的state和一个action,合并创建一个新的application state,这个函数叫做Reducer.</p>
+<p>我们的React组件负责发送actions到我们的store,反过来,如果组件需要渲染的时候,store会通知他.</p>
+<h2 id="ImmutableJS"><a href="#ImmutableJS" class="headerlink" title="ImmutableJS"></a>ImmutableJS</h2><p>因为Redux不允许我们mutate程序的state,如果借助immutable数据结构模型化应用程序的state将会非常的有用.<br><code>Immutable.js</code>使用突变界面(mutative interfaces)提供一些immutable数据结构,这些界面实施时非常的高效,灵感来自于Clojure和Scala.</p>
+<h2 id="Demo"><a href="#Demo" class="headerlink" title="Demo"></a>Demo</h2><p>我们将会使用React,Redux和ImmutableJS去构建一个简单的todo list,允许我们添加todos,在完成和未完成之间切换.<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">//html</div><div class="line"> <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<hr>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div></pre></td><td class="code"><pre><div class="line">//css</div><div class="line"> html, body, input, button &#123;</div><div class="line">  font-family: Sawasdee;</div><div class="line">  font-size: 20px;</div><div class="line">&#125;</div><div class="line"></div><div class="line">.todo &#123;</div><div class="line">&#125;</div><div class="line"></div><div class="line">.todo__list &#123;</div><div class="line">  margin: 0;</div><div class="line">  padding: 0;</div><div class="line">  list-style-type: none;</div><div class="line">&#125;</div><div class="line"></div><div class="line">.todo__item &#123;</div><div class="line">  padding: .5em .25em;</div><div class="line">  border-bottom: solid 1px #eee;</div><div class="line">&#125;</div><div class="line"></div><div class="line">.todo__item:hover &#123;</div><div class="line">  background: #f7f7f7;</div><div class="line">  cursor: pointer;</div><div class="line">&#125;</div><div class="line"></div><div class="line">.todo__entry &#123;</div><div class="line">  border: solid 1px #ccc;</div><div class="line">  padding: .25em .5em;</div><div class="line">  border-radius: .2em;</div><div class="line">  background: #f3f3f3;</div><div class="line">  width: 100%;</div><div class="line">  box-sizing: border-box;</div><div class="line">&#125;</div><div class="line"></div><div class="line">.todo__button &#123;</div><div class="line">  border: 0;</div><div class="line">  border-radius: .2em;</div><div class="line">  background: #71B7FF;  </div><div class="line">  color: #fff;</div><div class="line">  padding: .25em .5em;</div><div class="line">  margin: .5em 0;</div><div class="line">  margin-right: .25em;</div><div class="line">  cursor: pointer;</div><div class="line">&#125;</div><div class="line"></div><div class="line">.todo__button:hover &#123;</div><div class="line">  background: #B2D8FF;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<hr>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//js</span></div><div class="line"><span class="keyword">const</span> &#123; <span class="built_in">Map</span>, List &#125; = Immutable;</div><div class="line"><span class="keyword">const</span> &#123; createStore &#125; = Redux;</div><div class="line"><span class="keyword">const</span> &#123; Provider, connect &#125; = reactRedux;</div><div class="line"></div><div class="line"><span class="keyword">const</span> components = &#123;</div><div class="line">  Todo(&#123; todo &#125;) &#123;</div><div class="line">    <span class="keyword">if</span>(todo.isDone) &#123;</div><div class="line">      <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">strike</span>&gt;</span>&#123;todo.text&#125;<span class="tag">&lt;/<span class="name">strike</span>&gt;</span></span>;  </div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">      <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">span</span>&gt;</span>&#123;todo.text&#125;<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span>;</div><div class="line">    &#125;</div><div class="line">  &#125;,</div><div class="line">  TodoList(&#123; todos, toggleTodo, addTodo &#125;) &#123;</div><div class="line">    <span class="keyword">const</span> onSubmit = <span class="function">(<span class="params">e</span>) =&gt;</span> &#123;</div><div class="line">      <span class="keyword">const</span> text = e.target.value;</div><div class="line">      <span class="keyword">if</span>(e.which === <span class="number">13</span> &amp;&amp; text.length &gt; <span class="number">0</span>) &#123;</div><div class="line">        addTodo(text);</div><div class="line">        e.target.value = <span class="string">''</span>;</div><div class="line">      &#125;</div><div class="line">    &#125;;</div><div class="line">    </div><div class="line">    <span class="keyword">const</span> toggleClick = <span class="function">(<span class="params">id</span>) =&gt;</span> () =&gt; toggleTodo(id);</div><div class="line">    </div><div class="line">    <span class="keyword">const</span> &#123; Todo &#125; = components;</div><div class="line">    </div><div class="line">    <span class="keyword">return</span> (</div><div class="line">      &lt;div className='todo'&gt;</div><div class="line">        &lt;input type='text'</div><div class="line">               className='todo__entry'</div><div class="line">               placeholder='Add todo'</div><div class="line">               onKeyDown=&#123;onSubmit&#125; /&gt;</div><div class="line">        &lt;ul className='todo__list'&gt;</div><div class="line">          &#123;todos.map(t =&gt; (</div><div class="line">            &lt;li</div><div class="line">              key=&#123;t.get('id')&#125;</div><div class="line">              className='todo__item'</div><div class="line">              onClick=&#123;toggleClick(t.get('id'))&#125;&gt;</div><div class="line">              &lt;Todo todo=&#123;t.toJS()&#125; /&gt;</div><div class="line">            &lt;/li&gt;</div><div class="line">          ))&#125; </div><div class="line">        &lt;/ul&gt;</div><div class="line">      &lt;/div&gt;</div><div class="line">    );</div><div class="line">  &#125;</div><div class="line">&#125;;</div><div class="line"></div><div class="line">const actions = &#123;</div><div class="line">  addTodo(text) &#123;</div><div class="line">    return &#123;</div><div class="line">      type: 'ADD_TODO',</div><div class="line">      payload: &#123;</div><div class="line">        id: Math.random().toString(34).slice(2),</div><div class="line">        isDone: false,</div><div class="line">        text</div><div class="line">      &#125;</div><div class="line">    &#125;;</div><div class="line">  &#125;,</div><div class="line">  toggleTodo(id) &#123;</div><div class="line">    return &#123;</div><div class="line">      type: 'TOGGLE_TODO',</div><div class="line">      payload: id</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;;</div><div class="line"></div><div class="line">const init = List();</div><div class="line"></div><div class="line">const reducer = function(state=init, action) &#123;</div><div class="line">  switch(action.type) &#123;</div><div class="line">    case 'ADD_TODO':</div><div class="line">      return state.push(</div><div class="line">        Map(action.payload)</div><div class="line">      );</div><div class="line">    case 'TOGGLE_TODO':</div><div class="line">      return state.map(t =&gt; &#123;</div><div class="line">        if(t.get('id') == action.payload) &#123;</div><div class="line">          return t.update('isDone', isDone =&gt; !isDone);</div><div class="line">        &#125; else &#123;</div><div class="line">          return t;</div><div class="line">        &#125;</div><div class="line">      &#125;);</div><div class="line">    default:</div><div class="line">      return state;</div><div class="line">  &#125;</div><div class="line">&#125;;</div><div class="line"></div><div class="line">const containers = &#123;</div><div class="line">  TodoList: connect(</div><div class="line">    function mapStateToProps(state) &#123;</div><div class="line">      return &#123;</div><div class="line">        todos: state</div><div class="line">      &#125;;</div><div class="line">    &#125;,</div><div class="line">    function mapDispatchToProps(dispatch) &#123;</div><div class="line">      return &#123;</div><div class="line">        toggleTodo: (id) =&gt; dispatch(actions.toggleTodo(id)),</div><div class="line">        addTodo: (text) =&gt; dispatch(actions.addTodo(text))</div><div class="line">      &#125;;</div><div class="line">    &#125;</div><div class="line">  )(components.TodoList)</div><div class="line">&#125;;</div><div class="line"></div><div class="line">const &#123; TodoList &#125; = containers;</div><div class="line">const store = createStore(reducer);</div><div class="line"></div><div class="line">ReactDOM.render(</div><div class="line">  &lt;Provider store=&#123;store&#125;&gt;</div><div class="line">    &lt;TodoList /&gt;</div><div class="line">  &lt;/Provider&gt;,</div><div class="line">  document.getElementById('app')</div><div class="line">);</div></pre></td></tr></table></figure>
+<hr>
+<p>代码在 <a href="https://github.com/sitepoint-editors/immutable-redux-todo" target="_blank" rel="external">Github</a></p>
+<blockquote>
+<p>可能提示build失败,<code>npm install babel-core</code>试试</p>
+</blockquote>
+<h2 id="setup"><a href="#setup" class="headerlink" title="setup"></a>setup</h2><p>从创建项目📂开始,建立一个package.json文件.然后安装需要的依赖包.</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"> npm install --save react react-dom redux react-redux immutable</div><div class="line">npm install --save-dev webpack babel-loader babel-preset-es2015 babel-preset-react</div></pre></td></tr></table></figure>
+<hr>
+<p>使用JSX和ES2015,用Babel编译代码,使用Webpack来完成这个模块绑定过程.</p>
+<p>在<code>webpack.config.js</code>文件中创建Webpack配置文件.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"> <span class="built_in">module</span>.exports = &#123;</div><div class="line">  <span class="attr">entry</span>: <span class="string">'./src/app.js'</span>,</div><div class="line">  <span class="attr">output</span>: &#123;</div><div class="line">    <span class="attr">path</span>: __dirname,</div><div class="line">    <span class="attr">filename</span>: <span class="string">'bundle.js'</span></div><div class="line">  &#125;,</div><div class="line">  <span class="attr">module</span>: &#123;</div><div class="line">    <span class="attr">loaders</span>: [</div><div class="line">      &#123;</div><div class="line">        <span class="attr">test</span>: <span class="regexp">/\.js$/</span>,</div><div class="line">        <span class="attr">exclude</span>: <span class="regexp">/node_modules/</span>,</div><div class="line">        <span class="attr">loader</span>: <span class="string">'babel'</span>,</div><div class="line">        <span class="attr">query</span>: &#123; <span class="attr">presets</span>: [ <span class="string">'es2015'</span>, <span class="string">'react'</span> ] &#125;</div><div class="line">      &#125;</div><div class="line">    ]</div><div class="line">  &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<hr>
+<p>最后扩展一下<code>package.json</code>,添加一个npm script使用source maps编译我们的代码.</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"> "scripts": &#123;</div><div class="line">  "build": "webpack --debug"</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<hr>
+<p>每次编译代码的时候,运行<code>npm run build</code>.</p>
+<h2 id="React-amp-Components"><a href="#React-amp-Components" class="headerlink" title="React&amp;Components"></a>React&amp;Components</h2><p>在实施项目之前,先创建一些傻瓜数据有很大的用处,但我们构思需要渲染的组件的时候,有一点点初步的感觉.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"> <span class="keyword">const</span> dummyTodos = [</div><div class="line">  &#123; <span class="attr">id</span>: <span class="number">0</span>, <span class="attr">isDone</span>: <span class="literal">true</span>,  <span class="attr">text</span>: <span class="string">'make components'</span> &#125;,</div><div class="line">  &#123; <span class="attr">id</span>: <span class="number">1</span>, <span class="attr">isDone</span>: <span class="literal">false</span>, <span class="attr">text</span>: <span class="string">'design actions'</span> &#125;,</div><div class="line">  &#123; <span class="attr">id</span>: <span class="number">2</span>, <span class="attr">isDone</span>: <span class="literal">false</span>, <span class="attr">text</span>: <span class="string">'implement reducer'</span> &#125;,</div><div class="line">  &#123; <span class="attr">id</span>: <span class="number">3</span>, <span class="attr">isDone</span>: <span class="literal">false</span>, <span class="attr">text</span>: <span class="string">'connect components'</span> &#125;</div><div class="line">];</div></pre></td></tr></table></figure>
+<hr>
+<p>我们需要两个React组件<code>&lt;Todo/&gt;</code>和<code>&lt;TodoList&gt;</code></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"> <span class="comment">// src/components.js</span></div><div class="line"></div><div class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span>;</div><div class="line"></div><div class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">Todo</span>(<span class="params">props</span>) </span>&#123;</div><div class="line">  <span class="keyword">const</span> &#123; todo &#125; = props;</div><div class="line">  <span class="keyword">if</span>(todo.isDone) &#123;</div><div class="line">    <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">strike</span>&gt;</span>&#123;todo.text&#125;<span class="tag">&lt;/<span class="name">strike</span>&gt;</span></span>;</div><div class="line">  &#125; <span class="keyword">else</span> &#123;</div><div class="line">    <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">span</span>&gt;</span>&#123;todo.text&#125;<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span>;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">TodoList</span>(<span class="params">props</span>) </span>&#123;</div><div class="line">  <span class="keyword">const</span> &#123; todos &#125; = props;</div><div class="line">  <span class="keyword">return</span> (</div><div class="line">    &lt;div className='todo'&gt;</div><div class="line">      &lt;input type='text' placeholder='Add todo' /&gt;</div><div class="line">      &lt;ul className='todo__list'&gt;</div><div class="line">        &#123;todos.map(t =&gt; (</div><div class="line">          &lt;li key=&#123;t.id&#125; className='todo__item'&gt;</div><div class="line">            &lt;Todo todo=&#123;t&#125; /&gt;</div><div class="line">          &lt;/li&gt;</div><div class="line">        ))&#125;</div><div class="line">      &lt;/ul&gt;</div><div class="line">    &lt;/div&gt;</div><div class="line">  );</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<hr>
+<p>到了这一步,可以创建<code>index.html</code>文件来测试这些组价,添加下面的标记</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"> <span class="meta">&lt;!DOCTYPE html&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">href</span>=<span class="string">"style.css"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Immutable Todo<span class="tag">&lt;/<span class="name">title</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"bundle.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure>
+<hr>
+<p>还有一个项目的入口文件<code>src/app.js</code>.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// src/app.js</span></div><div class="line"></div><div class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span>;</div><div class="line"><span class="keyword">import</span> &#123; render &#125; <span class="keyword">from</span> <span class="string">'react-dom'</span>;</div><div class="line"><span class="keyword">import</span> &#123; TodoList &#125; <span class="keyword">from</span> <span class="string">'./components'</span>;</div><div class="line"></div><div class="line"><span class="keyword">const</span> dummyTodos = [</div><div class="line">  &#123; <span class="attr">id</span>: <span class="number">0</span>, <span class="attr">isDone</span>: <span class="literal">true</span>,  <span class="attr">text</span>: <span class="string">'make components'</span> &#125;,</div><div class="line">  &#123; <span class="attr">id</span>: <span class="number">1</span>, <span class="attr">isDone</span>: <span class="literal">false</span>, <span class="attr">text</span>: <span class="string">'design actions'</span> &#125;,</div><div class="line">  &#123; <span class="attr">id</span>: <span class="number">2</span>, <span class="attr">isDone</span>: <span class="literal">false</span>, <span class="attr">text</span>: <span class="string">'implement reducer'</span> &#125;,</div><div class="line">  &#123; <span class="attr">id</span>: <span class="number">3</span>, <span class="attr">isDone</span>: <span class="literal">false</span>, <span class="attr">text</span>: <span class="string">'connect components'</span> &#125;</div><div class="line">];</div><div class="line"></div><div class="line">render(</div><div class="line">  <span class="xml"><span class="tag">&lt;<span class="name">TodoList</span> <span class="attr">todos</span>=<span class="string">&#123;dummyTodos&#125;</span> /&gt;</span>,</span></div><div class="line">  document.getElementById('app')</div><div class="line">);</div></pre></td></tr></table></figure>
+<hr>
+<p>使用<code>npm run build</code>编译文件,然后在浏览器中打开index.html文件,确保运行.</p>
+<h2 id="Redux-amp-ImmutableJS"><a href="#Redux-amp-ImmutableJS" class="headerlink" title="Redux&amp;ImmutableJS"></a>Redux&amp;ImmutableJS</h2><p>现在我们有了很好的UI,可以开始考虑组件最后的state.开始创建的傻瓜数据是一个很好的开端,我们可以很容易转化为ImmutableJS集合.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"> <span class="keyword">import</span> &#123; List, <span class="built_in">Map</span> &#125; <span class="keyword">from</span> <span class="string">'immutable'</span>;</div><div class="line"></div><div class="line"><span class="keyword">const</span> dummyTodos = List([</div><div class="line">  <span class="built_in">Map</span>(&#123; <span class="attr">id</span>: <span class="number">0</span>, <span class="attr">isDone</span>: <span class="literal">true</span>,  <span class="attr">text</span>: <span class="string">'make components'</span> &#125;),</div><div class="line">  <span class="built_in">Map</span>(&#123; <span class="attr">id</span>: <span class="number">1</span>, <span class="attr">isDone</span>: <span class="literal">false</span>, <span class="attr">text</span>: <span class="string">'design actions'</span> &#125;),</div><div class="line">  <span class="built_in">Map</span>(&#123; <span class="attr">id</span>: <span class="number">2</span>, <span class="attr">isDone</span>: <span class="literal">false</span>, <span class="attr">text</span>: <span class="string">'implement reducer'</span> &#125;),</div><div class="line">  <span class="built_in">Map</span>(&#123; <span class="attr">id</span>: <span class="number">3</span>, <span class="attr">isDone</span>: <span class="literal">false</span>, <span class="attr">text</span>: <span class="string">'connect components'</span> &#125;)</div><div class="line">]);</div></pre></td></tr></table></figure>
+<hr>
+<p>ImmutableJS map和Javascript的对象工作方式不同,所以我们要对组件做一点轻微的改变.property接入的地方(例如：todo.id)需要使用一个方法调用来代替(例如:<code>todo.get(‘id’)</code>).</p>
+<h2 id="设计Actions"><a href="#设计Actions" class="headerlink" title="设计Actions"></a>设计Actions</h2><p>现在我们获得了数据的特征,可以考虑一下actions的更新.这个实例中,我们仅仅需要两个acions,一个是添加新的todo,另一个转换todo的状态.</p>
+<p>让我们定义几个函数创建这些actions</p>
+ <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">  <span class="comment">// src/actions.js</span></div><div class="line"></div><div class="line"><span class="comment">// succinct hack for generating passable unique ids</span></div><div class="line"><span class="keyword">const</span> uid = <span class="function"><span class="params">()</span> =&gt;</span> <span class="built_in">Math</span>.random().toString(<span class="number">34</span>).slice(<span class="number">2</span>);</div><div class="line"></div><div class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">addTodo</span>(<span class="params">text</span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> &#123;</div><div class="line">    <span class="attr">type</span>: <span class="string">'ADD_TODO'</span>,</div><div class="line">    <span class="attr">payload</span>: &#123;</div><div class="line">      <span class="attr">id</span>: uid(),</div><div class="line">      <span class="attr">isDone</span>: <span class="literal">false</span>,</div><div class="line">      <span class="attr">text</span>: text</div><div class="line">    &#125;</div><div class="line">  &#125;;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">toggleTodo</span>(<span class="params">id</span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> &#123;</div><div class="line">    <span class="attr">type</span>: <span class="string">'TOGGLE_TODO'</span>,</div><div class="line">    <span class="attr">payload</span>: id</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<hr>
+<p>每一个action仅仅是一个有type和payload的属性对象.在我们触发action后,type属性帮助我们用payload来作什么.</p>
+<h2 id="设计一个Reducer"><a href="#设计一个Reducer" class="headerlink" title="设计一个Reducer"></a>设计一个Reducer</h2><p>现在我们知道了state的特性和更新state的action,我们可以创建reducer了.仅仅提醒一下,reducer是一个接收state和action的函数,然后用来计算更新state.</p>
+<p>这里是我们reducer的初始结构.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"> <span class="comment">// src/reducer.js</span></div><div class="line"></div><div class="line"><span class="keyword">import</span> &#123; List, <span class="built_in">Map</span> &#125; <span class="keyword">from</span> <span class="string">'immutable'</span>;</div><div class="line"></div><div class="line"><span class="keyword">const</span> init = List([]);</div><div class="line"></div><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="function"><span class="keyword">function</span>(<span class="params">todos=init, action</span>) </span>&#123;</div><div class="line">  <span class="keyword">switch</span>(action.type) &#123;</div><div class="line">    <span class="keyword">case</span> <span class="string">'ADD_TODO'</span>:</div><div class="line">      <span class="comment">// ...</span></div><div class="line">    <span class="keyword">case</span> <span class="string">'TOGGLE_TODO'</span>:</div><div class="line">      <span class="comment">// ...</span></div><div class="line">    <span class="keyword">default</span>:</div><div class="line">      <span class="keyword">return</span> todos;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<hr>
+<p>操作<code>ADD_TODO</code>action非常简单,可是使用<code>.push()</code>方法,返回一个新的列表,添加todo到末尾.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">case</span> <span class="string">'ADD_TODO'</span>:</div><div class="line"> <span class="keyword">return</span> todos.push(<span class="built_in">Map</span>(action.payload));</div></pre></td></tr></table></figure>
+<hr>
+<p>记住要push到列表之前,要把todo对象转变为immutable map.</p>
+<p>我们需要处理的稍微复杂的action是<code>TOOGLE_TODO</code>.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">case</span> <span class="string">'TOGGLE_TODO'</span>:</div><div class="line"> <span class="keyword">return</span> todos.map(<span class="function"><span class="params">t</span> =&gt;</span> &#123;</div><div class="line">   <span class="keyword">if</span>(t.get(<span class="string">'id'</span>) === action.payload) &#123;</div><div class="line">     <span class="keyword">return</span> t.update(<span class="string">'isDone'</span>, isDone =&gt; !isDone);</div><div class="line">   &#125; <span class="keyword">else</span> &#123;</div><div class="line">     <span class="keyword">return</span> t;</div><div class="line">   &#125;</div><div class="line"> &#125;);</div></pre></td></tr></table></figure>
+<hr>
+<p>我们使用<code>.map()</code>遍历列表,找到与aciton<code>id</code>匹配的todo项目.之后我们调用<code>.update()</code>方法,接收一个键和函数,然后返回一个map的新拷贝到updata函数,新拷贝中新值替换了初始值.</p>
+<p>字面量版本<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">  <span class="keyword">const</span> todo = <span class="built_in">Map</span>(&#123; <span class="attr">id</span>: <span class="number">0</span>, <span class="attr">text</span>: <span class="string">'foo'</span>, <span class="attr">isDone</span>: <span class="literal">false</span> &#125;);</div><div class="line">todo.update(<span class="string">'isDone'</span>, isDone =&gt; !isDone);</div><div class="line"><span class="comment">// =&gt; &#123; id: 0, text: 'foo', isDone: true &#125;</span></div></pre></td></tr></table></figure></p>
+<hr>
+<h2 id="把所有的东西都连系到一起"><a href="#把所有的东西都连系到一起" class="headerlink" title="把所有的东西都连系到一起"></a>把所有的东西都连系到一起</h2><p>actions和reducer准备好了,可以创建一个store,连接到我们的React组件中.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"> <span class="comment">// src/app.js</span></div><div class="line"></div><div class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span>;</div><div class="line"><span class="keyword">import</span> &#123; render &#125; <span class="keyword">from</span> <span class="string">'react-dom'</span>;</div><div class="line"><span class="keyword">import</span> &#123; createStore &#125; <span class="keyword">from</span> <span class="string">'redux'</span>;</div><div class="line"><span class="keyword">import</span> &#123; TodoList &#125; <span class="keyword">from</span> <span class="string">'./components'</span>;</div><div class="line"><span class="keyword">import</span> reducer <span class="keyword">from</span> <span class="string">'./reducer'</span>;</div><div class="line"></div><div class="line"><span class="keyword">const</span> store = createStore(reducer);</div><div class="line"></div><div class="line">render(</div><div class="line">  <span class="xml"><span class="tag">&lt;<span class="name">TodoList</span> <span class="attr">todos</span>=<span class="string">&#123;store.getState()&#125;</span> /&gt;</span>,</span></div><div class="line">  document.getElementById('app')</div><div class="line">);</div></pre></td></tr></table></figure>
+<hr>
+<p>为了保持组件和store的独立,我们使用<code>react-redux</code>帮助简化这个过程.它允许我们创建独立于store的容器,包装所有的组件,我们不需要改变先前的设计.</p>
+<p>我们需要一个容器包装<code>&lt;TodoList/&gt;</code>组件,看看下面的内容</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"> <span class="comment">// src/containers.js</span></div><div class="line"></div><div class="line"><span class="keyword">import</span> &#123; connect &#125; <span class="keyword">from</span> <span class="string">'react-redux'</span>;</div><div class="line"><span class="keyword">import</span> * <span class="keyword">as</span> components <span class="keyword">from</span> <span class="string">'./components'</span>;</div><div class="line"><span class="keyword">import</span> &#123; addTodo, toggleTodo &#125; <span class="keyword">from</span> <span class="string">'./actions'</span>;</div><div class="line"></div><div class="line"><span class="keyword">export</span> <span class="keyword">const</span> TodoList = connect(</div><div class="line">  <span class="function"><span class="keyword">function</span> <span class="title">mapStateToProps</span>(<span class="params">state</span>) </span>&#123;</div><div class="line">    <span class="comment">// ...</span></div><div class="line">  &#125;,</div><div class="line">  <span class="function"><span class="keyword">function</span> <span class="title">mapDispatchToProps</span>(<span class="params">dispatch</span>) </span>&#123;</div><div class="line">    <span class="comment">// ...</span></div><div class="line">  &#125;</div><div class="line">)(components.TodoList);</div></pre></td></tr></table></figure>
+<hr>
+<p>我们使用<code>connect</code>函数创建容器.当我们调用<code>connect()</code>函数,传递两个函数,<code>mapStateToProps()</code>和<code>mapDispatchToProps()</code>.</p>
+<p><code>mapStateToProps()</code>函数接收当前store的state作为参数,期待返回一个我们包装组件需要的对象映射.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"> <span class="function"><span class="keyword">function</span> <span class="title">mapStateToProps</span>(<span class="params">state</span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> &#123; <span class="attr">todos</span>: state &#125;;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<hr>
+<p>下面代码是一个包装组件根据映射map可视化的结果.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;TodoList todos=&#123;state&#125; /&gt;</div></pre></td></tr></table></figure>
+<hr>
+<p>我们也需要提供<code>mapDispatchProps</code>函数,传递store的<code>dispatch</code>方法,所以我们可以使用action creatros来dispatch actions.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"> <span class="function"><span class="keyword">function</span> <span class="title">mapDispatchToProps</span>(<span class="params">dispatch</span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> &#123;</div><div class="line">    <span class="attr">addTodo</span>: <span class="function"><span class="params">text</span> =&gt;</span> dispatch(addTodo(text)),</div><div class="line">    <span class="attr">toggleTodo</span>: <span class="function"><span class="params">id</span> =&gt;</span> dispatch(toggleTodo(id))</div><div class="line">  &#125;;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<hr>
+<p>再一次实例化组件</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;TodoList todos=&#123;state&#125;</div><div class="line">         addTodo=&#123;text =&gt; dispatch(addTodo(text))&#125;</div><div class="line">         toggleTodo=&#123;id =&gt; dispatch(toggleTodo(id))&#125; /&gt;</div></pre></td></tr></table></figure>
+<hr>
+<p>现在我们已经把action creators映射到组件,可以从事件监听中调用.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line"> <span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">TodoList</span>(<span class="params">props</span>) </span>&#123;</div><div class="line">  <span class="keyword">const</span> &#123; todos, toggleTodo, addTodo &#125; = props;</div><div class="line"></div><div class="line">  <span class="keyword">const</span> onSubmit = <span class="function">(<span class="params">event</span>) =&gt;</span> &#123;</div><div class="line">    <span class="keyword">const</span> input = event.target;</div><div class="line">    <span class="keyword">const</span> text = input.value;</div><div class="line">    <span class="keyword">const</span> isEnterKey = (event.which == <span class="number">13</span>);</div><div class="line">    <span class="keyword">const</span> isLongEnough = text.length &gt; <span class="number">0</span>;</div><div class="line"></div><div class="line">    <span class="keyword">if</span>(isEnterKey &amp;&amp; isLongEnough) &#123;</div><div class="line">      input.value = <span class="string">''</span>;</div><div class="line">      addTodo(text);</div><div class="line">    &#125;</div><div class="line">  &#125;;</div><div class="line"></div><div class="line">  <span class="keyword">const</span> toggleClick = <span class="function"><span class="params">id</span> =&gt;</span> event =&gt; toggleTodo(id);</div><div class="line"></div><div class="line">  <span class="keyword">return</span> (</div><div class="line">    &lt;div className='todo'&gt;</div><div class="line">      &lt;input type='text'</div><div class="line">             className='todo__entry'</div><div class="line">             placeholder='Add todo'</div><div class="line">             onKeyDown=&#123;onSubmit&#125; /&gt;</div><div class="line">      &lt;ul className='todo__list'&gt;</div><div class="line">        &#123;todos.map(t =&gt; (</div><div class="line">          &lt;li key=&#123;t.get('id')&#125;</div><div class="line">              className='todo__item'</div><div class="line">              onClick=&#123;toggleClick(t.get('id'))&#125;&gt;</div><div class="line">            &lt;Todo todo=&#123;t.toJS()&#125; /&gt;</div><div class="line">          &lt;/li&gt;</div><div class="line">        ))&#125;</div><div class="line">      &lt;/ul&gt;</div><div class="line">    &lt;/div&gt;</div><div class="line">  );</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<hr>
+<p>container容器自动订阅store的变化,只要的映射的props变化的时候,容器包装的组件就会重新渲染.</p>
+<p>最后,需要使容器组件独立于store,使用<code>&lt;Provider/&gt;</code>组件.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"> <span class="comment">// src/app.js</span></div><div class="line"></div><div class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span>;</div><div class="line"><span class="keyword">import</span> &#123; render &#125; <span class="keyword">from</span> <span class="string">'react-dom'</span>;</div><div class="line"><span class="keyword">import</span> &#123; createStore &#125; <span class="keyword">from</span> <span class="string">'redux'</span>;</div><div class="line"><span class="keyword">import</span> &#123; Provider &#125; <span class="keyword">from</span> <span class="string">'react-redux'</span>;</div><div class="line"><span class="keyword">import</span> reducer <span class="keyword">from</span> <span class="string">'./reducer'</span>;</div><div class="line"><span class="keyword">import</span> &#123; TodoList &#125; <span class="keyword">from</span> <span class="string">'./containers'</span>;</div><div class="line"><span class="comment">//                          ^^^^^^^^^^</span></div><div class="line"></div><div class="line"><span class="keyword">const</span> store = createStore(reducer);</div><div class="line"></div><div class="line">render(</div><div class="line">  <span class="xml"><span class="tag">&lt;<span class="name">Provider</span> <span class="attr">store</span>=<span class="string">&#123;store&#125;</span>&gt;</span></span></div><div class="line">    <span class="tag">&lt;<span class="name">TodoList</span> /&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">Provider</span>&gt;</span>,</div><div class="line">  <span class="built_in">document</span>.getElementById(<span class="string">'app'</span>)</div><div class="line">);</div></pre></td></tr></table></figure>
+<hr>
+<h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><p>不可否认,对于初学者来说,React和Redux的生态系统是相当复杂和令人迷惑的.<br>但是好消息是这些概念是可以可以转移的.我们仅仅粗略的接触了Redux的基础构架,但是已经足够我们学习<code>Elm 构架</code>,或者选取ClojureScript库例如：<code>Om</code>,<code>Re-frame</code>.类似的,我们仅仅看到immutable数据结构的只言片语,但是已经足够我们学习<code>Clojure</code>或者<code>Haskell</code>.</p>
+<p>不管你是刚开始探索有关state的web编程开发者,还是使用javascript很长时间的开发者,基于action构架的办成和immutable数据结构变得至观重要的技能.所以现在是学习这些内容的时间了.</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/03/21/翻译-让我们把React-Container组合起来/" rel="next" title="翻译-让我们把React-Container组合起来">
+                <i class="fa fa-chevron-left"></i> 翻译-让我们把React-Container组合起来
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/03/23/new-article-2/" rel="prev" title="测试文件">
+                测试文件 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpeg"
+               alt="phpsmarter" />
+          <p class="site-author-name" itemprop="name">phpsmarter</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">18</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Redux"><span class="nav-number">1.</span> <span class="nav-text">Redux</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ImmutableJS"><span class="nav-number">2.</span> <span class="nav-text">ImmutableJS</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Demo"><span class="nav-number">3.</span> <span class="nav-text">Demo</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#setup"><span class="nav-number">4.</span> <span class="nav-text">setup</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#React-amp-Components"><span class="nav-number">5.</span> <span class="nav-text">React&Components</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Redux-amp-ImmutableJS"><span class="nav-number">6.</span> <span class="nav-text">Redux&ImmutableJS</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#设计Actions"><span class="nav-number">7.</span> <span class="nav-text">设计Actions</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#设计一个Reducer"><span class="nav-number">8.</span> <span class="nav-text">设计一个Reducer</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#把所有的东西都连系到一起"><span class="nav-number">9.</span> <span class="nav-text">把所有的东西都连系到一起</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#结论"><span class="nav-number">10.</span> <span class="nav-text">结论</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">phpsmarter</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
