@@ -71,7 +71,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="javascript," />
 
 
 
@@ -89,16 +89,22 @@
 
 
 
-<meta name="description" content="Rect/Redux的系列文章">
+<meta name="description" content="状态模式是解决某些需求场景的最好方法。状态模式的关键是区分事物内部的状态，事物内部的状态的改变往往会带来事物的行为的改变参考《javascript模式设计与开发实践》第16章
+
+我在前面写了一个简单的教程，为了说明react/redux中的状态管理，《javascript模式设计与开发实践》里面有这样的模式。在下一步的重构中，如果从简单电灯的开关改为多级调光的电灯可以借鉴这样的模式。在简单的多个">
 <meta property="og:type" content="article">
-<meta property="og:title" content="understanding React(1)">
-<meta property="og:url" content="http://yoursite.com/2016/05/29/understanding React(1)/index.html">
+<meta property="og:title" content="javascript状态模式">
+<meta property="og:url" content="http://yoursite.com/2017/03/08/Javascript状态模式/index.html">
 <meta property="og:site_name" content="phpsmarter">
-<meta property="og:description" content="Rect/Redux的系列文章">
-<meta property="og:updated_time" content="2017-03-23T02:51:15.000Z">
+<meta property="og:description" content="状态模式是解决某些需求场景的最好方法。状态模式的关键是区分事物内部的状态，事物内部的状态的改变往往会带来事物的行为的改变参考《javascript模式设计与开发实践》第16章
+
+我在前面写了一个简单的教程，为了说明react/redux中的状态管理，《javascript模式设计与开发实践》里面有这样的模式。在下一步的重构中，如果从简单电灯的开关改为多级调光的电灯可以借鉴这样的模式。在简单的多个">
+<meta property="og:updated_time" content="2017-03-23T11:50:53.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="understanding React(1)">
-<meta name="twitter:description" content="Rect/Redux的系列文章">
+<meta name="twitter:title" content="javascript状态模式">
+<meta name="twitter:description" content="状态模式是解决某些需求场景的最好方法。状态模式的关键是区分事物内部的状态，事物内部的状态的改变往往会带来事物的行为的改变参考《javascript模式设计与开发实践》第16章
+
+我在前面写了一个简单的教程，为了说明react/redux中的状态管理，《javascript模式设计与开发实践》里面有这样的模式。在下一步的重构中，如果从简单电灯的开关改为多级调光的电灯可以借鉴这样的模式。在简单的多个">
 
 
 
@@ -126,13 +132,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2016/05/29/understanding React(1)/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/03/08/Javascript状态模式/"/>
 
 
 
 
 
-  <title> understanding React(1) | phpsmarter </title>
+  <title> javascript状态模式 | phpsmarter </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -315,7 +321,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/05/29/understanding React(1)/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/08/Javascript状态模式/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="phpsmarter">
@@ -336,7 +342,7 @@
             
             
               
-                understanding React(1)
+                javascript状态模式
               
             
           </h1>
@@ -351,8 +357,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-05-29T07:53:25+08:00">
-                2016-05-28
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-08T08:04:10+08:00">
+                2017-03-08
               </time>
             
 
@@ -374,8 +380,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/javascript/" itemprop="url" rel="index">
-                    <span itemprop="name">javascript</span>
+                  <a href="/categories/Designpattern/" itemprop="url" rel="index">
+                    <span itemprop="name">Designpattern</span>
                   </a>
                 </span>
 
@@ -409,21 +415,30 @@
       
 
       
-        <p>Rect/Redux的系列文章<a id="more"></a><br>理解React程序(1)-宇宙大爆炸的奇点.<br>当大约160亿年前宇宙大爆炸从一个奇点开始的时候,第一缕光在宇宙中扩展开来,爆炸时产生的宇宙背景辐射至今在宇宙的时空中到处游荡,作为一个普通人也可以很容感知到到他们的存在,不信的话搬出你家里犄角旮旯里落满灰尘的十二寸黑白电视机,只要能点亮你就可以感知到他们存在.那么他们是什？没有电视节目的时候,满屏的雪花点就是电视天线接受到的宇宙背景辐射.至今关于宇宙大爆炸的奇点到底是是什么？谁做的程序架构,初衷是什么？迷仍然没有解开,甚至在宇宙大爆炸开始之前,连时间都是不存在的.科学家弄统的把所有的未解之谜都丢给了奇点,为了自圆其说,又创建了其他的理论.或许本来就存在多个奇点,所以存在好多平行的宇宙.好吧！上面的是一个脑洞大开的过程,你可能会说你说的这些东西到底和程序开发有半点关系吗？或许有吧,也或许更本没有任何关系.看你是怎么理解了.</p>
-<p>下面我把这个主题有关的写作想法讲一下.</p>
-<ul>
-<li>编程到底在做什么？唯一的目的是:<code>信息</code>.编程就是传递信息.React作为Javascript编程语言的子集,他是在传递信息吗？当然是了.如果你明白了我说的这句话,后面我要讲的问题就容易啦. 所有的数据结构包括更高级的数据库都是围绕着<code>信息</code>来运转的.这个主题我原本想放到最后来写.头脑里出现这个概念的时候,其实也是理解了一些编程的基本概念以后才有的.但我本人以前没有深入学习过其他编程语言,如果你是深入学习和了解过一种编程语言,那么这里讲的内容就容易理解了.<code>如果我们把为了解决React编程中出现的state管理问题引入的Redux看做是一种简单的数据库系统</code>,有些问题就能找到已知概念作为理解的依托了.这个概念,并非我自己提出,原先是有点隐约的想法,在看了一本有关React概念的书的时候,觉得这个想法是很正确的.数据库操作核心的概念就是CRUD,还有吗？数据的验证,数据的过滤等等.这些概念如果你比照任何一种数据库的操作,都可以在Redux和Redux中间件中找到类似的概念.</li>
-<li>既然我们说到了宇宙大爆炸的奇点理论了,那么如果把React程序看成是一个奇点,比宇宙大爆炸理论幸运的是我们可以看到这个<code>奇点</code>是怎么形成的.React的奇点是一个html文件.对于React的爆炸过程,我们也是可以完全解释清楚的.甚至我们还可以让这个爆炸过程无限次的重复.有点虚幻了吧.没有引入魔幻现实主义的<code>一只斗鸡</code>[^这只斗鸡来自于马尔克斯的《没有人写信的上尉》,实际这本书没有任何魔幻写诗主义,除了这只鸡的一丁点描写]和看文章的你来对话,我已经妥协了.这个过程会实际需要两方面的内容就可以了,一是Node.js的知识和一点React-redux程序初始化的知识.</li>
-<li>上面第一点我们谈到了姑且可以把Redux看做是一种<code>数据库</code>.那么数据库操作就有数据的增删改查和数据的验证和过滤过程,具体的实现语句都在react-redux中实现.如果是其他语言,我不知道怎么来实现,如果是Redux,就好办了.Redux模块里的内容其实是非常少的.少到什么程度,可以这样说Redux里面除了闭包和数组操作就没有更多的内容了.为什么这样说呢？下面这个概念非常关键.<code>在javascript中,其他对象和函数对象都是传引用赋值的</code>.没错!javascript之所以能够成为一门函数式编程语言.对象和函数传引用赋值是一个基本的概念,这样做以后,函数和对象就可以得到一个标记的<code>键名</code>.这个键名就可以在程序里到处运行了.这个地方我们借助于数据库的操作概念和javascript的函数式编程概念来理解Redux的源码.这一部分可能会比较困难,困难点实际是数组的操作方法的灵活应用,当然还有<code>闭包了</code>.说道这个地方的时候我们在讨论,本人学习编程时间不长,对于这些方法潜移默化的东西太少,写到相关内容一定请高手指教.</li>
-<li>Redux的中间件,实际应用中,简单的流程实际是很少的.这很好理解啊!就算是你家就在自来水厂的大门口,你也不可能每天拿着一个桶去水厂打水.自来水厂的水经过很多道的工序,出厂的时候还要经过很多的管道和水表才能到你家里.自来水厂是不可能做<code>大自然的搬运工</code>的.[^这个是看到有个幽默图片，题目是我们是大自然的搬运工,结果是桶装水里有只青蛙在游泳,意思的确是大自然搬运工,青蛙都搬运了].在数据在React和Redux的流动中,需要解决很多的细节问题,中间件就是来完成这个过程.有时候事情还没完.自来水厂会在自来水生产的时候添加漂白消毒剂.一旦这样,问题就变得更复杂了.到底选择哪家的次氯酸钠,几时能到货,每家的东西添加的步骤是不是一样?如果突然缺货了,怎么通知用水的人.这个过程就是Redux中的side effect的概念,虽然不在主流程上,但是对于主流程还是有很大影响.Redux到底怎么处理这些细节？这都依赖于中间件来实现.所以如果要编写复杂的应用,这个地方是需要花费很长时间的.如果是生产农夫山泉还好办,如果是生产脉动,那问题就更复杂啦！[^农夫山泉只是水,脉动里就添加了很多的维生素等等东西].Redux的中间件现在很多,但是实际中不可能每个都用到和学习到,所以只是关注几个比较重要的中间件就可以了.</li>
-<li>javascript的模式设计在React和Redux中的应用,模式设计在编程中无处不在的,在高手的源码中看这些模式设计方法,可能更加的原汁原味和标准,所以我么也来简单的谈谈这些内容,模式设计其实就是React大爆炸的背景辐射,他就存在于程序的任何地方.</li>
-<li>有关测试-作为初学者对于程序的测试理解太少,借助着这次写作的机会,加深认识.</li>
-</ul>
-<blockquote>
-<p>好了，大概要写的东西就是这么多，后续就按照这个框架来写作.我自己起了一个名字叫<code>框架写作</code>或者<code>大纲写作</code>.起因是什么呢？过年的时候在家里,刚好视频盒子有《士兵突击》,所有又看了一遍,记不清是看的第几回了.但是看到有一集一团改编的时候,师长出场,我记得整个士兵突击里只出现过两个女性,就是这一集.和其他的国产军事题材大相径庭,其他的国产军事题材里都会出现几个长相俊美,拿着电脑爱好者焊接电路板,身手不凡的,和男主人公搞着不知道几个角的恋爱关系.士兵突击完全可以把这两个女性变为许三多小时候同班的丑小鸭,突然一下突变为士兵突击里的落在窠臼里的女主人公.在原先25集的主线里在添加这么一个中间件,在拍25集也不成问题啊.添加这个中间件以后,问题就复杂了,这女主人公可能是成材或者伍六一的妹妹[^成材,伍六一和许三多是同乡嗷].哈哈side effect出现了.后面编剧想收笔就很难刹车了. 你也别以为我是在讲笑话,如果你在图书馆的写作栏目里找找,可以看到美剧和电影编剧的一些书籍,都是这个套路.呵呵!不能再讲下去了,要这么写得心中有框架,而要形成这个框架需要看很多的类似框架.这也是学习编程的方法,学习更多的代码,才能看到里面的框架.<br>《士兵突击》我看了很多遍,React的程序我也看了好多,你的选择是什么呢?</p>
+        <blockquote>
+<p>状态模式是解决某些需求场景的最好方法。状态模式的关键是区分事物内部的状态，事物内部的状态的改变往往会带来事物的行为的改变<br>参考《javascript模式设计与开发实践》第16章</p>
 </blockquote>
-<hr>
-<p>接下来的一篇我们要看看一个React的程序是怎么加载到浏览器中的.<br>需要有点<code>node.js</code>的基础知识和自动化打包程序的基础.</p>
+<p>我在前面写了一个简单的教程，为了说明react/redux中的状态管理，《javascript模式设计与开发实践》里面有这样的模式。在下一步的重构中，如果从简单电灯的开关改为多级调光的电灯可以借鉴这样的模式。在简单的多个状态之间切换的时候，这样的模式是非常清晰的。</p>
+<figure class="highlight pf"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">//两个状态之间的切换，使用if-else来切换，在有多个状态的时候，这样的切换就会嵌套很多的条件判断语句，如果加入新的状态，修改代码也比较困难</div><div class="line">Light.prototype.buttonWasPressed = function()&#123;</div><div class="line">		if ( this.<span class="keyword">state</span> === 'off' )&#123;</div><div class="line">			console.<span class="keyword">log</span>( '开灯' );</div><div class="line">			this.<span class="keyword">state</span> = '<span class="keyword">on</span>';</div><div class="line">		&#125;else if ( this.<span class="keyword">state</span> === '<span class="keyword">on</span>' )&#123;</div><div class="line">			console.<span class="keyword">log</span>( '关灯' );</div><div class="line">			this.<span class="keyword">state</span> = 'off';</div><div class="line">		&#125;</div><div class="line">	&#125;;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>状态模式的关键就是：把事物的每种状态都封装成单独的类，跟此状态相关的行为都被封装在这个类的内部。只要有交互行为，只需要在上下文中，把这个请求委托给当前的状态对象即可，该状态对象会负责渲染它自身的行为。</p>
+<ol>
+<li>封装状态</li>
+</ol>
+</blockquote>
+ <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> OffLightState = <span class="function"><span class="keyword">function</span>(<span class="params"> light </span>)</span>&#123;</div><div class="line">		    <span class="keyword">this</span>.light = light;</div><div class="line">		    &#125;;</div><div class="line">	     </div><div class="line">	OffLightState.prototype.buttonWasPressed = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">		<span class="built_in">console</span>.log( <span class="string">'弱光'</span> ); <span class="comment">// offLightState 对应的行为</span></div><div class="line">		  <span class="keyword">this</span>.light.setState( <span class="keyword">this</span>.light.weakLightState ); <span class="comment">// 切换状态到weakLightState</span></div><div class="line">     &#125;;</div><div class="line">    <span class="comment">// WeakLightState：</span></div><div class="line">    <span class="keyword">var</span> WeakLightState = <span class="function"><span class="keyword">function</span>(<span class="params"> light </span>)</span>&#123;</div><div class="line">	  <span class="keyword">this</span>.light = light;</div><div class="line">    &#125;;</div><div class="line"></div><div class="line">    WeakLightState.prototype.buttonWasPressed = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">		<span class="built_in">console</span>.log( <span class="string">'强光'</span> ); <span class="comment">// weakLightState 对应的行为</span></div><div class="line">		<span class="keyword">this</span>.light.setState( <span class="keyword">this</span>.light.strongLightState ); <span class="comment">// 切换状态到strongLightState</span></div><div class="line">	   &#125;;</div><div class="line">	<span class="comment">// StrongLightState：</span></div><div class="line">	  <span class="keyword">var</span> StrongLightState = <span class="function"><span class="keyword">function</span>(<span class="params"> light </span>)</span>&#123;</div><div class="line">		<span class="keyword">this</span>.light = light;</div><div class="line">	&#125;;</div><div class="line"></div><div class="line">	 StrongLightState.prototype.buttonWasPressed = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">		<span class="built_in">console</span>.log( <span class="string">'关灯'</span> ); <span class="comment">// strongLightState 对应的行为</span></div><div class="line">		<span class="keyword">this</span>.light.setState( <span class="keyword">this</span>.light.offLightState ); <span class="comment">// 切换状态到offLightState</span></div><div class="line">	&#125;;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>在Light类中为每个状态类都创建一个状态对象，这样一来就可以很明显的看到电灯一共有多少个状态</p>
+</blockquote>
+<figure class="highlight haxe"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">   <span class="keyword">var</span> Light = <span class="function"><span class="keyword">function</span></span>()&#123;</div><div class="line">	<span class="built_in">this</span>.offLightState = <span class="keyword">new</span> <span class="type">OffLightState</span>( <span class="built_in">this</span> );</div><div class="line">	<span class="built_in">this</span>.weakLightState = <span class="keyword">new</span> <span class="type">WeakLightState</span>( <span class="built_in">this</span> );</div><div class="line">	<span class="built_in">this</span>.strongLightState = <span class="keyword">new</span> <span class="type">StrongLightState</span>( <span class="built_in">this</span> );</div><div class="line">	<span class="built_in">this</span>.button = <span class="literal">null</span>;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>在button按钮被按下的时候，通过self.currState.buttonWasPressed()将请求委托为当前的状态去执行。</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">Light.prototype.init = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">	<span class="keyword">var</span> button = <span class="built_in">document</span>.createElement( <span class="string">'button'</span> ),</div><div class="line">	self = <span class="keyword">this</span>;</div><div class="line">	<span class="keyword">this</span>.button = <span class="built_in">document</span>.body.appendChild( button );</div><div class="line">	<span class="keyword">this</span>.button.innerHTML = <span class="string">'开关'</span>;</div><div class="line">	<span class="keyword">this</span>.currState = <span class="keyword">this</span>.offLightState; <span class="comment">// 设置当前状态</span></div><div class="line">	<span class="keyword">this</span>.button.onclick = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">		self.currState.buttonWasPressed();</div><div class="line">	&#125;	</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>最后提供一个setState的方法，状态对象通过这个方法来切换light对象的状态。状态对象的切换规律被定义在各个状态类中。<br><figure class="highlight haxe"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Light.prototype.setState = <span class="function"><span class="keyword">function</span></span>( <span class="keyword">new</span><span class="type">State</span> )&#123;</div><div class="line">		<span class="built_in">this</span>.currState = <span class="keyword">new</span><span class="type">State</span>; <span class="comment">//设置下一个状态</span></div><div class="line">	&#125;;</div></pre></td></tr></table></figure></p>
+<p>#####Javascript版本的状态机</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> Light = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">		<span class="keyword">this</span>.currState = FSM.off; <span class="comment">// 设置当前状态</span></div><div class="line">		<span class="keyword">this</span>.button = <span class="literal">null</span>;</div><div class="line">	&#125;;</div><div class="line"></div><div class="line">	Light.prototype.init = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">		<span class="keyword">var</span> button = <span class="built_in">document</span>.createElement( <span class="string">'button'</span> ),</div><div class="line">		self = <span class="keyword">this</span>;</div><div class="line">		button.innerHTML = <span class="string">'已关灯'</span>;</div><div class="line">		<span class="keyword">this</span>.button = <span class="built_in">document</span>.body.appendChild( button );</div><div class="line">		<span class="keyword">this</span>.button.onclick = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">			<span class="comment">//初始化下就是调用FSM.off的方法设置内部状态self.currState.buttonWasPressed.call( self ); // 把请求委托给FSM 状态机</span></div><div class="line">		&#125;</div><div class="line">	&#125;;</div><div class="line">	<span class="keyword">var</span> FSM = &#123;</div><div class="line">		<span class="attr">off</span>: &#123;</div><div class="line">			<span class="attr">buttonWasPressed</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">				<span class="built_in">console</span>.log( <span class="string">'关灯'</span> );</div><div class="line">				<span class="keyword">this</span>.button.innerHTML = <span class="string">'下一次按我是开灯'</span>;</div><div class="line">				<span class="keyword">this</span>.currState = FSM.on;</div><div class="line">			&#125;</div><div class="line">		&#125;,</div><div class="line">		<span class="attr">on</span>: &#123;</div><div class="line">			<span class="attr">buttonWasPressed</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">				<span class="built_in">console</span>.log( <span class="string">'开灯'</span> );</div><div class="line">				<span class="keyword">this</span>.button.innerHTML = <span class="string">'下一次按我是关灯'</span>;</div><div class="line">				<span class="keyword">this</span>.currState = FSM.off;</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">	&#125;;</div><div class="line">	<span class="keyword">var</span> light = <span class="keyword">new</span> Light();</div><div class="line">	light.init();</div></pre></td></tr></table></figure>
+<p>具体的实例详细看看书中的例子</p>
 
       
     </div>
@@ -451,6 +466,12 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/javascript/" rel="tag"># javascript</a>
+          
+        </div>
+      
 
       
         
@@ -460,8 +481,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/05/29/Redux和React编程/" rel="next" title="Redux Persist">
-                <i class="fa fa-chevron-left"></i> Redux Persist
+              <a href="/2017/03/08/翻译-使用Reselect改进React和Redux程序性能/" rel="next" title="翻译-使用Reselect改进React和Redux程序性能">
+                <i class="fa fa-chevron-left"></i> 翻译-使用Reselect改进React和Redux程序性能
               </a>
             
           </div>
@@ -470,8 +491,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/05/29/understanding React(2)/" rel="prev" title="understanding React(2)">
-                understanding React(2) <i class="fa fa-chevron-right"></i>
+              <a href="/2017/03/08/翻译-Redux-Saga-hello，world!/" rel="prev" title="翻译-Redux-Saga-hello，world!">
+                翻译-Redux-Saga-hello，world! <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
