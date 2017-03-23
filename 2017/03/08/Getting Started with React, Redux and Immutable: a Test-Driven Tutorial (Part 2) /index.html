@@ -1,42 +1,434 @@
-<?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom">
-  <title>phpsmarter</title>
+<!doctype html>
+
+
+
   
-  <link href="/atom.xml" rel="self"/>
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   
-  <link href="http://yoursite.com/"/>
-  <updated>2017-03-23T07:31:30.000Z</updated>
-  <id>http://yoursite.com/</id>
   
-  <author>
-    <name>phpsmarter</name>
-    
-  </author>
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
   
-  <generator uri="http://hexo.io/">Hexo</generator>
   
-  <entry>
-    <title>new article</title>
-    <link href="http://yoursite.com/2017/03/23/new-article-2/"/>
-    <id>http://yoursite.com/2017/03/23/new-article-2/</id>
-    <published>2017-03-23T15:31:30.000Z</published>
-    <updated>2017-03-23T07:31:30.000Z</updated>
-    
-    <summary type="html">
-    
-    </summary>
-    
-    
-  </entry>
   
-  <entry>
-    <title>使用React,Redux,redux-sage构建图片库(翻译)</title>
-    <link href="http://yoursite.com/2017/03/08/Getting%20Started%20with%20React,%20Redux%20and%20Immutable:%20a%20Test-Driven%20Tutorial%20(Part%202)%20/"/>
-    <id>http://yoursite.com/2017/03/08/Getting Started with React, Redux and Immutable: a Test-Driven Tutorial (Part 2) /</id>
-    <published>2017-03-08T00:04:10.000Z</published>
-    <updated>2017-03-23T07:37:13.000Z</updated>
+  
+
+  
     
-    <content type="html"><![CDATA[<p>翻译版本,<a href="http://www.theodo.fr/blog/2016/03/getting-started-with-react-redux-and-immutable-a-test-driven-tutorial-part-2/" target="_blank" rel="external">原文请见</a></p>
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="phpsmarter" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="翻译版本,原文请见
+
+这是第二部分的内容.
+在第一部分,我们罗列了app的UI,开发和单元测试的基础.
+我们看到了app的state通过React的props向下传递到单个的组件,用户的actions声明为回调函数,因此app的逻辑和UI分离开来了.
+Redux的工作流介绍在这一点上,我们的UI是没有交互操作的:尽管我们已经测试了如果一个item如果被设定为completed,它将给文本划线,但是">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用React,Redux,redux-sage构建图片库(翻译)">
+<meta property="og:url" content="http://yoursite.com/2017/03/08/Getting Started with React, Redux and Immutable: a Test-Driven Tutorial (Part 2) /index.html">
+<meta property="og:site_name" content="phpsmarter">
+<meta property="og:description" content="翻译版本,原文请见
+
+这是第二部分的内容.
+在第一部分,我们罗列了app的UI,开发和单元测试的基础.
+我们看到了app的state通过React的props向下传递到单个的组件,用户的actions声明为回调函数,因此app的逻辑和UI分离开来了.
+Redux的工作流介绍在这一点上,我们的UI是没有交互操作的:尽管我们已经测试了如果一个item如果被设定为completed,它将给文本划线,但是">
+<meta property="og:image" content="https://ww3.sinaimg.cn/large/006tNc79ly1fds4960hm8j30xc0b4weu.jpg">
+<meta property="og:image" content="https://ww3.sinaimg.cn/large/006tNc79ly1fdua9bq152j30f10870sn.jpg">
+<meta property="og:image" content="https://ww2.sinaimg.cn/large/006tNc79ly1fdubya02s9j31cy0v6dgk.jpg">
+<meta property="og:updated_time" content="2017-03-23T07:37:13.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="使用React,Redux,redux-sage构建图片库(翻译)">
+<meta name="twitter:description" content="翻译版本,原文请见
+
+这是第二部分的内容.
+在第一部分,我们罗列了app的UI,开发和单元测试的基础.
+我们看到了app的state通过React的props向下传递到单个的组件,用户的actions声明为回调函数,因此app的逻辑和UI分离开来了.
+Redux的工作流介绍在这一点上,我们的UI是没有交互操作的:尽管我们已经测试了如果一个item如果被设定为completed,它将给文本划线,但是">
+<meta name="twitter:image" content="https://ww3.sinaimg.cn/large/006tNc79ly1fds4960hm8j30xc0b4weu.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/03/08/Getting Started with React, Redux and Immutable: a Test-Driven Tutorial (Part 2) /"/>
+
+
+
+
+
+  <title> 使用React,Redux,redux-sage构建图片库(翻译) | phpsmarter </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">phpsmarter</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-sitemap">
+          <a href="/sitemap.xml" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br />
+            
+            站点地图
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/08/Getting Started with React, Redux and Immutable: a Test-Driven Tutorial (Part 2) /">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="phpsmarter">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="phpsmarter">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                使用React,Redux,redux-sage构建图片库(翻译)
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-08T08:04:10+08:00">
+                2017-03-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/React-native/" itemprop="url" rel="index">
+                    <span itemprop="name">React-native</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>翻译版本,<a href="http://www.theodo.fr/blog/2016/03/getting-started-with-react-redux-and-immutable-a-test-driven-tutorial-part-2/" target="_blank" rel="external">原文请见</a></p>
 <p><img src="https://ww3.sinaimg.cn/large/006tNc79ly1fds4960hm8j30xc0b4weu.jpg" alt="Image由[egghead.io提供](http://egghead.io/)"></p>
 <p>这是第二部分的内容.</p>
 <p>在第一部分,我们罗列了app的UI,开发和单元测试的基础.</p>
@@ -119,348 +511,493 @@
 <li><a href="https://egghead.io/series/getting-started-with-redux" target="_blank" rel="external">系列视频</a>,作者是Dan Abramov(Redux的创建者)</li>
 <li>Redux <a href="http://redux.js.org/docs/introduction/Ecosystem.html" target="_blank" rel="external">网站上更多的内容</a>!</li>
 </ul>
-]]></content>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/02/20/new-article-1/" rel="next" title="new article">
+                <i class="fa fa-chevron-left"></i> new article
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/03/23/new-article-2/" rel="prev" title="new article">
+                new article <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
     
-    <summary type="html">
-    
-      &lt;p&gt;翻译版本,&lt;a href=&quot;http://www.theodo.fr/blog/2016/03/getting-started-with-react-redux-and-immutable-a-test-driven-tutorial-part-2/&quot; target=&quot;_b
-    
-    </summary>
-    
-      <category term="React-native" scheme="http://yoursite.com/categories/React-native/"/>
-    
-    
-  </entry>
+  </div>
+
+
+        </div>
+        
+          
   
-  <entry>
-    <title>new article</title>
-    <link href="http://yoursite.com/2017/02/20/new-article-1/"/>
-    <id>http://yoursite.com/2017/02/20/new-article-1/</id>
-    <published>2017-02-20T00:47:49.000Z</published>
-    <updated>2017-02-19T16:47:49.000Z</updated>
-    
-    <summary type="html">
-    
-    </summary>
-    
-    
-  </entry>
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="phpsmarter" />
+          <p class="site-author-name" itemprop="name">phpsmarter</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Redux的工作流介绍"><span class="nav-number">1.</span> <span class="nav-text">Redux的工作流介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#设定初始化state"><span class="nav-number">2.</span> <span class="nav-text">设定初始化state</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Redux-dev-工具"><span class="nav-number">3.</span> <span class="nav-text">Redux dev 工具</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用Action-Creators配置我们的actions"><span class="nav-number">4.</span> <span class="nav-text">使用Action Creators配置我们的actions</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#改变目前的过滤器"><span class="nav-number">5.</span> <span class="nav-text">改变目前的过滤器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Item编辑"><span class="nav-number">6.</span> <span class="nav-text">Item编辑</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#清除完成-添加和删除条目"><span class="nav-number">7.</span> <span class="nav-text">清除完成,添加和删除条目</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#包装起来"><span class="nav-number">8.</span> <span class="nav-text">包装起来</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
   
-  <entry>
-    <title>Javascript This关键字全解析</title>
-    <link href="http://yoursite.com/2017/01/08/This%20keywords/"/>
-    <id>http://yoursite.com/2017/01/08/This keywords/</id>
-    <published>2017-01-08T00:04:10.000Z</published>
-    <updated>2017-03-23T02:44:12.000Z</updated>
-    
-    <content type="html"><![CDATA[<p><img src="http://upload-images.jianshu.io/upload_images/2044710-9f870a42dbc62877.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/200" alt="cover.jpg"></p>
-<p>《你不知道的javascript》这本书读了有好几遍了，似乎每一次读都有新发现，有些内容并不是一下子可以弄懂的，每次读似乎都能明白一些概念。<br>再重读一下<code>this</code>关键字。这个概念非常灵活，也非常难掌握，所以我觉得经常读读没有坏处。期待javascript一桶江湖，这样学习的成本就低啦！<br>参考本书的第二部分的第一章，第二章。<a id="more"></a></p>
-<blockquote>
-<p>this关键字是js中最最复杂的机制之一。他被自动定义到所有函数的作用域中。</p>
-</blockquote>
-<p>在学习这个关键字的过程中似乎也走了很长时间的弯路。你要问我为什么走了很长时间的弯路，关键的地方还是没有对核心的概念彻底学习和领会，这一点和小学生学习新知识没有任何区别。要想掌握this这个关键字，需要紧扣关键概念，不要凭空想象这到底是怎么一回事。</p>
-<p><strong>关键概念：js中的函数在调用的时候，一定，一定，一定会绑定在一个对象上，在分析this关键字的时候，一定要知道函数在调用的时候这个对象到底是谁？</strong>。<br><strong>切记：js中函数的调用和定义是没有任何关系的，函数所绑定的对象直到他被调用的时候才能知道。</strong></p>
-<p>this关键字的不确定定是把双刃剑，一是函数调用时的对象不确定性，是js中函数的使用具有很大灵活性，每个对象都可以借用其他函数来完成功能。二是这也造成了this学习的一些困扰。所以在学习的时候先要理解this关键字的优点，然后再去学习造成困扰的地方</p>
-<p>首先看看第一段代码<br>page 75<br>    <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line">  </div><div class="line"><span class="comment">//注意只是定义了一个函数，并未调用，这时候函数是没有绑定任何对象</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">identify</span>(<span class="params"></span>) </span>&#123;</div><div class="line">	<span class="keyword">return</span> <span class="keyword">this</span>.name.toUpperCase();</div><div class="line">&#125;</div><div class="line"><span class="comment">//同上面的函数,但是这个函数内部有点复杂，如果下面的代码看不懂</span></div><div class="line"><span class="comment">//可以只看上面的函数</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">speak</span>(<span class="params"></span>) </span>&#123;</div><div class="line">	<span class="keyword">var</span> greeting = <span class="string">"Hello, I'm "</span> + identify.call( <span class="keyword">this</span> );</div><div class="line">	<span class="built_in">console</span>.log( greeting );</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> me = &#123; <span class="comment">//定义了一个字面量对象</span></div><div class="line">	name: <span class="string">"Kyle"</span></div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="keyword">var</span> you = &#123;<span class="comment">//定义了一个字面量对象</span></div><div class="line">	name: <span class="string">"Reader"</span></div><div class="line">&#125;;</div><div class="line"><span class="comment">//通过call方式把函数identify分别绑定到两个对象上</span></div><div class="line"><span class="comment">//这时的this是指向me对象，和you对象</span></div><div class="line">identify.call( me ); <span class="comment">// KYLE  </span></div><div class="line">identify.call( you ); <span class="comment">// READER</span></div><div class="line"></div><div class="line"><span class="comment">//通过call方式把函数call分别绑定到两个对象上</span></div><div class="line"><span class="comment">//这时的this是指向me对象，和you对象</span></div><div class="line">speak.call( me ); <span class="comment">// Hello, I'm KYLE</span></div><div class="line">speak.call( you ); <span class="comment">// Hello, I'm READER</span></div></pre></td></tr></table></figure></p>
-<blockquote>
-<p>在javascript中定义函数的时候，函数是不属于任何对象的。这一点非常的关键，非常的关键，非常的关键。这是理解this关键字的第一个障碍。</p>
-</blockquote>
-<p>this关键字在js函数定义的时候的不确定性使得js函数使用有极大的灵活性，任何对象都可以使用他。</p>
-<p>###this到底是什么？</p>
-<p>this的绑定和函数定义的位置没有任何关系，只<code>取决于函数调用的方式</code>.<br>javascript中当一个函数被调用的时候，会创建一个活动记录(有时也称上下文)。这个记录包括函数在哪里被调用，函数的调用方法，传入的参数。this就是记录中的一个属性。</p>
-<p>这样在学习javascript关键字的<code>首要问题是要解决怎么知道到函数的调用位置</code>.</p>
-<p>###js对象绑定规则</p>
-<p>每个js函数在调用的时候一定要找到一个对象，<code>绑定</code>以后才能使用。 这里是理解了js函数的定义和调用的区别以后需要掌握的一个规模最庞大的概念，在js中一共有四种绑定方式.就我个人来看，绑定规则并不难，<code>难点还是在js的函数作用域的理解</code>. 尤其是<code>默认绑定</code>.这个绑定方式有极大的迷惑性。</p>
-<p>####默认绑定<br>这个是函数的独立调用，也就是在一个函数直接调用的时候，似乎是没有绑定到对象上的，但是根据前面的介绍，js中函数调用时必须要绑定到一个对象上。<br>看下面代码 page 83</p>
-<pre><code><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">  </div><div class="line">  <span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123; <span class="comment">//这是函数的定义位置</span></div><div class="line">	<span class="built_in">console</span>.log( <span class="keyword">this</span>.a );</div><div class="line">&#125;</div><div class="line"></div><div class="line">  <span class="keyword">var</span> a = <span class="number">2</span>;<span class="comment">//这个变量定义的含义是什么呢？仅仅是赋值给a吗？</span></div><div class="line"></div><div class="line">  foo(); <span class="comment">// 2  //这是函数的调用位置。为什么会打印出2呢？</span></div></pre></td></tr></table></figure>
-</code></pre><blockquote>
-<p>很多函数都是这么调用的，照猫画虎也可以写出来，但是理解了具体的含义就不一样了。<br>foo这个函数定义在全局作用域中(window作用域中)，巧合的是他的调用也是在全局作用域中，注意这仅仅是巧合，巧合。 那么foo()调用的时候为什么会打印出变量 a的值呢？尽管使用了var这个关键字，但是分析作用域可以知道，a这个变量实际是全局变量，说的再明白一点，a实际是window这个全局对象的一个属性，2是这个属性的属性值。<br>foo()调用的时候是一丝不挂的全裸状态，仅仅是函数本身，没有任何修饰符，这个时候他也没有任何函数包裹，处在全局作用域下面，所以foo()里面的this是指向全局对象的，当要打印this.a的时候，寻找foo()调用位置会找到全局作用域，找全局作用域的属性this.a的时候会打印出2这个属性值。</p>
-</blockquote>
-<p>我们在使用setTimeout,setInterval函数的时候，实际这两个函数就是一丝不挂的，同样绑定在window对象上。</p>
-<p>####隐式绑定</p>
-<p>函数在调用的时候被添加了修饰符。看下面这个代码<br>page 85</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">  <span class="function">function <span class="title">foo</span><span class="params">()</span> </span>&#123; <span class="comment">//定义在全局作用下的函数，仅仅是定义，不是调用位置</span></div><div class="line">	console.<span class="built_in">log</span>( <span class="keyword">this</span>.a );</div><div class="line">&#125;</div><div class="line"></div><div class="line">var obj = &#123; <span class="comment">//定义一个对象</span></div><div class="line">	a: <span class="number">2</span>,</div><div class="line">	foo: foo</div><div class="line">&#125;;</div><div class="line"></div><div class="line">obj.foo(); <span class="comment">// 2  给foo()函数找了一个对象，this就指向这个对象了</span></div></pre></td></tr></table></figure>
-<p>这是最常见的方式了，如果不写前面的obj是不是就是上面的默认绑定了？</p>
-<p><code>隐式丢失</code><br>经常在js代码的嵌套回调函数中看到在外层函数开始的一句 </p>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span>  that=<span class="keyword">this</span>; <span class="comment">//这是什么含义</span></div></pre></td></tr></table></figure>
-<p>或许你已经会用了，但是理解了其中意义用起来会更加得心应手啊</p>
-<p>看下面段代码.这段代码其实以前我也不太理解，问题还是没有彻底领悟js函数定义和调用之间是没有关系的这一点。<br>page 86</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="function">function <span class="title">foo</span><span class="params">()</span> </span>&#123; <span class="comment">//定义了一个函数</span></div><div class="line">	console.<span class="built_in">log</span>( <span class="keyword">this</span>.a );</div><div class="line">&#125;</div><div class="line"></div><div class="line">var obj = &#123; <span class="comment">//定义了一个对象字面量</span></div><div class="line">	a: <span class="number">2</span>,</div><div class="line">	foo: foo  <span class="comment">//函数作为对对象的属性</span></div><div class="line">&#125;;</div><div class="line"></div><div class="line">var bar = obj.foo; <span class="comment">//把obj对象的函数foo属性赋值给bar变量</span></div><div class="line"><span class="comment">//这里就是理解这个问题的关键，如果你现在认为调用bar()的时候绑定的对象</span></div><div class="line"><span class="comment">//是obj那就完全搞错了。这个时候仅仅是把函数foo赋值给了var变量，</span></div><div class="line"><span class="comment">//并没有把对象也给bar变量，因为这里还不是foo()函数的调用位置，现在</span></div><div class="line"><span class="comment">//foo函数还没有绑定对象，那么调用bar()的时候对象到底是谁？不知道。</span></div><div class="line"><span class="comment">//调用的时候才知道。</span></div><div class="line"></div><div class="line">var a = <span class="string">"oops, global"</span>; <span class="comment">// 任然是全局对象的属性</span></div><div class="line">bar(); <span class="comment">// "oops, global" 这里执行的是默认绑定，this就是去全局对象啦</span></div></pre></td></tr></table></figure>
-<p>下面这段代码就是使用var that=this的场景<br>在使用回调函数的时候要留心。js中函数是一等对象，可以作为另一个函数的参数传入函数。 问题就出在这里了，函数一旦作为实参代替形参的时候，实际也执行了和上面代码一样的赋值过程，实际只是传递了函数本身，原先的对象就没有了。</p>
-<p>page 86</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="function">function <span class="title">foo</span><span class="params">()</span> </span>&#123; <span class="comment">//定义一个函数</span></div><div class="line">	console.<span class="built_in">log</span>( <span class="keyword">this</span>.a );</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function">function <span class="title">doFoo</span><span class="params">(fn)</span> </span>&#123; <span class="comment">//fn是形参</span></div><div class="line">	<span class="comment">// 如果函数作为实参传入相当于代码 var fn=obj.foo</span></div><div class="line">	<span class="comment">//和上面一段代码是完全一样的，只是函数本身，并没有绑定任何对象</span></div><div class="line"></div><div class="line">	fn(); <span class="comment">// 在这里调用的时候，由于fn只代表foo()函数，被绑定到全局对象上了</span></div><div class="line">&#125;</div><div class="line"></div><div class="line">var obj = &#123;</div><div class="line">	a: <span class="number">2</span>,</div><div class="line">	foo: foo</div><div class="line">&#125;;</div><div class="line"></div><div class="line">var a = <span class="string">"oops, global"</span>; <span class="comment">// `a` also property on global object</span></div><div class="line"></div><div class="line">doFoo( obj.foo ); <span class="comment">// "oops, global"不要被obj.foo迷惑了</span></div><div class="line"><span class="comment">//没有实际执行函数的调用，此时obj.foo仅仅代表没有绑定任何对象的函数</span></div><div class="line"></div><div class="line"><span class="comment">//这个代码块看着眼熟么？这就是javascript中回调函数的样子，当</span></div><div class="line"><span class="comment">//一个函数作为参数传递进另一个函数的时候,这个参数函数就找不到自己绑定的对象是谁了，</span></div><div class="line"><span class="comment">//所以就默认绑定到全局对象上了。但是我们既然在一个函数里调用另一个函数，肯定是要用这个函数操作当前的对象，那么既然找不到了，我们就手动给他指定一个对象吧。这就是为什么要使用</span></div><div class="line"><span class="comment">//var  that=this的原因。我觉得理解这个概念，js的功力至少会增加5%😁。至于具体使用，我想写出来其实没有什么必要了。这样的代</span></div><div class="line"><span class="comment">//码随处可见.</span></div></pre></td></tr></table></figure>
-<p>最后我们会返回来看看怎么解决这个问题。</p>
-<p>####显示绑定</p>
-<p>直接使用apply()和call()方法来给函数指定一个对象<br>page 88</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">   <span class="function">function <span class="title">foo</span><span class="params">()</span> </span>&#123;  <span class="comment">//定义函数</span></div><div class="line">	console.<span class="built_in">log</span>( <span class="keyword">this</span>.a );</div><div class="line">&#125;</div><div class="line"></div><div class="line">var obj = &#123;  <span class="comment">//对象字面量定义</span></div><div class="line">	a: <span class="number">2</span> </div><div class="line">&#125;;</div><div class="line"></div><div class="line">foo.call( obj ); <span class="comment">// 2  强制绑定到obj对象上</span></div></pre></td></tr></table></figure>
-<p>使用显示绑定还不能解决this的丢失问题，所以可以创建一个包裹函数</p>
-<p>page 89</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">  <span class="function">function <span class="title">foo</span><span class="params">(something)</span> </span>&#123; <span class="comment">//定义函数</span></div><div class="line">	console.<span class="built_in">log</span>( <span class="keyword">this</span>.a, something );</div><div class="line">	<span class="keyword">return</span> <span class="keyword">this</span>.a + something;</div><div class="line">&#125;</div><div class="line"></div><div class="line">var obj = &#123; <span class="comment">//对象字面量</span></div><div class="line">	a: <span class="number">2</span></div><div class="line">&#125;;</div><div class="line"></div><div class="line">var bar = function() &#123; 包裹函数，显示绑定</div><div class="line">	<span class="keyword">return</span> foo.apply( obj, arguments );</div><div class="line"> <span class="comment">//返回绑定了对象和传入参数的函数调用</span></div><div class="line"> <span class="comment">//这个语句在js的代码中非常的常见</span></div><div class="line">&#125;;</div><div class="line"></div><div class="line">var b = bar( <span class="number">3</span> ); <span class="comment">// 2, 3  </span></div><div class="line">console.<span class="built_in">log</span>( b ); <span class="comment">// 5</span></div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">//可以把绑定函数独立出来</span></div><div class="line"></div><div class="line"><span class="function">function <span class="title">bind</span><span class="params">(fn, obj)</span> </span>&#123;</div><div class="line">	<span class="keyword">return</span> function() &#123;</div><div class="line">		<span class="keyword">return</span> fn.apply( obj, arguments );</div><div class="line">	&#125;;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>####new 绑定</p>
-<blockquote>
-<p>js中的new关键字和java中完全不同，js中没有类，只有对象，在js中使用new 关键字的时候只是被调用的普通函数</p>
-</blockquote>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"> <span class="function">function <span class="title">foo</span><span class="params">(a)</span> </span>&#123;  <span class="comment">//定义函数</span></div><div class="line">	<span class="keyword">this</span>.a = a;</div><div class="line">&#125;</div><div class="line"></div><div class="line">var bar = <span class="keyword">new</span> foo( <span class="number">2</span> ); <span class="comment">//仅仅是调用了一个函数</span></div><div class="line">console.<span class="built_in">log</span>( bar.a ); <span class="comment">// 2</span></div></pre></td></tr></table></figure>
-<p>好了以上就是js this绑定的四种方式。  解决的关键问题是js中在函数调用的时候到底是属于哪个对象的问题。 </p>
-<p>后面还有一点内容，但是上面的内容是最重要的。  2017年1月17日<br><code>的确包裹函数那里好像是没有讲清楚，我也忘了当初是怎么理解的，等我再看看，然后更新。有些地方已经做了更新!</code></p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/2044710-9f870a42dbc62877.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/200&quot; alt=&quot;cover.jpg&quot;&gt;&lt;/p&gt;
-&lt;p&gt;《你不知道的javascript》这本书读了有好几遍了，似乎每一次读都有新发现，有些内容并不是一下子可以弄懂的，每次读似乎都能明白一些概念。&lt;br&gt;再重读一下&lt;code&gt;this&lt;/code&gt;关键字。这个概念非常灵活，也非常难掌握，所以我觉得经常读读没有坏处。期待javascript一桶江湖，这样学习的成本就低啦！&lt;br&gt;参考本书的第二部分的第一章，第二章。
-    
-    </summary>
-    
-      <category term="testing" scheme="http://yoursite.com/categories/testing/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title></title>
-    <link href="http://yoursite.com/2016/12/23/Myyear2016javascript/"/>
-    <id>http://yoursite.com/2016/12/23/Myyear2016javascript/</id>
-    <published>2016-12-23T01:10:36.000Z</published>
-    <updated>2017-02-19T20:15:37.000Z</updated>
-    
-    <content type="html"><![CDATA[<hr>
-<p>title: 库里，汤普森教我打球和javascript，我自己教我跑步-半吊子程序员的年度总结<br>date: 2017-01-08 00:04:10<br>tags:-javascript</p>
-<hr>
-<p>开个玩笑，做为开头。这里的库里和汤普森实际是四个人。史蒂芬.库里，史蒂芬.汤普森是NBA金州勇士队的球星。curry是函数式编程里的科里化，Kely.Tompson是《你不知道的javascript》的作者。这么写完全是噱头而已，我自己教我跑步可不是噱头了，实打实的数据。<a id="more"></a></p>
-<p>为什么弄个这个古怪的名字呢？其实很简单，我自己的头脑就是这么古怪，在家里人的眼中我现在就是一个怪人，已经和这个世界完全脱节了。但是没有关系，别人眼中的怪物是别人眼中的。我自己对自己是什么看法呢？<br>废话少说，直接开始写吧（talk is cheap,show me the code!）。</p>
-<p>我也写个年终总结，看看这一年做了什么。</p>
-<p>这一年从的生活实际上是从2016年1月17开始的。为什么不是从1月1号开始的呢？1月17号发生了一件匪夷所思的事情，无缘无故丢了些东西，于是乎原先的一些工作和想法就中断了，进入了一年的学习阶段，没有任何收入。可能如果再年轻十岁我会对这件事情非常的懊恼，会身背负担很长时间。但是这次竟然没有，我似乎感觉到上帝这么安排是有用意的，既然失去的就不要再多想了。这一年在这种想法的指引下似乎很多问题都想开了。在家里人眼中似乎我过的非常难受，可是他们错了。换了个角度，生活态度完全不同了。一个人的生活道路有多种可能性，没有那一条道路是注定是你的方向，所以不要为以前发生的事情所懊悔，以前发生的好事可能会导致不好的结果，反之亦然，正所谓塞翁失马焉知非福。我们每个人都是社会的一份子，没有那个人是世界上必不可少的，你的失败可能成就了别人的成功，如果即使你失败但是仍然能推动社会的进步，那你的失败就死值得的，每个人的生命在历史上是微不足道的，争取在有限短暂的时间内做一点有意义的事情，生命短暂一点有什么影响，正所谓朝闻道，夕可死。一个人多活十年二十年，相对于宇宙的160亿年的历史，没有任何痕迹啊。<code>争取</code>做些有意义的事情。</p>
-<p><strong>永远不要相信成功学</strong></p>
-<p>很多程序员，尤其是从事电子商务的程序员都梦想成为和马云一样成功的人。可是这是一种目前非常误导人的<code>所谓成功学</code>。马云的成功是一项伟大的规模庞大的社会学实验的一部分。这么说是不是有点夸大其词？在我看来并不是。如果说马云是一项实验的成功样本，那么必然少不了其他实验品。在电子商务上面国内国外失败的人太多了，需要你注意的是你了解到的失败例子还只是离成功差了一步的，那些胎死腹中的公司在中国还不知道有多少。 马云成功的函数是什么？参数是什么？我们按照他的函数和参数能成功吗？也许吧！但是大多数情况下不可能重复了。古代希腊哲学家几千年以前都已经讲过了，人不可能踏进同一条河流。<br>马云的成功是偶然中的偶然。如果你看过马云的记录片，你就会理解我所说的这一点。马云的数学成绩很差，只能上英语专业。当时偏科还可以，如果放现在他根本就没有上大学的可能。马云长得丑，于是乎找工作时面试了三十多家企业没有被录用。想想看，如果马云长得和马化腾一样潇洒，或许他就在杭州一家小公司终老一生了。马云生在杭州，哇！得天独厚的机会，这样马云才可以在周末骑着自行车免费给外国人当向导，从而使自己的英语水平大大提高了。你看从那时候起马云就是免费经济的受益者，通过这种免费服务获得了很大的回报。由于英语好马云才可以到商务部工作，由于到商务部工作，马云才有机会出国，有了出国的机会，马云才有机会接触到电子邮件和电子商务。有了这些还不够，得有长时间不拿工资的十八罗汉鼎力相助。这个偶然因素和必然因素太多了，想通过一个成功学函数把他归纳下来，那是根本不可能的。<br>有一次在家里看荒野求生节目，贝尔正在钻木取火，由于草比较潮湿没有办法引燃，后来找到了干燥的草才成功。人类对火的使用导致了食物的摄入效率提高，大大的加速了进化过程。我大哥说古代人钻木取火是相信木头里有火，才会去钻。 我偶然想到，可能宇宙上有无数的行星上有和我们祖先一样的人正在钻木取火，但是由于草太潮湿而没有办法成功，如今还过着茹毛饮血的生活。成功就是信念加偶然因素的组合，没有捷径。 </p>
-<p>那我们再往回退一步，我们人类的发展中是不是也错过了类似其他行星错过钻木取火的机会呢？比如说核聚变的实现方式是不是已经有人发现了，但是还没有被认识到价值呢？</p>
-<p>信念可能很容易提出，但是偶然因素呢？需要靠庞大的社会实验来实现。所以这个<code>需要多样的思维方式</code>。培养多样性的思维方式需要多样性的生活方式和多样性的教育方式。没有那种对，那种错。唯一需要的就是<code>多样性</code>。美国的车库可以出贝佐斯，中国的单元房也可以出马云。 </p>
-<p>我总结这是<code>社会进化论</code>.现代的教育系统片面的把多样性的衡量标准简化为分数就扼杀了社会的多样性，假如面对社会文明的变革，没有多样性的思想，那就比较可怕了。当然我这种思想也是片面的片面，如果目前的教育方式是对的呢?<br>到底应该怎么做呢？ 一个人的生命历程在宇宙中无不足道，一个地球6000年的文明史会比一个人的历程显著多少呢？<br>没有对与错，只能一直保持思考。或许我们的这个宇宙是<code>嵌套在某个人的思想中呢</code>。哈哈，写下这句话我想笑。javascript中的内部函数，闭包。呵呵。</p>
-<p>总结一下，不要相信成功学，要有个性的思维方式。保持社会思维的多样性。</p>
-<p>#####2016年函数</p>
-<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">  <span class="keyword">var</span> myJavascript = <span class="function"><span class="keyword">function</span><span class="params">(jsgrammar, react, jspattern)</span> </span>&#123;</div><div class="line">  <span class="keyword">this</span>.jsgrammar = jsgrammar;</div><div class="line">  <span class="keyword">this</span>.react = react;</div><div class="line">  <span class="keyword">this</span>.jspattern = jspattern;</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> myRunning = <span class="function"><span class="keyword">function</span><span class="params">(running)</span> </span>&#123;</div><div class="line">  <span class="keyword">this</span>.running = running;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="keyword">var</span> year2016Class = <span class="function"><span class="keyword">function</span><span class="params">(jsgrammar, react, jspattern, running)</span> </span>&#123;</div><div class="line">  <span class="keyword">this</span>.one = <span class="keyword">new</span> myJavascirpt(jsgrammar, react, jspattern);</div><div class="line">  <span class="keyword">this</span>.two = <span class="keyword">new</span> myRunning(running);</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-<p>好吧，有点啰嗦。最近生活里全都是javascript的模式了。<br>整年的生活其实就是这两个函数。</p>
-<p>下面开始代码注释了</p>
-<ol>
-<li>myJavascript函数。</li>
-</ol>
-<p>2015年8月份接触到appcan的培训，在网上搜索资料的时候看到关于react/react-native的资料才开始有系统学习javascript的想法。我自己都觉得很尴尬的是在参加appcan培训时，问过老师某某函数的回调函数(callback)是什么。说实在的当时根本就不知道自己在说什么。尽管之前也接触过javascript，但是认识实在是很浅薄，根本就没有对js的优秀特性有任何了解，js中最厉害的闭包当时也根本没有任何的认识。<br>去年十月份的时候，国庆节利用了几天的时间看了node.js的书，感觉对node.js有了一些认识，但是还是缺乏深刻的理解。问题是卡在一是对于javascript的基础知识的理解，比如函数作用域，闭包，甚至是对象字面量。另一个就是对于js编程中的一些模式理解，比如中间件的思想。 但是收获之一是基本理解的js中单线程时间循环的原理。并且按照这个原理写了一篇餐馆单个服务员的服务模式的简单文章。这算是开端，对于js的异步逻辑的认识有了一点认识。在看过《了不起的node.js》以后才算是明白这个是怎么一回事了。</p>
-<p>对于javascript的对象的理解，开始启蒙是从二月分开始，在阅读 js定时器的相关文章的时候才明白setInterval,setTImeout这两个函数是挂载在window全局对象上的。这个像是《黑客帝国》里的Neo，开始有点思想启蒙了。</p>
-<p>三月份在淘宝买了六本书，《你不知道的javascript》,《javascript忍者秘籍》，《node.js与express开发》，《node.js实战》1，2，3.<br>前两本是js基础知识学的的绝对干货。一本就是开篇提到的kely.Tompson写的《你不知道的javascript》。一本是jQuery作者写的《javascript忍者秘籍》。这两本书都非常<code>好</code>.你看这个好我是打引号的。我觉得这两本书好实际是到了今年十月份才开始的，之前没有类似的认识，慢慢加深的认识。<br>《你不知道的javascript》这本书其实没有讲多少内容。但是实际都是js的关键内容。有个网友问我要怎么学js,我推荐这本书，但是有很忐忑，生怕误导别人。 这一点其实是写这篇文章的目的。 这本书的价值是毋容置疑的，作者在书里也提到了，包括他本人在内，很多程序员用了很长时间的javascript，就是感觉我爱女神，女神不爱我。什么原因呢？没有掌握javascript的实质，尤其是已经有了其他面向对象编程知识的程序员受到影响会更大。javascript的思路和java,php是完全不同的，很容的受到原先的思想的束缚。<br>第一个难点就是作用域，这里不考虑ES6的let用法。 js的函数作用域是理解关键概念闭包的关键。😁，不理解函数作用域就无法理解闭包的工作原理。如果不理解函数作用域，借用《窈窕淑女》里的台词，你就看个50遍。书中的作用域气泡的图我画了几遍，总算是没有白费心机，硬骨头被啃了下来了(这句流行语是不是有逻辑错误，岂不是形容自己是🐶？)。作用域有两个比较绕的地方，一个是挂载在全局对象上的函数的作用域，这个由于没有明确的说明所以很容易忽略。另一个就是<code>嵌套的函数中内函数的作用域</code>。<code>嵌套的内部函数捕获外部函数的变量</code>说的就是闭包。 所以在学习javascript时遇到嵌套函数的时候要格外留心他的变量的获取方式，还有就是问问为什么非要把一个函数放到另一个函数内部呢？时刻注意这一点，慢慢的就会理解闭包的妙处。这个过程，就我来看是要花一些时间的，开始学习的时候不懂不要紧，不要放弃，逐渐就明白了。</p>
-<p>对于闭包这个话题，据有些书说，stackflow上有25%的帖子是讨论闭包的。闭包是学习javascript绕不过去的话题，闭包是学习javascript的分水岭，不夸张的说闭包就是javascript.<br>怎么认识闭包呢？首先要认识到闭包是用来干什么的。不能为了闭包而闭包。<br>对于重复引用闭包在内存开辟新的作用域空间这个地方是很难理解的，需要留心差异。<br>关于闭包的话题，不想多说，在简书写了几篇闭包的短文，可以找来看看。<br>我写这些文章的优势是，我以前几乎没有任何编程背景，所以初学者可能比较能接受一点。</p>
-<p>javascrit是一门动态面向对象的语言，灵活性极大。以前看书，看作者这么说，但是并不是非常明白是什么意思。 但是看完了几本javascript的模式设计的书以后，这种概念终于理解了。</p>
-<p>javascript基于几乎一切对象，高阶函数的使用，对象字面量的使用使javascrip在实现一些模式的时候非常简单。javascript也可以模仿其他语言来实现这些模式，但是使用js独有的特征以后，编程变得出奇的简单。<br>可以参考《javascript设计模式与开发实践》这本书，这本书里面的模式先用传统的方法来实现，然后使用纯javascript来实现，绝大多数情况下javascript的模式更简单，可以仔细看看。</p>
-<p>javascript的面向对象的方法和其他语言也显著不同，js也可以模仿出其他语言的面向对象的方法，但是js的原型继承的模式似乎对于web编程灵活性更好一点。</p>
-<p>React/React-native/redux<br>这个框架的学习贯穿了整个一年的学习过程。原来预计是7月份全部学完的。但是途中又遇到了redux的阻击，包括react的帮凶:redux-saga,immutable.js,normalizr.js，realm等。<br>学完了以后发现facebook给我们学习react/rn/redux的学习者挖了这么大的一个坑。<br>怎么爬到这个坑的沿上的，可以看看我的几篇react/redux的短文。<br>回头一看坑也没有那么深，还是我变高了？</p>
-<p>javascript模式设计的学习是在年尾11月，12月最大的收获。 书架还有一本php的模式设计的书没有勇气看，因为在当时买了之后，发现根本就不是道在说什么。 11月份偶然在图书馆发现了一本js模式设计的书，一翻尽然看懂了。接下来这段时间把能找到的四本有关javascript模式设计的书基本都看了一遍。<br>总结一个字：“畅快淋漓”。 以前在球场乱踢，没有任何章法，现在有教练了，教练总是说：“你看原先你这么踢是可以的，但是你改进一下这么踢不是更好？”<br>这部分我根据看过的书籍写了一些读书笔记，可以参考一下。可能有错误，如果觉得欠妥直接跳至原书。 现在直接名字就是javascript模式设计的书应该有五本。其中四本读过，都是非常不错的书。只要有坚持学习javascript的愿望，建议买下来，肯定值回票价。</p>
-<p>好了myJavascript这个函数就讲这么多。这只是伪代码。细节不可能完全展现出来。 需要时间，耐心，勇气这些内部状态的支撑才能完成。</p>
-<p> #####myRunning函数</p>
-<p>有人看到这个函数，估计会说，你个傻逼，说编程，跑题到跑步了。</p>
-<p>其实编程就只是编程吗？javascript现在比较流行，但是五年，十年以后呢？<br>十年以后我要学新的编程语言吗？没有好身体，能不能熬得到十年以后都不好说，现在的程序员啊😁。 </p>
-<p>先看看这个函数返回的结果吧。 </p>
-<p> <code>马拉松： 6小时45分-&gt;4小时35分
-  10公里： 1小时20分-&gt;44分
-  20公里： 2小时30分-&gt;1小时49分
-  1公里：  7分35秒-&gt;4分35秒
-  总里程：  600公里-&gt;3405公里
-  体重：    68公斤-&gt;59公斤</code> </p>
-<p> 我为什么要贴这些数据呢？如果你觉得这些数据还挺可观的，就接着往下看吧。</p>
-<p> 一个目的纯粹是为了炫耀，在虎扑跑步排行榜中从4000多名一直杀到300多名，还不值得炫耀吗？在这种炫耀中我获得了极大的满足感，这个感觉是身体和心理同时改变的。《跑步圣经》里就是这么说的，当我跑起来，我觉得自己是一个圣人。当我在排行榜上超越每一个人，当我再跑道上超越每一个跑步者，甚至是屡次套圈的时候，那心里的感觉和驾驶一辆高级跑车没有区别。就像是站在世界之巅。</p>
-<p> 另一个目的在读《对伪大数据说不》的时候凝练成的。读这本书的目的不是随便浏览。而是基于前面的一些想法。这个我后面再说。<br> 《对伪大数据说不》是一本非常不错的书。 里面其实主题是一个，统计数字其实是会欺骗人的，唯一骗不了的还是人自己。有了<code>统计直觉</code>就不会被数字蒙蔽。怎么理解这句话？ 其实上面我贴的我的跑步统计数据对于现在看这篇文章的人是没有任何意义的。<br> 这个统计数据的背后是：身体的强壮，学习注意力的提高，睡眠质量的提高，心理的愉悦感，健康生活方式等等改变，而这个改变除了我自己以外别人是无法体会到的。<br> 如果认识到这一点还不够。范围还可以在扩大一点。考虑到自己的知识背景，我考虑到是不是以后可以做一个科学编辑或者科学app。怎么办？没写过文章。<br> 于是乎有了在简书写文章的想法。 不管后面结果怎么样，先写个100-200片文章吧。 这样的话即使当不了科学编辑，写作水平估计也能提高很多吧。看到这个想法你是不是觉得很眼熟? 哈哈！王健林说过同样的话：“先赚他1亿再说”。<br> 我也抱定这个念头，先写他100篇再说。这话不仅王健林说过。有位老先生在45岁学英语的时候也说过。这个老人名叫：钟道隆，写了一本《逆向学英语》。当时还年轻的老先生给自己定了一个小目标：50根圆珠笔芯，写完以后如果英语还学不会就不学了。结果圆珠笔芯用了一半，老先生英语就学会了。但是不要忘了一个细节。老先生每天学英语听写记录是10-20张A4纸写满为止。 于是乎老先生又写了一本书《学习贵在开窍》。怎么个开窍法？ 把英语学习转换为圆珠笔芯的数量和A4纸的数量。 25根圆珠笔芯和20张A4纸对于我们来说只是数字，但是对于老先生来说就是<code>统计直觉</code>。这就是数字背后的东西。</p>
-<p> 看到这里你会说：“绕了半天，你到底想说明什么问题呢？”</p>
-<p> 起因是想给马上要高考的小侄女提供一个大学学习定量化的思路。其实一切只要和坚持，难度挂钩的内容都把他转为数据来衡量，会不会是一个好的思路？在我看来大数据仅仅是解决问题的手段而已，数据最终还要用于一定的用途。所以说编程不仅仅是编程。</p>
-<p> 这也是最近在看大数据和统计学内容的初衷。 跑步没有白跑，终于绕了一大圈还是绕到编程上来了。  scala,spark我来了，scala里面也有函数式编程，对象和闭包，javascript的学习对scala的学习有什么帮助呢？</p>
-<p> NEO看到了矩阵。我在这个2016函数中看到了什么呢？</p>
-<hr>
-<p>写这篇文章的总体想法是早就有了，前天个网友看到我在简书写的文章，问我javascript应该怎么学，我简短的介绍了一下，我个人还处于初学者阶段，有点怕误导，所以这里算是补充下，掺杂了一点个人生活的感悟。算是2016年的总结吧。</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;hr&gt;
-&lt;p&gt;title: 库里，汤普森教我打球和javascript，我自己教我跑步-半吊子程序员的年度总结&lt;br&gt;date: 2017-01-08 00:04:10&lt;br&gt;tags:-javascript&lt;/p&gt;
-&lt;hr&gt;
-&lt;p&gt;开个玩笑，做为开头。这里的库里和汤普森实际是四个人。史蒂芬.库里，史蒂芬.汤普森是NBA金州勇士队的球星。curry是函数式编程里的科里化，Kely.Tompson是《你不知道的javascript》的作者。这么写完全是噱头而已，我自己教我跑步可不是噱头了，实打实的数据。
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>understanding React(1)</title>
-    <link href="http://yoursite.com/2016/05/29/understanding%20React(1)/"/>
-    <id>http://yoursite.com/2016/05/29/understanding React(1)/</id>
-    <published>2016-05-28T23:53:25.000Z</published>
-    <updated>2017-03-23T02:51:15.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>Rect/Redux的系列文章<a id="more"></a><br>理解React程序(1)-宇宙大爆炸的奇点.<br>当大约160亿年前宇宙大爆炸从一个奇点开始的时候,第一缕光在宇宙中扩展开来,爆炸时产生的宇宙背景辐射至今在宇宙的时空中到处游荡,作为一个普通人也可以很容感知到到他们的存在,不信的话搬出你家里犄角旮旯里落满灰尘的十二寸黑白电视机,只要能点亮你就可以感知到他们存在.那么他们是什？没有电视节目的时候,满屏的雪花点就是电视天线接受到的宇宙背景辐射.至今关于宇宙大爆炸的奇点到底是是什么？谁做的程序架构,初衷是什么？迷仍然没有解开,甚至在宇宙大爆炸开始之前,连时间都是不存在的.科学家弄统的把所有的未解之谜都丢给了奇点,为了自圆其说,又创建了其他的理论.或许本来就存在多个奇点,所以存在好多平行的宇宙.好吧！上面的是一个脑洞大开的过程,你可能会说你说的这些东西到底和程序开发有半点关系吗？或许有吧,也或许更本没有任何关系.看你是怎么理解了.</p>
-<p>下面我把这个主题有关的写作想法讲一下.</p>
-<ul>
-<li>编程到底在做什么？唯一的目的是:<code>信息</code>.编程就是传递信息.React作为Javascript编程语言的子集,他是在传递信息吗？当然是了.如果你明白了我说的这句话,后面我要讲的问题就容易啦. 所有的数据结构包括更高级的数据库都是围绕着<code>信息</code>来运转的.这个主题我原本想放到最后来写.头脑里出现这个概念的时候,其实也是理解了一些编程的基本概念以后才有的.但我本人以前没有深入学习过其他编程语言,如果你是深入学习和了解过一种编程语言,那么这里讲的内容就容易理解了.<code>如果我们把为了解决React编程中出现的state管理问题引入的Redux看做是一种简单的数据库系统</code>,有些问题就能找到已知概念作为理解的依托了.这个概念,并非我自己提出,原先是有点隐约的想法,在看了一本有关React概念的书的时候,觉得这个想法是很正确的.数据库操作核心的概念就是CRUD,还有吗？数据的验证,数据的过滤等等.这些概念如果你比照任何一种数据库的操作,都可以在Redux和Redux中间件中找到类似的概念.</li>
-<li>既然我们说到了宇宙大爆炸的奇点理论了,那么如果把React程序看成是一个奇点,比宇宙大爆炸理论幸运的是我们可以看到这个<code>奇点</code>是怎么形成的.React的奇点是一个html文件.对于React的爆炸过程,我们也是可以完全解释清楚的.甚至我们还可以让这个爆炸过程无限次的重复.有点虚幻了吧.没有引入魔幻现实主义的<code>一只斗鸡</code>[^这只斗鸡来自于马尔克斯的《没有人写信的上尉》,实际这本书没有任何魔幻写诗主义,除了这只鸡的一丁点描写]和看文章的你来对话,我已经妥协了.这个过程会实际需要两方面的内容就可以了,一是Node.js的知识和一点React-redux程序初始化的知识.</li>
-<li>上面第一点我们谈到了姑且可以把Redux看做是一种<code>数据库</code>.那么数据库操作就有数据的增删改查和数据的验证和过滤过程,具体的实现语句都在react-redux中实现.如果是其他语言,我不知道怎么来实现,如果是Redux,就好办了.Redux模块里的内容其实是非常少的.少到什么程度,可以这样说Redux里面除了闭包和数组操作就没有更多的内容了.为什么这样说呢？下面这个概念非常关键.<code>在javascript中,其他对象和函数对象都是传引用赋值的</code>.没错!javascript之所以能够成为一门函数式编程语言.对象和函数传引用赋值是一个基本的概念,这样做以后,函数和对象就可以得到一个标记的<code>键名</code>.这个键名就可以在程序里到处运行了.这个地方我们借助于数据库的操作概念和javascript的函数式编程概念来理解Redux的源码.这一部分可能会比较困难,困难点实际是数组的操作方法的灵活应用,当然还有<code>闭包了</code>.说道这个地方的时候我们在讨论,本人学习编程时间不长,对于这些方法潜移默化的东西太少,写到相关内容一定请高手指教.</li>
-<li>Redux的中间件,实际应用中,简单的流程实际是很少的.这很好理解啊!就算是你家就在自来水厂的大门口,你也不可能每天拿着一个桶去水厂打水.自来水厂的水经过很多道的工序,出厂的时候还要经过很多的管道和水表才能到你家里.自来水厂是不可能做<code>大自然的搬运工</code>的.[^这个是看到有个幽默图片，题目是我们是大自然的搬运工,结果是桶装水里有只青蛙在游泳,意思的确是大自然搬运工,青蛙都搬运了].在数据在React和Redux的流动中,需要解决很多的细节问题,中间件就是来完成这个过程.有时候事情还没完.自来水厂会在自来水生产的时候添加漂白消毒剂.一旦这样,问题就变得更复杂了.到底选择哪家的次氯酸钠,几时能到货,每家的东西添加的步骤是不是一样?如果突然缺货了,怎么通知用水的人.这个过程就是Redux中的side effect的概念,虽然不在主流程上,但是对于主流程还是有很大影响.Redux到底怎么处理这些细节？这都依赖于中间件来实现.所以如果要编写复杂的应用,这个地方是需要花费很长时间的.如果是生产农夫山泉还好办,如果是生产脉动,那问题就更复杂啦！[^农夫山泉只是水,脉动里就添加了很多的维生素等等东西].Redux的中间件现在很多,但是实际中不可能每个都用到和学习到,所以只是关注几个比较重要的中间件就可以了.</li>
-<li>javascript的模式设计在React和Redux中的应用,模式设计在编程中无处不在的,在高手的源码中看这些模式设计方法,可能更加的原汁原味和标准,所以我么也来简单的谈谈这些内容,模式设计其实就是React大爆炸的背景辐射,他就存在于程序的任何地方.</li>
-<li>有关测试-作为初学者对于程序的测试理解太少,借助着这次写作的机会,加深认识.</li>
-</ul>
-<blockquote>
-<p>好了，大概要写的东西就是这么多，后续就按照这个框架来写作.我自己起了一个名字叫<code>框架写作</code>或者<code>大纲写作</code>.起因是什么呢？过年的时候在家里,刚好视频盒子有《士兵突击》,所有又看了一遍,记不清是看的第几回了.但是看到有一集一团改编的时候,师长出场,我记得整个士兵突击里只出现过两个女性,就是这一集.和其他的国产军事题材大相径庭,其他的国产军事题材里都会出现几个长相俊美,拿着电脑爱好者焊接电路板,身手不凡的,和男主人公搞着不知道几个角的恋爱关系.士兵突击完全可以把这两个女性变为许三多小时候同班的丑小鸭,突然一下突变为士兵突击里的落在窠臼里的女主人公.在原先25集的主线里在添加这么一个中间件,在拍25集也不成问题啊.添加这个中间件以后,问题就复杂了,这女主人公可能是成材或者伍六一的妹妹[^成材,伍六一和许三多是同乡嗷].哈哈side effect出现了.后面编剧想收笔就很难刹车了. 你也别以为我是在讲笑话,如果你在图书馆的写作栏目里找找,可以看到美剧和电影编剧的一些书籍,都是这个套路.呵呵!不能再讲下去了,要这么写得心中有框架,而要形成这个框架需要看很多的类似框架.这也是学习编程的方法,学习更多的代码,才能看到里面的框架.<br>《士兵突击》我看了很多遍,React的程序我也看了好多,你的选择是什么呢?</p>
-</blockquote>
-<hr>
-<p>接下来的一篇我们要看看一个React的程序是怎么加载到浏览器中的.<br>需要有点<code>node.js</code>的基础知识和自动化打包程序的基础.</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;Rect/Redux的系列文章
-    
-    </summary>
-    
-      <category term="javascript" scheme="http://yoursite.com/categories/javascript/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>understanding React(2)</title>
-    <link href="http://yoursite.com/2016/05/29/understanding%20React(2)/"/>
-    <id>http://yoursite.com/2016/05/29/understanding React(2)/</id>
-    <published>2016-05-28T23:53:25.000Z</published>
-    <updated>2017-03-23T02:45:02.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>#####understanding React2</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;#####understanding React2&lt;/p&gt;
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">phpsmarter</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
 
     
-    </summary>
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
     
-      <category term="javascript" scheme="http://yoursite.com/categories/javascript/"/>
-    
-    
-  </entry>
+
+  </div>
+
   
-  <entry>
-    <title>React-Native-APP-With-Testing</title>
-    <link href="http://yoursite.com/2016/05/29/Redux%E5%92%8CReact%E7%BC%96%E7%A8%8B/"/>
-    <id>http://yoursite.com/2016/05/29/Redux和React编程/</id>
-    <published>2016-05-28T23:53:25.000Z</published>
-    <updated>2017-03-23T02:47:16.000Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="Redux-Persist"><a href="#Redux-Persist" class="headerlink" title="Redux Persist"></a>Redux Persist</h1><p>Persist and rehydrate a redux store.</p>
-<p>Redux Persist is <a href="#why-redux-persist">performant</a>, easy to <a href="#basic-usage">implement</a>, and easy to <a href="./docs/ecosystem.md">extend</a>.</p>
-<p><code>npm i --save redux-persist</code></p>
-<p><a href="https://travis-ci.org/rt2zz/redux-persist" target="_blank" rel="external"><img src="https://img.shields.io/travis/rt2zz/redux-persist/master.svg?style=flat-square" alt="build status"></a><br><a href="https://www.npmjs.com/package/redux-persist" target="_blank" rel="external"><img src="https://img.shields.io/npm/v/redux-persist.svg?style=flat-square" alt="npm version"></a><br><a href="https://www.npmjs.com/package/redux-persist" target="_blank" rel="external"><img src="https://img.shields.io/npm/dm/redux-persist.svg?style=flat-square" alt="npm downloads"></a></p>
-<h2 id="Basic-Usage"><a href="#Basic-Usage" class="headerlink" title="Basic Usage"></a>Basic Usage</h2><p>Basic usage requires adding a few lines to a traditional redux application:<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> &#123;compose, applyMiddleware, createStore&#125; <span class="keyword">from</span> <span class="string">'redux'</span></div><div class="line"><span class="keyword">import</span> &#123;persistStore, autoRehydrate&#125; <span class="keyword">from</span> <span class="string">'redux-persist'</span></div><div class="line"></div><div class="line"><span class="comment">// add `autoRehydrate` as an enhancer to your store (<span class="doctag">note:</span> `autoRehydrate` is not a middleware)</span></div><div class="line"><span class="keyword">const</span> store = createStore(</div><div class="line">  reducer,</div><div class="line">  <span class="literal">undefined</span>,</div><div class="line">  compose(</div><div class="line">    applyMiddleware(...),</div><div class="line">    autoRehydrate()</div><div class="line">  )</div><div class="line">)</div><div class="line"></div><div class="line"><span class="comment">// begin periodically persisting the store</span></div><div class="line">persistStore(store)</div></pre></td></tr></table></figure></p>
-<p>For per reducer rehydration logic, you can opt-in by adding a handler to your reducer:<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> &#123;REHYDRATE&#125; <span class="keyword">from</span> <span class="string">'redux-persist/constants'</span></div><div class="line"><span class="comment">//...</span></div><div class="line"><span class="keyword">case</span> REHYDRATE:</div><div class="line">  <span class="keyword">var</span> incoming = action.payload.myReducer</div><div class="line">  <span class="keyword">if</span> (incoming) <span class="keyword">return</span> &#123;...state, ...incoming, <span class="attr">specialKey</span>: processSpecial(incoming.specialKey)&#125;</div><div class="line">  <span class="keyword">return</span> state</div></pre></td></tr></table></figure></p>
-<p>You may also need to configure the persistence layer, or take action after rehydration has completed:<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">persistStore(store, &#123;<span class="attr">blacklist</span>: [<span class="string">'someTransientReducer'</span>]&#125;, () =&gt; &#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'rehydration complete'</span>)</div><div class="line">&#125;)</div></pre></td></tr></table></figure></p>
-<p>And if things get out of wack, just purge the storage<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">persistStore(store, config, callback).purge()</div></pre></td></tr></table></figure></p>
-<h2 id="API"><a href="#API" class="headerlink" title="API"></a>API</h2><p><a href="./docs/api.md">Full API</a></p>
-<h4 id="persistStore-store-config-callback"><a href="#persistStore-store-config-callback" class="headerlink" title="persistStore(store, [config, callback])"></a><code>persistStore(store, [config, callback])</code></h4><ul>
-<li>arguments<ul>
-<li><strong>store</strong> <em>redux store</em> The store to be persisted.</li>
-<li><strong>config</strong> <em>object</em><ul>
-<li><strong>blacklist</strong> <em>array</em> keys (read: reducers) to ignore</li>
-<li><strong>whitelist</strong> <em>array</em> keys (read: reducers) to persist, if set all other keys will be ignored.</li>
-<li><strong>storage</strong> <em>object</em> a <a href="https://github.com/rt2zz/redux-persist#storage-engines" target="_blank" rel="external">conforming</a> storage engine.</li>
-<li><strong>transforms</strong> <em>array</em> transforms to be applied during storage and during rehydration.</li>
-<li><strong>debounce</strong> <em>integer</em> debounce interval applied to storage calls (in miliseconds).</li>
-<li><strong>keyPrefix</strong> <em>string</em> change localstorage default key (default: <strong>reduxPersist:</strong>) <a href="https://github.com/rt2zz/redux-persist/issues/137" target="_blank" rel="external">Discussion on why we need this feature ?</a></li>
-</ul>
-</li>
-<li><strong>callback</strong> <em>function</em> will be called after rehydration is finished.</li>
-</ul>
-</li>
-<li>returns <strong>persistor</strong> object</li>
-</ul>
-<h4 id="persistor-object"><a href="#persistor-object" class="headerlink" title="persistor object"></a><code>persistor object</code></h4><ul>
-<li>the persistor object is returned by persistStore with the following methods:<ul>
-<li><code>.purge(keys)</code><ul>
-<li><strong>keys</strong> <em>array</em> An array of keys to be purged from storage. If not provided all keys will be purged.</li>
-</ul>
-</li>
-<li><code>.rehydrate(incoming, options)</code><ul>
-<li><strong>incoming</strong> <em>object</em> Data to be rehydrated into the store.</li>
-<li><strong>options</strong> <em>object</em> If <code>serial:true</code>, incoming should be a <em>string</em>, that will be deserialized and passed through the transforms defined in the persistor.</li>
-<li>Manually rehydrates the store with the passed data, dispatching the rehydrate action.</li>
-</ul>
-</li>
-<li><code>pause()</code><ul>
-<li>pauses persistence</li>
-</ul>
-</li>
-<li><code>resume()</code><ul>
-<li>resumes persistence</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h4 id="autoRehydrate-config"><a href="#autoRehydrate-config" class="headerlink" title="autoRehydrate(config)"></a><code>autoRehydrate(config)</code></h4><ul>
-<li>This is a store enhancer that will automatically shallow merge the persisted state for each key. Additionally it queues any actions that are dispatched before rehydration is complete, and fires them after rehydration is finished.</li>
-<li>arguments<ul>
-<li><strong>config</strong> <em>object</em><ul>
-<li><strong>log</strong> <em>boolean</em> Turn on debug mode. Default: <em>false</em>.</li>
-<li><strong>stateReconciler</strong> <em>function</em> override the default shallow merge state reconciliation.</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h4 id="constants"><a href="#constants" class="headerlink" title="constants"></a><code>constants</code></h4><ul>
-<li><code>import * as constants from &#39;redux-persist/constants&#39;</code>. This includes <code>REHYDRATE</code> and <code>KEY_PREFIX</code>.</li>
-</ul>
-<h2 id="Alternate-Usage"><a href="#Alternate-Usage" class="headerlink" title="Alternate Usage"></a>Alternate Usage</h2><h4 id="getStoredState-createPersistor"><a href="#getStoredState-createPersistor" class="headerlink" title="getStoredState / createPersistor"></a>getStoredState / createPersistor</h4><p>If you need more control over persistence flow, you can implement <code>getStoredState</code> and <code>createPersistor</code>. For example you can skip autoRehydrate and directly pass restoredState into your store as initialState:</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> &#123;getStoredState, autoRehydrate, createPersistor&#125; <span class="keyword">from</span> <span class="string">'redux-persist'</span></div><div class="line"></div><div class="line"><span class="keyword">const</span> persistConfig = &#123; <span class="comment">/* ... */</span> &#125;</div><div class="line"></div><div class="line">getStoredState(persistConfig, (err, restoredState) =&gt; &#123;</div><div class="line">  <span class="keyword">const</span> store = createStore(reducer, restoredState)</div><div class="line">  <span class="keyword">const</span> persistor = createPersistor(store, persistConfig)</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
-<h4 id="Secondary-Persistor"><a href="#Secondary-Persistor" class="headerlink" title="Secondary Persistor"></a>Secondary Persistor</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> &#123;persistStore, createPersistor&#125; <span class="keyword">from</span> <span class="string">'redux-persist'</span></div><div class="line"><span class="keyword">const</span> persistor = persistStore(store) <span class="comment">// persistStore restores and persists</span></div><div class="line"><span class="keyword">const</span> secondaryPersistor = createPersistor(store, &#123;<span class="attr">storage</span>: specialBackupStorage&#125;) <span class="comment">// createPersistor only persists</span></div></pre></td></tr></table></figure>
-<h2 id="Storage-Engines"><a href="#Storage-Engines" class="headerlink" title="Storage Engines"></a>Storage Engines</h2><ul>
-<li><strong>localStorage</strong> (default) web</li>
-<li><strong>sessionStorage</strong></li>
-<li><strong><a href="https://github.com/mozilla/localForage" target="_blank" rel="external">localForage</a></strong> (recommended) web, see usage below</li>
-<li><strong><a href="http://facebook.github.io/react-native/docs/asyncstorage.html#content" target="_blank" rel="external">AsyncStorage</a></strong> for react-native</li>
-<li><strong><a href="https://github.com/pellejacobs/redux-persist-node-storage" target="_blank" rel="external">redux-persist-node-storage</a></strong> for use in nodejs environments.</li>
-<li><strong>custom</strong> any conforming storage api implementing the following methods: <code>setItem</code> <code>getItem</code> <code>removeItem</code> <code>getAllKeys</code>. [<a href="https://github.com/facebook/react-native/blob/master/Libraries/Storage/AsyncStorage.js" target="_blank" rel="external">example</a>]</li>
-</ul>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// sessionStorage</span></div><div class="line"><span class="keyword">import</span> &#123; persistStore &#125; <span class="keyword">from</span> <span class="string">'redux-persist'</span></div><div class="line"><span class="keyword">import</span> &#123; asyncSessionStorage &#125; <span class="keyword">from</span> <span class="string">'redux-persist/storages'</span></div><div class="line">persistStore(store, &#123;<span class="attr">storage</span>: asyncSessionStorage&#125;)</div><div class="line"></div><div class="line"><span class="comment">// react-native</span></div><div class="line"><span class="keyword">import</span> &#123;AsyncStorage&#125; <span class="keyword">from</span> <span class="string">'react-native'</span></div><div class="line">persistStore(store, &#123;<span class="attr">storage</span>: AsyncStorage&#125;)</div><div class="line"></div><div class="line"><span class="comment">// web with recommended localForage</span></div><div class="line"><span class="keyword">import</span> localForage <span class="keyword">from</span> <span class="string">'localForage'</span></div><div class="line">persistStore(store, &#123;<span class="attr">storage</span>: localForage&#125;)</div></pre></td></tr></table></figure>
-<h2 id="Transforms"><a href="#Transforms" class="headerlink" title="Transforms"></a>Transforms</h2><p>Transforms allow for arbitrary state transforms before saving and during rehydration.</p>
-<ul>
-<li><a href="https://github.com/rt2zz/redux-persist-transform-immutable" target="_blank" rel="external">immutable</a> - support immutable reducers</li>
-<li><a href="https://github.com/rt2zz/redux-persist-transform-compress" target="_blank" rel="external">compress</a> - compress your serialized state with lz-string</li>
-<li><a href="https://github.com/maxdeviant/redux-persist-transform-encrypt" target="_blank" rel="external">encrypt</a> - encrypt your serialized state with AES</li>
-<li><a href="https://github.com/edy/redux-persist-transform-filter" target="_blank" rel="external">filter</a> - store or load a subset of your state</li>
-<li><a href="https://github.com/actra-development/redux-persist-transform-filter-immutable" target="_blank" rel="external">filter-immutable</a> - store or load a subset of your state with support for immutablejs</li>
-<li><a href="https://github.com/gabceb/redux-persist-transform-expire" target="_blank" rel="external">expire</a> - expire a specific subset of your state based on a property</li>
-<li>custom transforms:<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> &#123; createTransform, persistStore &#125; <span class="keyword">from</span> <span class="string">'redux-persist'</span></div><div class="line"></div><div class="line"><span class="keyword">let</span> myTransform = createTransform(</div><div class="line">  <span class="comment">// transform state coming from redux on its way to being serialized and stored</span></div><div class="line">  (inboundState, key) =&gt; specialSerialize(inboundState, key),</div><div class="line">  <span class="comment">// transform state coming from storage, on its way to be rehydrated into redux</span></div><div class="line">  (outboundState, key) =&gt; specialDeserialize(outboundState, key),</div><div class="line">  <span class="comment">// configuration options</span></div><div class="line">  &#123;<span class="attr">whitelist</span>: [<span class="string">'specialReducer'</span>]&#125;</div><div class="line">)</div><div class="line"></div><div class="line">persistStore(store, &#123;<span class="attr">transforms</span>: [myTransform]&#125;)</div></pre></td></tr></table></figure>
-</li>
-</ul>
-<h2 id="Migrations"><a href="#Migrations" class="headerlink" title="Migrations"></a>Migrations</h2><p>One challenge developers encounter when persisting state for the first time is what happens when the shape of the application state changes between deployments? Solution: <a href="https://github.com/wildlifela/redux-persist-migrate" target="_blank" rel="external">redux-persist-migrate</a></p>
-<h2 id="Action-Buffer"><a href="#Action-Buffer" class="headerlink" title="Action Buffer"></a>Action Buffer</h2><p>A common mistake is to fire actions that modify state before rehydration is complete which then will be overwritten by the rehydrate action. You can either defer firing of those actions until rehydration is complete, or you can use an <a href="https://github.com/rt2zz/redux-action-buffer/blob/master/README.md#redux-persist-example" target="_blank" rel="external">action buffer</a>.</p>
-<h2 id="Why-Redux-Persist"><a href="#Why-Redux-Persist" class="headerlink" title="Why Redux Persist"></a>Why Redux Persist</h2><ul>
-<li>Performant out of the box (uses a time iterator and operates on state partials)</li>
-<li>Keeps custom rehydration logic in the reducers (where it intuitively belongs)</li>
-<li>Supports localStorage, react-native AsyncStorage, or any conforming storage api</li>
-</ul>
-<p>Because persisting state is inherently stateful, <code>persistStore</code> lives outside of the redux store. Importantly this keeps the store ‘pure’ and makes testing and extending the persistor much easier.</p>
-<h2 id="About-Auto-Rehydrate"><a href="#About-Auto-Rehydrate" class="headerlink" title="About Auto Rehydrate"></a>About Auto Rehydrate</h2><p>autoRehydrate is a store enhancer that automatically rehydrates state.</p>
-<p>While auto rehydration works out of the box, individual reducers can opt in to handling their own rehydration, allowing for more complex operations like data transforms and cache invalidation. Simply define a handler for the rehydrate action in your reducer, and if the state is mutated, auto rehydrate will skip that key.</p>
-<p>Auto rehydrate is provided as a convenience. In a large application, or one with atypical reducer composition, auto rehydration may not be convenient. In this case, simply omit autoRehydrate. Rehydration actions will still be fired by <code>persistStore</code>, and can then be handled individually by reducers or using a custom rehydration handler.</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;Redux-Persist&quot;&gt;&lt;a href=&quot;#Redux-Persist&quot; class=&quot;headerlink&quot; title=&quot;Redux Persist&quot;&gt;&lt;/a&gt;Redux Persist&lt;/h1&gt;&lt;p&gt;Persist and rehydrate a re
-    
-    </summary>
-    
-      <category term="testing" scheme="http://yoursite.com/categories/testing/"/>
-    
-    
-      <category term="react-native" scheme="http://yoursite.com/tags/react-native/"/>
-    
-  </entry>
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
   
-</feed>
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

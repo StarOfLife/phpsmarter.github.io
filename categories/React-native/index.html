@@ -89,22 +89,12 @@
 
 
 
-<meta name="description" content="前面讲到 express 有一个内置的错误处理逻辑，如果程序出错，会直接将错误栈返回并显示到页面上。现在我们来自己写一个错误页面，新建 views/error.ejs，添加如下代码：
-views/error.ejs
-123456789101112&amp;lt;!DOCTYPE html&amp;gt;&amp;lt;html&amp;gt;  &amp;lt;head&amp;gt;    &amp;lt;meta charset=&quot;utf-8&quot;&amp;g">
 <meta property="og:type" content="website">
 <meta property="og:title" content="phpsmarter">
-<meta property="og:url" content="http://yoursite.com/other/4.12 错误页面.html">
+<meta property="og:url" content="http://yoursite.com/categories/React-native/index.html">
 <meta property="og:site_name" content="phpsmarter">
-<meta property="og:description" content="前面讲到 express 有一个内置的错误处理逻辑，如果程序出错，会直接将错误栈返回并显示到页面上。现在我们来自己写一个错误页面，新建 views/error.ejs，添加如下代码：
-views/error.ejs
-123456789101112&amp;lt;!DOCTYPE html&amp;gt;&amp;lt;html&amp;gt;  &amp;lt;head&amp;gt;    &amp;lt;meta charset=&quot;utf-8&quot;&amp;g">
-<meta property="og:updated_time" content="2016-11-28T16:07:21.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="phpsmarter">
-<meta name="twitter:description" content="前面讲到 express 有一个内置的错误处理逻辑，如果程序出错，会直接将错误栈返回并显示到页面上。现在我们来自己写一个错误页面，新建 views/error.ejs，添加如下代码：
-views/error.ejs
-123456789101112&amp;lt;!DOCTYPE html&amp;gt;&amp;lt;html&amp;gt;  &amp;lt;head&amp;gt;    &amp;lt;meta charset=&quot;utf-8&quot;&amp;g">
 
 
 
@@ -132,19 +122,13 @@ views/error.ejs
 
 
 
-  <link rel="canonical" href="http://yoursite.com/other/4.12 错误页面.html"/>
+  <link rel="canonical" href="http://yoursite.com/categories/React-native/"/>
 
 
 
 
 
-  <title>
-  
-
-  
-     | phpsmarter
-  
-</title>
+  <title> 分类: React-native | phpsmarter </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -317,28 +301,47 @@ views/error.ejs
           <div id="content" class="content">
             
 
-  <div id="posts" class="posts-expand">
-  <header class="post-header">
-
-	<h1 class="post-title" itemprop="name headline"></h1>
-
-
-
-</header>
-
-    
-    
-      <p>前面讲到 express 有一个内置的错误处理逻辑，如果程序出错，会直接将错误栈返回并显示到页面上。现在我们来自己写一个错误页面，新建 views/error.ejs，添加如下代码：</p>
-<p><strong>views/error.ejs</strong></p>
-<figure class="highlight erb"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="xml"><span class="meta">&lt;!DOCTYPE html&gt;</span></span></div><div class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span><span class="tag">&lt;<span class="name">%=</span></span><span class="ruby"> blog.title </span><span class="xml"><span class="tag">%&gt;</span><span class="tag">&lt;/<span class="name">title</span>&gt;</span></span></div><div class="line">    <span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">href</span>=<span class="string">"/css/style.css"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">h2</span>&gt;</span><span class="tag">&lt;<span class="name">%=</span></span><span class="ruby"> error.message </span><span class="xml"><span class="tag">%&gt;</span><span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span></div><div class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span><span class="tag">&lt;<span class="name">%=</span></span><span class="ruby"> error.stack </span><span class="xml"><span class="tag">%&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></div><div class="line">  <span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure>
-<p>修改 index.js，在 <code>app.listen</code> 上一行添加如下代码：</p>
-<p><strong>index.js</strong></p>
-<figure class="highlight stata"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// error page</span></div><div class="line"><span class="keyword">app</span>.<span class="keyword">use</span>(function (<span class="keyword">err</span>, req, res, next) &#123;</div><div class="line">  res.render('<span class="keyword">error</span>', &#123;</div><div class="line">    <span class="keyword">error</span>: <span class="keyword">err</span></div><div class="line">  &#125;);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
-<p>上一节：<a href="https://github.com/nswbmw/N-blog/blob/master/book/4.11%20404%20%E9%A1%B5%E9%9D%A2.md" target="_blank" rel="external">4.11 404页面</a></p>
-<p>下一节：<a href="https://github.com/nswbmw/N-blog/blob/master/book/4.13%20%E6%97%A5%E5%BF%97.md" target="_blank" rel="external">4.13 日志</a></p>
+  <section id="posts" class="posts-collapse">
+    <div class="collection-title">
+      <h2 >
+        React-native
+        <small>分类</small>
+      </h2>
+    </div>
 
     
-  </div>
+      
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h1 class="post-title">
+        
+            <a class="post-title-link" href="/2017/03/08/Getting Started with React, Redux and Immutable: a Test-Driven Tutorial (Part 2) /" itemprop="url">
+              
+                <span itemprop="name">使用React,Redux,redux-sage构建图片库(翻译)</span>
+              
+            </a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2017-03-08T00:04:10Z"
+              content="2017-03-08" >
+          03-08
+        </time>
+      </div>
+
+    </header>
+  </article>
+
+
+    
+  </section>
+
+  
+
 
 
           </div>
@@ -346,10 +349,6 @@ views/error.ejs
 
 
           
-  <div class="comments" id="comments">
-    
-  </div>
-
 
         </div>
         
