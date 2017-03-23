@@ -313,7 +313,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/08/javascript-中的apply和call方法/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/08/javascript-This全面解析/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="phpsmarter">
@@ -335,8 +335,8 @@
             
               
                 
-                <a class="post-title-link" href="/2017/03/08/javascript-中的apply和call方法/" itemprop="url">
-                  javascript的apply和call方法
+                <a class="post-title-link" href="/2017/03/08/javascript-This全面解析/" itemprop="url">
+                  javascript-This全面解析
                 </a>
               
             
@@ -358,158 +358,20 @@
             
 
             
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
               <span class="post-meta-divider">|</span>
             
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Designpattern/" itemprop="url" rel="index">
-                    <span itemprop="name">Designpattern</span>
-                  </a>
-                </span>
 
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          
-在javascript模式设计的学习中，深感javascript的语法的灵活性，在模式设计的方法中对于高阶函数的使用到了令人发指的地步，几乎每个示例中都离不开函数作为参数的调用方法，apply和call方法是使用最多的。这两个函数调用形式不太一样，但是目的都是一样的。apply和call函数是javascript中的硬绑定方式，可以灵活,动态的改变函数运行时候的作用域对象。并且和argument
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/03/08/javascript-中的apply和call方法/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/08/javascript-装饰者模式/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="phpsmarter">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="phpsmarter">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/03/08/javascript-装饰者模式/" itemprop="url">
-                  javascript-装饰者模式
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
             
               <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
+                <i class="fa fa-calendar-check-o"></i>
               </span>
               
-                <span class="post-meta-item-text">发表于</span>
+                <span class="post-meta-item-text">更新于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-08T00:04:10Z">
-                2017-03-08
+              <time title="更新于" itemprop="dateModified" datetime="2017-03-23T12:25:09Z">
+                2017-03-23
               </time>
             
-
-            
-
-            
           </span>
 
           
@@ -525,8 +387,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Designpattern/" itemprop="url" rel="index">
-                    <span itemprop="name">Designpattern</span>
+                  <a href="/categories/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
                   </a>
                 </span>
 
@@ -546,311 +408,23 @@
           
 
           
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          
-装饰者模式：给对象动态添加职责的方式就是装饰者模式，能够在不改变原对象的情况下，在运行的时候给对象添加新的职责。参考《javascript设计模式与开发实践》
-
-###装饰函数如果在给一个函数或对象添加功能的时候不想动原函数，或者原函数是别的程序员写的，这时候可以通过引用来增加函数功能
-12345678910  var a=function()&#123; //构造函数    alert(1);
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/03/08/javascript-装饰者模式/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/08/javascript策略模式-年底绩效的计算/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="phpsmarter">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="phpsmarter">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
+            <div class="post-wordcount">
               
-                
-                <a class="post-title-link" href="/2017/03/08/javascript策略模式-年底绩效的计算/" itemprop="url">
-                  javascript策略模式-年底绩效的计算
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-08T00:04:10Z">
-                2017-03-08
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Designpattern/" itemprop="url" rel="index">
-                    <span itemprop="name">Designpattern</span>
-                  </a>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
                 </span>
-
                 
+                  <span class="post-meta-item-text">字数统计</span>
                 
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          
-策略模式：定义一系列的算法，把他们一个个封装起来，并且可以相互替换参见《javascript设计模式与开发实践》
-
-解决问题：公司的绩效根据员工的工资和年度绩效来决定。每个人的工资和绩效是不同的，但是计算方法是相同的。
-12345678910111213141516171819202122 js版的策略模式//定义三个不同绩效的策略，每个绩效的策略实际的计算结果还有传入的参数来计算var str
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/03/08/javascript策略模式-年底绩效的计算/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/08/Javascript状态模式/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="phpsmarter">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="phpsmarter">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/03/08/Javascript状态模式/" itemprop="url">
-                  javascript状态模式
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-08T00:04:10Z">
-                2017-03-08
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Designpattern/" itemprop="url" rel="index">
-                    <span itemprop="name">Designpattern</span>
-                  </a>
+                <span title="字数统计">
+                  2,817
                 </span>
-
-                
-                
               
-            </span>
-          
 
-          
-            
-          
+              
 
-          
-          
-
-          
-
+              
+            </div>
           
 
           
@@ -868,14 +442,11 @@
       
         
           
-          
-状态模式是解决某些需求场景的最好方法。状态模式的关键是区分事物内部的状态，事物内部的状态的改变往往会带来事物的行为的改变参考《javascript模式设计与开发实践》第16章
-
-我在前面写了一个简单的教程，为了说明react/redux中的状态管理，《javascript模式设计与开发实践》里面有这样的模式。在下一步的重构中，如果从简单电灯的开关改为多级调光的电灯可以借鉴这样的模式。在简单的多个
+          《你不知道的javascript》这本书读了有好几遍了，似乎每一次读都有新发现，有些内容并不是一下子可以弄懂的，每次读似乎都能明白一些概念。再重读一下this关键字。这个概念非常灵活，也非常难掌握，所
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2017/03/08/Javascript状态模式/#more" rel="contents">
+            <a class="btn" href="/2017/03/08/javascript-This全面解析/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -966,7 +537,19 @@
             
 
             
+              <span class="post-meta-divider">|</span>
+            
 
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2017-03-23T11:35:39Z">
+                2017-03-23
+              </time>
             
           </span>
 
@@ -1004,6 +587,24 @@
           
 
           
+            <div class="post-wordcount">
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  3,805
+                </span>
+              
+
+              
+
+              
+            </div>
+          
 
           
 
@@ -1023,7 +624,7 @@
           
 翻译版本，原文请见14 NOVEMBER 2016
 
-实现Saga代码这篇文章是三篇关于Redux Saga系列文章的第三篇,也是最后一篇.在第一部分我们先对有关的概念进行了热身.在第二部分,我们和Redux关系推进到了另一个高度.我们把Saga付诸实施.在最后一篇文章,我们把最后一部分内容写完.如果你没有克隆app repo，可以在这个地址克隆,如果不想看这个repo,想直接跳到最终的app代
+实现Saga代码这篇文章是三篇关于Redux Saga系列文章的第三篇,也是最后一篇.在第一部分我们先对有关的概念进行了热身.在第二部分,我们和
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -1118,7 +719,19 @@
             
 
             
+              <span class="post-meta-divider">|</span>
+            
 
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2017-03-23T12:44:07Z">
+                2017-03-23
+              </time>
             
           </span>
 
@@ -1156,6 +769,24 @@
           
 
           
+            <div class="post-wordcount">
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  5,203
+                </span>
+              
+
+              
+
+              
+            </div>
+          
 
           
 
@@ -1176,15 +807,376 @@
 “selector”是一个简单的Redux库,灵感来源于NuclearJS.
 
 Selector可以计算衍生的数据,可以让Redux做到存储尽可能少的state。
-Selector比较高效,只有在某个参数发生变化的时候才发生计算过程.
-Selector是可以组合的,他们可以作为输入,传递到其他的selector.
-
-
-123456789101112131415161718192021222324
+Selector比较高效,只有在某
           ...
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017/03/08/Redux-Reselect/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/08/翻译-使用Reselect改进React和Redux程序性能/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="phpsmarter">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="phpsmarter">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/03/08/翻译-使用Reselect改进React和Redux程序性能/" itemprop="url">
+                  翻译-使用Reselect改进React和Redux程序性能
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-08T00:04:10Z">
+                2017-03-08
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2017-03-23T11:30:10Z">
+                2017-03-23
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/翻译/" itemprop="url" rel="index">
+                    <span itemprop="name">翻译</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  1,392
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          
+Written by Neil Fenton16 June 2016  原文请见
+
+ 
+React和Redux组合是非常棒的,当他们两个一起使用时,可以帮助我们在程序结构中分离关注点.即使React
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/03/08/翻译-使用Reselect改进React和Redux程序性能/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/08/javascript策略模式-年底绩效的计算/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="phpsmarter">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="phpsmarter">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/03/08/javascript策略模式-年底绩效的计算/" itemprop="url">
+                  javascript策略模式-年底绩效的计算
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-08T00:04:10Z">
+                2017-03-08
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2017-03-23T12:02:26Z">
+                2017-03-23
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Designpattern/" itemprop="url" rel="index">
+                    <span itemprop="name">Designpattern</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  302
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          
+策略模式：定义一系列的算法，把他们一个个封装起来，并且可以相互替换参见《javascript设计模式与开发实践》
+
+解决问题：公司的绩效根据员工的工资和年度绩效来决定。每个人的工资和绩效是不同的，但
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/03/08/javascript策略模式-年底绩效的计算/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1275,7 +1267,19 @@ Selector是可以组合的,他们可以作为输入,传递到其他的selector.
             
 
             
+              <span class="post-meta-divider">|</span>
+            
 
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2017-03-23T12:21:01Z">
+                2017-03-23
+              </time>
             
           </span>
 
@@ -1313,6 +1317,24 @@ Selector是可以组合的,他们可以作为输入,传递到其他的selector.
           
 
           
+            <div class="post-wordcount">
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  926
+                </span>
+              
+
+              
+
+              
+            </div>
+          
 
           
 
@@ -1330,10 +1352,7 @@ Selector是可以组合的,他们可以作为输入,传递到其他的selector.
         
           
           前面对这个问题总是雾里看花，像🌧像雾又像风。最近综合着看了一些书和文章才算是基本搞清楚了。主要参考《javascrpt设计模式与开发指南》
-javascript(缩写js)语言中的this和java,php中的this是完全不同的概念。js中的this是动态的，总是指向一个对象，但是这个对象是谁，需要根据函数的调用上下文来决定。
-
-作为对象的方法调用(显示绑定)
-作为普通的函数来调用(默认绑定)
+javascript(缩写js)语言中的this和java
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -1428,7 +1447,19 @@ javascript(缩写js)语言中的this和java,php中的this是完全不同的概�
             
 
             
+              <span class="post-meta-divider">|</span>
+            
 
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2017-03-23T11:32:03Z">
+                2017-03-23
+              </time>
             
           </span>
 
@@ -1466,6 +1497,24 @@ javascript(缩写js)语言中的this和java,php中的this是完全不同的概�
           
 
           
+            <div class="post-wordcount">
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  3,098
+                </span>
+              
+
+              
+
+              
+            </div>
+          
 
           
 
@@ -1486,12 +1535,373 @@ javascript(缩写js)语言中的this和java,php中的this是完全不同的概�
 
 这是第二部分的内容.
 在第一部分,我们罗列了app的UI,开发和单元测试的基础.
-我们看到了app的state通过React的props向下传递到单个的组件,用户的actions声明为回调函数,因此app的逻辑和UI分离开来了.
-Redux的工作流介绍在这一点上,我们的UI是没有交互操作的:尽管我们已经测试了如果一个item如果被设定为completed,它将给文本划线,但是
+我们看到了app的state通过React的props向下传递到单个的组件,用户的actions
           ...
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017/03/08/Getting Started with React, Redux and Immutable: a Test-Driven Tutorial (Part 2) /#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/08/Javascript状态模式/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="phpsmarter">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="phpsmarter">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/03/08/Javascript状态模式/" itemprop="url">
+                  javascript状态模式
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-08T00:04:10Z">
+                2017-03-08
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2017-03-23T11:50:53Z">
+                2017-03-23
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Designpattern/" itemprop="url" rel="index">
+                    <span itemprop="name">Designpattern</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  812
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          
+状态模式是解决某些需求场景的最好方法。状态模式的关键是区分事物内部的状态，事物内部的状态的改变往往会带来事物的行为的改变参考《javascript模式设计与开发实践》第16章
+
+我在前面写了一个简单
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/03/08/Javascript状态模式/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/08/javascript-职责链模式/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="phpsmarter">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="phpsmarter">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/03/08/javascript-职责链模式/" itemprop="url">
+                  javascript 职责链模式-紧密耦合判读变多函数分开处理
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-08T00:04:10Z">
+                2017-03-08
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2017-03-23T11:57:37Z">
+                2017-03-23
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Designpattern/" itemprop="url" rel="index">
+                    <span itemprop="name">Designpattern</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  546
+                </span>
+              
+
+              
+
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          
+职责链模式是：是多个对象都有机会处理请求，从而避免请求的发送者和接收者之间的耦合关系。如果是在jvascript中很好解决这个问题。 从编程上来说就是把比较复杂的if-else嵌套紧密的判断-执行逻
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/03/08/javascript-职责链模式/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1582,7 +1992,19 @@ Redux的工作流介绍在这一点上,我们的UI是没有交互操作的:尽�
             
 
             
+              <span class="post-meta-divider">|</span>
+            
 
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2017-03-23T12:40:04Z">
+                2017-03-23
+              </time>
             
           </span>
 
@@ -1620,6 +2042,24 @@ Redux的工作流介绍在这一点上,我们的UI是没有交互操作的:尽�
           
 
           
+            <div class="post-wordcount">
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  3,963
+                </span>
+              
+
+              
+
+              
+            </div>
+          
 
           
 
@@ -1637,165 +2077,11 @@ Redux的工作流介绍在这一点上,我们的UI是没有交互操作的:尽�
         
           
           
-Simple “selector” library for Redux inspired by getters in NuclearJS, subscriptions in re-frame and this proposal from speedskater.
-
-Selectors can compute derived data, allowing Redux to store the mi
+Simple “selector” library for Redux inspired by getters in NuclearJS, subscriptions in re-frame and
           ...
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017/03/08/Reselect/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/08/Awesome Redux/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="phpsmarter">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpeg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="phpsmarter">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/03/08/Awesome Redux/" itemprop="url">
-                  Redux-awesome
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-08T00:04:10Z">
-                2017-03-08
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Redux/" itemprop="url" rel="index">
-                    <span itemprop="name">Redux</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          Awesome Redux 
-List of repositories which use Redux
-
-ReduxDocumentation of ReduxDocumentation of Redux(Simple Chinese version)Documentation of Redux(Russian version) (Work in progress)Documentation of
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/03/08/Awesome Redux/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1954,7 +2240,7 @@ ReduxDocumentation of ReduxDocumentation of Redux(Simple Chinese version)Documen
   &copy; 
   <span itemprop="copyrightYear">2017</span>
   <span class="with-love">
-    <i class="fa fa-heart"></i>
+    <i class="fa fa-phone"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">phpsmarter</span>
 </div>
