@@ -860,6 +860,39 @@ tea.init(); //依照父类的方法执行顺序来执行
   </entry>
   
   <entry>
+    <title>javascript代理模式</title>
+    <link href="http://yoursite.com/2017/03/12/javascript%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F/"/>
+    <id>http://yoursite.com/2017/03/12/javascript代理模式/</id>
+    <published>2017-03-12T00:04:10.000Z</published>
+    <updated>2017-03-23T12:03:28.000Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote>
+<p>代理模式是给对象提供一个代用品或占位符，以便控制对它的访问<br>   参考《javascript模式设计与开发实践》</p>
+</blockquote>
+<p><code>缓存代理</code></p>
+<p>  缓存代理可以为一些开销比较大的运算结果提供暂时的存储，下一次运算时如果传递参数和缓存的参数一致，则可是直接返回前面存储的运算结果</p>
+<p>计算乘积的实例</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> mult = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;  <span class="comment">//默认传递的arguments参数列表</span></div><div class="line">		<span class="built_in">console</span>.log( <span class="string">'开始计算乘积'</span> );</div><div class="line">		<span class="keyword">var</span> a = <span class="number">1</span>;</div><div class="line">		<span class="keyword">for</span> ( <span class="keyword">var</span> i = <span class="number">0</span>, l = <span class="built_in">arguments</span>.length; i &lt; l; i++ )&#123;</div><div class="line">			a = a * <span class="built_in">arguments</span>[i];</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">return</span> a;</div><div class="line">	&#125;;</div><div class="line">	mult( <span class="number">2</span>, <span class="number">3</span> ); <span class="comment">// 输出：6</span></div><div class="line">	mult( <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span> ); <span class="comment">// 输出：24</span></div><div class="line">	<span class="comment">//现在加入缓存代理函数：</span></div><div class="line"></div><div class="line">	<span class="keyword">var</span> proxyMult = (<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">		<span class="keyword">var</span> cache = &#123;&#125;;  <span class="comment">//缓存对象</span></div><div class="line">		<span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">			<span class="keyword">var</span> args = <span class="built_in">Array</span>.prototype.join.call( <span class="built_in">arguments</span>, <span class="string">','</span> ); </div><div class="line">			<span class="keyword">if</span> ( args <span class="keyword">in</span> cache )&#123; <span class="comment">//如果合并的参数在缓存中</span></div><div class="line">				<span class="keyword">return</span> cache[ args ]; <span class="comment">//直接分会缓存数据</span></div><div class="line">			&#125;</div><div class="line">			<span class="keyword">return</span> cache[ args ] = mult.apply( <span class="keyword">this</span>, <span class="built_in">arguments</span> ); </div><div class="line">                        <span class="comment">//调用函数之后存储到缓存对象中</span></div><div class="line">		&#125;</div><div class="line">	&#125;)();</div><div class="line"></div><div class="line">	proxyMult( <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span> ); <span class="comment">// 输出：24  //第一次计算</span></div><div class="line">	proxyMult( <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span> ); <span class="comment">// 输出：24 //第二次计算，直接存缓存中获取</span></div><div class="line"></div><div class="line"><span class="comment">//这里的两个函数，multi负责计算，proxyMulti负责缓存的存储和读取。</span></div><div class="line"><span class="comment">//两个函数分功能完成对应的功能</span></div></pre></td></tr></table></figure>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;代理模式是给对象提供一个代用品或占位符，以便控制对它的访问&lt;br&gt;   参考《javascript模式设计与开发实践》&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;code&gt;缓存代理&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;  缓存代理可以为一些开销比较大的运
+    
+    </summary>
+    
+      <category term="Designpattern" scheme="http://yoursite.com/categories/Designpattern/"/>
+    
+    
+      <category term="javascript" scheme="http://yoursite.com/tags/javascript/"/>
+    
+  </entry>
+  
+  <entry>
     <title>翻译-使用React构建你的App</title>
     <link href="http://yoursite.com/2017/03/12/%E7%BF%BB%E8%AF%91-%E4%BD%BF%E7%94%A8React%E6%9E%84%E5%BB%BA%E4%BD%A0%E7%9A%84App/"/>
     <id>http://yoursite.com/2017/03/12/翻译-使用React构建你的App/</id>
@@ -898,39 +931,6 @@ tea.init(); //依照父类的方法执行顺序来执行
     
       <category term="翻译" scheme="http://yoursite.com/categories/%E7%BF%BB%E8%AF%91/"/>
     
-    
-  </entry>
-  
-  <entry>
-    <title>javascript代理模式</title>
-    <link href="http://yoursite.com/2017/03/12/javascript%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F/"/>
-    <id>http://yoursite.com/2017/03/12/javascript代理模式/</id>
-    <published>2017-03-12T00:04:10.000Z</published>
-    <updated>2017-03-23T12:03:28.000Z</updated>
-    
-    <content type="html"><![CDATA[<blockquote>
-<p>代理模式是给对象提供一个代用品或占位符，以便控制对它的访问<br>   参考《javascript模式设计与开发实践》</p>
-</blockquote>
-<p><code>缓存代理</code></p>
-<p>  缓存代理可以为一些开销比较大的运算结果提供暂时的存储，下一次运算时如果传递参数和缓存的参数一致，则可是直接返回前面存储的运算结果</p>
-<p>计算乘积的实例</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> mult = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;  <span class="comment">//默认传递的arguments参数列表</span></div><div class="line">		<span class="built_in">console</span>.log( <span class="string">'开始计算乘积'</span> );</div><div class="line">		<span class="keyword">var</span> a = <span class="number">1</span>;</div><div class="line">		<span class="keyword">for</span> ( <span class="keyword">var</span> i = <span class="number">0</span>, l = <span class="built_in">arguments</span>.length; i &lt; l; i++ )&#123;</div><div class="line">			a = a * <span class="built_in">arguments</span>[i];</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">return</span> a;</div><div class="line">	&#125;;</div><div class="line">	mult( <span class="number">2</span>, <span class="number">3</span> ); <span class="comment">// 输出：6</span></div><div class="line">	mult( <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span> ); <span class="comment">// 输出：24</span></div><div class="line">	<span class="comment">//现在加入缓存代理函数：</span></div><div class="line"></div><div class="line">	<span class="keyword">var</span> proxyMult = (<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">		<span class="keyword">var</span> cache = &#123;&#125;;  <span class="comment">//缓存对象</span></div><div class="line">		<span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">			<span class="keyword">var</span> args = <span class="built_in">Array</span>.prototype.join.call( <span class="built_in">arguments</span>, <span class="string">','</span> ); </div><div class="line">			<span class="keyword">if</span> ( args <span class="keyword">in</span> cache )&#123; <span class="comment">//如果合并的参数在缓存中</span></div><div class="line">				<span class="keyword">return</span> cache[ args ]; <span class="comment">//直接分会缓存数据</span></div><div class="line">			&#125;</div><div class="line">			<span class="keyword">return</span> cache[ args ] = mult.apply( <span class="keyword">this</span>, <span class="built_in">arguments</span> ); </div><div class="line">                        <span class="comment">//调用函数之后存储到缓存对象中</span></div><div class="line">		&#125;</div><div class="line">	&#125;)();</div><div class="line"></div><div class="line">	proxyMult( <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span> ); <span class="comment">// 输出：24  //第一次计算</span></div><div class="line">	proxyMult( <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span> ); <span class="comment">// 输出：24 //第二次计算，直接存缓存中获取</span></div><div class="line"></div><div class="line"><span class="comment">//这里的两个函数，multi负责计算，proxyMulti负责缓存的存储和读取。</span></div><div class="line"><span class="comment">//两个函数分功能完成对应的功能</span></div></pre></td></tr></table></figure>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;blockquote&gt;
-&lt;p&gt;代理模式是给对象提供一个代用品或占位符，以便控制对它的访问&lt;br&gt;   参考《javascript模式设计与开发实践》&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;&lt;code&gt;缓存代理&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;  缓存代理可以为一些开销比较大的运
-    
-    </summary>
-    
-      <category term="Designpattern" scheme="http://yoursite.com/categories/Designpattern/"/>
-    
-    
-      <category term="javascript" scheme="http://yoursite.com/tags/javascript/"/>
     
   </entry>
   
