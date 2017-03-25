@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-03-25T06:49:51.000Z</updated>
+  <updated>2017-03-25T08:59:02.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,54 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>GraphQL for ParserServer</title>
+    <link href="http://yoursite.com/2017/03/25/graphql_for_parserserver/"/>
+    <id>http://yoursite.com/2017/03/25/graphql_for_parserserver/</id>
+    <published>2017-03-25T14:57:05.000Z</published>
+    <updated>2017-03-25T08:59:02.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="GraphQL-for-Parse-Server"><a href="#GraphQL-for-Parse-Server" class="headerlink" title="GraphQL for Parse Server"></a>GraphQL for Parse Server</h1><p><a href="https://travis-ci.org/thebakeryio/parse-graphql-server" target="_blank" rel="external"><img src="https://travis-ci.org/thebakeryio/parse-graphql-server.svg?branch=master" alt="Build Status"></a><br><a href="https://codeclimate.com/github/thebakeryio/parse-graphql-server" target="_blank" rel="external"><img src="https://codeclimate.com/github/thebakeryio/parse-graphql-server/badges/gpa.svg" alt="Code Climate"></a><br><a href="https://codeclimate.com/github/thebakeryio/parse-graphql-server/coverage" target="_blank" rel="external"><img src="https://codeclimate.com/github/thebakeryio/parse-graphql-server/badges/coverage.svg" alt="Test Coverage"></a><br><a href="https://david-dm.org/thebakeryio/parse-graphql-server" target="_blank" rel="external"><img src="https://david-dm.org/thebakeryio/parse-graphql-server.svg" alt="Dependency Status"></a><br><a href="https://david-dm.org/thebakeryio/parse-graphql-server#info=devDependencies" target="_blank" rel="external"><img src="https://david-dm.org/thebakeryio/parse-graphql-server/dev-status.svg" alt="devDependency Status"></a></p>
+<h2 id="When-to-use"><a href="#When-to-use" class="headerlink" title="When to use"></a>When to use</h2><ul>
+<li>you are using Parse SDK (web or mobile) coupled with Parse Server running on Express</li>
+<li>you are using GraphQL</li>
+<li>you want to control access to Parse models in your resolvers using Parse ACL system</li>
+<li>you are using <a href="https://github.com/thebakeryio/parse-graphql-client" target="_blank" rel="external">parse-graphql-client</a> package</li>
+</ul>
+<h2 id="Quick-start"><a href="#Quick-start" class="headerlink" title="Quick start"></a>Quick start</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install --save graphql parse-graphql-server parse</div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> express <span class="keyword">from</span> <span class="string">'express'</span>;</div><div class="line"><span class="keyword">import</span> Parse <span class="keyword">from</span> <span class="string">'parse/node'</span>;</div><div class="line"><span class="keyword">import</span> parseGraphQLHTTP <span class="keyword">from</span> <span class="string">'parse-graphql-server'</span>;</div><div class="line"><span class="keyword">import</span> &#123;</div><div class="line">  GraphQLObjectType,</div><div class="line">  GraphQLSchema,</div><div class="line">  GraphQLID,</div><div class="line">  GraphQLString,</div><div class="line">  GraphQLBoolean,</div><div class="line">  GraphQLList,</div><div class="line">  GraphQLNonNull,</div><div class="line">&#125; <span class="keyword">from</span> <span class="string">'graphql'</span>;</div><div class="line"></div><div class="line"><span class="keyword">const</span> Todo = Parse.Object.extend(<span class="string">'Todo'</span>);</div><div class="line"></div><div class="line"><span class="keyword">const</span> TodoType = <span class="keyword">new</span> GraphQLObjectType(&#123;</div><div class="line">  <span class="attr">name</span>: <span class="string">'Todo'</span>,</div><div class="line">  <span class="attr">description</span>: <span class="string">'Item in todo list'</span>,</div><div class="line">  <span class="attr">fields</span>: <span class="function"><span class="params">()</span> =&gt;</span> (&#123;</div><div class="line">    <span class="attr">id</span>: &#123;</div><div class="line">      <span class="attr">type</span>: GraphQLID,</div><div class="line">    &#125;,</div><div class="line">    <span class="attr">text</span>: &#123;</div><div class="line">      <span class="attr">type</span>: GraphQLString,</div><div class="line">      <span class="attr">resolve</span>: <span class="function"><span class="params">todo</span> =&gt;</span> todo.get(<span class="string">'text'</span>),</div><div class="line">    &#125;,</div><div class="line">    <span class="attr">isComplete</span>: &#123;</div><div class="line">      <span class="attr">type</span>: GraphQLBoolean,</div><div class="line">      <span class="attr">resolve</span>: <span class="function"><span class="params">todo</span> =&gt;</span> todo.get(<span class="string">'isComplete'</span>),</div><div class="line">    &#125;,</div><div class="line">  &#125;),</div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="keyword">const</span> schema = <span class="keyword">new</span> GraphQLSchema(&#123;</div><div class="line">  <span class="attr">query</span>: <span class="keyword">new</span> GraphQLObjectType(&#123;</div><div class="line">    <span class="attr">name</span>: <span class="string">'Query'</span>,</div><div class="line">    <span class="attr">fields</span>: &#123;</div><div class="line">      <span class="attr">todos</span>: &#123;</div><div class="line">        <span class="attr">type</span>: <span class="keyword">new</span> GraphQLList(TodoType),</div><div class="line">        <span class="attr">resolve</span>: <span class="function">(<span class="params">_, args, &#123; user, Query &#125;</span>) =&gt;</span> &#123;</div><div class="line">          <span class="keyword">const</span> query = <span class="keyword">new</span> Query(Todo);</div><div class="line">          <span class="keyword">return</span> query.find();</div><div class="line">        &#125;,</div><div class="line">      &#125;,</div><div class="line">    &#125;,</div><div class="line">  &#125;),</div><div class="line">  <span class="attr">mutation</span>: <span class="keyword">new</span> GraphQLObjectType(&#123;</div><div class="line">    <span class="attr">name</span>: <span class="string">'Mutation'</span>,</div><div class="line">    <span class="attr">fields</span>: &#123;</div><div class="line">      <span class="attr">addTodo</span>: &#123;</div><div class="line">        <span class="attr">type</span>: Todo.SchemaType,</div><div class="line">        <span class="attr">description</span>: <span class="string">'Create a new todo item'</span>,</div><div class="line">        <span class="attr">args</span>: &#123;</div><div class="line">          <span class="attr">text</span>: &#123; <span class="attr">type</span>: <span class="keyword">new</span> GraphQLNonNull(GraphQLString) &#125;,</div><div class="line">        &#125;,</div><div class="line">        <span class="attr">resolve</span>: <span class="function">(<span class="params">_, &#123; text &#125;, &#123; Query, user &#125;</span>) =&gt;</span> &#123;</div><div class="line">          <span class="keyword">const</span> newTodo = <span class="keyword">new</span> Query(Todo).create(&#123; text, <span class="attr">isComplete</span>: <span class="literal">false</span> &#125;);</div><div class="line">          <span class="keyword">if</span> (user) &#123;</div><div class="line">            newTodo.setACL(<span class="keyword">new</span> Parse.ACL(user));</div><div class="line">          &#125;</div><div class="line">          <span class="keyword">return</span> newTodo.save().then(<span class="function"><span class="params">td</span> =&gt;</span> td);</div><div class="line">        &#125;,</div><div class="line">      &#125;,</div><div class="line">      <span class="attr">deleteTodo</span>: &#123;</div><div class="line">        <span class="attr">type</span>: Todo.SchemaType,</div><div class="line">        <span class="attr">description</span>: <span class="string">'Delete a todo'</span>,</div><div class="line">        <span class="attr">args</span>: &#123;</div><div class="line">          <span class="attr">id</span>: &#123; <span class="attr">type</span>: <span class="keyword">new</span> GraphQLNonNull(GraphQLID) &#125;,</div><div class="line">        &#125;,</div><div class="line">        <span class="attr">resolve</span>: <span class="function">(<span class="params">_, &#123; id &#125;, &#123; Query &#125;</span>) =&gt;</span></div><div class="line">          <span class="keyword">new</span> Query(Todo).get(id).then(<span class="function">(<span class="params">todo</span>) =&gt;</span> &#123;</div><div class="line">            <span class="keyword">if</span> (todo) &#123;</div><div class="line">              <span class="keyword">return</span> todo.destroy();</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">return</span> todo;</div><div class="line">          &#125;),</div><div class="line">      &#125;,</div><div class="line">    &#125;,</div><div class="line">  &#125;),</div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="keyword">const</span> app = express();</div><div class="line">app.use(<span class="string">'/graphql'</span>, parseGraphQLHTTP(&#123; schema, <span class="attr">graphiql</span>: <span class="literal">true</span>, &#125;));</div><div class="line"></div><div class="line">app.listen(process.env.PORT, () =&gt; &#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'server running'</span>);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h2 id="Writing-resolvers"><a href="#Writing-resolvers" class="headerlink" title="Writing resolvers"></a>Writing resolvers</h2><p>When using Parse GraphQL server package, all your GraphQL resolvers include authentication information and updated version of Parse.Query that passes ACL info along to make sure your queries are authenticated</p>
+<pre><code>{
+  resolve: (_, args, { Query, user }) =&gt; {
+    // **Query** is a patched version of Parse.Query that
+    // includes session token information for the currently authenticated 
+    // user (if any)
+    // It also extends basic Parse.Query to include a **create** method:
+    // const newTodo = new Query(Todo).create({ text, isComplete: false });
+    //
+    // **user** is an instance of Parse.User set to the authenticated user (if any)
+  },
+}
+</code></pre><h2 id="Client-side"><a href="#Client-side" class="headerlink" title="Client side"></a>Client side</h2><p>Parse GraphQL server looks for <strong>Authorization</strong> header set to the session token of the current Parse User. <a href="https://github.com/thebakeryio/parse-graphql-client" target="_blank" rel="external">Parse GraphQL client</a> sets this up for you automatically.  </p>
+<h2 id="See-it-in-action"><a href="#See-it-in-action" class="headerlink" title="See it in action"></a>See it in action</h2><ul>
+<li><a href="https://github.com/thebakeryio/todomvc-react-native" target="_blank" rel="external">TodoMVC using React Native</a></li>
+</ul>
+<h2 id="Credits"><a href="#Credits" class="headerlink" title="Credits"></a>Credits</h2><p>Parse GraphQL server relies heavily on <a href="https://github.com/graphql/express-graphql" target="_blank" rel="external">Express GraphQL package</a>.</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;GraphQL-for-Parse-Server&quot;&gt;&lt;a href=&quot;#GraphQL-for-Parse-Server&quot; class=&quot;headerlink&quot; title=&quot;GraphQL for Parse Server&quot;&gt;&lt;/a&gt;GraphQL for Pa
+    
+    </summary>
+    
+      <category term="Readme" scheme="http://yoursite.com/categories/Readme/"/>
+    
+    
+      <category term="other" scheme="http://yoursite.com/tags/other/"/>
+    
+  </entry>
   
   <entry>
     <title>becoming a profess programmer</title>
@@ -625,6 +673,20 @@
     
     
       <category term="other" scheme="http://yoursite.com/tags/other/"/>
+    
+  </entry>
+  
+  <entry>
+    <title></title>
+    <link href="http://yoursite.com/2017/03/25/Document/"/>
+    <id>http://yoursite.com/2017/03/25/Document/</id>
+    <published>2017-03-25T08:58:23.000Z</published>
+    <updated>2017-03-25T08:58:23.000Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
     
   </entry>
   
@@ -1435,82 +1497,6 @@ tea.init(); //依照父类的方法执行顺序来执行
     
     
       <category term="javascript" scheme="http://yoursite.com/tags/javascript/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>javascript单例模式(1)</title>
-    <link href="http://yoursite.com/2017/03/16/javascript%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F(1)/"/>
-    <id>http://yoursite.com/2017/03/16/javascript单例模式(1)/</id>
-    <published>2017-03-16T00:04:10.000Z</published>
-    <updated>2017-03-23T12:04:42.000Z</updated>
-    
-    <content type="html"><![CDATA[<blockquote>
-<p>单例(singleton).这种模式提供了一种将代码组织为一个逻辑单元的手段，可以通过单一变量来访问。通过确保单例对象只有一个拷贝，可以确保代买使用童颜的全局资源。单例可以用来划分命名空间，可以借助单例把代码组织的更为一致，从而更容易阅读和维护。</p>
-</blockquote>
-<pre><code>本文参照这本书第五章，介绍的重点和另一本书好像是不同的。结合着看看    
-</code></pre><p><img src="http://upload-images.jianshu.io/upload_images/2044710-c97bcd5773f19459.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/320" alt="s3398900.jpg"></p>
-<p>####单例的基本结构<br>最基本的就是一个对象字面量</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//对象字面量作为单体</span></div><div class="line"><span class="keyword">var</span> Singleton = &#123;</div><div class="line">  <span class="attr">attribute1</span>: <span class="literal">true</span>,</div><div class="line">  <span class="attr">attribute2</span>: <span class="number">10</span>,</div><div class="line"></div><div class="line">  <span class="attr">method1</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line"></div><div class="line">  &#125;,</div><div class="line">  <span class="attr">method2</span>: <span class="function"><span class="keyword">function</span>(<span class="params">arg</span>) </span>&#123;</div><div class="line"></div><div class="line">  &#125;</div><div class="line">&#125;;</div><div class="line"></div><div class="line">Singleton.attribute1 = <span class="literal">false</span>; <span class="comment">//修改</span></div><div class="line"><span class="keyword">var</span> total = Singleton.attribute2 + <span class="number">5</span>; <span class="comment">//使用单例</span></div><div class="line"><span class="keyword">var</span> result = Singleton.method1();</div></pre></td></tr></table></figure>
-<p><code>方法位于对象字面量中就有了命名空间，和其他同名的函数就不会冲突了。对象字面量里的方法统一用  nameSpace.method的格式调用</code><br>对象字面量的命名空间还可以继续划分例如parent.children.method。<br>这样不仅变量发生冲突的机会大大减少，而且归属更明确了。</p>
-<p>上面的对象字面量的单例是不是很眼熟？ 在node程序中的配置文件config.js里面是不是都是这种代码？ 配置项都是全局唯一的。</p>
-<p>#####惰性实例化<br>本来单例是想写这个内容的，但是今天一看，还是没看全。曾探的js模式书里的单例其实都是这个部分。<code>实际的单例代码放在一个函数中，然后使用一个变量来缓存实例化的代码，如果已经实例化就直接返回缓存的代码。</code></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line">  MyNamespace.Singleton = (<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  </div><div class="line">  <span class="keyword">var</span> uniqueInstance; <span class="comment">// 私有变量缓存实例化单例</span></div><div class="line">  </div><div class="line">  <span class="function"><span class="keyword">function</span> <span class="title">constructor</span>(<span class="params"></span>) </span>&#123; <span class="comment">// 具体需要按需加载的代码.</span></div><div class="line">    <span class="keyword">var</span> privateAttribute1 = <span class="literal">false</span>;</div><div class="line">    <span class="keyword">var</span> privateAttribute2 = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</div><div class="line">  </div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">privateMethod1</span>(<span class="params"></span>) </span>&#123;</div><div class="line">      ...</div><div class="line">    &#125;</div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">privateMethod2</span>(<span class="params">args</span>) </span>&#123;</div><div class="line">      ...</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">return</span> &#123; <span class="comment">// Public members.</span></div><div class="line">      publicAttribute1: <span class="literal">true</span>,</div><div class="line">      <span class="attr">publicAttribute2</span>: <span class="number">10</span>,</div><div class="line">    </div><div class="line">      <span class="attr">publicMethod1</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">        ...</div><div class="line">      &#125;,</div><div class="line">      <span class="attr">publicMethod2</span>: <span class="function"><span class="keyword">function</span>(<span class="params">args</span>) </span>&#123;</div><div class="line">        ...</div><div class="line">      &#125;</div><div class="line">    &#125;  &#125;</div><div class="line">  </div><div class="line">  <span class="keyword">return</span> &#123;</div><div class="line">    <span class="attr">getInstance</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">      <span class="keyword">if</span>(!uniqueInstance) &#123; <span class="comment">// 单例若不存在，调用constructor函数</span></div><div class="line">        uniqueInstance = <span class="keyword">constructor</span>(); //调用<span class="keyword">constructor</span>函数后，缓存返回值</div><div class="line">      &#125;</div><div class="line">      return uniqueInstance;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;)();</div></pre></td></tr></table></figure>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;blockquote&gt;
-&lt;p&gt;单例(singleton).这种模式提供了一种将代码组织为一个逻辑单元的手段，可以通过单一变量来访问。通过确保单例对象只有一个拷贝，可以确保代买使用童颜的全局资源。单例可以用来划分命名空间，可以借助单例把代码组织的更为一致，从而更容易阅读和维护。&lt;
-    
-    </summary>
-    
-      <category term="Designpattern" scheme="http://yoursite.com/categories/Designpattern/"/>
-    
-    
-      <category term="javascript" scheme="http://yoursite.com/tags/javascript/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>翻译-使用React构建你的App</title>
-    <link href="http://yoursite.com/2017/03/12/%E7%BF%BB%E8%AF%91-%E4%BD%BF%E7%94%A8React%E6%9E%84%E5%BB%BA%E4%BD%A0%E7%9A%84App/"/>
-    <id>http://yoursite.com/2017/03/12/翻译-使用React构建你的App/</id>
-    <published>2017-03-12T00:04:10.000Z</published>
-    <updated>2017-03-23T11:29:53.000Z</updated>
-    
-    <content type="html"><![CDATA[<blockquote>
-<p>这篇文章时间有点久远,翻译试试看.但是本篇文章对于React的渲染工作原理讲的比较好,使用一个游戏引擎的渲染方式来类比解释React的数据流程,值得学习. <a href="http://konkle.us/architecting-your-app-react-part-1/" target="_blank" rel="external">原文在这里</a></p>
-</blockquote>
-<p>去年五月(2013年5月),Facebook发布了构建前端组件库的开源软件-React.React对于浏览器和app的结构来说有点异类.但是经过这段时间,开发者逐渐看到了一些优势,React也因此获取了很多的人气.React最为相助的额特征是引入了virtual-DOM方法,virtual-DOM使实际的浏览器的DOM变化减到最低,DOM的渲染性能大幅提高.</p>
-<p>React并不是完整的MVC框架,React实际是MVC的加强版(这点,真是雪中送炭,一直都对这个框架到底是不是MVC而心存疑虑).很多开发者选择React作为MVC框架的延伸,例如Backbone.React本身并没有路由和数据同步的内容,所以你可以很容易的使用喜欢的工具来完成类似的功能.React也可以在其他的应用中管理一部分特定的组件.但是如果在应用的界面上全面使用React,发挥的功能会更大.</p>
-<p>#####尽可能的避免DOM<br>React作为javascript的一个类,提供virtual-DOM实施方案.这意味着你可以频繁的更新你的应用程序的元素树,但是实际上没有发生浏览器的DOM操作.由于使用了现代的引擎,Javascript的速度相当快.实际由于引擎的速度很快,当每一次数据更新的时候,渲染应用程序的所有元素都是可以的,减少了实时元素操作和双向数据绑定的需求.React周期性的比较virtual-DOM和浏览器DOM,仅仅做出最有必要的DOM同步.</p>
-<p>#####单向数据流<br>当HTML元素的渲染花销大幅度降低以后,你现在需要花费更多的的方法来管理你的界面.放弃错综复杂的就地更新元素操作和数据变化中的的多个state的同步,你可以把状态放在一个地方,基于集中的state来描述你的界面.只要状态以改变,React的组件就可以进行更新操作.<br>当你的整个应用都基于这个思想来设计,你可以把immutable 数据从顶层组件传递给子组件,然后执行自顶向下的应用更新.React从根本上改变了你对应用的思路,而且经常会简化应用的设计.</p>
-<p>#####浏览器作为渲染引擎<br>这一点是对MVC框架非常激进的改变,它强调使用双向数据绑定,尽可能多自动就地重新渲染.当我刚开始了解React的时候,我还不是太确定.转折点是我看了一个Pete Hunt的视频:比较React和Doom3渲染引擎.</p>
-<p><img src="http://upload-images.jianshu.io/upload_images/2044710-a1553d287e86aebb.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/600" alt="doom3的渲染示意图"><br>在图表中,游戏的sate经过底层的图形代码导入前端逻辑和抽象层.这个操作会创建一个“场景中间表示层”(scene intermediate representation),这个表示层表现出用户应该看到的内容.这个表示层会传递给”backend”(后端),后端接收表示层内容,随之转换为OpenGL操作,OpenGL使用图形卡(电脑显卡)渲染出内容.React的工作原理和Doom3的渲染方式是一样的.(doom3是早期一款比较著名的第一人称射击游戏,这里使用doom3的图形渲染方式来说明React的工作方式).</p>
-<p><img src="http://upload-images.jianshu.io/upload_images/2044710-73a98731bc9d6411.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/600" alt="React组件渲染"></p>
-<p>当程序的state由于浏览器或者实时事件发生变化,React程序接收这些变化,并且传递给组件们,接着使用virtual-DOM方式生成中间表示层.浏览器的DOM并不会发生立即的变化.然而React会周期性的接收virtual DOM,计算出必要的DOM操作.这一点和游戏引擎接受场景中间表示层,决定是否使用OpenGL渲染场景类似.React是接收DOM,把它渲染到用户屏幕上.(可见两者渲染的思路是一样的,React使用了浏览器来做这个工作).</p>
-<p>浏览器和游戏引擎一样,最慢的部分实际是中间表示层到屏幕的渲染部分.你可以对virtual-DOM做出许多细小的改变,React优化了这个部分,所以不会因此而牺牲渲染的性能.</p>
-<p>#####更多的资源<br>在第二部分,我将会演示怎么把React的设计哲学付诸实践.我会分享怎么更具不同的功能责任,渲染一个由小组件组成的顶级组件的界面.我也会演示怎么在React应用中整合路由功能和数据同步功能.</p>
-<p>如果你想了解更多的React内容,想知道它是怎么工作的,看看下面的资源列表.</p>
-<ul>
-<li><a href="http://facebook.github.io/react/" target="_blank" rel="external">React主页</a></li>
-<li><a href="http://facebook.github.io/react/docs/videos.html" target="_blank" rel="external">视频</a></li>
-<li><a href="http://facebook.github.io/react/docs/examples.html" target="_blank" rel="external">实例</a></li>
-<li><a href="https://groups.google.com/forum/#!forum/reactjs" target="_blank" rel="external">React Google Group</a></li>
-<li>#reactjs on Freenode-官方 IRC频道,比较活跃</li>
-</ul>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;blockquote&gt;
-&lt;p&gt;这篇文章时间有点久远,翻译试试看.但是本篇文章对于React的渲染工作原理讲的比较好,使用一个游戏引擎的渲染方式来类比解释React的数据流程,值得学习. &lt;a href=&quot;http://konkle.us/architecting-your-ap
-    
-    </summary>
-    
-      <category term="翻译" scheme="http://yoursite.com/categories/%E7%BF%BB%E8%AF%91/"/>
-    
     
   </entry>
   

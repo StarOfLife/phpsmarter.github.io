@@ -1,0 +1,993 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="other," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="phpsmarter" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="GraphQL for Parse Server
+When to use
+you are using Parse SDK (web or mobile) coupled with Parse Server running on Express
+you are using GraphQL
+you want to control access to Parse models in your resol">
+<meta property="og:type" content="article">
+<meta property="og:title" content="GraphQL for ParserServer">
+<meta property="og:url" content="http://yoursite.com/2017/03/25/graphql_for_parserserver/index.html">
+<meta property="og:site_name" content="phpsmarter">
+<meta property="og:description" content="GraphQL for Parse Server
+When to use
+you are using Parse SDK (web or mobile) coupled with Parse Server running on Express
+you are using GraphQL
+you want to control access to Parse models in your resol">
+<meta property="og:image" content="https://travis-ci.org/thebakeryio/parse-graphql-server.svg?branch=master">
+<meta property="og:image" content="https://codeclimate.com/github/thebakeryio/parse-graphql-server/badges/gpa.svg">
+<meta property="og:image" content="https://codeclimate.com/github/thebakeryio/parse-graphql-server/badges/coverage.svg">
+<meta property="og:image" content="https://david-dm.org/thebakeryio/parse-graphql-server.svg">
+<meta property="og:image" content="https://david-dm.org/thebakeryio/parse-graphql-server/dev-status.svg">
+<meta property="og:updated_time" content="2017-03-25T08:59:02.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="GraphQL for ParserServer">
+<meta name="twitter:description" content="GraphQL for Parse Server
+When to use
+you are using Parse SDK (web or mobile) coupled with Parse Server running on Express
+you are using GraphQL
+you want to control access to Parse models in your resol">
+<meta name="twitter:image" content="https://travis-ci.org/thebakeryio/parse-graphql-server.svg?branch=master">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/03/25/graphql_for_parserserver/"/>
+
+
+
+
+
+  <title> GraphQL for ParserServer | phpsmarter </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">phpsmarter</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">A beginner of React-native</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-sitemap">
+          <a href="/sitemap.xml" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br />
+            
+            站点地图
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/25/graphql_for_parserserver/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="phpsmarter">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="phpsmarter">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                GraphQL for ParserServer
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-25T22:57:05+08:00">
+                2017-03-25
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2017-03-25T16:59:02+08:00">
+                2017-03-25
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Readme/" itemprop="url" rel="index">
+                    <span itemprop="name">Readme</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  389
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长</span>
+                
+                <span title="阅读时长">
+                  2
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="GraphQL-for-Parse-Server"><a href="#GraphQL-for-Parse-Server" class="headerlink" title="GraphQL for Parse Server"></a>GraphQL for Parse Server</h1><p><a href="https://travis-ci.org/thebakeryio/parse-graphql-server" target="_blank" rel="external"><img src="https://travis-ci.org/thebakeryio/parse-graphql-server.svg?branch=master" alt="Build Status"></a><br><a href="https://codeclimate.com/github/thebakeryio/parse-graphql-server" target="_blank" rel="external"><img src="https://codeclimate.com/github/thebakeryio/parse-graphql-server/badges/gpa.svg" alt="Code Climate"></a><br><a href="https://codeclimate.com/github/thebakeryio/parse-graphql-server/coverage" target="_blank" rel="external"><img src="https://codeclimate.com/github/thebakeryio/parse-graphql-server/badges/coverage.svg" alt="Test Coverage"></a><br><a href="https://david-dm.org/thebakeryio/parse-graphql-server" target="_blank" rel="external"><img src="https://david-dm.org/thebakeryio/parse-graphql-server.svg" alt="Dependency Status"></a><br><a href="https://david-dm.org/thebakeryio/parse-graphql-server#info=devDependencies" target="_blank" rel="external"><img src="https://david-dm.org/thebakeryio/parse-graphql-server/dev-status.svg" alt="devDependency Status"></a></p>
+<h2 id="When-to-use"><a href="#When-to-use" class="headerlink" title="When to use"></a>When to use</h2><ul>
+<li>you are using Parse SDK (web or mobile) coupled with Parse Server running on Express</li>
+<li>you are using GraphQL</li>
+<li>you want to control access to Parse models in your resolvers using Parse ACL system</li>
+<li>you are using <a href="https://github.com/thebakeryio/parse-graphql-client" target="_blank" rel="external">parse-graphql-client</a> package</li>
+</ul>
+<h2 id="Quick-start"><a href="#Quick-start" class="headerlink" title="Quick start"></a>Quick start</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install --save graphql parse-graphql-server parse</div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> express <span class="keyword">from</span> <span class="string">'express'</span>;</div><div class="line"><span class="keyword">import</span> Parse <span class="keyword">from</span> <span class="string">'parse/node'</span>;</div><div class="line"><span class="keyword">import</span> parseGraphQLHTTP <span class="keyword">from</span> <span class="string">'parse-graphql-server'</span>;</div><div class="line"><span class="keyword">import</span> &#123;</div><div class="line">  GraphQLObjectType,</div><div class="line">  GraphQLSchema,</div><div class="line">  GraphQLID,</div><div class="line">  GraphQLString,</div><div class="line">  GraphQLBoolean,</div><div class="line">  GraphQLList,</div><div class="line">  GraphQLNonNull,</div><div class="line">&#125; <span class="keyword">from</span> <span class="string">'graphql'</span>;</div><div class="line"></div><div class="line"><span class="keyword">const</span> Todo = Parse.Object.extend(<span class="string">'Todo'</span>);</div><div class="line"></div><div class="line"><span class="keyword">const</span> TodoType = <span class="keyword">new</span> GraphQLObjectType(&#123;</div><div class="line">  <span class="attr">name</span>: <span class="string">'Todo'</span>,</div><div class="line">  <span class="attr">description</span>: <span class="string">'Item in todo list'</span>,</div><div class="line">  <span class="attr">fields</span>: <span class="function"><span class="params">()</span> =&gt;</span> (&#123;</div><div class="line">    <span class="attr">id</span>: &#123;</div><div class="line">      <span class="attr">type</span>: GraphQLID,</div><div class="line">    &#125;,</div><div class="line">    <span class="attr">text</span>: &#123;</div><div class="line">      <span class="attr">type</span>: GraphQLString,</div><div class="line">      <span class="attr">resolve</span>: <span class="function"><span class="params">todo</span> =&gt;</span> todo.get(<span class="string">'text'</span>),</div><div class="line">    &#125;,</div><div class="line">    <span class="attr">isComplete</span>: &#123;</div><div class="line">      <span class="attr">type</span>: GraphQLBoolean,</div><div class="line">      <span class="attr">resolve</span>: <span class="function"><span class="params">todo</span> =&gt;</span> todo.get(<span class="string">'isComplete'</span>),</div><div class="line">    &#125;,</div><div class="line">  &#125;),</div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="keyword">const</span> schema = <span class="keyword">new</span> GraphQLSchema(&#123;</div><div class="line">  <span class="attr">query</span>: <span class="keyword">new</span> GraphQLObjectType(&#123;</div><div class="line">    <span class="attr">name</span>: <span class="string">'Query'</span>,</div><div class="line">    <span class="attr">fields</span>: &#123;</div><div class="line">      <span class="attr">todos</span>: &#123;</div><div class="line">        <span class="attr">type</span>: <span class="keyword">new</span> GraphQLList(TodoType),</div><div class="line">        <span class="attr">resolve</span>: <span class="function">(<span class="params">_, args, &#123; user, Query &#125;</span>) =&gt;</span> &#123;</div><div class="line">          <span class="keyword">const</span> query = <span class="keyword">new</span> Query(Todo);</div><div class="line">          <span class="keyword">return</span> query.find();</div><div class="line">        &#125;,</div><div class="line">      &#125;,</div><div class="line">    &#125;,</div><div class="line">  &#125;),</div><div class="line">  <span class="attr">mutation</span>: <span class="keyword">new</span> GraphQLObjectType(&#123;</div><div class="line">    <span class="attr">name</span>: <span class="string">'Mutation'</span>,</div><div class="line">    <span class="attr">fields</span>: &#123;</div><div class="line">      <span class="attr">addTodo</span>: &#123;</div><div class="line">        <span class="attr">type</span>: Todo.SchemaType,</div><div class="line">        <span class="attr">description</span>: <span class="string">'Create a new todo item'</span>,</div><div class="line">        <span class="attr">args</span>: &#123;</div><div class="line">          <span class="attr">text</span>: &#123; <span class="attr">type</span>: <span class="keyword">new</span> GraphQLNonNull(GraphQLString) &#125;,</div><div class="line">        &#125;,</div><div class="line">        <span class="attr">resolve</span>: <span class="function">(<span class="params">_, &#123; text &#125;, &#123; Query, user &#125;</span>) =&gt;</span> &#123;</div><div class="line">          <span class="keyword">const</span> newTodo = <span class="keyword">new</span> Query(Todo).create(&#123; text, <span class="attr">isComplete</span>: <span class="literal">false</span> &#125;);</div><div class="line">          <span class="keyword">if</span> (user) &#123;</div><div class="line">            newTodo.setACL(<span class="keyword">new</span> Parse.ACL(user));</div><div class="line">          &#125;</div><div class="line">          <span class="keyword">return</span> newTodo.save().then(<span class="function"><span class="params">td</span> =&gt;</span> td);</div><div class="line">        &#125;,</div><div class="line">      &#125;,</div><div class="line">      <span class="attr">deleteTodo</span>: &#123;</div><div class="line">        <span class="attr">type</span>: Todo.SchemaType,</div><div class="line">        <span class="attr">description</span>: <span class="string">'Delete a todo'</span>,</div><div class="line">        <span class="attr">args</span>: &#123;</div><div class="line">          <span class="attr">id</span>: &#123; <span class="attr">type</span>: <span class="keyword">new</span> GraphQLNonNull(GraphQLID) &#125;,</div><div class="line">        &#125;,</div><div class="line">        <span class="attr">resolve</span>: <span class="function">(<span class="params">_, &#123; id &#125;, &#123; Query &#125;</span>) =&gt;</span></div><div class="line">          <span class="keyword">new</span> Query(Todo).get(id).then(<span class="function">(<span class="params">todo</span>) =&gt;</span> &#123;</div><div class="line">            <span class="keyword">if</span> (todo) &#123;</div><div class="line">              <span class="keyword">return</span> todo.destroy();</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">return</span> todo;</div><div class="line">          &#125;),</div><div class="line">      &#125;,</div><div class="line">    &#125;,</div><div class="line">  &#125;),</div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="keyword">const</span> app = express();</div><div class="line">app.use(<span class="string">'/graphql'</span>, parseGraphQLHTTP(&#123; schema, <span class="attr">graphiql</span>: <span class="literal">true</span>, &#125;));</div><div class="line"></div><div class="line">app.listen(process.env.PORT, () =&gt; &#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'server running'</span>);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h2 id="Writing-resolvers"><a href="#Writing-resolvers" class="headerlink" title="Writing resolvers"></a>Writing resolvers</h2><p>When using Parse GraphQL server package, all your GraphQL resolvers include authentication information and updated version of Parse.Query that passes ACL info along to make sure your queries are authenticated</p>
+<pre><code>{
+  resolve: (_, args, { Query, user }) =&gt; {
+    // **Query** is a patched version of Parse.Query that
+    // includes session token information for the currently authenticated 
+    // user (if any)
+    // It also extends basic Parse.Query to include a **create** method:
+    // const newTodo = new Query(Todo).create({ text, isComplete: false });
+    //
+    // **user** is an instance of Parse.User set to the authenticated user (if any)
+  },
+}
+</code></pre><h2 id="Client-side"><a href="#Client-side" class="headerlink" title="Client side"></a>Client side</h2><p>Parse GraphQL server looks for <strong>Authorization</strong> header set to the session token of the current Parse User. <a href="https://github.com/thebakeryio/parse-graphql-client" target="_blank" rel="external">Parse GraphQL client</a> sets this up for you automatically.  </p>
+<h2 id="See-it-in-action"><a href="#See-it-in-action" class="headerlink" title="See it in action"></a>See it in action</h2><ul>
+<li><a href="https://github.com/thebakeryio/todomvc-react-native" target="_blank" rel="external">TodoMVC using React Native</a></li>
+</ul>
+<h2 id="Credits"><a href="#Credits" class="headerlink" title="Credits"></a>Credits</h2><p>Parse GraphQL server relies heavily on <a href="https://github.com/graphql/express-graphql" target="_blank" rel="external">Express GraphQL package</a>.</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/other/" rel="tag"># other</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/03/25/becoming-a-profess-programmer/" rel="next" title="becoming a profess programmer">
+                <i class="fa fa-chevron-left"></i> becoming a profess programmer
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpeg"
+               alt="phpsmarter" />
+          <p class="site-author-name" itemprop="name">phpsmarter</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">61</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#GraphQL-for-Parse-Server"><span class="nav-number">1.</span> <span class="nav-text">GraphQL for Parse Server</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#When-to-use"><span class="nav-number">1.1.</span> <span class="nav-text">When to use</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Quick-start"><span class="nav-number">1.2.</span> <span class="nav-text">Quick start</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Writing-resolvers"><span class="nav-number">1.3.</span> <span class="nav-text">Writing resolvers</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Client-side"><span class="nav-number">1.4.</span> <span class="nav-text">Client side</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#See-it-in-action"><span class="nav-number">1.5.</span> <span class="nav-text">See it in action</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Credits"><span class="nav-number">1.6.</span> <span class="nav-text">Credits</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-phone"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">phpsmarter</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+<div class="theme-info">
+  主题 - 
+  <a theme-link href="http://www.aikuaidi.cn/" target="_blank" >快递查询</a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
