@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-03-27T16:15:25.000Z</updated>
+  <updated>2017-03-27T23:29:22.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,40 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>翻译|React-navigation导航系统(2)</title>
+    <link href="http://yoursite.com/2017/03/28/%E7%BF%BB%E8%AF%91-React-navigation%E5%AF%BC%E8%88%AA%E7%B3%BB%E7%BB%9F-2/"/>
+    <id>http://yoursite.com/2017/03/28/翻译-React-navigation导航系统-2/</id>
+    <published>2017-03-28T00:25:36.000Z</published>
+    <updated>2017-03-27T23:29:22.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>第二部分</p>
+<h1 id="巢式导航"><a href="#巢式导航" class="headerlink" title="巢式导航"></a>巢式导航</h1><p>在移动应用中组合各种形式的导航是非常普遍的.React Navigation中的router和navigators是组合式的,如此以来可以允许我们定义非常复杂的导航系统.</p>
+<h2 id="Tab-Navigator的介绍"><a href="#Tab-Navigator的介绍" class="headerlink" title="Tab Navigator的介绍"></a>Tab Navigator的介绍</h2><p> 我们在<code>App.js</code>中创建<code>TabNavigator</code>：<br>  <figure class="highlight scala"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">   <span class="class"><span class="keyword">class</span> <span class="title">RecentChatsScreen</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</div><div class="line">  render() &#123;</div><div class="line">    <span class="keyword">return</span> &lt;<span class="type">Text</span>&gt;<span class="type">List</span> of recent chats&lt;/<span class="type">Text</span>&gt;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">AllContactsScreen</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</div><div class="line">  render() &#123;</div><div class="line">    <span class="keyword">return</span> &lt;<span class="type">Text</span>&gt;<span class="type">List</span> of all contacts&lt;/<span class="type">Text</span>&gt;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">const <span class="type">MainScreenNavigator</span> = <span class="type">TabNavigator</span>(&#123;</div><div class="line">  <span class="type">Recent</span>: &#123; screen: <span class="type">RecentChatsScreen</span> &#125;,</div><div class="line">  <span class="type">All</span>: &#123; screen: <span class="type">AllContactsScreen</span> &#125;,</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<p> 如果<code>MainScreenNavigation</code>作为顶层的导航组件来渲染,看起来是这个样子的:<br> <img src="https://ww1.sinaimg.cn/large/006tNbRwly1fe26v8brpug307i0dcjrv.gif" alt=""> </p>
+<h2 id="在屏幕中构造一个巢式导航器"><a href="#在屏幕中构造一个巢式导航器" class="headerlink" title="在屏幕中构造一个巢式导航器"></a>在屏幕中构造一个巢式导航器</h2><p>我们想让这些tabs在app的第一屏显示,但是堆栈中的新的screen会覆盖tabs.<br>在前一步骤设置的<code>StackNavigator</code>中添加tabs作为顶级导航<br><figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"> const SimpleApp = StackNavigator(&#123;</div><div class="line"><span class="symbol">  Home:</span> &#123; <span class="keyword">screen: </span>MainScreenNavigator &#125;,</div><div class="line"><span class="symbol">  Chat:</span> &#123; <span class="keyword">screen: </span>ChatScreen &#125;,</div><div class="line">&#125;)<span class="comment">;</span></div></pre></td></tr></table></figure></p>
+<p>因为<code>MainScreenNavigator</code>作为screen,可以传递<code>navigationOtions</code>参数:<br><figure class="highlight hsp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"> MainScreenNavigator.navigationOptions = &#123;</div><div class="line">  <span class="keyword">title</span>: <span class="string">'My Chats'</span>,</div><div class="line">&#125;<span class="comment">;</span></div></pre></td></tr></table></figure></p>
+<p>在每一个tabs中添加链接到chat的按钮:<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"> &lt;Button</div><div class="line">  onPress=&#123;() =&gt; this<span class="selector-class">.props</span><span class="selector-class">.navigation</span><span class="selector-class">.navigate</span>(<span class="string">'Chat'</span>, &#123; user: <span class="string">'Lucy'</span> &#125;)&#125;</div><div class="line">  title=<span class="string">"Chat with Lucy"</span></div><div class="line">/&gt;</div></pre></td></tr></table></figure></p>
+<p>现在我们在每个导航器彼此之间做了配置,可以在导航界面之间切换.</p>
+<p><img src="https://ww2.sinaimg.cn/large/006tNbRwly1fe2750jl3og307i0dc0x4.gif" alt=""></p>
+<h1 id="配置头部"><a href="#配置头部" class="headerlink" title="配置头部"></a>配置头部</h1><p>在前面的例子中,我们用StactNavigator创建了几个screen.<br>当我们导航到chat screen,我们通过navigate 函数传递特定的参数到新的导航界面.例如,我们想给chat screen提供一个人名:<br><figure class="highlight groovy"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">this</span>.props.navigation.navigate(<span class="string">'Chat'</span>, &#123; <span class="string">user:</span>  <span class="string">'Lucy'</span> &#125;);</div></pre></td></tr></table></figure></p>
+<p><code>user</code>参数可以在chat screen中获取到:<br><figure class="highlight scala"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"> <span class="class"><span class="keyword">class</span> <span class="title">ChatScreen</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</div><div class="line">  render() &#123;</div><div class="line">    const &#123; params &#125; = <span class="keyword">this</span>.props.navigation.state;</div><div class="line">    <span class="keyword">return</span> &lt;<span class="type">Text</span>&gt;<span class="type">Chat</span> <span class="keyword">with</span> &#123;params.user&#125;&lt;/<span class="type">Text</span>&gt;;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="设定头部标题"><a href="#设定头部标题" class="headerlink" title="设定头部标题"></a>设定头部标题</h2>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;第二部分&lt;/p&gt;
+&lt;h1 id=&quot;巢式导航&quot;&gt;&lt;a href=&quot;#巢式导航&quot; class=&quot;headerlink&quot; title=&quot;巢式导航&quot;&gt;&lt;/a&gt;巢式导航&lt;/h1&gt;&lt;p&gt;在移动应用中组合各种形式的导航是非常普遍的.React Navigation中的router和nav
+    
+    </summary>
+    
+      <category term="翻译" scheme="http://yoursite.com/categories/%E7%BF%BB%E8%AF%91/"/>
+    
+    
+      <category term="React" scheme="http://yoursite.com/tags/React/"/>
+    
+  </entry>
   
   <entry>
     <title>Airbnb React/JSX 编码规范</title>
@@ -1735,24 +1769,6 @@
     
     
       <category term="javascript" scheme="http://yoursite.com/tags/javascript/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>测试文件</title>
-    <link href="http://yoursite.com/2017/03/23/new-article-2/"/>
-    <id>http://yoursite.com/2017/03/23/new-article-2/</id>
-    <published>2017-03-23T15:31:30.000Z</published>
-    <updated>2017-03-23T11:33:16.000Z</updated>
-    
-    <summary type="html">
-    
-    </summary>
-    
-      <category term="javascript" scheme="http://yoursite.com/categories/javascript/"/>
-    
-    
-      <category term="Redux" scheme="http://yoursite.com/tags/Redux/"/>
     
   </entry>
   
