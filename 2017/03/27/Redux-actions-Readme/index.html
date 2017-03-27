@@ -1,0 +1,1134 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="转载," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="phpsmarter" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="redux-actions
+
+Flux Standard Action utilities for Redux.
+Installation1npm install --save redux-actions
+The npm package provides a CommonJS build for use in Node.js, and with bundlers like Webpack and">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Redux- actions Readme">
+<meta property="og:url" content="http://yoursite.com/2017/03/27/Redux-actions-Readme/index.html">
+<meta property="og:site_name" content="phpsmarter">
+<meta property="og:description" content="redux-actions
+
+Flux Standard Action utilities for Redux.
+Installation1npm install --save redux-actions
+The npm package provides a CommonJS build for use in Node.js, and with bundlers like Webpack and">
+<meta property="og:image" content="https://img.shields.io/travis/acdlite/redux-actions/master.svg?style=flat-square">
+<meta property="og:image" content="https://nodei.co/npm/redux-actions.png?downloads=true">
+<meta property="og:updated_time" content="2017-03-27T02:43:08.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Redux- actions Readme">
+<meta name="twitter:description" content="redux-actions
+
+Flux Standard Action utilities for Redux.
+Installation1npm install --save redux-actions
+The npm package provides a CommonJS build for use in Node.js, and with bundlers like Webpack and">
+<meta name="twitter:image" content="https://img.shields.io/travis/acdlite/redux-actions/master.svg?style=flat-square">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/03/27/Redux-actions-Readme/"/>
+
+
+
+
+
+  <title> Redux- actions Readme | phpsmarter </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">phpsmarter</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">A beginner of React-native</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/27/Redux-actions-Readme/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="phpsmarter">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="phpsmarter">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Redux- actions Readme
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-27T18:41:40+08:00">
+                2017-03-27
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2017-03-27T10:43:08+08:00">
+                2017-03-27
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Readme/" itemprop="url" rel="index">
+                    <span itemprop="name">Readme</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/03/27/Redux-actions-Readme/" class="leancloud_visitors" data-flag-title="Redux- actions Readme">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  1,282
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长</span>
+                
+                <span title="阅读时长">
+                  8
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="redux-actions"><a href="#redux-actions" class="headerlink" title="redux-actions"></a>redux-actions</h1><p><a href="https://travis-ci.org/acdlite/redux-actions" target="_blank" rel="external"><img src="https://img.shields.io/travis/acdlite/redux-actions/master.svg?style=flat-square" alt="build status"></a></p>
+<p><a href="https://nodei.co/npm/redux-actions/" target="_blank" rel="external"><img src="https://nodei.co/npm/redux-actions.png?downloads=true" alt="NPM"></a></p>
+<p><a href="https://github.com/acdlite/flux-standard-action" target="_blank" rel="external">Flux Standard Action</a> utilities for Redux.</p>
+<h2 id="Installation"><a href="#Installation" class="headerlink" title="Installation"></a>Installation</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install --save redux-actions</div></pre></td></tr></table></figure>
+<p>The <a href="https://www.npmjs.com" target="_blank" rel="external">npm</a> package provides a <a href="http://webpack.github.io/docs/commonjs.html" target="_blank" rel="external">CommonJS</a> build for use in Node.js, and with bundlers like <a href="http://webpack.github.io/" target="_blank" rel="external">Webpack</a> and <a href="http://browserify.org/" target="_blank" rel="external">Browserify</a>. It also includes an <a href="http://jsmodules.io/" target="_blank" rel="external">ES modules</a> build that works well with <a href="http://rollupjs.org/" target="_blank" rel="external">Rollup</a> and <a href="https://webpack.js.org" target="_blank" rel="external">Webpack2</a>‘s tree-shaking.</p>
+<p>If you don’t use <a href="https://www.npmjs.com" target="_blank" rel="external">npm</a>, you may grab the latest <a href="https://unpkg.com/redux-actions@latest/dist" target="_blank" rel="external">UMD</a> build from <a href="https://unpkg.com" target="_blank" rel="external">unpkg</a> (either a <a href="https://unpkg.com/redux-actions@latest/dist/redux-actions.js" target="_blank" rel="external">development</a> or a <a href="https://unpkg.com/redux-actions@latest/dist/redux-actions.min.js" target="_blank" rel="external">production</a> build). The UMD build exports a global called <code>window.ReduxActions</code> if you add it to your page via a <code>&lt;script&gt;</code> tag. We <em>don’t</em> recommend UMD builds for any serious application, as most of the libraries complementary to Redux are only available on <a href="https://www.npmjs.com/search?q=redux" target="_blank" rel="external">npm</a>.</p>
+<h2 id="Usage"><a href="#Usage" class="headerlink" title="Usage"></a>Usage</h2><h3 id="createAction-type-payloadCreator-Identity-metaCreator"><a href="#createAction-type-payloadCreator-Identity-metaCreator" class="headerlink" title="createAction(type, payloadCreator = Identity, ?metaCreator)"></a><code>createAction(type, payloadCreator = Identity, ?metaCreator)</code></h3><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> &#123; createAction &#125; <span class="keyword">from</span> <span class="string">'redux-actions'</span>;</div></pre></td></tr></table></figure>
+<p>Wraps an action creator so that its return value is the payload of a Flux Standard Action.</p>
+<p><code>payloadCreator</code> must be a function, <code>undefined</code>, or <code>null</code>. If <code>payloadCreator</code> is <code>undefined</code> or <code>null</code>, the identity function is used.</p>
+<p>Example:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> increment = createAction(<span class="string">'INCREMENT'</span>, amount =&gt; amount);</div><div class="line"><span class="comment">// same as</span></div><div class="line">increment = createAction(<span class="string">'INCREMENT'</span>);</div><div class="line"></div><div class="line">expect(increment(<span class="number">42</span>)).to.deep.equal(&#123;</div><div class="line">  <span class="attr">type</span>: <span class="string">'INCREMENT'</span>,</div><div class="line">  <span class="attr">payload</span>: <span class="number">42</span></div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>If the payload is an instance of an <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Error" target="_blank" rel="external">Error<br>object</a>,<br>redux-actions will automatically set <figure class="highlight plain"><figcaption><span>to true.</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">Example:</div><div class="line"></div><div class="line">```js</div><div class="line">const increment = createAction(&apos;INCREMENT&apos;);</div><div class="line"></div><div class="line">const error = new TypeError(&apos;not a number&apos;);</div><div class="line">expect(increment(error)).to.deep.equal(&#123;</div><div class="line">  type: &apos;INCREMENT&apos;,</div><div class="line">  payload: error,</div><div class="line">  error: true</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<p><code>createAction</code> also returns its <code>type</code> when used as type in <code>handleAction</code> or <code>handleActions</code>.</p>
+<p>Example:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> increment = createAction(<span class="string">'INCREMENT'</span>);</div><div class="line"></div><div class="line"><span class="comment">// As parameter in handleAction:</span></div><div class="line">handleAction(increment, &#123;</div><div class="line">  next(state, action) &#123;...&#125;,</div><div class="line">  <span class="keyword">throw</span>(state, action) &#123;...&#125;</div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="comment">// As object key in handleActions:</span></div><div class="line"><span class="keyword">const</span> reducer = handleActions(&#123;</div><div class="line">  [increment]: <span class="function">(<span class="params">state, action</span>) =&gt;</span> (&#123;</div><div class="line">    <span class="attr">counter</span>: state.counter + action.payload</div><div class="line">  &#125;)</div><div class="line">&#125;, &#123; <span class="attr">counter</span>: <span class="number">0</span> &#125;);</div></pre></td></tr></table></figure>
+<p><strong>NOTE:</strong> The more correct name for this function is probably <code>createActionCreator()</code>, but that seems a bit redundant.</p>
+<p>Use the identity form to create one-off actions:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">createAction(<span class="string">'ADD_TODO'</span>)(<span class="string">'Use Redux'</span>);</div></pre></td></tr></table></figure>
+<p><code>metaCreator</code> is an optional function that creates metadata for the payload. It receives the same arguments as the payload creator, but its result becomes the meta field of the resulting action. If <code>metaCreator</code> is undefined or not a function, the meta field is omitted.</p>
+<h3 id="createActions-actionMap-identityActions"><a href="#createActions-actionMap-identityActions" class="headerlink" title="createActions(?actionMap, ?...identityActions)"></a><code>createActions(?actionMap, ?...identityActions)</code></h3><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> &#123; createActions &#125; <span class="keyword">from</span> <span class="string">'redux-actions'</span>;</div></pre></td></tr></table></figure>
+<p>Returns an object mapping action types to action creators. The keys of this object are camel-cased from the keys in <code>actionMap</code> and the string literals of <code>identityActions</code>; the values are the action creators.</p>
+<p><code>actionMap</code> is an optional object and a recursive data structure, with action types as keys, and whose values <strong>must</strong> be either</p>
+<ul>
+<li>a function, which is the payload creator for that action</li>
+<li>an array with <code>payload</code> and <code>meta</code> functions in that order, as in <a href="#createactiontype-payloadcreator--identity-metacreator"><code>createAction</code></a><ul>
+<li><code>meta</code> is <strong>required</strong> in this case (otherwise use the function form above)</li>
+</ul>
+</li>
+<li>an <code>actionMap</code></li>
+</ul>
+<p><code>identityActions</code> is an optional list of positional string arguments that are action type strings; these action types will use the identity payload creator.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> &#123; actionOne, actionTwo, actionThree &#125; = createActions(&#123;</div><div class="line">  <span class="comment">// function form; payload creator defined inline</span></div><div class="line">  ACTION_ONE: <span class="function">(<span class="params">key, value</span>) =&gt;</span> (&#123; [key]: value &#125;),</div><div class="line"></div><div class="line">  <span class="comment">// array form</span></div><div class="line">  ACTION_TWO: [</div><div class="line">    <span class="function">(<span class="params">first</span>) =&gt;</span> [first],             <span class="comment">// payload</span></div><div class="line">    (first, second) =&gt; (&#123; second &#125;) <span class="comment">// meta</span></div><div class="line">  ],</div><div class="line"></div><div class="line">  <span class="comment">// trailing action type string form; payload creator is the identity</span></div><div class="line">&#125;, <span class="string">'ACTION_THREE'</span>);</div><div class="line"></div><div class="line">expect(actionOne(<span class="string">'key'</span>, <span class="number">1</span>)).to.deep.equal(&#123;</div><div class="line">  <span class="attr">type</span>: <span class="string">'ACTION_ONE'</span>,</div><div class="line">  <span class="attr">payload</span>: &#123; <span class="attr">key</span>: <span class="number">1</span> &#125;</div><div class="line">&#125;);</div><div class="line"></div><div class="line">expect(actionTwo(<span class="string">'first'</span>, <span class="string">'second'</span>)).to.deep.equal(&#123;</div><div class="line">  <span class="attr">type</span>: <span class="string">'ACTION_TWO'</span>,</div><div class="line">  <span class="attr">payload</span>: [<span class="string">'first'</span>],</div><div class="line">  <span class="attr">meta</span>: &#123; <span class="attr">second</span>: <span class="string">'second'</span> &#125;</div><div class="line">&#125;);</div><div class="line"></div><div class="line">expect(actionThree(<span class="number">3</span>)).to.deep.equal(&#123;</div><div class="line">  <span class="attr">type</span>: <span class="string">'ACTION_THREE'</span>,</div><div class="line">  <span class="attr">payload</span>: <span class="number">3</span>,</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>If <code>actionMap</code> has a recursive structure, its leaves are used as payload and meta creators, and the action type for each leaf is the combined path to that leaf:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> actionCreators = createActions(&#123;</div><div class="line">  <span class="attr">APP</span>: &#123;</div><div class="line">    <span class="attr">COUNTER</span>: &#123;</div><div class="line">      <span class="attr">INCREMENT</span>: [</div><div class="line">        <span class="function"><span class="params">amount</span> =&gt;</span> (&#123; amount &#125;),</div><div class="line">        amount =&gt; (&#123; <span class="attr">key</span>: <span class="string">'value'</span>, amount &#125;)</div><div class="line">      ],</div><div class="line">      <span class="attr">DECREMENT</span>: <span class="function"><span class="params">amount</span> =&gt;</span> (&#123; <span class="attr">amount</span>: -amount &#125;)</div><div class="line">    &#125;,</div><div class="line">    <span class="attr">NOTIFY</span>: [</div><div class="line">      <span class="function">(<span class="params">username, message</span>) =&gt;</span> (&#123; <span class="attr">message</span>: <span class="string">`<span class="subst">$&#123;username&#125;</span>: <span class="subst">$&#123;message&#125;</span>`</span> &#125;),</div><div class="line">      (username, message) =&gt; (&#123; username, message &#125;)</div><div class="line">    ]</div><div class="line">  &#125;</div><div class="line">&#125;);</div><div class="line"></div><div class="line">expect(actionCreators.app.counter.increment(<span class="number">1</span>)).to.deep.equal(&#123;</div><div class="line">  <span class="attr">type</span>: <span class="string">'APP/COUNTER/INCREMENT'</span>,</div><div class="line">  <span class="attr">payload</span>: &#123; <span class="attr">amount</span>: <span class="number">1</span> &#125;,</div><div class="line">  <span class="attr">meta</span>: &#123; <span class="attr">key</span>: <span class="string">'value'</span>, <span class="attr">amount</span>: <span class="number">1</span> &#125;</div><div class="line">&#125;);</div><div class="line">expect(actionCreators.app.counter.decrement(<span class="number">1</span>)).to.deep.equal(&#123;</div><div class="line">  <span class="attr">type</span>: <span class="string">'APP/COUNTER/DECREMENT'</span>,</div><div class="line">  <span class="attr">payload</span>: &#123; <span class="attr">amount</span>: <span class="number">-1</span> &#125;</div><div class="line">&#125;);</div><div class="line">expect(actionCreators.app.notify(<span class="string">'yangmillstheory'</span>, <span class="string">'Hello World'</span>)).to.deep.equal(&#123;</div><div class="line">  <span class="attr">type</span>: <span class="string">'APP/NOTIFY'</span>,</div><div class="line">  <span class="attr">payload</span>: &#123; <span class="attr">message</span>: <span class="string">'yangmillstheory: Hello World'</span> &#125;,</div><div class="line">  <span class="attr">meta</span>: &#123; <span class="attr">username</span>: <span class="string">'yangmillstheory'</span>, <span class="attr">message</span>: <span class="string">'Hello World'</span> &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>When using this form, you can pass an object with key <code>namespace</code> as the last positional argument, instead of the default <code>/</code>.</p>
+<h3 id="handleAction-type-reducer-reducerMap-Identity-defaultState"><a href="#handleAction-type-reducer-reducerMap-Identity-defaultState" class="headerlink" title="handleAction(type, reducer | reducerMap = Identity, defaultState)"></a><code>handleAction(type, reducer | reducerMap = Identity, defaultState)</code></h3><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> &#123; handleAction &#125; <span class="keyword">from</span> <span class="string">'redux-actions'</span>;</div></pre></td></tr></table></figure>
+<p>Wraps a reducer so that it only handles Flux Standard Actions of a certain type.</p>
+<p>If a <code>reducer</code> function is passed, it is used to handle both normal actions and failed actions. (A failed action is analogous to a rejected promise.) You can use this form if you know a certain type of action will never fail, like the increment example above.</p>
+<p>Otherwise, you can specify separate reducers for <code>next()</code> and <code>throw()</code> using the <code>reducerMap</code> form. This API is inspired by the ES6 generator interface.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">handleAction(<span class="string">'FETCH_DATA'</span>, &#123;</div><div class="line">  next(state, action) &#123;...&#125;,</div><div class="line">  <span class="keyword">throw</span>(state, action) &#123;...&#125;</div><div class="line">&#125;, defaultState);</div></pre></td></tr></table></figure>
+<p>If either <code>next()</code> or <code>throw()</code> are <code>undefined</code> or <code>null</code>, then the identity function is used for that reducer.</p>
+<p>If the reducer argument (<code>reducer | reducerMap</code>) is <code>undefined</code>, then the identity function is used.</p>
+<p>The third parameter <code>defaultState</code> is required, and is used when <code>undefined</code> is passed to the reducer.</p>
+<h3 id="handleActions-reducerMap-defaultState"><a href="#handleActions-reducerMap-defaultState" class="headerlink" title="handleActions(reducerMap, defaultState)"></a><code>handleActions(reducerMap, defaultState)</code></h3><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> &#123; handleActions &#125; <span class="keyword">from</span> <span class="string">'redux-actions'</span>;</div></pre></td></tr></table></figure>
+<p>Creates multiple reducers using <code>handleAction()</code> and combines them into a single reducer that handles multiple actions. Accepts a map where the keys are passed as the first parameter to <code>handleAction()</code> (the action type), and the values are passed as the second parameter (either a reducer or reducer map). The map must not be empty.</p>
+<p>The second parameter <code>defaultState</code> is required, and is used when <code>undefined</code> is passed to the reducer.</p>
+<p>(Internally, <code>handleActions()</code> works by applying multiple reducers in sequence using <a href="https://github.com/acdlite/reduce-reducers" target="_blank" rel="external">reduce-reducers</a>.)</p>
+<p>Example:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> reducer = handleActions(&#123;</div><div class="line">  <span class="attr">INCREMENT</span>: <span class="function">(<span class="params">state, action</span>) =&gt;</span> (&#123;</div><div class="line">    <span class="attr">counter</span>: state.counter + action.payload</div><div class="line">  &#125;),</div><div class="line"></div><div class="line">  <span class="attr">DECREMENT</span>: <span class="function">(<span class="params">state, action</span>) =&gt;</span> (&#123;</div><div class="line">    <span class="attr">counter</span>: state.counter - action.payload</div><div class="line">  &#125;)</div><div class="line">&#125;, &#123; <span class="attr">counter</span>: <span class="number">0</span> &#125;);</div></pre></td></tr></table></figure>
+<h3 id="combineActions-types"><a href="#combineActions-types" class="headerlink" title="combineActions(...types)"></a><code>combineActions(...types)</code></h3><p>Combine any number of action types or action creators. <code>types</code> is a list of positional arguments which can be action type strings, symbols, or action creators.</p>
+<p>This allows you to reduce multiple distinct actions with the same reducer.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> &#123; increment, decrement &#125; = createActions(&#123;</div><div class="line">  <span class="attr">INCREMENT</span>: <span class="function"><span class="params">amount</span> =&gt;</span> (&#123; amount &#125;),</div><div class="line">  <span class="attr">DECREMENT</span>: <span class="function"><span class="params">amount</span> =&gt;</span> (&#123; <span class="attr">amount</span>: -amount &#125;),</div><div class="line">&#125;)</div><div class="line"></div><div class="line"><span class="keyword">const</span> reducer = handleAction(combineActions(increment, decrement), &#123;</div><div class="line">  <span class="attr">next</span>: <span class="function">(<span class="params">state, &#123; payload: &#123; amount &#125; &#125;</span>) =&gt;</span> (&#123; ...state, <span class="attr">counter</span>: state.counter + amount &#125;),</div><div class="line">  <span class="attr">throw</span>: <span class="function"><span class="params">state</span> =&gt;</span> (&#123; ...state, <span class="attr">counter</span>: <span class="number">0</span> &#125;),</div><div class="line">&#125;, &#123; <span class="attr">counter</span>: <span class="number">10</span> &#125;)</div><div class="line"></div><div class="line">expect(reducer(<span class="literal">undefined</span>, increment(<span class="number">1</span>)).to.deep.equal(&#123; <span class="attr">counter</span>: <span class="number">11</span> &#125;)</div><div class="line">expect(reducer(<span class="literal">undefined</span>, decrement(<span class="number">1</span>)).to.deep.equal(&#123; <span class="attr">counter</span>: <span class="number">9</span> &#125;)</div><div class="line">expect(reducer(<span class="literal">undefined</span>, increment(<span class="keyword">new</span> <span class="built_in">Error</span>)).to.deep.equal(&#123; <span class="attr">counter</span>: <span class="number">0</span> &#125;)</div><div class="line">expect(reducer(<span class="literal">undefined</span>, decrement(<span class="keyword">new</span> <span class="built_in">Error</span>)).to.deep.equal(&#123; <span class="attr">counter</span>: <span class="number">0</span> &#125;)</div></pre></td></tr></table></figure>
+<p>Here’s an example using <code>handleActions</code>:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> &#123; increment, decrement &#125; = createActions(&#123;</div><div class="line">  <span class="attr">INCREMENT</span>: <span class="function"><span class="params">amount</span> =&gt;</span> (&#123; amount &#125;),</div><div class="line">  <span class="attr">DECREMENT</span>: <span class="function"><span class="params">amount</span> =&gt;</span> (&#123; <span class="attr">amount</span>: -amount &#125;)</div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="keyword">const</span> reducer = handleActions(&#123;</div><div class="line">  [combineActions(increment, decrement)](state, &#123; <span class="attr">payload</span>: &#123; amount &#125; &#125;) &#123;</div><div class="line">    <span class="keyword">return</span> &#123; ...state, <span class="attr">counter</span>: state.counter + amount &#125;;</div><div class="line">  &#125;</div><div class="line">&#125;, &#123; <span class="attr">counter</span>: <span class="number">10</span> &#125;);</div><div class="line"></div><div class="line">expect(reducer(&#123; <span class="attr">counter</span>: <span class="number">5</span> &#125;, increment(<span class="number">5</span>))).to.deep.equal(&#123; <span class="attr">counter</span>: <span class="number">10</span> &#125;);</div><div class="line">expect(reducer(&#123; <span class="attr">counter</span>: <span class="number">5</span> &#125;, decrement(<span class="number">5</span>))).to.deep.equal(&#123; <span class="attr">counter</span>: <span class="number">0</span> &#125;);</div><div class="line">expect(reducer(&#123; <span class="attr">counter</span>: <span class="number">5</span> &#125;, &#123; <span class="attr">type</span>: <span class="string">'NOT_TYPE'</span>, <span class="attr">payload</span>: <span class="number">1000</span> &#125;)).to.equal(&#123; <span class="attr">counter</span>: <span class="number">5</span> &#125;);</div><div class="line">expect(reducer(<span class="literal">undefined</span>, increment(<span class="number">5</span>))).to.deep.equal(&#123; <span class="attr">counter</span>: <span class="number">15</span> &#125;);</div></pre></td></tr></table></figure>
+<h2 id="Usage-with-middleware"><a href="#Usage-with-middleware" class="headerlink" title="Usage with middleware"></a>Usage with middleware</h2><p>redux-actions is handy all by itself, however, its real power comes when you combine it with middleware.</p>
+<p>The identity form of <code>createAction</code> is a great way to create a single action creator that handles multiple payload types. For example, using <a href="https://github.com/acdlite/redux-promise" target="_blank" rel="external">redux-promise</a> and <a href="https://github.com/acdlite/redux-rx" target="_blank" rel="external">redux-rx</a>:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> addTodo = createAction(<span class="string">'ADD_TODO'</span>);</div><div class="line"></div><div class="line"><span class="comment">// A single reducer...</span></div><div class="line">handleAction(<span class="string">'ADD_TODO'</span>, (state = &#123; <span class="attr">todos</span>: [] &#125;, action) =&gt; (&#123;</div><div class="line">  ...state,</div><div class="line">  <span class="attr">todos</span>: [...state.todos, action.payload]</div><div class="line">&#125;));</div><div class="line"></div><div class="line"><span class="comment">// ...that works with all of these forms:</span></div><div class="line"><span class="comment">// (Don't forget to use `bindActionCreators()` or equivalent.</span></div><div class="line"><span class="comment">// I've left that bit out)</span></div><div class="line">addTodo(<span class="string">'Use Redux'</span>)</div><div class="line">addTodo(<span class="built_in">Promise</span>.resolve(<span class="string">'Weep with joy'</span>));</div><div class="line">addTodo(Observable.of(</div><div class="line">  <span class="string">'Learn about middleware'</span>,</div><div class="line">  <span class="string">'Learn about higher-order stores'</span></div><div class="line">)).subscribe();</div></pre></td></tr></table></figure>
+<h2 id="See-also"><a href="#See-also" class="headerlink" title="See also"></a>See also</h2><p>Use redux-actions in combination with FSA-compliant libraries.</p>
+<ul>
+<li><a href="https://github.com/acdlite/redux-promise" target="_blank" rel="external">redux-promise</a> - Promise middleware</li>
+<li><a href="https://github.com/acdlite/redux-rx" target="_blank" rel="external">redux-rx</a> - Includes observable middleware.</li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/转载/" rel="tag"># 转载</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/03/27/React-Native-Immutable/" rel="next" title="React-Native-Immutable">
+                <i class="fa fa-chevron-left"></i> React-Native-Immutable
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpeg"
+               alt="phpsmarter" />
+          <p class="site-author-name" itemprop="name">phpsmarter</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">66</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#redux-actions"><span class="nav-number">1.</span> <span class="nav-text">redux-actions</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Installation"><span class="nav-number">1.1.</span> <span class="nav-text">Installation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Usage"><span class="nav-number">1.2.</span> <span class="nav-text">Usage</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#createAction-type-payloadCreator-Identity-metaCreator"><span class="nav-number">1.2.1.</span> <span class="nav-text">createAction(type, payloadCreator = Identity, ?metaCreator)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#createActions-actionMap-identityActions"><span class="nav-number">1.2.2.</span> <span class="nav-text">createActions(?actionMap, ?...identityActions)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#handleAction-type-reducer-reducerMap-Identity-defaultState"><span class="nav-number">1.2.3.</span> <span class="nav-text">handleAction(type, reducer | reducerMap = Identity, defaultState)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#handleActions-reducerMap-defaultState"><span class="nav-number">1.2.4.</span> <span class="nav-text">handleActions(reducerMap, defaultState)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#combineActions-types"><span class="nav-number">1.2.5.</span> <span class="nav-text">combineActions(...types)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Usage-with-middleware"><span class="nav-number">1.3.</span> <span class="nav-text">Usage with middleware</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#See-also"><span class="nav-number">1.4.</span> <span class="nav-text">See also</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-phone"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">phpsmarter</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+<div class="theme-info">
+  主题 - 
+  <a theme-link href="http://www.aikuaidi.cn/" target="_blank" >快递查询</a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("0kGBxj215XRijm6VofFkzlws-gzGzoHsz", "V2FDLF52mPXum5Hh6wvwGpEk");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+
+</body>
+</html>
