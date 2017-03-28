@@ -101,7 +101,10 @@ Tab Navigator的介绍 我们在App.js中创建TabNavigator：  1234567891011121
 Tab Navigator的介绍 我们在App.js中创建TabNavigator：  12345678910111213141516   class RecentChatsScreen extends Rea">
 <meta property="og:image" content="https://ww1.sinaimg.cn/large/006tNbRwly1fe26v8brpug307i0dcjrv.gif">
 <meta property="og:image" content="https://ww2.sinaimg.cn/large/006tNbRwly1fe2750jl3og307i0dc0x4.gif">
-<meta property="og:updated_time" content="2017-03-27T23:29:22.000Z">
+<meta property="og:image" content="https://ww3.sinaimg.cn/large/006tNbRwly1fe27gzgg40j30h90uojra.jpg">
+<meta property="og:image" content="https://ww4.sinaimg.cn/large/006tNbRwly1fe27iwdrcmj30ha0uowee.jpg">
+<meta property="og:image" content="https://ww1.sinaimg.cn/large/006tNbRwly1fe27os9kgrg307g0dc752.gif">
+<meta property="og:updated_time" content="2017-03-27T23:45:13.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="翻译|React-navigation导航系统(2)">
 <meta name="twitter:description" content="第二部分
@@ -366,7 +369,7 @@ Tab Navigator的介绍 我们在App.js中创建TabNavigator：  1234567891011121
               
                 <span class="post-meta-item-text">更新于</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2017-03-28T07:29:22+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2017-03-28T07:45:13+08:00">
                 2017-03-27
               </time>
             
@@ -426,7 +429,7 @@ Tab Navigator的介绍 我们在App.js中创建TabNavigator：  1234567891011121
                   <span class="post-meta-item-text">字数统计</span>
                 
                 <span title="字数统计">
-                  383
+                  597
                 </span>
               
 
@@ -442,7 +445,7 @@ Tab Navigator的介绍 我们在App.js中创建TabNavigator：  1234567891011121
                   <span class="post-meta-item-text">阅读时长</span>
                 
                 <span title="阅读时长">
-                  2
+                  3
                 </span>
               
             </div>
@@ -472,7 +475,14 @@ Tab Navigator的介绍 我们在App.js中创建TabNavigator：  1234567891011121
 <p><img src="https://ww2.sinaimg.cn/large/006tNbRwly1fe2750jl3og307i0dc0x4.gif" alt=""></p>
 <h1 id="配置头部"><a href="#配置头部" class="headerlink" title="配置头部"></a>配置头部</h1><p>在前面的例子中,我们用StactNavigator创建了几个screen.<br>当我们导航到chat screen,我们通过navigate 函数传递特定的参数到新的导航界面.例如,我们想给chat screen提供一个人名:<br><figure class="highlight groovy"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">this</span>.props.navigation.navigate(<span class="string">'Chat'</span>, &#123; <span class="string">user:</span>  <span class="string">'Lucy'</span> &#125;);</div></pre></td></tr></table></figure></p>
 <p><code>user</code>参数可以在chat screen中获取到:<br><figure class="highlight scala"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"> <span class="class"><span class="keyword">class</span> <span class="title">ChatScreen</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</div><div class="line">  render() &#123;</div><div class="line">    const &#123; params &#125; = <span class="keyword">this</span>.props.navigation.state;</div><div class="line">    <span class="keyword">return</span> &lt;<span class="type">Text</span>&gt;<span class="type">Chat</span> <span class="keyword">with</span> &#123;params.user&#125;&lt;/<span class="type">Text</span>&gt;;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<h2 id="设定头部标题"><a href="#设定头部标题" class="headerlink" title="设定头部标题"></a>设定头部标题</h2>
+<h2 id="设定头部标题"><a href="#设定头部标题" class="headerlink" title="设定头部标题"></a>设定头部标题</h2><p>接着来,可以在screen 参数中配置头部的标题<br><figure class="highlight scala"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"> <span class="class"><span class="keyword">class</span> <span class="title">ChatScreen</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</div><div class="line">  static navigationOptions = &#123;</div><div class="line">    <span class="comment">// // Title may be a simple string:</span></div><div class="line">    <span class="comment">// title: 'Hello',</span></div><div class="line">     </div><div class="line">    <span class="comment">// Or the title string may be a function of the </span></div><div class="line">    navigation prop:可以是prop的函数解析</div><div class="line">    title: (&#123; state &#125;) =&gt; `<span class="type">Chat</span> <span class="keyword">with</span> $&#123;state.params.user&#125;`</div><div class="line">  &#125;;</div><div class="line">  ...</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><img src="https://ww3.sinaimg.cn/large/006tNbRwly1fe27gzgg40j30h90uojra.jpg" alt=""></p>
+<h2 id="添加右侧的按钮"><a href="#添加右侧的按钮" class="headerlink" title="添加右侧的按钮"></a>添加右侧的按钮</h2><p>可以在option中添加定制的右侧按钮<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">static navigationOptions = &#123;</div><div class="line">  <span class="selector-tag">header</span>: &#123;</div><div class="line">    <span class="attribute">right</span>: &lt;Button title=<span class="string">"Info"</span> /&gt;,</div><div class="line">  &#125;,</div><div class="line">  ...</div></pre></td></tr></table></figure></p>
+<p><img src="https://ww4.sinaimg.cn/large/006tNbRwly1fe27iwdrcmj30ha0uowee.jpg" alt=""></p>
+<p>和<code>title</code>一样,<code>header</code>option可以定义为prop的一个函数.让我们来基于导航参数渲染一个不同的按钮,设定为点击时调用<code>navigation.setParams</code>:</p>
+<figure class="highlight pf"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">static navigationOptions = &#123;</div><div class="line">  title: (&#123; <span class="keyword">state</span> &#125;) =&gt; &#123;</div><div class="line">    if (<span class="keyword">state</span>.params.mode === 'info') &#123;</div><div class="line">      return `$&#123;<span class="keyword">state</span>.params.<span class="keyword">user</span>&#125;'s Contact Info`;</div><div class="line">    &#125;</div><div class="line">    return `Chat with $&#123;<span class="keyword">state</span>.params.<span class="keyword">user</span>&#125;`;</div><div class="line">  &#125;,</div><div class="line">  header: (&#123; <span class="keyword">state</span>, <span class="built_in">set</span>Params &#125;) =&gt; &#123;</div><div class="line">    // The navigation prop has functions like <span class="built_in">set</span>Params, goBack, and navigate.</div><div class="line">    let right = (</div><div class="line">      <span class="variable">&lt;Button</span></div><div class="line">        title=&#123;`$&#123;state.params.user&#125;'s info`&#125;</div><div class="line">        onPress=&#123;() =&gt; <span class="built_in">set</span>Params(&#123; mode: 'info' &#125;)&#125;</div><div class="line">      /&gt;</div><div class="line">    );</div><div class="line">    if (<span class="keyword">state</span>.params.mode === 'info') &#123;</div><div class="line">      right = (</div><div class="line">        <span class="variable">&lt;Button</span></div><div class="line">          title="Done"</div><div class="line">          onPress=&#123;() =&gt; <span class="built_in">set</span>Params(&#123; mode: '<span class="keyword">none</span>' &#125;)&#125;</div><div class="line">        /&gt;        </div><div class="line">      );</div><div class="line">    &#125;</div><div class="line">    return &#123; right &#125;;</div><div class="line">  &#125;,</div><div class="line">  ...</div></pre></td></tr></table></figure>
+<p>现在头部可以和screen的路由state进行交互了.<br><img src="https://ww1.sinaimg.cn/large/006tNbRwly1fe27os9kgrg307g0dc752.gif" alt=""></p>
+
       
     </div>
 
@@ -523,6 +533,10 @@ Tab Navigator的介绍 我们在App.js中创建TabNavigator：  1234567891011121
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/03/28/翻译-React-navigation导航系统-3/" rel="prev" title="翻译|React-navigation导航系统(3)">
+                翻译|React-navigation导航系统(3) <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -594,7 +608,7 @@ Tab Navigator的介绍 我们在App.js中创建TabNavigator：  1234567891011121
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">69</span>
+                <span class="site-state-item-count">70</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -616,7 +630,7 @@ Tab Navigator的介绍 我们在App.js中创建TabNavigator：  1234567891011121
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-count">9</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -658,7 +672,7 @@ Tab Navigator的介绍 我们在App.js中创建TabNavigator：  1234567891011121
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#巢式导航"><span class="nav-number">1.</span> <span class="nav-text">巢式导航</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Tab-Navigator的介绍"><span class="nav-number">1.1.</span> <span class="nav-text">Tab Navigator的介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#在屏幕中构造一个巢式导航器"><span class="nav-number">1.2.</span> <span class="nav-text">在屏幕中构造一个巢式导航器</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#配置头部"><span class="nav-number">2.</span> <span class="nav-text">配置头部</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#设定头部标题"><span class="nav-number">2.1.</span> <span class="nav-text">设定头部标题</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#巢式导航"><span class="nav-number">1.</span> <span class="nav-text">巢式导航</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Tab-Navigator的介绍"><span class="nav-number">1.1.</span> <span class="nav-text">Tab Navigator的介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#在屏幕中构造一个巢式导航器"><span class="nav-number">1.2.</span> <span class="nav-text">在屏幕中构造一个巢式导航器</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#配置头部"><span class="nav-number">2.</span> <span class="nav-text">配置头部</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#设定头部标题"><span class="nav-number">2.1.</span> <span class="nav-text">设定头部标题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#添加右侧的按钮"><span class="nav-number">2.2.</span> <span class="nav-text">添加右侧的按钮</span></a></li></ol></li></ol></div>
             
 
           </div>

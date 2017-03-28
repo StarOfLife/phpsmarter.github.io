@@ -71,7 +71,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="javascript," />
+  <meta name="keywords" content="React-native," />
 
 
 
@@ -89,22 +89,25 @@
 
 
 
-<meta name="description" content="前面把javascript的设计模式基本过了一遍，可以说是感慨很多，许多的思想都是从未接触过的，学起来难度也不小，但是我觉得这个过程是很值得的。如果以前是在足球场上踢野球的话，现在总算找到一个像模像样的教练在指导了，不一定会成为一个世界级的球星，但是水平至少也会比以前提高很多。接下来会看看一些设计原则，设计原则是比模式更高一级的方法，是纲领性的内容。
+<meta name="description" content="NavigatorsNavigators允许你定义你的导航结构.Navigators也可以渲染普通的元素,例如你配置好的header和tab bar.navigators可以是单纯的React组件.
+内建的Navigatorsreact-navigation包含下面的几个函数帮助你创建navigators：
 
-单一职责(single responsabl">
+StackNavigator-一次渲染一个screen,在screen之间切换.当一个新">
 <meta property="og:type" content="article">
-<meta property="og:title" content="javascript设计原则-单一职责">
-<meta property="og:url" content="http://yoursite.com/2017/03/09/javascript设计原则-单一职责/index.html">
+<meta property="og:title" content="翻译|React-navigation导航系统(3)">
+<meta property="og:url" content="http://yoursite.com/2017/03/28/翻译-React-navigation导航系统-3/index.html">
 <meta property="og:site_name" content="phpsmarter">
-<meta property="og:description" content="前面把javascript的设计模式基本过了一遍，可以说是感慨很多，许多的思想都是从未接触过的，学起来难度也不小，但是我觉得这个过程是很值得的。如果以前是在足球场上踢野球的话，现在总算找到一个像模像样的教练在指导了，不一定会成为一个世界级的球星，但是水平至少也会比以前提高很多。接下来会看看一些设计原则，设计原则是比模式更高一级的方法，是纲领性的内容。
+<meta property="og:description" content="NavigatorsNavigators允许你定义你的导航结构.Navigators也可以渲染普通的元素,例如你配置好的header和tab bar.navigators可以是单纯的React组件.
+内建的Navigatorsreact-navigation包含下面的几个函数帮助你创建navigators：
 
-单一职责(single responsabl">
-<meta property="og:updated_time" content="2017-03-23T12:14:09.000Z">
+StackNavigator-一次渲染一个screen,在screen之间切换.当一个新">
+<meta property="og:updated_time" content="2017-03-28T07:42:13.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="javascript设计原则-单一职责">
-<meta name="twitter:description" content="前面把javascript的设计模式基本过了一遍，可以说是感慨很多，许多的思想都是从未接触过的，学起来难度也不小，但是我觉得这个过程是很值得的。如果以前是在足球场上踢野球的话，现在总算找到一个像模像样的教练在指导了，不一定会成为一个世界级的球星，但是水平至少也会比以前提高很多。接下来会看看一些设计原则，设计原则是比模式更高一级的方法，是纲领性的内容。
+<meta name="twitter:title" content="翻译|React-navigation导航系统(3)">
+<meta name="twitter:description" content="NavigatorsNavigators允许你定义你的导航结构.Navigators也可以渲染普通的元素,例如你配置好的header和tab bar.navigators可以是单纯的React组件.
+内建的Navigatorsreact-navigation包含下面的几个函数帮助你创建navigators：
 
-单一职责(single responsabl">
+StackNavigator-一次渲染一个screen,在screen之间切换.当一个新">
 
 
 
@@ -132,13 +135,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/03/09/javascript设计原则-单一职责/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/03/28/翻译-React-navigation导航系统-3/"/>
 
 
 
 
 
-  <title> javascript设计原则-单一职责 | phpsmarter </title>
+  <title> 翻译|React-navigation导航系统(3) | phpsmarter </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -311,7 +314,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/09/javascript设计原则-单一职责/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/28/翻译-React-navigation导航系统-3/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="phpsmarter">
@@ -332,7 +335,7 @@
             
             
               
-                javascript设计原则-单一职责
+                翻译|React-navigation导航系统(3)
               
             
           </h1>
@@ -347,8 +350,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-09T04:04:10+08:00">
-                2017-03-08
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-28T15:48:36+08:00">
+                2017-03-28
               </time>
             
 
@@ -363,8 +366,8 @@
               
                 <span class="post-meta-item-text">更新于</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2017-03-23T20:14:09+08:00">
-                2017-03-23
+              <time title="更新于" itemprop="dateModified" datetime="2017-03-28T15:42:13+08:00">
+                2017-03-28
               </time>
             
           </span>
@@ -382,8 +385,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Designpattern/" itemprop="url" rel="index">
-                    <span itemprop="name">Designpattern</span>
+                  <a href="/categories/翻译/" itemprop="url" rel="index">
+                    <span itemprop="name">翻译</span>
                   </a>
                 </span>
 
@@ -399,7 +402,7 @@
 
           
           
-             <span id="/2017/03/09/javascript设计原则-单一职责/" class="leancloud_visitors" data-flag-title="javascript设计原则-单一职责">
+             <span id="/2017/03/28/翻译-React-navigation导航系统-3/" class="leancloud_visitors" data-flag-title="翻译|React-navigation导航系统(3)">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -423,7 +426,7 @@
                   <span class="post-meta-item-text">字数统计</span>
                 
                 <span title="字数统计">
-                  1,173
+                  831
                 </span>
               
 
@@ -439,7 +442,7 @@
                   <span class="post-meta-item-text">阅读时长</span>
                 
                 <span title="阅读时长">
-                  5
+                  4
                 </span>
               
             </div>
@@ -458,18 +461,32 @@
       
 
       
-        <p>前面把javascript的设计模式基本过了一遍，可以说是感慨很多，许多的思想都是从未接触过的，学起来难度也不小，但是我觉得这个过程是很值得的。如果以前是在足球场上踢野球的话，现在总算找到一个像模像样的教练在指导了，不一定会成为一个世界级的球星，但是水平至少也会比以前提高很多。<br>接下来会看看一些设计原则，设计原则是比模式更高一级的方法，是纲领性的内容。</p>
-<blockquote>
-<p>单一职责(single responsable princple)被定为为“引起变化的原因”。如果一个方法承担了过多的职责，那么在需求发生变化的过程中，需要改写这个方法的可能性就越大。<br>因此SRP原则体现为：一个对象(方法)只做一件事情。<br>参考《javascript设计模式与开发实践》第18章</p>
-</blockquote>
-<p>#####设计模式中的SRP原则</p>
-<p>代理模式<br>下面这个例子是要在文档中创建一个img标签，并且要插入图片<br>在加载图片的时候，由于网速的限制需要预先加载一张本地图片，稍后会加载网络图片。 在这个过程中<code>创建img标签</code>和<code>更换图片源</code>是<code>没有关系</code>的。所以最好是把这两个过程分为两个对象来处理。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//创建img标签的对象</span></div><div class="line"><span class="keyword">var</span> myImage = (<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">		<span class="keyword">var</span> imgNode = <span class="built_in">document</span>.createElement( <span class="string">'img'</span> );</div><div class="line">		<span class="built_in">document</span>.body.appendChild( imgNode );</div><div class="line">		<span class="keyword">return</span> &#123;</div><div class="line">			<span class="attr">setSrc</span>: <span class="function"><span class="keyword">function</span>(<span class="params"> src </span>)</span>&#123;</div><div class="line"></div><div class="line">				imgNode.src = src;</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">	&#125;)();</div><div class="line">  <span class="comment">//添加图片路径的对象</span></div><div class="line">	<span class="keyword">var</span> proxyImage = (<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">		<span class="keyword">var</span> img = <span class="keyword">new</span> Image; <span class="comment">//实例化标签对象</span></div><div class="line">		img.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">			myImage.setSrc( <span class="keyword">this</span>.src ); <span class="comment">//加载默认图片</span></div><div class="line">		&#125;</div><div class="line">		<span class="keyword">return</span> &#123;</div><div class="line">			<span class="attr">setSrc</span>: <span class="function"><span class="keyword">function</span>(<span class="params"> src </span>)</span>&#123;</div><div class="line">				myImage.setSrc( <span class="string">'file:// /C:/Users/svenzeng/Desktop/loading.gif'</span> );</div><div class="line">				img.src = src;</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">	&#125;)();</div><div class="line">	<span class="comment">//更改图片的路径，这个过程就和img标签的创建对象没有关系了。</span></div><div class="line">	proxyImage.setSrc( <span class="string">'http:// imgcache.qq.com/music/photo/000GGDys0yA0Nk.jpg'</span> );</div></pre></td></tr></table></figure></p>
-<p>迭代器模式<br>看下面段代码<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//这段代码往文档中添加div元素，但是有限制，这里就只能添加数组</span></div><div class="line"><span class="comment">//有两个职责一个是添加元素，一个是遍历数据，所有有必要分开</span></div><div class="line"> <span class="keyword">var</span> appendDiv=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  <span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>;l=data.length;i&lt;l;i++)&#123;</div><div class="line">   <span class="keyword">var</span> div=<span class="built_in">document</span>.createElement(<span class="string">'div'</span>);</div><div class="line">   div.innerHTML=data[i];</div><div class="line">   <span class="built_in">document</span>.body.appendChild(div);</div><div class="line">  &#125;</div><div class="line"> &#125;;</div><div class="line"> </div><div class="line"> appenDiv([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>])</div></pre></td></tr></table></figure></p>
-<p>使用单一职责原则改变代码<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> each = <span class="function"><span class="keyword">function</span>(<span class="params"> obj, callback </span>) </span>&#123;<span class="comment">//遍历的方法</span></div><div class="line"><span class="comment">//对象和数组都可以输入，灵活性加大，并且还可以修改</span></div><div class="line">		<span class="keyword">var</span> value,</div><div class="line">		i = <span class="number">0</span>,</div><div class="line">		length = obj.length,</div><div class="line">		isArray = isArraylike( obj ); <span class="comment">// isArraylike 函数未实现，可以翻阅jQuery 源代码</span></div><div class="line">		<span class="keyword">if</span> ( isArray ) &#123; <span class="comment">// 迭代类数组</span></div><div class="line">			<span class="keyword">for</span> ( ; i &lt; length; i++ ) &#123;</div><div class="line">				callback.call( obj[ i ], i, obj[ i ] );</div><div class="line">			&#125;</div><div class="line">		&#125; <span class="keyword">else</span> &#123;</div><div class="line">			<span class="keyword">for</span> ( i <span class="keyword">in</span> obj ) &#123; <span class="comment">// 迭代object 对象</span></div><div class="line">				value = callback.call( obj[ i ], i, obj[ i ] );</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">return</span> obj;</div><div class="line">	&#125;;</div><div class="line"> <span class="comment">//根据输入数据的元素添加方法</span></div><div class="line">	<span class="keyword">var</span> appendDiv = <span class="function"><span class="keyword">function</span>(<span class="params"> data </span>)</span>&#123;</div><div class="line">		each( data, <span class="function"><span class="keyword">function</span>(<span class="params"> i, n </span>)</span>&#123; <span class="comment">//使用each方法来执行遍历</span></div><div class="line">		<span class="comment">//在回调函数中根据遍历数据添加元素至文档中</span></div><div class="line">			<span class="keyword">var</span> div = <span class="built_in">document</span>.createElement( <span class="string">'div'</span> );</div><div class="line">			div.innerHTML = n;</div><div class="line">			<span class="built_in">document</span>.body.appendChild( div );</div><div class="line">		&#125;);</div><div class="line">	&#125;;</div><div class="line"></div><div class="line">	appendDiv( [ <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span> ] );<span class="comment">//数组数据</span></div><div class="line">	appendDiv(&#123;<span class="attr">a</span>:<span class="number">1</span>,<span class="attr">b</span>:<span class="number">2</span>,<span class="attr">c</span>:<span class="number">3</span>,<span class="attr">d</span>:<span class="number">4</span>&#125; ); <span class="comment">//对象数据</span></div></pre></td></tr></table></figure></p>
-<p>单例模式</p>
-<p>在前面已经有笔记了。实际是把实际操作和创建单例的方法分别封装在两个方法里。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> createLoginLayer = (<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="comment">//创建元素的方法</span></div><div class="line">		<span class="keyword">var</span> div;</div><div class="line">		<span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">			<span class="keyword">if</span> ( !div )&#123;</div><div class="line">				div = <span class="built_in">document</span>.createElement( <span class="string">'div'</span> );</div><div class="line">				div.innerHTML = <span class="string">'我是登录浮窗'</span>;</div><div class="line">				div.style.display = <span class="string">'none'</span>;</div><div class="line">				<span class="built_in">document</span>.body.appendChild( div );</div><div class="line">			&#125;</div><div class="line">			<span class="keyword">return</span> div; <span class="comment">//单例的判断依据</span></div><div class="line">		&#125;</div><div class="line">	&#125;)();</div><div class="line">  </div><div class="line">        <span class="comment">//创建和检测单例的方法，参数为创建元素的方法</span></div><div class="line">	<span class="keyword">var</span> getSingle = <span class="function"><span class="keyword">function</span>(<span class="params"> fn </span>)</span>&#123; <span class="comment">// 获取单例</span></div><div class="line">		<span class="keyword">var</span> result;</div><div class="line">		<span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">			<span class="keyword">return</span> result || ( result = fn .apply(<span class="keyword">this</span>, <span class="built_in">arguments</span> ) ); </div><div class="line">                        <span class="comment">//这个地方要注意apply和arguments的应用</span></div><div class="line">		&#125;</div><div class="line">	&#125;;</div><div class="line">	<span class="keyword">var</span> createLoginLayer = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; <span class="comment">// 创建登录浮窗</span></div><div class="line">		<span class="keyword">var</span> div = <span class="built_in">document</span>.createElement( <span class="string">'div'</span> );</div><div class="line">		div.innerHTML = <span class="string">'我是登录浮窗'</span>;</div><div class="line">		<span class="built_in">document</span>.body.appendChild( div );</div><div class="line">		<span class="keyword">return</span> div;</div><div class="line">	&#125;;</div><div class="line">	</div><div class="line">	<span class="keyword">var</span> createSingleLoginLayer = getSingle( createLoginLayer );</div><div class="line">	<span class="keyword">var</span> loginLayer1 = createSingleLoginLayer();</div><div class="line">	<span class="keyword">var</span> loginLayer2 = createSingleLoginLayer();</div><div class="line">	alert ( loginLayer1 === loginLayer2 ); <span class="comment">// 输出： true  //为同一对象</span></div></pre></td></tr></table></figure></p>
-<p>装饰者模式<br>前面的设计模式里也有介绍<br>装饰者模式可以动态为对象添加方法或指责。从而也使的对象的功能单一化。<br>下面两个函数调用的时候指向同一个对象。<br> <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"> <span class="built_in">Function</span>.prototype.after = <span class="function"><span class="keyword">function</span>(<span class="params"> afterfn </span>)</span>&#123;</div><div class="line">		<span class="keyword">var</span> __self = <span class="keyword">this</span>;</div><div class="line">		<span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">			<span class="keyword">var</span> ret = __self.apply( <span class="keyword">this</span>, <span class="built_in">arguments</span> );</div><div class="line">			 <span class="comment">//执行原函数</span></div><div class="line">			afterfn.apply( <span class="keyword">this</span>, <span class="built_in">arguments</span> );<span class="comment">//执行after函数</span></div><div class="line">			<span class="keyword">return</span> ret;</div><div class="line">		&#125;</div><div class="line">	&#125;;</div><div class="line">	<span class="keyword">var</span> showLogin = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">		<span class="built_in">console</span>.log( <span class="string">'打开登录浮层'</span> );</div><div class="line">	&#125;;</div><div class="line">	<span class="keyword">var</span> log = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">		<span class="built_in">console</span>.log( <span class="string">'上报标签为: '</span> + <span class="keyword">this</span>.getAttribute( <span class="string">'tag'</span> ) );</div><div class="line"></div><div class="line">	&#125;;</div><div class="line">	<span class="built_in">document</span>.getElementById( <span class="string">'button'</span> ).onclick = showLogin.after( log );</div><div class="line"><span class="comment">// 打开登录浮层之后上报数据</span></div></pre></td></tr></table></figure></p>
-<p>#####单一职责原则减低了单个类或者对象的复杂度，按照指责把对象分解成更小的粒度。有助于代码的复用，修改和测试。但是代码复杂度是提高了。怎么平衡呢？这是个问题。</p>
+        <h1 id="Navigators"><a href="#Navigators" class="headerlink" title="Navigators"></a>Navigators</h1><p>Navigators允许你定义你的导航结构.Navigators也可以渲染普通的元素,例如你配置好的header和tab bar.<br>navigators可以是单纯的React组件.</p>
+<h2 id="内建的Navigators"><a href="#内建的Navigators" class="headerlink" title="内建的Navigators"></a>内建的Navigators</h2><p><code>react-navigation</code>包含下面的几个函数帮助你创建navigators：</p>
+<ul>
+<li><code>StackNavigator</code>-一次渲染一个screen,在screen之间切换.当一个新的screen被打开的时候,他被放在栈顶.</li>
+<li><code>TabNavigator</code>-渲染出一个tab bar让用户可以在多个screen之间切换.</li>
+<li><code>DrawNavigator</code>-渲染一个抽屉,可以从屏幕左边侧滑出.</li>
+</ul>
+<h2 id="使用Navigators渲染screen"><a href="#使用Navigators渲染screen" class="headerlink" title="使用Navigators渲染screen"></a>使用Navigators渲染screen</h2><p>navigators实际渲染的就是React组件<br>了解怎么创建screen,读读一下内容:</p>
+<ul>
+<li>Screen<code>navigation</code>props允许screen分发navigation动作,例如操作另外一个screen.</li>
+<li>Screen <code>navigationOptions</code>定制screen的展示方式(例如：header title,tab label)<h2 id="在顶层组件上调用导航"><a href="#在顶层组件上调用导航" class="headerlink" title="在顶层组件上调用导航"></a>在顶层组件上调用导航</h2>万一你想在同一级别的Navigation screen之间使用Navigator,你可以使用react的<code>ref</code>选项:<figure class="highlight scala"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"> const <span class="type">AppNavigator</span> = <span class="type">StackNavigator</span>(<span class="type">SomeAppRouteConfigs</span>);</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">App</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</div><div class="line">  someEvent() &#123;</div><div class="line">    <span class="comment">// call navigate for AppNavigator here:</span></div><div class="line">    <span class="keyword">this</span>.navigator &amp;&amp; <span class="keyword">this</span>.navigator.dispatch(&#123; <span class="class"><span class="keyword">type</span></span>: <span class="symbol">'Navigat</span>e', routeName, params &#125;);</div><div class="line">  &#125;</div><div class="line">  render() &#123;</div><div class="line">    <span class="keyword">return</span> (</div><div class="line">      &lt;<span class="type">AppNavigator</span> ref=&#123;nav =&gt; &#123; <span class="keyword">this</span>.navigator = nav; &#125;&#125; /&gt;</div><div class="line">    );</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>注意:这个解决办法只能用在顶层navigator上.</p>
+<h2 id="Navigation-Containers"><a href="#Navigation-Containers" class="headerlink" title="Navigation Containers"></a>Navigation Containers</h2><p>如果navigators没有props的话,他就会表现为顶层navigators.这个方式提供了一个透明的navigator container,这是顶层导航props的来源.<br>当渲染其中一个navigators的时候,navigation prop是可选的.如果没有navigation prop,container将会管理自己的导航state.他也可以使用URLs,外部链接以及整合android的back button.</p>
+<p>为了使用方便,在幕后内建的navigators有这个能力,因为在幕后他们使用了<code>createNavigationContainer</code>.通常,navigators需要一个navigation prop来执行一定的功能.<br><code>onNavigationStateChange(prevState, newState)</code></p>
+<p>当navigation state由顶层navigator变化管理的时候,这一点非常有用.为了达到这个目的,这个函数在每次调用的时候都会使用导航之前的state和导航之后的新state作为参数.</p>
+<p><code>containerOptions</code><br>当一个navigator在顶层被使用的时候,这些选项可以来配置这个navigator.<br>如果一个navigator配置了<code>containerOptions</code>,但是也接受了<code>navigation</code>prop,会抛出错误.因为在这种情况下,navigator有两种选择,它就不知道怎么做了.</p>
+<ul>
+<li><code>URIPrefic</code>-app可以处理的URI前缀.在处理<code>deep link</code>的时候，可以提取路径,并且传递到router.</li>
+</ul>
+<h1 id="StackNavigator"><a href="#StackNavigator" class="headerlink" title="StackNavigator"></a>StackNavigator</h1><p>给你的app提供screen之间转变的方法,每个转变到的screen会存放在堆栈的栈顶.<br>默认情况下,StackNavigator配置有iOS和android的外观和感觉:在iOS下,新的screen从屏幕的右侧滑入,在android下,新的screen从底部淡入.iOS下也可以配置为从屏幕底部滑入.</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"> <span class="class"><span class="keyword">class</span> <span class="title">MyHomeScreen</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</div><div class="line">  static navigationOptions = &#123;</div><div class="line">    title: <span class="symbol">'Hom</span>e',</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  render() &#123;</div><div class="line">    <span class="keyword">return</span> (</div><div class="line">      &lt;<span class="type">Button</span></div><div class="line">        onPress=&#123;() =&gt; <span class="keyword">this</span>.props.navigation.navigate(<span class="symbol">'Profil</span>e', &#123;name: <span class="symbol">'Luc</span>y'&#125;)&#125;</div><div class="line">        title=<span class="string">"Go to Lucy's profile"</span></div><div class="line">      /&gt;</div><div class="line">    );</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">const <span class="type">ModalStack</span> = <span class="type">StackNavigator</span>(&#123;</div><div class="line">  <span class="type">Home</span>: &#123;</div><div class="line">    screen: <span class="type">MyHomeScreen</span>,</div><div class="line">  &#125;,</div><div class="line">  <span class="type">Profile</span>: &#123;</div><div class="line">    path: <span class="symbol">'people</span>/:name',</div><div class="line">    screen: <span class="type">MyProfileScreen</span>,</div><div class="line">  &#125;,</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h2 id="定义API"><a href="#定义API" class="headerlink" title="定义API"></a>定义API</h2><p><code>StackNavigator(Routeconfigs,StackNavigatorConfig)</code></p>
+<h2 id="RouteConfigs"><a href="#RouteConfigs" class="headerlink" title="RouteConfigs"></a>RouteConfigs</h2><p>route的配置对象是route name到route config的映射(译者:这才是重点),配置对象告诉navigator什么来代表route.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">StackNavigator(&#123;</div><div class="line"></div><div class="line">  <span class="comment">// For each screen that you can navigate to, create a new entry like this:</span></div><div class="line">  Profile: &#123;</div><div class="line"></div><div class="line">    <span class="comment">// `ProfileScreen` is a React component that will be the main content of the screen.</span></div><div class="line">    screen: ProfileScreen,</div><div class="line">    <span class="comment">// When `ProfileScreen` is loaded by the StackNavigator, it will be given a `navigation` prop.</span></div><div class="line"></div><div class="line">    <span class="comment">// Optional: When deep linking or using react-navigation in a web app, this path is used:</span></div><div class="line">    path: <span class="string">'people/:username'</span>,</div><div class="line">    <span class="comment">// The action and route params are extracted from the path.</span></div><div class="line"></div><div class="line">    <span class="comment">// Optional: Override the `navigationOptions` for the screen</span></div><div class="line">    navigationOptions: &#123;</div><div class="line">      <span class="attr">title</span>: <span class="function">(<span class="params">&#123;state&#125;</span>) =&gt;</span> <span class="string">`<span class="subst">$&#123;state.params.username&#125;</span>'s Profile'`</span>,</div><div class="line">    &#125;,</div><div class="line">  &#125;,</div><div class="line"></div><div class="line">  ...MyOtherRoutes,</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
 
       
     </div>
@@ -499,7 +516,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/javascript/" rel="tag"># javascript</a>
+            <a href="/tags/React-native/" rel="tag"># React-native</a>
           
         </div>
       
@@ -512,8 +529,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/03/09/javascript最少知识原则/" rel="next" title="javascript最少知识原则">
-                <i class="fa fa-chevron-left"></i> javascript最少知识原则
+              <a href="/2017/03/28/翻译-React-navigation导航系统-2/" rel="next" title="翻译|React-navigation导航系统(2)">
+                <i class="fa fa-chevron-left"></i> 翻译|React-navigation导航系统(2)
               </a>
             
           </div>
@@ -521,10 +538,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/03/09/翻译-Redux的中间件-Reselect/" rel="prev" title="翻译-Redux的中间件-Reselect">
-                翻译-Redux的中间件-Reselect <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -571,8 +584,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.jpeg"
@@ -641,6 +663,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Navigators"><span class="nav-number">1.</span> <span class="nav-text">Navigators</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#内建的Navigators"><span class="nav-number">1.1.</span> <span class="nav-text">内建的Navigators</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用Navigators渲染screen"><span class="nav-number">1.2.</span> <span class="nav-text">使用Navigators渲染screen</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#在顶层组件上调用导航"><span class="nav-number">1.3.</span> <span class="nav-text">在顶层组件上调用导航</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Navigation-Containers"><span class="nav-number">1.4.</span> <span class="nav-text">Navigation Containers</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#StackNavigator"><span class="nav-number">2.</span> <span class="nav-text">StackNavigator</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#定义API"><span class="nav-number">2.1.</span> <span class="nav-text">定义API</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RouteConfigs"><span class="nav-number">2.2.</span> <span class="nav-text">RouteConfigs</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
