@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-03-28T07:42:13.000Z</updated>
+  <updated>2017-03-28T08:50:51.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://yoursite.com/2017/03/28/%E7%BF%BB%E8%AF%91-React-navigation%E5%AF%BC%E8%88%AA%E7%B3%BB%E7%BB%9F-3/"/>
     <id>http://yoursite.com/2017/03/28/翻译-React-navigation导航系统-3/</id>
     <published>2017-03-28T07:48:36.000Z</published>
-    <updated>2017-03-28T07:42:13.000Z</updated>
+    <updated>2017-03-28T08:50:51.000Z</updated>
     
     <content type="html"><![CDATA[<h1 id="Navigators"><a href="#Navigators" class="headerlink" title="Navigators"></a>Navigators</h1><p>Navigators允许你定义你的导航结构.Navigators也可以渲染普通的元素,例如你配置好的header和tab bar.<br>navigators可以是单纯的React组件.</p>
 <h2 id="内建的Navigators"><a href="#内建的Navigators" class="headerlink" title="内建的Navigators"></a>内建的Navigators</h2><p><code>react-navigation</code>包含下面的几个函数帮助你创建navigators：</p>
@@ -48,6 +48,56 @@
 <h2 id="定义API"><a href="#定义API" class="headerlink" title="定义API"></a>定义API</h2><p><code>StackNavigator(Routeconfigs,StackNavigatorConfig)</code></p>
 <h2 id="RouteConfigs"><a href="#RouteConfigs" class="headerlink" title="RouteConfigs"></a>RouteConfigs</h2><p>route的配置对象是route name到route config的映射(译者:这才是重点),配置对象告诉navigator什么来代表route.</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">StackNavigator(&#123;</div><div class="line"></div><div class="line">  <span class="comment">// For each screen that you can navigate to, create a new entry like this:</span></div><div class="line">  Profile: &#123;</div><div class="line"></div><div class="line">    <span class="comment">// `ProfileScreen` is a React component that will be the main content of the screen.</span></div><div class="line">    screen: ProfileScreen,</div><div class="line">    <span class="comment">// When `ProfileScreen` is loaded by the StackNavigator, it will be given a `navigation` prop.</span></div><div class="line"></div><div class="line">    <span class="comment">// Optional: When deep linking or using react-navigation in a web app, this path is used:</span></div><div class="line">    path: <span class="string">'people/:username'</span>,</div><div class="line">    <span class="comment">// The action and route params are extracted from the path.</span></div><div class="line"></div><div class="line">    <span class="comment">// Optional: Override the `navigationOptions` for the screen</span></div><div class="line">    navigationOptions: &#123;</div><div class="line">      <span class="attr">title</span>: <span class="function">(<span class="params">&#123;state&#125;</span>) =&gt;</span> <span class="string">`<span class="subst">$&#123;state.params.username&#125;</span>'s Profile'`</span>,</div><div class="line">    &#125;,</div><div class="line">  &#125;,</div><div class="line"></div><div class="line">  ...MyOtherRoutes,</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h2 id="StackNavigatorConfi"><a href="#StackNavigatorConfi" class="headerlink" title="StackNavigatorConfi"></a>StackNavigatorConfi</h2><p>Router的Options:</p>
+<ul>
+<li><code>initialRouteName</code>-设定默认的堆栈的screen.需要和route config的键之一相同.</li>
+<li><code>initalRouteParams</code>-初始化route的参数</li>
+<li><code>navigationOptions</code>-默认需要使用的可选参数</li>
+<li><code>path</code>-覆盖route configs的路径设置</li>
+</ul>
+<p>可视化选项:</p>
+<ul>
+<li><code>mode</code>-定义渲染和切换之间的样式:<ul>
+<li><code>card</code>-使用iOS和android标准的切换方法.默认值</li>
+<li><code>modal</code>-使screen从底部滑动显示.仅仅在iOS下使用,Andorid下没有效果</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p><code>headerMode</code>-定制header渲染的方法</p>
+<ul>
+<li><code>float</code>-切换界面的时候,用动画效果在screen的顶部渲染header</li>
+<li><code>screen</code>-每一个screen都有一个header附着到头部,切换的时候有淡入和淡出的效果.andorid的基本模式</li>
+<li><code>none</code>-没有header的渲染.</li>
+</ul>
+</li>
+<li><p><code>cardStyle</code>-使用这个prop来重写或者扩展单个card的默认style</p>
+</li>
+<li><code>onTransitionStart</code>-当card开始切换动画的时候,这个函数被调用</li>
+<li><code>onTransitionEnd</code>-当切换动画完成的时候,这个函数被调用</li>
+</ul>
+<h2 id="Screen-Navigation-Options"><a href="#Screen-Navigation-Options" class="headerlink" title="Screen Navigation Options"></a>Screen Navigation Options</h2><p>通常在screen组件中定义静态的<code>navigationOptions</code>.例如:<br><figure class="highlight pf"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">class ProfileScreen extends React.Component &#123;</div><div class="line"></div><div class="line">  static navigationOptions = &#123;</div><div class="line"></div><div class="line">    title: (&#123; <span class="keyword">state</span> &#125;) =&gt; `$&#123;<span class="keyword">state</span>.params.name&#125;'s Profile!`,</div><div class="line"></div><div class="line">    header: (&#123; <span class="keyword">state</span>, <span class="built_in">set</span>Params &#125;) =&gt; (&#123;</div><div class="line">      // Render a button <span class="keyword">on</span> the right side of the header</div><div class="line">      // When pressed switches the screen <span class="keyword">to</span> edit mode.</div><div class="line">      right: (</div><div class="line">        <span class="variable">&lt;Button</span></div><div class="line">          title=&#123;state.params.editing ? 'Done' : 'Edit'&#125;</div><div class="line">          onPress=&#123;() =&gt; <span class="built_in">set</span>Params(&#123;editing: <span class="keyword">state</span>.params.editing ? false : true&#125;)&#125;</div><div class="line">        /&gt;</div><div class="line">      ),</div><div class="line">    &#125;),</div><div class="line">  &#125;;</div><div class="line">  ...</div></pre></td></tr></table></figure></p>
+<p>所有的<code>stackNavigator</code>的<code>navigationOptions</code>:</p>
+<ul>
+<li><code>title</code>-scene的标题(字符串)</li>
+<li><code>header</code>-header bar的配置对象<ul>
+<li><code>visible</code>-header可视性的切换.只有当<code>headerMode</code>是<code>screen</code>的时候才可以工作</li>
+<li><code>title</code>-header可以使用的字符串或者React组件,默认是scene的<code>title</code></li>
+<li><code>backTitle</code>-iOS back按钮的title字符串或者<code>null</code>到disable标签,默认设定到scene的<code>title</code>.</li>
+<li><code>right</code>-显示在header右侧的React组件</li>
+<li><code>left</code>-同上,左侧</li>
+<li><code>style</code>-header的Style对象</li>
+<li><code>titleStyle</code>-title组建的Style对象</li>
+<li><code>tintColor</code>-header的着色</li>
+</ul>
+</li>
+<li><code>cardStack</code>-card stack的配置对象<ul>
+<li><code>gesturesEnabled</code>-不管你是不是用手势,在iOS上是true,在android里是false.<h2 id="Navigator-Props"><a href="#Navigator-Props" class="headerlink" title="Navigator Props"></a>Navigator Props</h2>由<code>StackNavigator(...)</code>创建的navigator组件接收两个props:<br><code>screenProps</code>-向下传递到子screen,例如:<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"> <span class="keyword">const</span> SomeStack = StackNavigator(&#123;</div><div class="line">  <span class="comment">// config</span></div><div class="line">&#125;);</div><div class="line"></div><div class="line">&lt;SomeStack</div><div class="line">  screenProps=&#123;<span class="comment">/* this prop will get passed to the screen components as this.props.screenProps */</span>&#125;</div><div class="line">/&gt;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="Examples"><a href="#Examples" class="headerlink" title="Examples"></a>Examples</h2><p>看看实例<a href="https://github.com/react-community/react-navigation/tree/master/examples/NavigationPlayground/js/SimpleStack.js" target="_blank" rel="external">SimpleStack.js</a>和<a href="https://github.com/react-community/react-navigation/tree/master/examples/NavigationPlayground/js/ModalStack.js" target="_blank" rel="external">ModalStack.js</a>,可以在本地的<a href="https://github.com/react-community/react-navigation/tree/master/examples/NavigationPlayground" target="_blank" rel="external">NavigationPlayground</a>app中运行.</p>
 ]]></content>
     
     <summary type="html">
