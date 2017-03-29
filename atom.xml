@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-03-28T22:59:47.000Z</updated>
+  <updated>2017-03-29T00:31:21.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,53 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>翻译|React-navigation导航系统(4)</title>
+    <link href="http://yoursite.com/2017/03/29/%E7%BF%BB%E8%AF%91-React-navigation%E5%AF%BC%E8%88%AA%E7%B3%BB%E7%BB%9F-4/"/>
+    <id>http://yoursite.com/2017/03/29/翻译-React-navigation导航系统-4/</id>
+    <published>2017-03-29T07:16:17.000Z</published>
+    <updated>2017-03-29T00:31:21.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="Navigation-Actions"><a href="#Navigation-Actions" class="headerlink" title="Navigation Actions"></a>Navigation Actions</h1><p>所有的Navigation Actions都会返回一个对象,这个对象可以使用<code>navigation.dispatch</code>方法传递到router.<br><em>注意</em>：如果你想dispatch react-navigation,你应该使用这个库提供的action creators.</p>
+<p>下面的actions是可以使用的:</p>
+<ul>
+<li><code>Navigate</code>-导航到其他的route</li>
+<li><code>Reset</code>-使用新的state代替目前的state</li>
+<li><code>Back</code>-返回上一个state</li>
+<li><code>Set Params</code>-给定的route设置参数</li>
+<li><code>Init</code>-如果state没有定义,用来初始化第一个state</li>
+</ul>
+<h2 id="Navigate"><a href="#Navigate" class="headerlink" title="Navigate"></a>Navigate</h2><p><code>Navigatie action</code>会使用<code>Navigate action</code>的结果来更新当前的state.</p>
+<ul>
+<li><code>routeName</code>-字符串-必选项,在app的router里注册的导航目的地的routeName.</li>
+<li><code>params</code>-对象-可选项-融合进目的地route的参数</li>
+<li><code>actions</code>-对象-可选项-(高级)-如果screen也是一个navigator,次级action可以在子router中运行.在文档中描述的任何actions都可以作为次级action.</li>
+</ul>
+<figure class="highlight xquery"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"> <span class="keyword">import</span> &#123; NavigationActions &#125; from <span class="string">'react-navigation'</span></div><div class="line"></div><div class="line">const navigateAction = NavigationActions.navigate(&#123;</div><div class="line"></div><div class="line">  routeName: <span class="string">'Profile'</span>,</div><div class="line"></div><div class="line">  params: &#123;&#125;,</div><div class="line"></div><div class="line">  action: NavigationActions.navigate(&#123; routeName: <span class="string">'SubProfileRoute'</span>&#125;)</div><div class="line">&#125;)</div><div class="line"></div><div class="line">this.props.navigation.dispatch(navigateAction)</div></pre></td></tr></table></figure>
+<h2 id="Reset"><a href="#Reset" class="headerlink" title="Reset"></a>Reset</h2><p><code>Reset</code>action删掉所有的navigation state并且使用几个actions的结果来代替.</p>
+<ul>
+<li><code>index</code>—数组-必选-navigation <code>state</code>中<code>route</code>数组中激活route的index.</li>
+<li><code>actions</code>-数组-必选项-Navigation Actions数组,将会替代navigation state</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"> <span class="keyword">import</span> &#123; NavigationActions &#125; <span class="keyword">from</span> <span class="string">'react-navigation'</span></div><div class="line"></div><div class="line"><span class="keyword">const</span> resetAction = NavigationActions.reset(&#123;</div><div class="line">  <span class="attr">index</span>: <span class="number">0</span>,</div><div class="line">  <span class="attr">actions</span>: [</div><div class="line">    NavigationActions.navigate(&#123; <span class="attr">routeName</span>: <span class="string">'Profile'</span>&#125;)</div><div class="line">  ]</div><div class="line">&#125;)</div><div class="line"><span class="keyword">this</span>.props.navigation.dispatch(resetAction)</div></pre></td></tr></table></figure>
+<h2 id="怎么使用index参数"><a href="#怎么使用index参数" class="headerlink" title="怎么使用index参数"></a>怎么使用<code>index</code>参数</h2><p><code>index</code>参数被用来定制化当前激活的route<br>例如：使用两个routes <code>Profile</code>和<code>Settings</code>给一个基础的stakc navigation设置.为了重置route到经过<code>Settings</code>的激活screen那一点,但是在堆栈中他又存放在<code>Setting</code>screen之上,你可以这么做:</p>
+<figure class="highlight xquery"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> &#123; NavigationActions &#125; from <span class="string">'react-navigation'</span></div><div class="line"></div><div class="line">const resetAction = NavigationActions.reset(&#123;</div><div class="line">  index: <span class="number">1</span>,</div><div class="line">  actions: [</div><div class="line">    NavigationActions.navigate(&#123; routeName: <span class="string">'Profile'</span>&#125;),</div><div class="line">    NavigationActions.navigate(&#123; routeName: <span class="string">'Settings'</span>&#125;)</div><div class="line">  ]</div><div class="line">&#125;)</div><div class="line">this.props.navigation.dispatch(resetAction)</div></pre></td></tr></table></figure>
+<h2 id="Back"><a href="#Back" class="headerlink" title="Back"></a>Back</h2><p>返回到前一个screen并且关闭当前screen.<code>back</code>action creator接受一个可选的参数:</p>
+<ul>
+<li><code>key</code>-字符串或者空-可选项-如果设定了,navigation将会从设定的key返回.如果是null,navigation将返回到任何地方.</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> &#123; NavigationActions &#125; <span class="keyword">from</span> <span class="string">'react-navigation'</span></div><div class="line"></div><div class="line"><span class="keyword">const</span> backAction = NavigationActions.back(&#123;</div><div class="line">  <span class="attr">key</span>: <span class="string">'Profile'</span></div><div class="line">&#125;)</div><div class="line"><span class="keyword">this</span>.props.navigation.dispatch(backAction)</div></pre></td></tr></table></figure>
+<h2 id="SetParams"><a href="#SetParams" class="headerlink" title="SetParams"></a>SetParams</h2>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;Navigation-Actions&quot;&gt;&lt;a href=&quot;#Navigation-Actions&quot; class=&quot;headerlink&quot; title=&quot;Navigation Actions&quot;&gt;&lt;/a&gt;Navigation Actions&lt;/h1&gt;&lt;p&gt;所有的Nav
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>翻译|React-navigation导航系统(3)</title>
@@ -675,7 +722,7 @@
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> &#123; <span class="built_in">Map</span> &#125; = <span class="built_in">require</span>(<span class="string">'immutable'</span>)</div><div class="line"><span class="keyword">const</span> map1 = <span class="built_in">Map</span>(&#123; <span class="attr">a</span>: <span class="number">1</span>, <span class="attr">b</span>: <span class="number">2</span>, <span class="attr">c</span>: <span class="number">3</span> &#125;)</div><div class="line"><span class="keyword">const</span> map2 = map1.set(<span class="string">'b'</span>, <span class="number">50</span>)</div><div class="line">map1.get(<span class="string">'b'</span>) <span class="comment">// 2</span></div><div class="line">map2.get(<span class="string">'b'</span>) <span class="comment">// 50</span></div></pre></td></tr></table></figure>
 <h3 id="Browser"><a href="#Browser" class="headerlink" title="Browser"></a>Browser</h3><p>To use Immutable.js from a browser, download <a href="https://github.com/facebook/immutable-js/blob/master/dist/immutable.min.js" target="_blank" rel="external">dist/immutable.min.js</a><br>or use a CDN such as <a href="https://cdnjs.com/libraries/immutable" target="_blank" rel="external">CDNJS</a><br>or <a href="http://www.jsdelivr.com/#!immutable.js" target="_blank" rel="external">jsDelivr</a>.</p>
 <p>Then, add it as a script tag to your page:</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"immutable.min.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript"></span></div><div class="line">    <span class="keyword">var</span> map1 = Immutable.Map(&#123;<span class="attr">a</span>:<span class="number">1</span>, <span class="attr">b</span>:<span class="number">2</span>, <span class="attr">c</span>:<span class="number">3</span>&#125;);</div><div class="line">    <span class="keyword">var</span> map2 = map1.set(<span class="string">'b'</span>, <span class="number">50</span>);</div><div class="line">    map1.get(<span class="string">'b'</span>); <span class="comment">// 2</span></div><div class="line">    map2.get(<span class="string">'b'</span>); <span class="comment">// 50</span></div><div class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"immutable.min.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="actionscript"></span></div><div class="line">    <span class="keyword">var</span> map1 = Immutable.Map(&#123;a:<span class="number">1</span>, b:<span class="number">2</span>, c:<span class="number">3</span>&#125;);</div><div class="line">    <span class="keyword">var</span> map2 = map1.set(<span class="string">'b'</span>, <span class="number">50</span>);</div><div class="line">    map1.get(<span class="string">'b'</span>); <span class="comment">// 2</span></div><div class="line">    map2.get(<span class="string">'b'</span>); <span class="comment">// 50</span></div><div class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
 <p>Or use an AMD loader (such as <a href="http://requirejs.org/" target="_blank" rel="external">RequireJS</a>):</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">require</span>([<span class="string">'./immutable.min.js'</span>], <span class="function"><span class="keyword">function</span> (<span class="params">Immutable</span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> map1 = Immutable.Map(&#123;<span class="attr">a</span>:<span class="number">1</span>, <span class="attr">b</span>:<span class="number">2</span>, <span class="attr">c</span>:<span class="number">3</span>&#125;);</div><div class="line">    <span class="keyword">var</span> map2 = map1.set(<span class="string">'b'</span>, <span class="number">50</span>);</div><div class="line">    map1.get(<span class="string">'b'</span>); <span class="comment">// 2</span></div><div class="line">    map2.get(<span class="string">'b'</span>); <span class="comment">// 50</span></div><div class="line">&#125;);</div></pre></td></tr></table></figure>
 <p>If you’re using <a href="https://webpack.github.io/" target="_blank" rel="external">webpack</a> or<br><a href="http://browserify.org/" target="_blank" rel="external">browserify</a>, the <code>immutable</code> npm module also works<br>from the browser.</p>
@@ -1845,20 +1892,6 @@
     <id>http://yoursite.com/2017/03/24/Redux函数-1/</id>
     <published>2017-03-23T21:10:42.000Z</published>
     <updated>2017-03-23T13:10:42.000Z</updated>
-    
-    <summary type="html">
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Redux函数</title>
-    <link href="http://yoursite.com/2017/03/24/Redux%E5%87%BD%E6%95%B0/"/>
-    <id>http://yoursite.com/2017/03/24/Redux函数/</id>
-    <published>2017-03-23T21:06:24.000Z</published>
-    <updated>2017-03-23T13:06:24.000Z</updated>
     
     <summary type="html">
     
