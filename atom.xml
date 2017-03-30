@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-03-29T16:30:50.000Z</updated>
+  <updated>2017-03-30T06:32:43.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,150 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>翻译|React-navigation导航系统(8)-Views</title>
+    <link href="http://yoursite.com/2017/03/30/%E7%BF%BB%E8%AF%91-React-navigation%E5%AF%BC%E8%88%AA%E7%B3%BB%E7%BB%9F-8-Views/"/>
+    <id>http://yoursite.com/2017/03/30/翻译-React-navigation导航系统-8-Views/</id>
+    <published>2017-03-30T14:04:48.000Z</published>
+    <updated>2017-03-30T06:32:43.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>#Views<br>Navigation 视图是接受<code>router</code>和<code>navigaion</code> 的prop的表征组件,通过<code>navigation.state</code>的设定,可以显示几个screens.<br>Navigation view是被控制的React组件,表征当前的navigation state.他们管理screen之间的切换,动画和手势.他们也持久化navigation view例如tab bars和headers</p>
+<h2 id="内建的Views"><a href="#内建的Views" class="headerlink" title="内建的Views"></a>内建的Views</h2><ul>
+<li><p>CardStack-代表stack在任何平台上都匹配</p>
+<ul>
+<li>代表一个从Card stack来的card.</li>
+<li>Header-card stack的header view</li>
+</ul>
+</li>
+<li><p>Tabs-tab切换器/页面的配置</p>
+</li>
+<li>Drawer-从左侧滑出的Drawer的view</li>
+</ul>
+<h1 id="Transitioner"><a href="#Transitioner" class="headerlink" title="Transitioner"></a>Transitioner</h1><p><code>transitioner</code>是一个React 组件帮助管理复杂动画组件之间演变的工具.它管理动画的时间调度,保留各种screen的进入离开的记录,但是它不知道具体的事件是什么,应为具体的渲染过程委托给了开发者.<br>在内部,<code>Transitioner</code>被用来实施<code>CardStack</code>,因此是<code>StackNavigator</code></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;#Views&lt;br&gt;Navigation 视图是接受&lt;code&gt;router&lt;/code&gt;和&lt;code&gt;navigaion&lt;/code&gt; 的prop的表征组件,通过&lt;code&gt;navigation.state&lt;/code&gt;的设定,可以显示几个screens.&lt;br&gt;Navi
+    
+    </summary>
+    
+      <category term="翻译" scheme="http://yoursite.com/categories/%E7%BF%BB%E8%AF%91/"/>
+    
+    
+      <category term="React-Native" scheme="http://yoursite.com/tags/React-Native/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>翻译|React-navigation导航系统(7)-Router</title>
+    <link href="http://yoursite.com/2017/03/30/%E7%BF%BB%E8%AF%91-React-navigation%E5%AF%BC%E8%88%AA%E7%B3%BB%E7%BB%9F-7-Router/"/>
+    <id>http://yoursite.com/2017/03/30/翻译-React-navigation导航系统-7-Router/</id>
+    <published>2017-03-30T09:57:00.000Z</published>
+    <updated>2017-03-30T06:04:13.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="Routers"><a href="#Routers" class="headerlink" title="Routers"></a>Routers</h1><blockquote>
+<p>Router定义一个组件的navigation state,允许开发者定义路径和可以操作的actions.</p>
+<h2 id="内建的Routers"><a href="#内建的Routers" class="headerlink" title="内建的Routers"></a>内建的Routers</h2><ul>
+<li>StackRouter</li>
+<li>TabRouter</li>
+</ul>
+</blockquote>
+<h2 id="使用Routers"><a href="#使用Routers" class="headerlink" title="使用Routers"></a>使用Routers</h2><p>为了手动定制一个navigator,在组件里可以放一个静态的<code>router</code>.(使用内建的组件快速的定制一个navigator,使用<a href="https://reactnavigation.org/docs/navigators" target="_blank" rel="external">Navigator Factory</a>更容易实现).</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"> <span class="class"><span class="keyword">class</span> <span class="title">MyNavigator</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</div><div class="line">    static router = <span class="type">StackRouter</span>(routes, config);</div><div class="line">    ...</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>现在你可以把这个组件作为另一个navigator的<code>screen</code>对待,<code>MyNavigator</code>的导航逻辑在<code>StackRouter</code>中定义.</p>
+<h2 id="定制化Router"><a href="#定制化Router" class="headerlink" title="定制化Router"></a>定制化Router</h2><p>看看<code>[定制Router API 部分](https://reactnavigation.org/docs/routers/api)</code>学习<code>StackRouter</code>和<code>TabRouter</code>的API.<br>只要你愿意也可以重写router的函数.</p>
+<h2 id="定制Navigation的Actions"><a href="#定制Navigation的Actions" class="headerlink" title="定制Navigation的Actions"></a>定制Navigation的Actions</h2><p>为了重写navigation的行为,你可以在<code>getStateForAction</code>中重写navigation state的逻辑,从而手动处理<code>routes</code>和<code>index</code>.</p>
+<figure class="highlight pf"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"> const MyApp = StackNavigator(&#123;</div><div class="line">  Home: &#123; screen: HomeScreen &#125;,</div><div class="line">  Profile: &#123; screen: ProfileScreen &#125;,</div><div class="line">&#125;, &#123;</div><div class="line">  initialRouteName: 'Home',</div><div class="line">&#125;)</div><div class="line">MyApp.router = &#123;</div><div class="line">  ...MyApp.router,</div><div class="line">  getStateForAction(action, <span class="keyword">state</span>) &#123;</div><div class="line">    if (<span class="keyword">state</span> &amp;&amp; action.type === 'PushTwoProfiles') &#123;</div><div class="line">      const routes = [</div><div class="line">        ...<span class="keyword">state</span>.routes,</div><div class="line">        &#123;key: 'A', routeName: 'Profile', params: &#123; name: action.name1 &#125;&#125;,</div><div class="line">        &#123;key: 'B', routeName: 'Profile', params: &#123; name: action.name2 &#125;&#125;,</div><div class="line">      ];</div><div class="line">      return &#123;</div><div class="line">        ...<span class="keyword">state</span>,</div><div class="line">        routes,</div><div class="line">        index: routes.length - <span class="number">1</span>,</div><div class="line">      &#125;;</div><div class="line">    &#125;</div><div class="line">    return MyApp.router.getStateForAction(action, <span class="keyword">state</span>);</div><div class="line">  &#125;,</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<h2 id="阻止某些Navigation的Actions"><a href="#阻止某些Navigation的Actions" class="headerlink" title="阻止某些Navigation的Actions"></a>阻止某些Navigation的Actions</h2><p>有时候根据你的route,需要阻止某些navigation的活动</p>
+<figure class="highlight pf"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"> const MyStackRouter = StackRouter(&#123;</div><div class="line">  Home: &#123; screen: HomeScreen &#125;,</div><div class="line">  Profile: &#123; screen: ProfileScreen &#125;,</div><div class="line">&#125;, &#123;</div><div class="line">  initialRouteName: 'Home',</div><div class="line">&#125;)</div><div class="line">const MyAppRouter = &#123;</div><div class="line">  ...MyStackRouter,</div><div class="line">  getStateForAction(action, <span class="keyword">state</span>) &#123;</div><div class="line">    if (</div><div class="line">      <span class="keyword">state</span> &amp;&amp;</div><div class="line">      action.type === NavigationActions.BACK &amp;&amp;</div><div class="line">      <span class="keyword">state</span>.routes[<span class="keyword">state</span>.index].params.isEditing</div><div class="line">    ) &#123;</div><div class="line">      // Returning null <span class="keyword">from</span> getStateForAction means that the action</div><div class="line">      // has been handled/blocked, but there is not a new <span class="keyword">state</span></div><div class="line">      return null;</div><div class="line">    &#125;</div><div class="line">    return MyStackRouter.getStateForAction(action, <span class="keyword">state</span>);</div><div class="line">  &#125;,</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<h2 id="操作定制URIs"><a href="#操作定制URIs" class="headerlink" title="操作定制URIs"></a>操作定制URIs</h2><p>或许你的app有一个独特的URI,内建的routers处理不了.你可以通过<code>getActionForPathAndParams</code>来扩展router.</p>
+<figure class="highlight cs"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"> import &#123; NavigationActions &#125; <span class="keyword">from</span> <span class="string">'react-navigation'</span></div><div class="line"></div><div class="line"><span class="keyword">const</span> MyApp = StackNavigator(&#123;</div><div class="line">  Home: &#123; screen: HomeScreen &#125;,</div><div class="line">  Profile: &#123; screen: ProfileScreen &#125;,</div><div class="line">&#125;, &#123;</div><div class="line">  initialRouteName: <span class="string">'Home'</span>,</div><div class="line">&#125;)</div><div class="line"><span class="keyword">const</span> previousGetActionForPathAndParams = MyApp.router.getActionForPathAndParams</div><div class="line">Object.assign(MyApp.router, &#123;</div><div class="line">  getActionForPathAndParams(path, <span class="keyword">params</span>) &#123;</div><div class="line">    <span class="keyword">if</span> (</div><div class="line">      path === <span class="string">'my/custom/path'</span> &amp;&amp;</div><div class="line">      <span class="keyword">params</span>.magic === <span class="string">'yes'</span></div><div class="line">    ) &#123;</div><div class="line">      <span class="comment">// returns a profile navigate action for /my/custom/path?magic=yes</span></div><div class="line">      <span class="keyword">return</span> NavigationActions.navigate(&#123;</div><div class="line">        routeName: <span class="string">'Profile'</span>,</div><div class="line">        action: NavigationActions.navigate(&#123;</div><div class="line">          <span class="comment">// This child action will get passed to the child router</span></div><div class="line">          <span class="comment">// ProfileScreen.router.getStateForAction to get the child</span></div><div class="line">          <span class="comment">// navigation state.</span></div><div class="line">          routeName: <span class="string">'Friends'</span>,</div><div class="line">        &#125;),</div><div class="line">      &#125;);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> previousGetActionForPathAndParams(path, <span class="keyword">params</span>);</div><div class="line">  &#125;,</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<h2 id="定制Router-API"><a href="#定制Router-API" class="headerlink" title="定制Router API"></a>定制Router API</h2><p>你可以童工下面的函数来构建自己的router对象,</p>
+<figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"> const MyRouter = &#123;</div><div class="line">  getStateForAction: <span class="function"><span class="params">(action, state)</span> =&gt;</span> (&#123;&#125;),</div><div class="line">  getActionForPathAndParams: <span class="function"><span class="params">(path, params)</span> =&gt;</span> <span class="literal">null</span>,</div><div class="line">  getPathAndParamsForState: <span class="function"><span class="params">(state)</span> =&gt;</span> <span class="literal">null</span>,</div><div class="line">  getComponentForState: <span class="function"><span class="params">(state)</span> =&gt;</span> MyScreen,</div><div class="line">  getComponentForRouteName: <span class="function"><span class="params">(routeName)</span> =&gt;</span> MyScreen,</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="regexp">//</span> Now, you can make a navigator <span class="keyword">by</span> putting the router <span class="literal">on</span> it:</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyNavigator</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> &#123;</span></div><div class="line">  static router = MyRouter;</div><div class="line">  render() &#123;</div><div class="line">    ...</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><img src="https://ww3.sinaimg.cn/large/006tNbRwly1fe4np8ce9xj313l0v9jss.jpg" alt=""></p>
+<figure class="highlight pf"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">getStateForAction(action,<span class="keyword">state</span>)</div></pre></td></tr></table></figure>
+<p> 根据给定的action来定义返回的navigation sate.当一个action通过<code>props.navigation.dispatch()</code>传递,或者任何其他的助手函数被调用,例如<code>navigation.navitate()</code>的时候,这个函数将会运行.</p>
+<p> 通常这个函数将会以下面的形式返回navitaion state.</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"> &#123;</div><div class="line">  <span class="attribute">index</span>: <span class="number">1</span>, <span class="comment">// identifies which route in the routes array is active</span></div><div class="line">  <span class="attribute">routes</span>: [</div><div class="line">    &#123;</div><div class="line">      <span class="comment">// Each route needs a name to identify the type.</span></div><div class="line">      <span class="attribute">routeName</span>: <span class="string">'MyRouteName'</span>,</div><div class="line"></div><div class="line">      <span class="comment">// A unique identifier for this route in the routes array:</span></div><div class="line">      <span class="attribute">key</span>: <span class="string">'myroute-123'</span>,</div><div class="line">      <span class="comment">// (used to specify the re-ordering of routes)</span></div><div class="line"></div><div class="line">      <span class="comment">// Routes can have any data, as long as key and routeName are correct</span></div><div class="line">      ...randomRouteData,</div><div class="line">    &#125;,</div><div class="line">    ..<span class="selector-class">.moreRoutes</span>,</div><div class="line">  ]</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>如果router已经在外部处理了acion,或者想不改变任何的navigation state就消化它,这个函数就返回<code>null</code>.</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="title">getComponentForRouterName</span><span class="params">(routeName)</span></span></div></pre></td></tr></table></figure>
+<p>为给定的route name返回子组件或者navigator.<br>像这样声明一个router<code>getStateForAction</code>输出的state.</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"> &#123;</div><div class="line">  <span class="attribute">index</span>: <span class="number">1</span>,</div><div class="line">  routes: [</div><div class="line">    &#123; key: <span class="string">'A'</span>, routeName: <span class="string">'Foo'</span> &#125;,</div><div class="line">    &#123; <span class="attribute">key</span>: <span class="string">'B'</span>, routeName: <span class="string">'Bar'</span> &#125;,</div><div class="line">  ],</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>基于state中的额routeName,router将会调用<code>router.getComponentForRouteName(&#39;Foo&#39;)</code>或<code>router.getComponentForRouteName(&#39;Bar&#39;)</code>来返回对应的有效组件.</p>
+<figure class="highlight pf"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">getComponentForState(<span class="keyword">state</span>)</div></pre></td></tr></table></figure>
+<p>从深度嵌套navigation state返回激活的组件</p>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="attribute">getActionForPathAndParams</span></div></pre></td></tr></table></figure>
+<p>返回一个可选配置的navigation action,在用户导航到这个路径并且有可选的查询参数的时候使用这个action.</p>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="attribute">getPathAndParamsForState</span></div></pre></td></tr></table></figure>
+<p>用户在app中返回同一个URL链接的点时,这个函数返回路径和参数.<br>从这个函数返回的路径和参数应该是从一个action获得的,这个action是重传进入router的<code>getActionForPathAndParams</code>的.这个action一旦通过<code>getStateForAction</code>传递,会给你返回形似的state.</p>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="attribute">getScreenConfig</span></div></pre></td></tr></table></figure>
+<p>这个函数从一个route获取navigation的可选项.必须要提供screen的当前navigation prop和被返回的选项的名字.</p>
+<ul>
+<li><code>navigation</code>-这是screen将会使用的navigation prop,对应在screen的route和state.Dispatch将会根据screen的上下文来触发actions.</li>
+<li><code>optionName</code>-被获取的选项的名字,例如’title’</li>
+</ul>
+<p>在实例的视图内,或许你需要远程获取配置的标题</p>
+<figure class="highlight pf"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"> // First, prepare a navigation prop <span class="keyword">for</span> your child, or re-use one if already available.</div><div class="line">const childNavigation = addNavigationHelpers(&#123;</div><div class="line">  // In this case we use navigation.<span class="keyword">state</span>.index because we want the title <span class="keyword">for</span> the active route.</div><div class="line">  <span class="keyword">state</span>: navigation.<span class="keyword">state</span>.routes[navigation.<span class="keyword">state</span>.index],</div><div class="line">  dispatch: navigation.dispatch,</div><div class="line">&#125;)</div><div class="line">const screenTitle = this.props.router.getScreenConfig(childNavigation, 'title');</div></pre></td></tr></table></figure>
+<h1 id="StackRouter"><a href="#StackRouter" class="headerlink" title="StackRouter"></a>StackRouter</h1><p>管理navigation堆栈的逻辑,包括入栈,出栈,操作路径解析创建深层次的堆栈.</p>
+<p>让我们看看简单的stack router<br><figure class="highlight xquery"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"> const MyApp = StackRouter(&#123;</div><div class="line">  Home: &#123; screen: HomeScreen &#125;,</div><div class="line">  Profile: &#123; screen: ProfileScreen &#125;,</div><div class="line">&#125;, &#123;</div><div class="line">  initialRouteName: <span class="string">'Home'</span>,</div><div class="line">&#125;)</div></pre></td></tr></table></figure></p>
+<h2 id="RouteConfig"><a href="#RouteConfig" class="headerlink" title="RouteConfig"></a>RouteConfig</h2><p>最简单的stack router期待的参数是一个config对象,这里是示例配置<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"> <span class="keyword">const</span> MyApp = StackRouter(&#123; <span class="comment">// This is the RouteConfig:</span></div><div class="line">  Home: &#123;</div><div class="line">    <span class="attr">screen</span>: HomeScreen,</div><div class="line">    <span class="attr">path</span>: <span class="string">''</span>,</div><div class="line">  &#125;,</div><div class="line">  <span class="attr">Profile</span>: &#123;</div><div class="line">    <span class="attr">screen</span>: ProfileScreen,</div><div class="line">    <span class="attr">path</span>: <span class="string">'profile/:name'</span>,</div><div class="line">  &#125;,</div><div class="line">  Settings &#123;</div><div class="line">    <span class="comment">// This can be handy to lazily require a screen:</span></div><div class="line">    getScreen: <span class="function"><span class="params">()</span> =&gt;</span> <span class="built_in">require</span>(<span class="string">'Settings'</span>).default,</div><div class="line">    <span class="comment">// Note: Child navigators cannot be configured using getScreen because</span></div><div class="line">    <span class="comment">// the router will not be accessible. Navigators must be configured</span></div><div class="line">    <span class="comment">// using `screen: MyNavigator`</span></div><div class="line">    path: <span class="string">'settings'</span>,</div><div class="line">  &#125;,</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<p>每一个在config中的条目有如下内容</p>
+<ul>
+<li><code>path</code>-设定条目的路径和参数可以在stack中被解析</li>
+<li><code>screen</code>-设定screen组件或者子navigator</li>
+<li><code>getScreen</code>-为screen组件设定惰性加载的设定</li>
+</ul>
+<h2 id="StackConfig"><a href="#StackConfig" class="headerlink" title="StackConfig"></a>StackConfig</h2><p>配置的选项也被传递进入stack router.</p>
+<ul>
+<li><code>initalRouteName</code>-stack首次加载的默认路由的routeName</li>
+<li><code>initialRouteParams</code>-初始化route的默认参数</li>
+<li><code>paths</code>-提供routeName到path配置的映射,将会重写routeConfigs里的path设置</li>
+</ul>
+<h2 id="Supported-Actions"><a href="#Supported-Actions" class="headerlink" title="Supported Actions"></a>Supported Actions</h2><p>stack router可以对下面的导航actions作为响应.如果有可能,router将会代理到子代router的action操作.</p>
+<ul>
+<li>Navigate-如果routeName和router的routerConfigs其中之一匹配,将会push一个新的route到堆栈.</li>
+<li>Back-返回(props)</li>
+<li>Reset-清除堆栈,提供一个新的actions创建新的navigation state</li>
+<li>SetParams-screen dispatch一个action去改变当前route的参数</li>
+</ul>
+<h1 id="TabRouter"><a href="#TabRouter" class="headerlink" title="TabRouter"></a>TabRouter</h1><p>管理应用中的一套tabs,处理tabs之间的跳转,处理back键的操作返回到初始化的tab.<br>看看简单的tabs router<br><figure class="highlight xquery"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"> const MyApp = TabRouter(&#123;</div><div class="line">  Home: &#123; screen: HomeScreen &#125;,</div><div class="line">  Settings: &#123; screen: SettingsScreen &#125;,</div><div class="line">&#125;, &#123;</div><div class="line">  initialRouteName: <span class="string">'Home'</span>,</div><div class="line">&#125;)</div></pre></td></tr></table></figure></p>
+<h2 id="RouteConfig-1"><a href="#RouteConfig-1" class="headerlink" title="RouteConfig"></a>RouteConfig</h2><p>tabs router有为每一个tab的routeConfig<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"> <span class="keyword">const</span> MyApp = TabRouter(&#123; <span class="comment">// This is the RouteConfig:</span></div><div class="line">  Home: &#123;</div><div class="line">    <span class="attr">screen</span>: HomeScreen,</div><div class="line">    <span class="attr">path</span>: <span class="string">'main'</span>,</div><div class="line">  &#125;,</div><div class="line">  <span class="attr">Settings</span>: &#123;</div><div class="line">    <span class="comment">// This can be handy to lazily require a tab:</span></div><div class="line">    getScreen: <span class="function"><span class="params">()</span> =&gt;</span> <span class="built_in">require</span>(<span class="string">'./SettingsScreen'</span>).default,</div><div class="line">    <span class="comment">// Note: Child navigators cannot be configured using getScreen because</span></div><div class="line">    <span class="comment">// the router will not be accessible. Navigators must be configured</span></div><div class="line">    <span class="comment">// using `screen: MyNavigator`</span></div><div class="line">    path: <span class="string">'settings'</span>,</div><div class="line">  &#125;,</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<p>config中的每一个config可能有</p>
+<ul>
+<li><code>config</code>-每一个tab的path</li>
+<li><code>screen</code>-定制screen组件或者子代navigator</li>
+<li><code>getScreen</code>-为一个screen组件设定惰性加载的设置(navigator没有这样的配置)</li>
+</ul>
+<h2 id="Tab-Router-Config"><a href="#Tab-Router-Config" class="headerlink" title="Tab Router Config"></a>Tab Router Config</h2><p>被传递到router的可配置选项</p>
+<ul>
+<li><code>initialRouteName</code>-首次加载的tab的routeName</li>
+<li><code>order</code>-tabs的顺序</li>
+<li><code>path</code>-提供routeName到path config的映射,映射重写routeConfig中的path设定</li>
+<li><code>backBehavior</code>-点击back按钮应该返回到初始化的tab吗？如果是的话,设置<code>initialRoute</code>,否则就是<code>none</code>,默认到<code>initialRoute</code>的行为.</li>
+</ul>
+<h2 id="Support-Actions"><a href="#Support-Actions" class="headerlink" title="Support Actions"></a>Support Actions</h2><p>tabs router会对下面的navigation actions做出响应.如果有可能,router将代理到子代router的action.</p>
+<ul>
+<li>Navigate-如果和tab的routeName匹配,就会跳转到对应的tab</li>
+<li>Back-如果不是第一个默认的tab,就跳转到第一个tab</li>
+<li>SetParams-screen dispatch一个Action来改变当前route的state</li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;Routers&quot;&gt;&lt;a href=&quot;#Routers&quot; class=&quot;headerlink&quot; title=&quot;Routers&quot;&gt;&lt;/a&gt;Routers&lt;/h1&gt;&lt;blockquote&gt;
+&lt;p&gt;Router定义一个组件的navigation state,允许开发者定义
+    
+    </summary>
+    
+      <category term="翻译" scheme="http://yoursite.com/categories/%E7%BF%BB%E8%AF%91/"/>
+    
+    
+      <category term="React-Native" scheme="http://yoursite.com/tags/React-Native/"/>
+    
+  </entry>
   
   <entry>
     <title>翻译|React-navigation导航系统(6)-Redux的整合实例</title>
@@ -856,7 +1000,7 @@
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> &#123; <span class="built_in">Map</span> &#125; = <span class="built_in">require</span>(<span class="string">'immutable'</span>)</div><div class="line"><span class="keyword">const</span> map1 = <span class="built_in">Map</span>(&#123; <span class="attr">a</span>: <span class="number">1</span>, <span class="attr">b</span>: <span class="number">2</span>, <span class="attr">c</span>: <span class="number">3</span> &#125;)</div><div class="line"><span class="keyword">const</span> map2 = map1.set(<span class="string">'b'</span>, <span class="number">50</span>)</div><div class="line">map1.get(<span class="string">'b'</span>) <span class="comment">// 2</span></div><div class="line">map2.get(<span class="string">'b'</span>) <span class="comment">// 50</span></div></pre></td></tr></table></figure>
 <h3 id="Browser"><a href="#Browser" class="headerlink" title="Browser"></a>Browser</h3><p>To use Immutable.js from a browser, download <a href="https://github.com/facebook/immutable-js/blob/master/dist/immutable.min.js" target="_blank" rel="external">dist/immutable.min.js</a><br>or use a CDN such as <a href="https://cdnjs.com/libraries/immutable" target="_blank" rel="external">CDNJS</a><br>or <a href="http://www.jsdelivr.com/#!immutable.js" target="_blank" rel="external">jsDelivr</a>.</p>
 <p>Then, add it as a script tag to your page:</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"immutable.min.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript"></span></div><div class="line">    <span class="keyword">var</span> map1 = Immutable.Map(&#123;<span class="attr">a</span>:<span class="number">1</span>, <span class="attr">b</span>:<span class="number">2</span>, <span class="attr">c</span>:<span class="number">3</span>&#125;);</div><div class="line">    <span class="keyword">var</span> map2 = map1.set(<span class="string">'b'</span>, <span class="number">50</span>);</div><div class="line">    map1.get(<span class="string">'b'</span>); <span class="comment">// 2</span></div><div class="line">    map2.get(<span class="string">'b'</span>); <span class="comment">// 50</span></div><div class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"immutable.min.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="actionscript"></span></div><div class="line">    <span class="keyword">var</span> map1 = Immutable.Map(&#123;a:<span class="number">1</span>, b:<span class="number">2</span>, c:<span class="number">3</span>&#125;);</div><div class="line">    <span class="keyword">var</span> map2 = map1.set(<span class="string">'b'</span>, <span class="number">50</span>);</div><div class="line">    map1.get(<span class="string">'b'</span>); <span class="comment">// 2</span></div><div class="line">    map2.get(<span class="string">'b'</span>); <span class="comment">// 50</span></div><div class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
 <p>Or use an AMD loader (such as <a href="http://requirejs.org/" target="_blank" rel="external">RequireJS</a>):</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">require</span>([<span class="string">'./immutable.min.js'</span>], <span class="function"><span class="keyword">function</span> (<span class="params">Immutable</span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> map1 = Immutable.Map(&#123;<span class="attr">a</span>:<span class="number">1</span>, <span class="attr">b</span>:<span class="number">2</span>, <span class="attr">c</span>:<span class="number">3</span>&#125;);</div><div class="line">    <span class="keyword">var</span> map2 = map1.set(<span class="string">'b'</span>, <span class="number">50</span>);</div><div class="line">    map1.get(<span class="string">'b'</span>); <span class="comment">// 2</span></div><div class="line">    map2.get(<span class="string">'b'</span>); <span class="comment">// 50</span></div><div class="line">&#125;);</div></pre></td></tr></table></figure>
 <p>If you’re using <a href="https://webpack.github.io/" target="_blank" rel="external">webpack</a> or<br><a href="http://browserify.org/" target="_blank" rel="external">browserify</a>, the <code>immutable</code> npm module also works<br>from the browser.</p>
@@ -1956,53 +2100,6 @@
     
     
       <category term="javascript" scheme="http://yoursite.com/tags/javascript/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>React组件的享元模式</title>
-    <link href="http://yoursite.com/2017/03/24/React%E7%BB%84%E4%BB%B6%E7%9A%84%E4%BA%AB%E5%85%83%E6%A8%A1%E5%BC%8F-1/"/>
-    <id>http://yoursite.com/2017/03/24/React组件的享元模式-1/</id>
-    <published>2017-03-23T21:30:54.000Z</published>
-    <updated>2017-03-23T13:30:54.000Z</updated>
-    
-    <summary type="html">
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>React组件的享元模式</title>
-    <link href="http://yoursite.com/2017/03/24/React%E7%BB%84%E4%BB%B6%E7%9A%84%E4%BA%AB%E5%85%83%E6%A8%A1%E5%BC%8F/"/>
-    <id>http://yoursite.com/2017/03/24/React组件的享元模式/</id>
-    <published>2017-03-23T21:29:41.000Z</published>
-    <updated>2017-03-23T13:30:47.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>我们在react/react-native的代码中都有这样的代码</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> &#123; View,  </div><div class="line">               StyleSheet, </div><div class="line">               ScrollView, </div><div class="line">               ListView,  </div><div class="line">               StatusBar,</div><div class="line">              InteractionManager,</div><div class="line">              Navigator, &#125;</div><div class="line">              <span class="keyword">from</span> <span class="string">'react-native'</span></div></pre></td></tr></table></figure>
-<p>通过这样的方式引入组件对象。 今天又一次读js设计模式的时候发现原来的理解是错误的，误解了组件的外部状态和内部状态，从而没有领会组件的微妙之处。今天把正确的概念写出来。</p>
-<p>在曾探的《javascript 设计模式与开发实践》关于享元模式的内部状态和外部状态有这样的描述</p>
-<blockquote>
-<p>-内部状态存储于对象内部<br>  -内部状态可以被一些对象共享<br>  -内部状态可以独立于场景，通常不会变<br>  -外部状态取决于具体的场景，并根据场景而变化，外部状态不能被共享</p>
-</blockquote>
-<p>怎么解释呢？意思是页面中出现的所有View组件实际是同一个共享对象，外部状态从对象上剥离开来，并存储在外部。<br>   剥离了外部状态的就是共享组件。 外部状态必要时传入共享组件就可以组成一个完整的对象。这些外部状态包括 state，props,style等<br>组装外部状态需要时间，但是可以大大减少系统中的对象数量，享元模式是用时间换空间的做法。<br>通过import导入的就是公共组件对象。 公共组件内部可以为外部状态加上标签以示区别，这就是ref参数存在的含义。</p>
-<p>这就是借助享元模式理解的react组件的构造和用法。</p>
-<p>借助模式设计慢慢读代码，写代码。</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;我们在react/react-native的代码中都有这样的代码&lt;/p&gt;
-&lt;figure class=&quot;highlight javascript&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;di
-    
-    </summary>
-    
-      <category term="Designpattern" scheme="http://yoursite.com/categories/Designpattern/"/>
-    
-    
-      <category term="React" scheme="http://yoursite.com/tags/React/"/>
     
   </entry>
   
