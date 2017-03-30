@@ -97,7 +97,7 @@
 <meta property="og:site_name" content="phpsmarter">
 <meta property="og:description" content="#ViewsNavigation 视图是接受router和navigaion 的prop的表征组件,通过navigation.state的设定,可以显示几个screens.Navigation view是被控制的React组件,表征当前的navigation state.他们管理screen之间的切换,动画和手势.他们也持久化navigation view例如tab bars和headers
 内建">
-<meta property="og:updated_time" content="2017-03-30T06:32:43.000Z">
+<meta property="og:updated_time" content="2017-03-30T09:51:33.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="翻译|React-navigation导航系统(8)-Views">
 <meta name="twitter:description" content="#ViewsNavigation 视图是接受router和navigaion 的prop的表征组件,通过navigation.state的设定,可以显示几个screens.Navigation view是被控制的React组件,表征当前的navigation state.他们管理screen之间的切换,动画和手势.他们也持久化navigation view例如tab bars和headers
@@ -360,7 +360,7 @@
               
                 <span class="post-meta-item-text">更新于</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2017-03-30T14:32:43+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2017-03-30T17:51:33+08:00">
                 2017-03-30
               </time>
             
@@ -420,7 +420,7 @@
                   <span class="post-meta-item-text">字数统计</span>
                 
                 <span title="字数统计">
-                  213
+                  337
                 </span>
               
 
@@ -467,7 +467,10 @@
 </li>
 <li>Drawer-从左侧滑出的Drawer的view</li>
 </ul>
-<h1 id="Transitioner"><a href="#Transitioner" class="headerlink" title="Transitioner"></a>Transitioner</h1><p><code>transitioner</code>是一个React 组件帮助管理复杂动画组件之间演变的工具.它管理动画的时间调度,保留各种screen的进入离开的记录,但是它不知道具体的事件是什么,应为具体的渲染过程委托给了开发者.<br>在内部,<code>Transitioner</code>被用来实施<code>CardStack</code>,因此是<code>StackNavigator</code></p>
+<h1 id="Transitioner"><a href="#Transitioner" class="headerlink" title="Transitioner"></a>Transitioner</h1><p><code>transitioner</code>是一个React 组件帮助管理复杂动画组件之间演变的工具.它管理动画的时间调度,保留各种screen的进入离开的记录,但是它不知道具体的事件是什么,应为具体的渲染过程委托给了开发者.<br>在内部,<code>Transitioner</code>被用来实施<code>CardStack</code>,因此是<code>StackNavigator</code>.<br><code>Transiioner</code>最有用的用途是接受当前navigation的state.当routes从navigation state移除的时候,<code>Transitioner</code></p>
+<h2 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h2><figure class="highlight scala"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"> <span class="class"><span class="keyword">class</span> <span class="title">MyNavView</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</div><div class="line">  ...</div><div class="line">  render() &#123;</div><div class="line">    <span class="keyword">return</span> (</div><div class="line">      &lt;<span class="type">Transitioner</span></div><div class="line">        configureTransition=&#123;<span class="keyword">this</span>._configureTransition&#125;</div><div class="line">        navigation=&#123;<span class="keyword">this</span>.props.navigation&#125;</div><div class="line">        render=&#123;<span class="keyword">this</span>._render&#125;</div><div class="line">        onTransitionStart=&#123;<span class="keyword">this</span>.onTransitionStart&#125;</div><div class="line">        onTransitionEnd=&#123;<span class="keyword">this</span>.onTransitionEnd&#125;</div><div class="line">      /&gt;</div><div class="line">    );</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="Props"><a href="#Props" class="headerlink" title="Props"></a>Props</h2><h3 id="configureTransitionfunction"><a href="#configureTransitionfunction" class="headerlink" title="configureTransitionfunction"></a><code>configureTransition</code>function</h3><p>被<code>Transitioner.componentWillReceiveProps</code>,这个函数允许定制动画的参数,例如<code>延续时间</code>.这个函数返回的值将会传递进入时间序列函数,默认是<code>Animated.timing()</code>.</p>
+<h3 id="Examples"><a href="#Examples" class="headerlink" title="Examples"></a>Examples</h3><figure class="highlight haskell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="title">_configureTransition</span>(transitionProps, prevTransitionProps) &#123;</div><div class="line">  return &#123;</div><div class="line">    // duration <span class="keyword">in</span> milliseconds, <span class="keyword">default</span>: 250</div><div class="line">    duration: <span class="number">500</span>,</div><div class="line">    // <span class="type">An</span> easing function from `<span class="type">Easing</span>`, <span class="keyword">default</span>: <span class="type">Easing</span>.inOut(<span class="type">Easing</span>.<span class="title">ease</span>)</div><div class="line">    easing: <span class="type">Easing</span>.bounce,</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 
       
     </div>
@@ -654,7 +657,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#内建的Views"><span class="nav-number">1.</span> <span class="nav-text">内建的Views</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Transitioner"><span class="nav-number"></span> <span class="nav-text">Transitioner</span></a></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#内建的Views"><span class="nav-number">1.</span> <span class="nav-text">内建的Views</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Transitioner"><span class="nav-number"></span> <span class="nav-text">Transitioner</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#实例"><span class="nav-number">1.</span> <span class="nav-text">实例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Props"><span class="nav-number">2.</span> <span class="nav-text">Props</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#configureTransitionfunction"><span class="nav-number">2.1.</span> <span class="nav-text">configureTransitionfunction</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Examples"><span class="nav-number">2.2.</span> <span class="nav-text">Examples</span></a></li></ol></li></ol></div>
             
 
           </div>
