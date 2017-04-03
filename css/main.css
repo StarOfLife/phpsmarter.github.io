@@ -495,7 +495,7 @@ code {
 pre code {
   padding: 0;
   color: #eaeaea;
-  background: none;
+  background: #88b6c6;
   text-shadow: none;
 }
 .highlight {
@@ -1685,7 +1685,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #aaa4ff;
+  background: #0599ff;
 }
 .links-of-blogroll {
   font-size: 13px;
