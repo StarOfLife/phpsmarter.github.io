@@ -1,0 +1,1107 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Redux," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="phpsmarter" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="start如果你想看看怎么在react-native 想使用redux-form和immutable.js.你看可以看看这篇文章的代码
+Introduction在Traede,我使用redux整合redux-form来创建表单.redux-form是一个非常好的库,但是没有什么好的示例代码介绍怎么和React-native配合使用.所以当我开始在React-Natvie中使用redux-form的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="翻译|Simple React Native forms with redux-form, immutable.js and styled-components - Esben Petersen">
+<meta property="og:url" content="http://yoursite.com/2017/04/04/翻译-Simple-React-Native-forms-with-redux-form-immutable-js-and-styled-components-Esben-Petersen/index.html">
+<meta property="og:site_name" content="phpsmarter">
+<meta property="og:description" content="start如果你想看看怎么在react-native 想使用redux-form和immutable.js.你看可以看看这篇文章的代码
+Introduction在Traede,我使用redux整合redux-form来创建表单.redux-form是一个非常好的库,但是没有什么好的示例代码介绍怎么和React-native配合使用.所以当我开始在React-Natvie中使用redux-form的">
+<meta property="og:updated_time" content="2017-04-03T09:46:45.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="翻译|Simple React Native forms with redux-form, immutable.js and styled-components - Esben Petersen">
+<meta name="twitter:description" content="start如果你想看看怎么在react-native 想使用redux-form和immutable.js.你看可以看看这篇文章的代码
+Introduction在Traede,我使用redux整合redux-form来创建表单.redux-form是一个非常好的库,但是没有什么好的示例代码介绍怎么和React-native配合使用.所以当我开始在React-Natvie中使用redux-form的">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/04/04/翻译-Simple-React-Native-forms-with-redux-form-immutable-js-and-styled-components-Esben-Petersen/"/>
+
+
+
+
+
+  <title> 翻译|Simple React Native forms with redux-form, immutable.js and styled-components - Esben Petersen | phpsmarter </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">phpsmarter</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">A beginner of React-native</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/04/翻译-Simple-React-Native-forms-with-redux-form-immutable-js-and-styled-components-Esben-Petersen/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="phpsmarter">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="phpsmarter">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                翻译|Simple React Native forms with redux-form, immutable.js and styled-components - Esben Petersen
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-04T00:07:15+08:00">
+                2017-04-03
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2017-04-03T17:46:45+08:00">
+                2017-04-03
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/翻译/" itemprop="url" rel="index">
+                    <span itemprop="name">翻译</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/04/04/翻译-Simple-React-Native-forms-with-redux-form-immutable-js-and-styled-components-Esben-Petersen/" class="leancloud_visitors" data-flag-title="翻译|Simple React Native forms with redux-form, immutable.js and styled-components - Esben Petersen">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  2,118
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长</span>
+                
+                <span title="阅读时长">
+                  10
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="start"><a href="#start" class="headerlink" title="start"></a>start</h1><p>如果你想看看怎么在react-native 想使用redux-form和immutable.js.你看可以看看<a href="https://github.com/esbenp/react-native-redux-form-example" target="_blank" rel="external">这篇文章的代码</a></p>
+<h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>在<code>Traede</code>,我使用redux整合redux-form来创建表单.redux-form是一个非常好的库,但是没有什么好的示例代码介绍怎么和React-native配合使用.所以当我开始在React-Natvie中使用redux-form的时候,发现还是有一点难度的.大多数的情况都因为我发现在React-Native中使用Immutable.js的时候会中断redux-form运行的bug.我的程序的主版本号已经到了6.4.2了.所以我考虑可以根据我的学习过程来写一点怎么在应用中同时使用redux-form和Immutable.js的文档.</p>
+<h2 id="Agenda"><a href="#Agenda" class="headerlink" title="Agenda"></a>Agenda</h2><p>大体的步骤是:</p>
+<ol>
+<li>看看redux-form在native和web之间的差异点</li>
+<li>看看怎么使redux-form和Immutable.js一起使用</li>
+<li>使用react-native-clean-form的完整实例</li>
+</ol>
+<p>鸡冻不？好了,开始了</p>
+<p>在React-native中使用redux-form<br>如果你不太熟悉redux-form,我建议你看看<a href="http://redux-form.com/6.4.3/docs/GettingStarted.md/" target="_blank" rel="external">redux-form简单文档</a><br>.<em>注意：这个指南假定你使用的redux-form的版本大于6.4.2</em>.如果不是这个版本,并且还在使用Immutable.js,那么要看看这个<a href="https://github.com/erikras/redux-form/pull/2336" target="_blank" rel="external">issue</a>.创建一个表单基础的三个步骤是:</p>
+<ol>
+<li>在你的redux store中加入redux-form reducer</li>
+<li>使用<code>reduxForm</code>包装器把你的表单连接到store</li>
+<li>使用<code>Field</code>包装器把特定的表单字段连接到Store</li>
+</ol>
+<h3 id="0-创建React-Native-项目"><a href="#0-创建React-Native-项目" class="headerlink" title="0. 创建React Native 项目"></a>0. 创建React Native 项目</h3><p>假设你已经有了可以运行的React Native项目.如果没有,使用<code>react-native init MyReduxFormProjct</code>终端命令行命令也很容易的创建项目.</p>
+<h3 id="1-把redux-form-reducer添加到你的redux-store"><a href="#1-把redux-form-reducer添加到你的redux-store" class="headerlink" title="1.把redux=form reducer添加到你的redux store"></a>1.把redux=form reducer添加到你的redux store</h3><p>做这一步,请参考<a href="http://redux-form.com/6.4.3/docs/GettingStarted.md/" target="_blank" rel="external">redux-form文档</a></p>
+<h3 id="2-使用redux-form包装器把你的form连接到store"><a href="#2-使用redux-form包装器把你的form连接到store" class="headerlink" title="2.使用redux-form包装器把你的form连接到store"></a>2.使用redux-form包装器把你的form连接到store</h3><p>我们使用一个简单的表单来开始工作.<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span></div><div class="line"><span class="keyword">import</span> &#123;</div><div class="line">  StyleSheet,</div><div class="line">  Text,</div><div class="line">  TextInput,</div><div class="line">  TouchableOpacity,</div><div class="line">  View</div><div class="line">&#125; <span class="keyword">from</span> <span class="string">'react-native'</span></div><div class="line"></div><div class="line"><span class="keyword">const</span> Form = <span class="function"><span class="params">props</span> =&gt;</span> &#123;</div><div class="line">  <span class="keyword">return</span> (</div><div class="line">    <span class="xml"><span class="tag">&lt;<span class="name">View</span> <span class="attr">style</span>=<span class="string">&#123;styles.container&#125;</span>&gt;</span></span></div><div class="line">      <span class="tag">&lt;<span class="name">Text</span>&gt;</span>Email:<span class="tag">&lt;/<span class="name">Text</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">TextInput</span> <span class="attr">style</span>=<span class="string">&#123;styles.input&#125;</span> /&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">TouchableOpacity</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">Text</span> <span class="attr">style</span>=<span class="string">&#123;styles.button&#125;</span>&gt;</span>Submit<span class="tag">&lt;/<span class="name">Text</span>&gt;</span></div><div class="line">      <span class="tag">&lt;/<span class="name">TouchableOpacity</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">View</span>&gt;</span></div><div class="line">  )</div><div class="line">&#125;</div><div class="line"></div><div class="line">export default Form</div><div class="line"></div><div class="line">const styles = StyleSheet.create(&#123;</div><div class="line">  button: &#123;</div><div class="line">    backgroundColor: 'blue',</div><div class="line">    color: 'white',</div><div class="line">    height: 30,</div><div class="line">    lineHeight: 30,</div><div class="line">    marginTop: 10,</div><div class="line">    textAlign: 'center',</div><div class="line">    width: 250</div><div class="line">  &#125;,</div><div class="line">  container: &#123;</div><div class="line"></div><div class="line">  &#125;,</div><div class="line">  input: &#123;</div><div class="line">    borderColor: 'black',</div><div class="line">    borderWidth: 1,</div><div class="line">    height: 37,</div><div class="line">    width: 250</div><div class="line">  &#125;</div><div class="line">&#125;)</div></pre></td></tr></table></figure></p>
+<p>这里有个图片</p>
+<p>好了,我们已经有了表单,看起来和十亿美元级别的app差不多.下面我们需要使用<code>reduxForm</code>包装器把表单连接到redux form上.这是因为在表单中的每一个按键操作都会发送输入字段的值到store.当我们按下提交按钮,redux-form将会从store中获取保存的值发送到一个我们定制的回调函数.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"> <span class="keyword">import</span> &#123; reduxForm &#125; <span class="keyword">from</span> <span class="string">'redux-form'</span></div><div class="line"></div><div class="line"><span class="keyword">const</span> submit = <span class="function"><span class="params">values</span> =&gt;</span> &#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'submitting form'</span>, values)</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">const</span> Form = <span class="function"><span class="params">props</span> =&gt;</span> &#123;</div><div class="line">  <span class="keyword">const</span> &#123; handleSubmit &#125; = props</div><div class="line"></div><div class="line">  <span class="keyword">return</span> (</div><div class="line">    <span class="xml"><span class="tag">&lt;<span class="name">View</span> <span class="attr">style</span>=<span class="string">&#123;styles.container&#125;</span>&gt;</span></span></div><div class="line">      <span class="tag">&lt;<span class="name">Text</span>&gt;</span>Email:<span class="tag">&lt;/<span class="name">Text</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">TextInput</span> <span class="attr">style</span>=<span class="string">&#123;styles.input&#125;</span> /&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">TouchableOpacity</span> <span class="attr">onPress</span>=<span class="string">&#123;handleSubmit(submit)&#125;</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">Text</span> <span class="attr">style</span>=<span class="string">&#123;styles.button&#125;</span>&gt;</span>Submit<span class="tag">&lt;/<span class="name">Text</span>&gt;</span></div><div class="line">      <span class="tag">&lt;/<span class="name">TouchableOpacity</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">View</span>&gt;</span></div><div class="line">  )</div><div class="line">&#125;</div><div class="line"></div><div class="line">export default reduxForm(&#123;</div><div class="line">  form: 'test'</div><div class="line">&#125;)(Form)</div></pre></td></tr></table></figure>
+<p><em>注释：为了简单,省略了样式和对象的导入代码</em></p>
+<p>好了,首先我们使用<code>reduxForm</code>包装form并连接到store.这是<code>react-redux</code>的基础版本之上的一点修改,可能你比较熟悉了.</p>
+<p>接着,我们使用了redux-form的<code>handleSubmit</code>(这个函数是通过<code>redux-Form注入到组件中的</code>).submit函数附加到我们的submit按钮上,所以点击按钮的时候,表单会被提交.这一点和web开发的submit函数是不同的,web开发中这个函数附加到form元素上.在移动平台上没有form元素,所以我们直接把它添加到button上,或者<code>TouchableOpaticy</code>.就是这么回事.</p>
+<p>到了这一步,可以使用模拟器运行代码试试.我高度推荐<code>react-native-debugger</code>作为Debugger.你可以看看<a href="https://facebook.github.io/react-native/docs/debugging.html" target="_blank" rel="external">React Native 有关degugging文档</a>的建议.</p>
+<p>当你在模拟器中试着点击提交表单时,你可以看到回调函数返回了空值.</p>
+<p>图片2</p>
+<p>值在哪里呢？</p>
+<h3 id="3-使用Field包装器把fields连接到store"><a href="#3-使用Field包装器把fields连接到store" class="headerlink" title="3.使用Field包装器把fields连接到store"></a>3.使用Field包装器把fields连接到store</h3><p>所以说,redux-form要工作,你必须要使用<code>Field</code>包装器把每一个field连接到store.</p>
+<figure class="highlight dust"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="xml"> import </span><span class="template-variable">&#123; Field, reduxForm &#125;</span><span class="xml"> from 'redux-form'</span></div><div class="line"></div><div class="line">const submit = values =&gt; <span class="template-variable">&#123;</span></div><div class="line">  console.log('submitting form', values)</div><div class="line">&#125;<span class="xml"></span></div><div class="line"></div><div class="line">const renderInput = (<span class="template-variable">&#123; input: &#123; onChange, ...restInput &#125;</span><span class="xml">&#125;) =&gt; </span><span class="template-variable">&#123;</span></div><div class="line">  return &lt;TextInput style=&#123;styles.input&#125;<span class="xml"> onChangeText=</span><span class="template-variable">&#123;onChange&#125;</span><span class="xml"> </span><span class="template-variable">&#123;...restInput&#125;</span><span class="xml"> /&gt;</span></div><div class="line">&#125;</div><div class="line"></div><div class="line">const Form = props =&gt; <span class="template-variable">&#123;</span></div><div class="line">  const &#123; handleSubmit &#125;<span class="xml"> = props</span></div><div class="line"></div><div class="line">  return (</div><div class="line">    <span class="tag">&lt;<span class="name">View</span> <span class="attr">style</span>=</span><span class="template-variable">&#123;styles.container&#125;</span><span class="xml"><span class="tag">&gt;</span></span></div><div class="line">      <span class="tag">&lt;<span class="name">Text</span>&gt;</span>Email:<span class="tag">&lt;/<span class="name">Text</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">Field</span> <span class="attr">name</span>=<span class="string">"email"</span> <span class="attr">component</span>=</span><span class="template-variable">&#123;renderInput&#125;</span><span class="xml"><span class="tag"> /&gt;</span></span></div><div class="line">      <span class="tag">&lt;<span class="name">TouchableOpacity</span> <span class="attr">onPress</span>=</span><span class="template-variable">&#123;handleSubmit(submit)&#125;</span><span class="xml"><span class="tag">&gt;</span></span></div><div class="line">        <span class="tag">&lt;<span class="name">Text</span> <span class="attr">style</span>=</span><span class="template-variable">&#123;styles.button&#125;</span><span class="xml"><span class="tag">&gt;</span>Submit<span class="tag">&lt;/<span class="name">Text</span>&gt;</span></span></div><div class="line">      <span class="tag">&lt;/<span class="name">TouchableOpacity</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">View</span>&gt;</span></div><div class="line">  )</div><div class="line">&#125;</div><div class="line"></div><div class="line">export default reduxForm(<span class="template-variable">&#123;</span></div><div class="line">  form: 'test'</div><div class="line">&#125;<span class="xml">)(Form)</span></div></pre></td></tr></table></figure>
+<p>注意,我们添加了<code>Field</code>组件,给定了name属性,和web开发中的<code>input</code>field工作是类似的.我们也添加了一个渲染函数告诉reduxForm,这个字段应该怎么渲染.(基本上就是一个<code>TextInput</code>组件).</p>
+<p><em>现在</em>这里有些小技巧,很多人可能会出错.<strong>所以留心一下</strong>.在web Reac中<code>input</code>组件中,当field的值发生变化时,触发一个<code>onChange</code>回调函数.在React Native中<code>TextInput</code>组件触发的是<code>onChangeText</code>回调函数.为了应对这个问题,我们手动添加变化的句柄<code>onChangeText={onChange}</code>.</p>
+<p>图片3<br>现在当我们提交的时候,表单工作了.</p>
+<h2 id="使用Immutable-js时候也可以工作"><a href="#使用Immutable-js时候也可以工作" class="headerlink" title="使用Immutable.js时候也可以工作"></a>使用Immutable.js时候也可以工作</h2><p>如果你想在state的管理中使用immutable.js,那么需要一些额外的步骤了配合redux-form工作.我建议你读读<a href="http://redux-form.com/6.4.3/examples/immutable/" target="_blank" rel="external">使用immutable.js和redux-form的官方文档</a>.但是我们通过一些步骤马上开始.</p>
+<h3 id="1-使用redux-immutablejs-combineReducers和redux-form-reducer的immutable版本"><a href="#1-使用redux-immutablejs-combineReducers和redux-form-reducer的immutable版本" class="headerlink" title="1.使用redux-immutablejs combineReducers和redux-form reducer的immutable版本"></a>1.使用redux-immutablejs combineReducers和redux-form reducer的immutable版本</h3><p>找到你穿件redux store的代码处</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> &#123; combineReducers &#125; <span class="keyword">from</span> <span class="string">'redux-immutablejs'</span></div><div class="line"><span class="keyword">import</span> &#123; reducer <span class="keyword">as</span> form &#125; <span class="keyword">from</span> <span class="string">'redux-form/immutable'</span> <span class="comment">// &lt;--- immutable import</span></div><div class="line"></div><div class="line"><span class="keyword">const</span> reducer = combineReducers(&#123; form &#125;)</div><div class="line"></div><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> reducer</div></pre></td></tr></table></figure>
+<p>这里有两件事:(1)你必须使用从redux-immutable或者redux-immutablejs注入<code>combineReducers</code>方法.重要的是输入的reducer是从<code>redux-form/immutable</code>.<strong>并不是redux-form</strong>.</p>
+<h3 id="2-使用reduxForm包装器和Field的immutable版本"><a href="#2-使用reduxForm包装器和Field的immutable版本" class="headerlink" title="2.使用reduxForm包装器和Field的immutable版本"></a>2.使用reduxForm包装器和Field的immutable版本</h3><p>这一步和第一步实际有点类似.当你在<code>reduxForm</code>中包装一个表单连接到redux store的时候,确保是从<code>redux-form/immutable</code>导入的.类似<br><code>Field</code>也是从这里导入的.<br><figure class="highlight dust"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="xml">import </span><span class="template-variable">&#123; Field, reduxForm &#125;</span><span class="xml"> from 'redux-form/immutable' // <span class="tag">&lt;<span class="name">----</span> <span class="attr">LOOK</span> <span class="attr">HERE</span></span></span></div><div class="line"></div><div class="line"><span class="attr">const</span> <span class="attr">submit</span> = <span class="string">values</span> =&gt; <span class="template-variable">&#123;</span></div><div class="line">  console.log('submitting form', values.toJS()) &lt;--- use toJS() to cast to plain object</div><div class="line">&#125;<span class="xml"></span></div><div class="line"></div><div class="line">const renderInput = (<span class="template-variable">&#123; input: &#123; onChange, ...restInput &#125;</span><span class="xml">&#125;) =&gt; </span><span class="template-variable">&#123;</span></div><div class="line">  return &lt;TextInput style=&#123;styles.input&#125;<span class="xml"> onChangeText=</span><span class="template-variable">&#123;onChange&#125;</span><span class="xml"> </span><span class="template-variable">&#123;...restInput&#125;</span><span class="xml"> /&gt;</span></div><div class="line">&#125;</div><div class="line"></div><div class="line">const Form = props =&gt; <span class="template-variable">&#123;</span></div><div class="line">  const &#123; handleSubmit &#125;<span class="xml"> = props</span></div><div class="line"></div><div class="line">  return (</div><div class="line">    <span class="tag">&lt;<span class="name">View</span> <span class="attr">style</span>=</span><span class="template-variable">&#123;styles.container&#125;</span><span class="xml"><span class="tag">&gt;</span></span></div><div class="line">      <span class="tag">&lt;<span class="name">Text</span>&gt;</span>Email:<span class="tag">&lt;/<span class="name">Text</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">Field</span> <span class="attr">name</span>=<span class="string">"email"</span> <span class="attr">component</span>=</span><span class="template-variable">&#123;renderInput&#125;</span><span class="xml"><span class="tag"> /&gt;</span></span></div><div class="line">      <span class="tag">&lt;<span class="name">TouchableOpacity</span> <span class="attr">onPress</span>=</span><span class="template-variable">&#123;handleSubmit(submit)&#125;</span><span class="xml"><span class="tag">&gt;</span></span></div><div class="line">        <span class="tag">&lt;<span class="name">Text</span> <span class="attr">style</span>=</span><span class="template-variable">&#123;styles.button&#125;</span><span class="xml"><span class="tag">&gt;</span>Submit<span class="tag">&lt;/<span class="name">Text</span>&gt;</span></span></div><div class="line">      <span class="tag">&lt;/<span class="name">TouchableOpacity</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">View</span>&gt;</span></div><div class="line">  )</div><div class="line">&#125;</div><div class="line"></div><div class="line">export default reduxForm(<span class="template-variable">&#123;</span></div><div class="line">  form: 'test'</div><div class="line">&#125;<span class="xml">)(Form)</span></div></pre></td></tr></table></figure></p>
+<h3 id="3-完成了"><a href="#3-完成了" class="headerlink" title="3.完成了"></a>3.完成了</h3><p>就这些内容,是不是很简单？</p>
+<h2 id="加点样式组件让我们的app看起来像十亿美元级别的app"><a href="#加点样式组件让我们的app看起来像十亿美元级别的app" class="headerlink" title="加点样式组件让我们的app看起来像十亿美元级别的app"></a>加点样式组件让我们的app看起来像十亿美元级别的app</h2><p>使用绝对酷炫的React样式库<a href="https://github.com/styled-components/styled-components" target="_blank" rel="external">styled-components</a> .<br>看看源代码<a href="https://github.com/esbenp/react-native-clean-form" target="_blank" rel="external">esbenp/react-native-clean-form</a></p>
+<h3 id="第一步-安装react-native-clean-form"><a href="#第一步-安装react-native-clean-form" class="headerlink" title="第一步:安装react-native-clean-form"></a>第一步:安装react-native-clean-form</h3><p>使用<code>npm install —save react-native-clean-form</code>安装form元素.<br>也需要vector icon fonts.<a href="https://github.com/esbenp/react-native-clean-form#installation" target="_blank" rel="external">Readme</a></p>
+<h3 id="第二步-设计酷炫的表单"><a href="#第二步-设计酷炫的表单" class="headerlink" title="第二步:设计酷炫的表单"></a>第二步:设计酷炫的表单</h3><p>图片在这里</p>
+<p>看看代码</p>
+<figure class="highlight dust"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div></pre></td><td class="code"><pre><div class="line"><span class="xml"> import React, </span><span class="template-variable">&#123; Component &#125;</span><span class="xml"> from 'react'</span></div><div class="line">import <span class="template-variable">&#123;</span></div><div class="line">  ActionsContainer,</div><div class="line">  Button,</div><div class="line">  FieldsContainer,</div><div class="line">  Fieldset,</div><div class="line">  Form,</div><div class="line">  FormGroup,</div><div class="line">  Label,</div><div class="line">  Input,</div><div class="line">  <span class="keyword">Select</span>,</div><div class="line">  Switch</div><div class="line">&#125;<span class="xml"> from 'react-native-clean-form'</span></div><div class="line"></div><div class="line">const countryOptions = [</div><div class="line">  <span class="template-variable">&#123;label: 'Denmark', value: 'DK'&#125;</span><span class="xml">,</span></div><div class="line">  <span class="template-variable">&#123;label: 'Germany', value: 'DE'&#125;</span><span class="xml">,</span></div><div class="line">  <span class="template-variable">&#123;label: 'United State', value: 'US'&#125;</span><span class="xml"></span></div><div class="line">]</div><div class="line"></div><div class="line">const FormView = props =&gt; (</div><div class="line">  <span class="tag">&lt;<span class="name">Form</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">FieldsContainer</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">Fieldset</span> <span class="attr">label</span>=<span class="string">"Contact details"</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">FormGroup</span>&gt;</span></div><div class="line">          <span class="tag">&lt;<span class="name">Label</span>&gt;</span>First name<span class="tag">&lt;/<span class="name">Label</span>&gt;</span></div><div class="line">          <span class="tag">&lt;<span class="name">Input</span> <span class="attr">placeholder</span>=<span class="string">"John"</span> /&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">FormGroup</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">FormGroup</span>&gt;</span></div><div class="line">          <span class="tag">&lt;<span class="name">Label</span>&gt;</span>Last name<span class="tag">&lt;/<span class="name">Label</span>&gt;</span></div><div class="line">          <span class="tag">&lt;<span class="name">Input</span> <span class="attr">placeholder</span>=<span class="string">"Doe"</span> /&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">FormGroup</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">FormGroup</span>&gt;</span></div><div class="line">          <span class="tag">&lt;<span class="name">Label</span>&gt;</span>Phone<span class="tag">&lt;/<span class="name">Label</span>&gt;</span></div><div class="line">          <span class="tag">&lt;<span class="name">Input</span> <span class="attr">placeholder</span>=<span class="string">"+45 88 88 88 88"</span> /&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">FormGroup</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">FormGroup</span>&gt;</span></div><div class="line">          <span class="tag">&lt;<span class="name">Label</span>&gt;</span>First name<span class="tag">&lt;/<span class="name">Label</span>&gt;</span></div><div class="line">          <span class="tag">&lt;<span class="name">Input</span> <span class="attr">placeholder</span>=<span class="string">"John"</span> /&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">FormGroup</span>&gt;</span></div><div class="line">      <span class="tag">&lt;/<span class="name">Fieldset</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">Fieldset</span> <span class="attr">label</span>=<span class="string">"Shipping details"</span> <span class="attr">last</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">FormGroup</span>&gt;</span></div><div class="line">          <span class="tag">&lt;<span class="name">Label</span>&gt;</span>Address<span class="tag">&lt;/<span class="name">Label</span>&gt;</span></div><div class="line">          <span class="tag">&lt;<span class="name">Input</span> <span class="attr">placeholder</span>=<span class="string">"Hejrevej 33"</span> /&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">FormGroup</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">FormGroup</span>&gt;</span></div><div class="line">          <span class="tag">&lt;<span class="name">Label</span>&gt;</span>City<span class="tag">&lt;/<span class="name">Label</span>&gt;</span></div><div class="line">          <span class="tag">&lt;<span class="name">Input</span> <span class="attr">placeholder</span>=<span class="string">"Copenhagen"</span> /&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">FormGroup</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">FormGroup</span>&gt;</span></div><div class="line">          <span class="tag">&lt;<span class="name">Label</span>&gt;</span>ZIP Code<span class="tag">&lt;/<span class="name">Label</span>&gt;</span></div><div class="line">          <span class="tag">&lt;<span class="name">Input</span> <span class="attr">placeholder</span>=<span class="string">"2400"</span> /&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">FormGroup</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">FormGroup</span>&gt;</span></div><div class="line">          <span class="tag">&lt;<span class="name">Label</span>&gt;</span>Country<span class="tag">&lt;/<span class="name">Label</span>&gt;</span></div><div class="line">          <span class="tag">&lt;<span class="name">Select</span></span></div><div class="line">              <span class="attr">name</span>=<span class="string">"country"</span></div><div class="line">              <span class="attr">label</span>=<span class="string">"Country"</span></div><div class="line">              <span class="attr">options</span>=<span class="template-variable">&#123;countryOptions&#125;</span><span class="xml"><span class="tag"></span></span></div><div class="line">              <span class="attr">placeholder</span>=<span class="string">"Denmark"</span></div><div class="line">          /&gt;</div><div class="line">        <span class="tag">&lt;/<span class="name">FormGroup</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">FormGroup</span> <span class="attr">border</span>=</span><span class="template-variable">&#123;false&#125;</span><span class="xml"><span class="tag">&gt;</span></span></div><div class="line">          <span class="tag">&lt;<span class="name">Label</span>&gt;</span>Save my details<span class="tag">&lt;/<span class="name">Label</span>&gt;</span></div><div class="line">          <span class="tag">&lt;<span class="name">Switch</span> /&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">FormGroup</span>&gt;</span></div><div class="line">      <span class="tag">&lt;/<span class="name">Fieldset</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">FieldsContainer</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">ActionsContainer</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">Button</span> <span class="attr">icon</span>=<span class="string">"md-checkmark"</span> <span class="attr">iconPlacement</span>=<span class="string">"right"</span>&gt;</span>Save<span class="tag">&lt;/<span class="name">Button</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">ActionsContainer</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">Form</span>&gt;</span></div><div class="line">)</div><div class="line"></div><div class="line">export default FormView</div></pre></td></tr></table></figure>
+<p>如果你比较熟悉Twitter Bootstrap你可以从react-native-clean-form中看到类似的句法.好了输入<code>Input</code>,<code>Select</code>和<code>Switch</code>.这里的元素已经被包装在<code>FromGroup</code>和<code>Label</code>.此外我们也支持验证</p>
+<figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> React, &#123; Component &#125; <span class="keyword">from</span> <span class="string">'react'</span></div><div class="line"><span class="keyword">import</span> &#123; reduxForm &#125; <span class="keyword">from</span> <span class="string">'redux-form/immutable'</span></div><div class="line"><span class="keyword">import</span> &#123;</div><div class="line">  ActionsContainer,</div><div class="line">  Button,</div><div class="line">  FieldsContainer,</div><div class="line">  Fieldset,</div><div class="line">  Form</div><div class="line">&#125; <span class="keyword">from</span> <span class="string">'react-native-clean-form'</span></div><div class="line"><span class="keyword">import</span> &#123;</div><div class="line">  Input,</div><div class="line">  Select,</div><div class="line">  Switch</div><div class="line">&#125; <span class="keyword">from</span> <span class="string">'react-native-clean-form/redux-form-immutable'</span></div><div class="line"><span class="keyword">import</span> &#123; View,Text &#125; <span class="keyword">from</span> <span class="string">'react-native'</span></div><div class="line"></div><div class="line">const onSubmit = <span class="function"><span class="params">(values, dispatch)</span> =&gt;</span> &#123;</div><div class="line">  <span class="keyword">return</span> <span class="keyword">new</span> Promise(<span class="function"><span class="params">(resolve)</span> =&gt;</span> &#123;</div><div class="line">    setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</div><div class="line">      <span class="built_in">console</span>.log(values.toJS())</div><div class="line">      resolve()</div><div class="line">    &#125;, <span class="number">1500</span>)</div><div class="line">  &#125;)</div><div class="line">&#125;</div><div class="line"></div><div class="line">const countryOptions = [</div><div class="line">  &#123;label: <span class="string">'Denmark'</span>, value: <span class="string">'DK'</span>&#125;,</div><div class="line">  &#123;label: <span class="string">'Germany'</span>, value: <span class="string">'DE'</span>&#125;,</div><div class="line">  &#123;label: <span class="string">'United State'</span>, value: <span class="string">'US'</span>&#125;</div><div class="line">]</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">FormView</span> <span class="keyword">extends</span> <span class="title">Component</span> &#123;</span></div><div class="line">  render() &#123;</div><div class="line">    const &#123; handleSubmit, submitting &#125; = <span class="keyword">this</span>.props</div><div class="line"></div><div class="line">    <span class="keyword">return</span> (</div><div class="line">      &lt;Form&gt;</div><div class="line">        &lt;FieldsContainer&gt;</div><div class="line">          &lt;Fieldset label=<span class="string">"Contact details"</span>&gt;</div><div class="line">            &lt;Input name=<span class="string">"first_name"</span> label=<span class="string">"First name"</span> placeholder=<span class="string">"John"</span> /&gt;</div><div class="line">            &lt;Input name=<span class="string">"last_name"</span> label=<span class="string">"Last name"</span> placeholder=<span class="string">"Doe"</span> /&gt;</div><div class="line">            &lt;Input name=<span class="string">"email"</span> label=<span class="string">"Email"</span> placeholder=<span class="string">"something@domain.com"</span> /&gt;</div><div class="line">            &lt;Input name=<span class="string">"telephone"</span> label=<span class="string">"Phone"</span> placeholder=<span class="string">"+45 88 88 88 88"</span> /&gt;</div><div class="line">          &lt;/Fieldset&gt;</div><div class="line">          &lt;Fieldset label=<span class="string">"Shipping details"</span> last&gt;</div><div class="line">            &lt;Input name=<span class="string">"address"</span> label=<span class="string">"Address"</span> placeholder=<span class="string">"Hejrevej 33"</span> /&gt;</div><div class="line">            &lt;Input name=<span class="string">"city"</span> label=<span class="string">"City"</span> placeholder=<span class="string">"Copenhagen"</span> /&gt;</div><div class="line">            &lt;Input name=<span class="string">"zip"</span> label=<span class="string">"ZIP Code"</span> placeholder=<span class="string">"2400"</span> /&gt;</div><div class="line">            &lt;Select</div><div class="line">              name=<span class="string">"country"</span></div><div class="line">              label=<span class="string">"Country"</span></div><div class="line">              options=&#123;countryOptions&#125;</div><div class="line">              placeholder=<span class="string">"Denmark"</span></div><div class="line">            /&gt;</div><div class="line">            &lt;Switch label=<span class="string">"Save my details"</span> border=&#123;<span class="literal">false</span>&#125; name=<span class="string">"save_details"</span> /&gt;</div><div class="line">          &lt;/Fieldset&gt;</div><div class="line">        &lt;/FieldsContainer&gt;</div><div class="line">        &lt;ActionsContainer&gt;</div><div class="line">          &lt;Button icon=<span class="string">"md-checkmark"</span> iconPlacement=<span class="string">"right"</span> onPress=&#123;handleSubmit(onSubmit)&#125; submitting=&#123;submitting&#125;&gt;Save&lt;/Button&gt;</div><div class="line">        &lt;/ActionsContainer&gt;</div><div class="line">      &lt;/Form&gt;</div><div class="line">    )</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> reduxForm(&#123;</div><div class="line">  form: <span class="string">'Form'</span>,</div><div class="line">  validate: values =&gt; &#123;</div><div class="line">    const errors = &#123;&#125;</div><div class="line"></div><div class="line">    values = values.toJS()</div><div class="line"></div><div class="line">    <span class="keyword">if</span> (!values.first_name) &#123;</div><div class="line">      errors.first_name = <span class="string">'First name is required.'</span></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">if</span> (!values.last_name) &#123;</div><div class="line">      errors.last_name = <span class="string">'Last name is required.'</span></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">if</span> (!values.email) &#123;</div><div class="line">      errors.email = <span class="string">'Email is required.'</span></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">return</span> errors</div><div class="line">  &#125;</div><div class="line">&#125;)(FormView)</div></pre></td></tr></table></figure>
+<p>很简单，是吗？现在我们有了一个连接到store的好看的表单,还能支持数据验证,异步的按钮反馈.你可以在<a href="https://github.com/esbenp/react-native-clean-form" target="_blank" rel="external">repository查看更多特性</a>.</p>
+<h2 id="The-End"><a href="#The-End" class="headerlink" title="The End"></a>The End</h2>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Redux/" rel="tag"># Redux</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/03/30/翻译-React-navigation导航系统-8-Views/" rel="next" title="翻译|React-navigation导航系统(8)-Views">
+                <i class="fa fa-chevron-left"></i> 翻译|React-navigation导航系统(8)-Views
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpeg"
+               alt="phpsmarter" />
+          <p class="site-author-name" itemprop="name">phpsmarter</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">76</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#start"><span class="nav-number">1.</span> <span class="nav-text">start</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction"><span class="nav-number">1.1.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Agenda"><span class="nav-number">1.2.</span> <span class="nav-text">Agenda</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#0-创建React-Native-项目"><span class="nav-number">1.2.1.</span> <span class="nav-text">0. 创建React Native 项目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-把redux-form-reducer添加到你的redux-store"><span class="nav-number">1.2.2.</span> <span class="nav-text">1.把redux=form reducer添加到你的redux store</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-使用redux-form包装器把你的form连接到store"><span class="nav-number">1.2.3.</span> <span class="nav-text">2.使用redux-form包装器把你的form连接到store</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-使用Field包装器把fields连接到store"><span class="nav-number">1.2.4.</span> <span class="nav-text">3.使用Field包装器把fields连接到store</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用Immutable-js时候也可以工作"><span class="nav-number">1.3.</span> <span class="nav-text">使用Immutable.js时候也可以工作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-使用redux-immutablejs-combineReducers和redux-form-reducer的immutable版本"><span class="nav-number">1.3.1.</span> <span class="nav-text">1.使用redux-immutablejs combineReducers和redux-form reducer的immutable版本</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-使用reduxForm包装器和Field的immutable版本"><span class="nav-number">1.3.2.</span> <span class="nav-text">2.使用reduxForm包装器和Field的immutable版本</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-完成了"><span class="nav-number">1.3.3.</span> <span class="nav-text">3.完成了</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#加点样式组件让我们的app看起来像十亿美元级别的app"><span class="nav-number">1.4.</span> <span class="nav-text">加点样式组件让我们的app看起来像十亿美元级别的app</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#第一步-安装react-native-clean-form"><span class="nav-number">1.4.1.</span> <span class="nav-text">第一步:安装react-native-clean-form</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第二步-设计酷炫的表单"><span class="nav-number">1.4.2.</span> <span class="nav-text">第二步:设计酷炫的表单</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#The-End"><span class="nav-number">1.5.</span> <span class="nav-text">The End</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-phone"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">phpsmarter</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+<div class="theme-info">
+  主题 - 
+  <a theme-link href="http://www.aikuaidi.cn/" target="_blank" >快递查询</a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("0kGBxj215XRijm6VofFkzlws-gzGzoHsz", "V2FDLF52mPXum5Hh6wvwGpEk");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+
+</body>
+</html>
