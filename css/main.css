@@ -488,14 +488,14 @@ code {
   padding: 2px 4px;
   word-wrap: break-word;
   color: #555;
-  background: #eee;
+  background: #88b6c6;
   border-radius: 3px;
   font-size: 13px;
 }
 pre code {
   padding: 0;
   color: #eaeaea;
-  background: #88b6c6;
+  background: none;
   text-shadow: none;
 }
 .highlight {
@@ -1685,7 +1685,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #0599ff;
+  background: #faffff;
 }
 .links-of-blogroll {
   font-size: 13px;
