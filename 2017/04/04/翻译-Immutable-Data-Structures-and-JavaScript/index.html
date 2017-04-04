@@ -71,7 +71,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="javascript," />
 
 
 
@@ -89,12 +89,16 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="phpsmarter">
-<meta property="og:url" content="http://yoursite.com/archives/2017/index.html">
+<meta name="description" content="不久以前我简单的谈了谈我的想法,把最新的blog重写一下,发誓要涉及一些学到的有深度的东西.现在我要谈谈javascript中的immutable数据结构,尤其是两个库immutable.js和seamliess-immutable.还有其他的库,但是选择标标准是真正的持久数据结构或者拷贝javascript对象的概念区别.比较这两个重点,不要管到底是选择什么库.我还要谈一点transit-js，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="翻译|Immutable Data Structures and JavaScript">
+<meta property="og:url" content="http://yoursite.com/2017/04/04/翻译-Immutable-Data-Structures-and-JavaScript/index.html">
 <meta property="og:site_name" content="phpsmarter">
+<meta property="og:description" content="不久以前我简单的谈了谈我的想法,把最新的blog重写一下,发誓要涉及一些学到的有深度的东西.现在我要谈谈javascript中的immutable数据结构,尤其是两个库immutable.js和seamliess-immutable.还有其他的库,但是选择标标准是真正的持久数据结构或者拷贝javascript对象的概念区别.比较这两个重点,不要管到底是选择什么库.我还要谈一点transit-js，">
+<meta property="og:updated_time" content="2017-04-04T05:08:31.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="phpsmarter">
+<meta name="twitter:title" content="翻译|Immutable Data Structures and JavaScript">
+<meta name="twitter:description" content="不久以前我简单的谈了谈我的想法,把最新的blog重写一下,发誓要涉及一些学到的有深度的东西.现在我要谈谈javascript中的immutable数据结构,尤其是两个库immutable.js和seamliess-immutable.还有其他的库,但是选择标标准是真正的持久数据结构或者拷贝javascript对象的概念区别.比较这两个重点,不要管到底是选择什么库.我还要谈一点transit-js，">
 
 
 
@@ -122,13 +126,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/archives/2017/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/04/04/翻译-Immutable-Data-Structures-and-JavaScript/"/>
 
 
 
 
 
-  <title> 归档 | phpsmarter </title>
+  <title> 翻译|Immutable Data Structures and JavaScript | phpsmarter </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -153,7 +157,7 @@
     
   
 
-  <div class="container sidebar-position-left  page-archive  ">
+  <div class="container sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -291,402 +295,241 @@
           <div id="content" class="content">
             
 
-  <section id="posts" class="posts-collapse">
-    <span class="archive-move-on"></span>
+  <div id="posts" class="posts-expand">
+    
 
-    <span class="archive-page-counter">
-      
-      
-       
-        
-      好! 目前共计 79 篇日志。 继续努力。
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/04/翻译-Immutable-Data-Structures-and-JavaScript/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="phpsmarter">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="phpsmarter">
     </span>
 
     
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                翻译|Immutable Data Structures and JavaScript
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-04T20:28:01+08:00">
+                2017-04-04
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2017-04-04T13:08:31+08:00">
+                2017-04-04
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/翻译/" itemprop="url" rel="index">
+                    <span itemprop="name">翻译</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/04/04/翻译-Immutable-Data-Structures-and-JavaScript/" class="leancloud_visitors" data-flag-title="翻译|Immutable Data Structures and JavaScript">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  613
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长</span>
+                
+                <span title="阅读时长">
+                  2
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
 
       
       
-      
 
+      
+        <p>不久以前我简单的谈了谈我的想法,把最新的blog重写一下,发誓要涉及一些学到的有深度的东西.现在我要谈谈javascript中的immutable数据结构,尤其是两个库<a href="https://github.com/facebook/immutable-js" target="_blank" rel="external">immutable.js</a>和<a href="https://github.com/rtfeldman/seamless-immutable" target="_blank" rel="external">seamliess-immutable</a>.还有其他的库,但是选择标标准是真正的持久数据结构或者拷贝javascript对象的概念区别.比较这两个重点,不要管到底是选择什么库.我还要谈一点<a href="https://github.com/cognitect/transit-js" target="_blank" rel="external">transit-js</a>，它在做数据的序列化方面很好.</p>
+<p>有关Redux的应用谈的少一点.大体是谈谈immutable数据结构的使用,但是也提供一些在Redux中使用的特殊点.在Redux中,你有单个的state对象,并且不复制他,有很多方法可以达到这个目的,每一个都有所权衡.我会在在下面探索一下.</p>
+<p>在Redux中有一件事是要考虑怎么聚合reducers来形成单个的app state原子.Redux默认提供的方式(combineReducers)假定你把多个值合并成一个单一的javascript对象.如果你想把他们合并成一个Immutable.js对象,例如你可能需要编写你自己的<em>combinReducers</em>来达到这个目的.这一点可能会非常有必要如果你需要序列化你的app state,并且你设定state整个都是由Immutable.js对象组成的.</p>
+<p>大多数这种应用一般都使用immutable对象.有时候有点尴尬,因为你要和默认的语法斗争,这感觉就像你在用types玩杂耍.然而,根据你的app和你的配置,你可以从中跳出来.</p>
+<p>目前,有一个为原生Javascript应用添加immutable数据结构的<a href="https://github.com/sebmarkbage/ecmascript-immutable-data-structures" target="_blank" rel="external">建议</a></p>
+<h2 id="Immutable-js"><a href="#Immutable-js" class="headerlink" title="Immutable.js"></a>Immutable.js</h2><p>Immutable.js来自Facebook,它是实现immutable数据结构最流行的方法.规模很庞大,使用类似<code>tries</code>的高级方法实现结构化共享,实现整个数据的持久化.所有的更新都返回新值,但是内部结构是共享的,这一点大大的降低了内存的使用(GC thrashing).这就意味着如果你应用一个有1000个元素的矢量,他不会实际创建一个有1001个元素的新矢量.大多数情况下,内部仅仅有一些小的对象被分配.</p>
+<p>数据结构共享的先进性,很大一部分是由Okasaki的开创性工作启发的,</p>
+
+      
+    </div>
+
+    <div>
       
         
-        <div class="collection-title">
-          <h2 class="archive-year motion-element" id="archive-year-2017">2017</h2>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/javascript/" rel="tag"># javascript</a>
+          
         </div>
       
+
+      
+        
       
 
       
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/04/04/Redux-undo-redo/" rel="next" title="Redux undo/redo">
+                <i class="fa fa-chevron-left"></i> Redux undo/redo
+              </a>
+            
+          </div>
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+          <span class="post-nav-divider"></span>
 
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2017/04/04/翻译-redux-undo-redo-reucer增强组件/" itemprop="url">
-              
-                <span itemprop="name">翻译|redux undo/redo reducer增强组件</span>
-              
-            </a>
-        
-      </h1>
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/04/04/翻译-redux-undo-redo-reucer增强组件/" rel="prev" title="翻译|redux undo/redo reducer增强组件">
+                翻译|redux undo/redo reducer增强组件 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-04-04T13:18:28Z"
-              content="2017-04-04" >
-          04-04
-        </time>
-      </div>
-
-    </header>
+      
+      
+    </footer>
   </article>
 
 
 
-    
-
+    <div class="post-spread">
       
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2017/04/04/翻译-Immutable-Data-Structures-and-JavaScript/" itemprop="url">
-              
-                <span itemprop="name">翻译|Immutable Data Structures and JavaScript</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-04-04T12:28:01Z"
-              content="2017-04-04" >
-          04-04
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2017/04/04/Redux-undo-redo/" itemprop="url">
-              
-                <span itemprop="name">Redux undo/redo</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-04-04T00:18:11Z"
-              content="2017-04-04" >
-          04-04
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2017/04/04/翻译-Simple-React-Native-forms-with-redux-form-immutable-js-and-styled-components-Esben-Petersen/" itemprop="url">
-              
-                <span itemprop="name">翻译|Simple React Native forms with redux-form, immutable.js and styled-components - Esben Petersen</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-04-03T16:07:15Z"
-              content="2017-04-03" >
-          04-03
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2017/03/30/翻译-React-navigation导航系统-8-Views/" itemprop="url">
-              
-                <span itemprop="name">翻译|React-navigation导航系统(8)-Views</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-03-30T14:04:48Z"
-              content="2017-03-30" >
-          03-30
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2017/03/30/翻译-React-navigation导航系统-7-Router/" itemprop="url">
-              
-                <span itemprop="name">翻译|React-navigation导航系统(7)-Router</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-03-30T09:57:00Z"
-              content="2017-03-30" >
-          03-30
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2017/03/30/翻译-React-navigation导航系统-6-Redux的整合实例/" itemprop="url">
-              
-                <span itemprop="name">翻译|React-navigation导航系统(6)-Redux的整合实例</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-03-29T23:42:14Z"
-              content="2017-03-29" >
-          03-29
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2017/03/30/翻译-React-navigation导航系统-5-高级指南/" itemprop="url">
-              
-                <span itemprop="name">翻译|React-navigation导航系统(5)-高级指南</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-03-29T16:41:19Z"
-              content="2017-03-29" >
-          03-29
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2017/03/29/翻译-React-navigation导航系统-4/" itemprop="url">
-              
-                <span itemprop="name">翻译|React-navigation导航系统(4)</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-03-29T07:16:17Z"
-              content="2017-03-29" >
-          03-29
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2017/03/28/翻译-React-navigation导航系统-3/" itemprop="url">
-              
-                <span itemprop="name">翻译|React-navigation导航系统(3)</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-03-28T07:48:36Z"
-              content="2017-03-28" >
-          03-28
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-  </section>
-
-  
-  <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/archives/2017/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/archives/2017/page/8/">8</a><a class="extend next" rel="next" href="/archives/2017/page/2/"><i class="fa fa-angle-right"></i></a>
-  </nav>
-
-
+    </div>
+  </div>
 
 
           </div>
@@ -694,6 +537,10 @@
 
 
           
+  <div class="comments" id="comments">
+    
+  </div>
+
 
         </div>
         
@@ -713,8 +560,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.jpeg"
@@ -783,6 +639,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Immutable-js"><span class="nav-number">1.</span> <span class="nav-text">Immutable.js</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -899,11 +771,9 @@
 
 
   
-  
-    <script type="text/javascript" id="motion.page.archive">
-      $('.archive-year').velocity('transition.slideLeftIn');
-    </script>
-  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
 
 
   
