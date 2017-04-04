@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-04-04T15:35:06.000Z</updated>
+  <updated>2017-04-04T15:36:19.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://yoursite.com/2017/04/04/%E7%BF%BB%E8%AF%91-redux-undo-redo-reucer%E5%A2%9E%E5%BC%BA%E7%BB%84%E4%BB%B6/"/>
     <id>http://yoursite.com/2017/04/04/翻译-redux-undo-redo-reucer增强组件/</id>
     <published>2017-04-04T13:18:28.000Z</published>
-    <updated>2017-04-04T15:35:06.000Z</updated>
+    <updated>2017-04-04T15:36:19.000Z</updated>
     
     <content type="html"><![CDATA[<blockquote>
 <p>Redux的文档中提供一个可以做undo/redo的解决办法,实际是有previous,current,prew的对象,围绕这数据的压入和弹出来实现操作步骤的记忆,结合persist就可以实现更强大的记忆功能.今天的这个增强组件实际把这个功能给包装了一下,内部实现细节仍然没有变.只需要把reducer用这个增强组件包装一下就可以用了.</p>
