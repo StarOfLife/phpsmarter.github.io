@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-04-05T16:43:20.000Z</updated>
+  <updated>2017-04-05T18:28:31.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -20,30 +20,40 @@
     <link href="http://yoursite.com/2017/04/05/%E4%B9%B1%E8%8A%B1%E6%B8%90%E6%AC%B2%E8%BF%B7%E4%BA%BA%E7%9C%BC-%E8%BF%94%E7%92%9E%E5%BD%92%E7%9C%9F-1/"/>
     <id>http://yoursite.com/2017/04/05/乱花渐欲迷人眼-返璞归真-1/</id>
     <published>2017-04-05T10:00:23.000Z</published>
-    <updated>2017-04-05T16:43:20.000Z</updated>
+    <updated>2017-04-05T18:28:31.000Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote>
+<p>去年写了几篇f8app的代码阅读,基本是站在UI组件的角度来的,随着学习的深入,对其中的代码有了更深的体会,现在有很多开源的RN项目可以供参考,但是有一些都存在某些问题.细节考虑的不周到,学习的意义打了折扣.F8APP是facebook的亲儿子，所以开发者的水平是很高的,前面阅读的时候觉得怎么写的很难懂,甚至还有些地方对Redux的实现都感觉不太标准,这两天在回头看的时候,不得不佩服人家的开发水平.代码里对于组件的实现,Redux的渗透,多数据源的接入,代码组织方面都是独居匠心的.我自从重新阅读了以后,感觉写代码当如此啊. </p>
+</blockquote>
+<p>但是到了现在的这个觉悟并不是一蹴而就的.经过一段时间的学习,学习工具箱里就有一些工具了.</p>
+<ul>
+<li>函数式编程的思想,javascript里的函数是一等对象,其实意思是函数和对象在javascript中都是<code>引用赋值的</code>,<strong>这一点非常的非常的关键</strong>.这并非危言耸听,一旦你在读代码中有了这个觉悟的话,javascript的功力会大增的.我们随时可以把一个函数映射到一个变量上,这就是引用赋值,一旦这样做以后,函数可以使用这个变量在代码中传来传去,灵活性大增.有没有思考过React/Redux中组件dispatch一个action到底发生了什么?bindActionCreator是怎么实现的？这还没完,继续挖掘函数编程是怎么在f8里实现的</li>
+<li>模式设计的思想：中介者模式,发布订阅者模式,等等模式,在这面也很好的实现了。要有一点模式设计的知识</li>
+<li>React-native跨平台开发的代码复用问题,功能,逻辑和表现形式的结合思考。先逻辑后表现。</li>
+<li>临机应变,刚开始看f8app的代码的时候看不下去,尤其是在对redux有了初步的了解,产生盲目崇拜以后,在React中必须要找到几个文件夹在才能是根正苗红的Redux应用.于是在里面找,这里面更本就没有container文件夹么？怎么办？其实在container文件中也只是用connect对象注入了组件是组件订阅了需要的props，具有了dispatch方法.仅此而已.所以在f8app中直接在UI组件中使用了connect对象.这样对于编码实际更好操作，更直观.另外带来的好处是,组价其实不一定非要用redux来处理,可以使用其他的框架来处理.info这个模块就没有采用redux的框架.要从功能上灵活处理。能达到随机应变要对功能的实现有深刻的认识。</li>
+<li>对于state的思考,后面如果要继续提高RN的编程能力,要不断的思考state的问题.目前看到的两个大型程序的state，一个是f8的，一个是cnode的state.<br>我前面写过文章把state看成是内存的数据库,围绕着state做增删改查工作，是不是这个意思呢？f8中的state实现是一颗倒立的树,为什么是树呢？这是相对于网状结构来的,state中是没有之间的连接关系的.数据以节点来组织.看到f8app中combineReducer中的映射的时候，那感觉真爽啊。编程真有意思.回头看代码在解释.</li>
+<li>parse-server和graghql的问题,</li>
+<li><p>观察的视点选择问题,如果会你看过<a href="https://medium.com/@rajaraodv/step-by-step-guide-to-building-react-redux-apps-using-mocks-48ca0f47f9a" target="_blank" rel="external">这篇文章</a>,<a href="https://wenku.baidu.com/view/881a48f8aaea998fcd220ea5.html?from=search" target="_blank" rel="external">中文翻译版</a>的话,这篇文章实际是从UI组件的角度来找视点的,对于初学者俩说,这篇文章的确是很好的,但是对于F8app这样的大型app,从视图就有点喧宾夺主了.在f8app中state和Actions的复杂程度更高,从组件上面去学习就有点麻烦,尤其是这里面有几个地方的组件组合真的是太厉害了，看完组件的组合关系就已经没耐心了.从action和state开始读似乎是可行的.当然因人而异.我提出这个观点至少是说明我思考过这个问题.</p>
+</li>
+<li><p>贪心原理 f8APP中已经包含和了很多组件和中间件了,多学几遍就可以在其他地方用了.太好了.</p>
+</li>
+</ul>
+<blockquote>
+<p>时间太晚了，有些地方白天想明白了,现在又忘了.先写这么多.</p>
+</blockquote>
+]]></content>
     
     <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;去年写了几篇f8app的代码阅读,基本是站在UI组件的角度来的,随着学习的深入,对其中的代码有了更深的体会,现在有很多开源的RN项目可以供参考,但是有一些都存在某些问题.细节考虑的不周到,学习的意义打了折扣.F8APP是facebook的亲儿子，所
     
     </summary>
     
       <category term="F8App源码阅读" scheme="http://yoursite.com/categories/F8App%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB/"/>
     
     
-      <category term="React" scheme="http://yoursite.com/tags/React/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>title</title>
-    <link href="http://yoursite.com/2017/04/05/title/"/>
-    <id>http://yoursite.com/2017/04/05/title/</id>
-    <published>2017-04-05T09:58:52.000Z</published>
-    <updated>2017-04-05T01:58:52.000Z</updated>
-    
-    <summary type="html">
-    
-    </summary>
-    
+      <category term="React-native" scheme="http://yoursite.com/tags/React-native/"/>
     
   </entry>
   
@@ -1307,7 +1317,7 @@
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> &#123; <span class="built_in">Map</span> &#125; = <span class="built_in">require</span>(<span class="string">'immutable'</span>)</div><div class="line"><span class="keyword">const</span> map1 = <span class="built_in">Map</span>(&#123; <span class="attr">a</span>: <span class="number">1</span>, <span class="attr">b</span>: <span class="number">2</span>, <span class="attr">c</span>: <span class="number">3</span> &#125;)</div><div class="line"><span class="keyword">const</span> map2 = map1.set(<span class="string">'b'</span>, <span class="number">50</span>)</div><div class="line">map1.get(<span class="string">'b'</span>) <span class="comment">// 2</span></div><div class="line">map2.get(<span class="string">'b'</span>) <span class="comment">// 50</span></div></pre></td></tr></table></figure>
 <h3 id="Browser"><a href="#Browser" class="headerlink" title="Browser"></a>Browser</h3><p>To use Immutable.js from a browser, download <a href="https://github.com/facebook/immutable-js/blob/master/dist/immutable.min.js" target="_blank" rel="external">dist/immutable.min.js</a><br>or use a CDN such as <a href="https://cdnjs.com/libraries/immutable" target="_blank" rel="external">CDNJS</a><br>or <a href="http://www.jsdelivr.com/#!immutable.js" target="_blank" rel="external">jsDelivr</a>.</p>
 <p>Then, add it as a script tag to your page:</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"immutable.min.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="actionscript"></span></div><div class="line">    <span class="keyword">var</span> map1 = Immutable.Map(&#123;a:<span class="number">1</span>, b:<span class="number">2</span>, c:<span class="number">3</span>&#125;);</div><div class="line">    <span class="keyword">var</span> map2 = map1.set(<span class="string">'b'</span>, <span class="number">50</span>);</div><div class="line">    map1.get(<span class="string">'b'</span>); <span class="comment">// 2</span></div><div class="line">    map2.get(<span class="string">'b'</span>); <span class="comment">// 50</span></div><div class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"immutable.min.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript"></span></div><div class="line">    <span class="keyword">var</span> map1 = Immutable.Map(&#123;<span class="attr">a</span>:<span class="number">1</span>, <span class="attr">b</span>:<span class="number">2</span>, <span class="attr">c</span>:<span class="number">3</span>&#125;);</div><div class="line">    <span class="keyword">var</span> map2 = map1.set(<span class="string">'b'</span>, <span class="number">50</span>);</div><div class="line">    map1.get(<span class="string">'b'</span>); <span class="comment">// 2</span></div><div class="line">    map2.get(<span class="string">'b'</span>); <span class="comment">// 50</span></div><div class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
 <p>Or use an AMD loader (such as <a href="http://requirejs.org/" target="_blank" rel="external">RequireJS</a>):</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">require</span>([<span class="string">'./immutable.min.js'</span>], <span class="function"><span class="keyword">function</span> (<span class="params">Immutable</span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> map1 = Immutable.Map(&#123;<span class="attr">a</span>:<span class="number">1</span>, <span class="attr">b</span>:<span class="number">2</span>, <span class="attr">c</span>:<span class="number">3</span>&#125;);</div><div class="line">    <span class="keyword">var</span> map2 = map1.set(<span class="string">'b'</span>, <span class="number">50</span>);</div><div class="line">    map1.get(<span class="string">'b'</span>); <span class="comment">// 2</span></div><div class="line">    map2.get(<span class="string">'b'</span>); <span class="comment">// 50</span></div><div class="line">&#125;);</div></pre></td></tr></table></figure>
 <p>If you’re using <a href="https://webpack.github.io/" target="_blank" rel="external">webpack</a> or<br><a href="http://browserify.org/" target="_blank" rel="external">browserify</a>, the <code>immutable</code> npm module also works<br>from the browser.</p>
@@ -1637,6 +1647,54 @@
     
     
       <category term="database" scheme="http://yoursite.com/tags/database/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>GraphQL for ParserServer</title>
+    <link href="http://yoursite.com/2017/03/25/graphql_for_parserserver/"/>
+    <id>http://yoursite.com/2017/03/25/graphql_for_parserserver/</id>
+    <published>2017-03-25T14:57:05.000Z</published>
+    <updated>2017-03-25T08:59:02.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="GraphQL-for-Parse-Server"><a href="#GraphQL-for-Parse-Server" class="headerlink" title="GraphQL for Parse Server"></a>GraphQL for Parse Server</h1><p><a href="https://travis-ci.org/thebakeryio/parse-graphql-server" target="_blank" rel="external"><img src="https://travis-ci.org/thebakeryio/parse-graphql-server.svg?branch=master" alt="Build Status"></a><br><a href="https://codeclimate.com/github/thebakeryio/parse-graphql-server" target="_blank" rel="external"><img src="https://codeclimate.com/github/thebakeryio/parse-graphql-server/badges/gpa.svg" alt="Code Climate"></a><br><a href="https://codeclimate.com/github/thebakeryio/parse-graphql-server/coverage" target="_blank" rel="external"><img src="https://codeclimate.com/github/thebakeryio/parse-graphql-server/badges/coverage.svg" alt="Test Coverage"></a><br><a href="https://david-dm.org/thebakeryio/parse-graphql-server" target="_blank" rel="external"><img src="https://david-dm.org/thebakeryio/parse-graphql-server.svg" alt="Dependency Status"></a><br><a href="https://david-dm.org/thebakeryio/parse-graphql-server#info=devDependencies" target="_blank" rel="external"><img src="https://david-dm.org/thebakeryio/parse-graphql-server/dev-status.svg" alt="devDependency Status"></a></p>
+<h2 id="When-to-use"><a href="#When-to-use" class="headerlink" title="When to use"></a>When to use</h2><ul>
+<li>you are using Parse SDK (web or mobile) coupled with Parse Server running on Express</li>
+<li>you are using GraphQL</li>
+<li>you want to control access to Parse models in your resolvers using Parse ACL system</li>
+<li>you are using <a href="https://github.com/thebakeryio/parse-graphql-client" target="_blank" rel="external">parse-graphql-client</a> package</li>
+</ul>
+<h2 id="Quick-start"><a href="#Quick-start" class="headerlink" title="Quick start"></a>Quick start</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install --save graphql parse-graphql-server parse</div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> express <span class="keyword">from</span> <span class="string">'express'</span>;</div><div class="line"><span class="keyword">import</span> Parse <span class="keyword">from</span> <span class="string">'parse/node'</span>;</div><div class="line"><span class="keyword">import</span> parseGraphQLHTTP <span class="keyword">from</span> <span class="string">'parse-graphql-server'</span>;</div><div class="line"><span class="keyword">import</span> &#123;</div><div class="line">  GraphQLObjectType,</div><div class="line">  GraphQLSchema,</div><div class="line">  GraphQLID,</div><div class="line">  GraphQLString,</div><div class="line">  GraphQLBoolean,</div><div class="line">  GraphQLList,</div><div class="line">  GraphQLNonNull,</div><div class="line">&#125; <span class="keyword">from</span> <span class="string">'graphql'</span>;</div><div class="line"></div><div class="line"><span class="keyword">const</span> Todo = Parse.Object.extend(<span class="string">'Todo'</span>);</div><div class="line"></div><div class="line"><span class="keyword">const</span> TodoType = <span class="keyword">new</span> GraphQLObjectType(&#123;</div><div class="line">  <span class="attr">name</span>: <span class="string">'Todo'</span>,</div><div class="line">  <span class="attr">description</span>: <span class="string">'Item in todo list'</span>,</div><div class="line">  <span class="attr">fields</span>: <span class="function"><span class="params">()</span> =&gt;</span> (&#123;</div><div class="line">    <span class="attr">id</span>: &#123;</div><div class="line">      <span class="attr">type</span>: GraphQLID,</div><div class="line">    &#125;,</div><div class="line">    <span class="attr">text</span>: &#123;</div><div class="line">      <span class="attr">type</span>: GraphQLString,</div><div class="line">      <span class="attr">resolve</span>: <span class="function"><span class="params">todo</span> =&gt;</span> todo.get(<span class="string">'text'</span>),</div><div class="line">    &#125;,</div><div class="line">    <span class="attr">isComplete</span>: &#123;</div><div class="line">      <span class="attr">type</span>: GraphQLBoolean,</div><div class="line">      <span class="attr">resolve</span>: <span class="function"><span class="params">todo</span> =&gt;</span> todo.get(<span class="string">'isComplete'</span>),</div><div class="line">    &#125;,</div><div class="line">  &#125;),</div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="keyword">const</span> schema = <span class="keyword">new</span> GraphQLSchema(&#123;</div><div class="line">  <span class="attr">query</span>: <span class="keyword">new</span> GraphQLObjectType(&#123;</div><div class="line">    <span class="attr">name</span>: <span class="string">'Query'</span>,</div><div class="line">    <span class="attr">fields</span>: &#123;</div><div class="line">      <span class="attr">todos</span>: &#123;</div><div class="line">        <span class="attr">type</span>: <span class="keyword">new</span> GraphQLList(TodoType),</div><div class="line">        <span class="attr">resolve</span>: <span class="function">(<span class="params">_, args, &#123; user, Query &#125;</span>) =&gt;</span> &#123;</div><div class="line">          <span class="keyword">const</span> query = <span class="keyword">new</span> Query(Todo);</div><div class="line">          <span class="keyword">return</span> query.find();</div><div class="line">        &#125;,</div><div class="line">      &#125;,</div><div class="line">    &#125;,</div><div class="line">  &#125;),</div><div class="line">  <span class="attr">mutation</span>: <span class="keyword">new</span> GraphQLObjectType(&#123;</div><div class="line">    <span class="attr">name</span>: <span class="string">'Mutation'</span>,</div><div class="line">    <span class="attr">fields</span>: &#123;</div><div class="line">      <span class="attr">addTodo</span>: &#123;</div><div class="line">        <span class="attr">type</span>: Todo.SchemaType,</div><div class="line">        <span class="attr">description</span>: <span class="string">'Create a new todo item'</span>,</div><div class="line">        <span class="attr">args</span>: &#123;</div><div class="line">          <span class="attr">text</span>: &#123; <span class="attr">type</span>: <span class="keyword">new</span> GraphQLNonNull(GraphQLString) &#125;,</div><div class="line">        &#125;,</div><div class="line">        <span class="attr">resolve</span>: <span class="function">(<span class="params">_, &#123; text &#125;, &#123; Query, user &#125;</span>) =&gt;</span> &#123;</div><div class="line">          <span class="keyword">const</span> newTodo = <span class="keyword">new</span> Query(Todo).create(&#123; text, <span class="attr">isComplete</span>: <span class="literal">false</span> &#125;);</div><div class="line">          <span class="keyword">if</span> (user) &#123;</div><div class="line">            newTodo.setACL(<span class="keyword">new</span> Parse.ACL(user));</div><div class="line">          &#125;</div><div class="line">          <span class="keyword">return</span> newTodo.save().then(<span class="function"><span class="params">td</span> =&gt;</span> td);</div><div class="line">        &#125;,</div><div class="line">      &#125;,</div><div class="line">      <span class="attr">deleteTodo</span>: &#123;</div><div class="line">        <span class="attr">type</span>: Todo.SchemaType,</div><div class="line">        <span class="attr">description</span>: <span class="string">'Delete a todo'</span>,</div><div class="line">        <span class="attr">args</span>: &#123;</div><div class="line">          <span class="attr">id</span>: &#123; <span class="attr">type</span>: <span class="keyword">new</span> GraphQLNonNull(GraphQLID) &#125;,</div><div class="line">        &#125;,</div><div class="line">        <span class="attr">resolve</span>: <span class="function">(<span class="params">_, &#123; id &#125;, &#123; Query &#125;</span>) =&gt;</span></div><div class="line">          <span class="keyword">new</span> Query(Todo).get(id).then(<span class="function">(<span class="params">todo</span>) =&gt;</span> &#123;</div><div class="line">            <span class="keyword">if</span> (todo) &#123;</div><div class="line">              <span class="keyword">return</span> todo.destroy();</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">return</span> todo;</div><div class="line">          &#125;),</div><div class="line">      &#125;,</div><div class="line">    &#125;,</div><div class="line">  &#125;),</div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="keyword">const</span> app = express();</div><div class="line">app.use(<span class="string">'/graphql'</span>, parseGraphQLHTTP(&#123; schema, <span class="attr">graphiql</span>: <span class="literal">true</span>, &#125;));</div><div class="line"></div><div class="line">app.listen(process.env.PORT, () =&gt; &#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'server running'</span>);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h2 id="Writing-resolvers"><a href="#Writing-resolvers" class="headerlink" title="Writing resolvers"></a>Writing resolvers</h2><p>When using Parse GraphQL server package, all your GraphQL resolvers include authentication information and updated version of Parse.Query that passes ACL info along to make sure your queries are authenticated</p>
+<pre><code>{
+  resolve: (_, args, { Query, user }) =&gt; {
+    // **Query** is a patched version of Parse.Query that
+    // includes session token information for the currently authenticated 
+    // user (if any)
+    // It also extends basic Parse.Query to include a **create** method:
+    // const newTodo = new Query(Todo).create({ text, isComplete: false });
+    //
+    // **user** is an instance of Parse.User set to the authenticated user (if any)
+  },
+}
+</code></pre><h2 id="Client-side"><a href="#Client-side" class="headerlink" title="Client side"></a>Client side</h2><p>Parse GraphQL server looks for <strong>Authorization</strong> header set to the session token of the current Parse User. <a href="https://github.com/thebakeryio/parse-graphql-client" target="_blank" rel="external">Parse GraphQL client</a> sets this up for you automatically.  </p>
+<h2 id="See-it-in-action"><a href="#See-it-in-action" class="headerlink" title="See it in action"></a>See it in action</h2><ul>
+<li><a href="https://github.com/thebakeryio/todomvc-react-native" target="_blank" rel="external">TodoMVC using React Native</a></li>
+</ul>
+<h2 id="Credits"><a href="#Credits" class="headerlink" title="Credits"></a>Credits</h2><p>Parse GraphQL server relies heavily on <a href="https://github.com/graphql/express-graphql" target="_blank" rel="external">Express GraphQL package</a>.</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;GraphQL-for-Parse-Server&quot;&gt;&lt;a href=&quot;#GraphQL-for-Parse-Server&quot; class=&quot;headerlink&quot; title=&quot;GraphQL for Parse Server&quot;&gt;&lt;/a&gt;GraphQL for Pa
+    
+    </summary>
+    
+      <category term="Readme" scheme="http://yoursite.com/categories/Readme/"/>
+    
+    
+      <category term="other" scheme="http://yoursite.com/tags/other/"/>
     
   </entry>
   

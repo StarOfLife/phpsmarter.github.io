@@ -71,7 +71,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="React," />
+  <meta name="keywords" content="React-native," />
 
 
 
@@ -89,13 +89,16 @@
 
 
 
+<meta name="description" content="去年写了几篇f8app的代码阅读,基本是站在UI组件的角度来的,随着学习的深入,对其中的代码有了更深的体会,现在有很多开源的RN项目可以供参考,但是有一些都存在某些问题.细节考虑的不周到,学习的意义打了折扣.F8APP是facebook的亲儿子，所以开发者的水平是很高的,前面阅读的时候觉得怎么写的很难懂,甚至还有些地方对Redux的实现都感觉不太标准,这两天在回头看的时候,不得不佩服人家的开发水">
 <meta property="og:type" content="article">
 <meta property="og:title" content="乱花渐欲迷人眼,返璞归真F8(1)">
 <meta property="og:url" content="http://yoursite.com/2017/04/05/乱花渐欲迷人眼-返璞归真-1/index.html">
 <meta property="og:site_name" content="phpsmarter">
-<meta property="og:updated_time" content="2017-04-05T16:43:20.000Z">
+<meta property="og:description" content="去年写了几篇f8app的代码阅读,基本是站在UI组件的角度来的,随着学习的深入,对其中的代码有了更深的体会,现在有很多开源的RN项目可以供参考,但是有一些都存在某些问题.细节考虑的不周到,学习的意义打了折扣.F8APP是facebook的亲儿子，所以开发者的水平是很高的,前面阅读的时候觉得怎么写的很难懂,甚至还有些地方对Redux的实现都感觉不太标准,这两天在回头看的时候,不得不佩服人家的开发水">
+<meta property="og:updated_time" content="2017-04-05T18:28:31.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="乱花渐欲迷人眼,返璞归真F8(1)">
+<meta name="twitter:description" content="去年写了几篇f8app的代码阅读,基本是站在UI组件的角度来的,随着学习的深入,对其中的代码有了更深的体会,现在有很多开源的RN项目可以供参考,但是有一些都存在某些问题.细节考虑的不周到,学习的意义打了折扣.F8APP是facebook的亲儿子，所以开发者的水平是很高的,前面阅读的时候觉得怎么写的很难懂,甚至还有些地方对Redux的实现都感觉不太标准,这两天在回头看的时候,不得不佩服人家的开发水">
 
 
 
@@ -354,7 +357,7 @@
               
                 <span class="post-meta-item-text">更新于</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2017-04-06T00:43:20+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2017-04-06T02:28:31+08:00">
                 2017-04-05
               </time>
             
@@ -414,7 +417,7 @@
                   <span class="post-meta-item-text">字数统计</span>
                 
                 <span title="字数统计">
-                  0
+                  1,176
                 </span>
               
 
@@ -430,7 +433,7 @@
                   <span class="post-meta-item-text">阅读时长</span>
                 
                 <span title="阅读时长">
-                  1
+                  4
                 </span>
               
             </div>
@@ -449,7 +452,26 @@
       
 
       
-        
+        <blockquote>
+<p>去年写了几篇f8app的代码阅读,基本是站在UI组件的角度来的,随着学习的深入,对其中的代码有了更深的体会,现在有很多开源的RN项目可以供参考,但是有一些都存在某些问题.细节考虑的不周到,学习的意义打了折扣.F8APP是facebook的亲儿子，所以开发者的水平是很高的,前面阅读的时候觉得怎么写的很难懂,甚至还有些地方对Redux的实现都感觉不太标准,这两天在回头看的时候,不得不佩服人家的开发水平.代码里对于组件的实现,Redux的渗透,多数据源的接入,代码组织方面都是独居匠心的.我自从重新阅读了以后,感觉写代码当如此啊. </p>
+</blockquote>
+<p>但是到了现在的这个觉悟并不是一蹴而就的.经过一段时间的学习,学习工具箱里就有一些工具了.</p>
+<ul>
+<li>函数式编程的思想,javascript里的函数是一等对象,其实意思是函数和对象在javascript中都是<code>引用赋值的</code>,<strong>这一点非常的非常的关键</strong>.这并非危言耸听,一旦你在读代码中有了这个觉悟的话,javascript的功力会大增的.我们随时可以把一个函数映射到一个变量上,这就是引用赋值,一旦这样做以后,函数可以使用这个变量在代码中传来传去,灵活性大增.有没有思考过React/Redux中组件dispatch一个action到底发生了什么?bindActionCreator是怎么实现的？这还没完,继续挖掘函数编程是怎么在f8里实现的</li>
+<li>模式设计的思想：中介者模式,发布订阅者模式,等等模式,在这面也很好的实现了。要有一点模式设计的知识</li>
+<li>React-native跨平台开发的代码复用问题,功能,逻辑和表现形式的结合思考。先逻辑后表现。</li>
+<li>临机应变,刚开始看f8app的代码的时候看不下去,尤其是在对redux有了初步的了解,产生盲目崇拜以后,在React中必须要找到几个文件夹在才能是根正苗红的Redux应用.于是在里面找,这里面更本就没有container文件夹么？怎么办？其实在container文件中也只是用connect对象注入了组件是组件订阅了需要的props，具有了dispatch方法.仅此而已.所以在f8app中直接在UI组件中使用了connect对象.这样对于编码实际更好操作，更直观.另外带来的好处是,组价其实不一定非要用redux来处理,可以使用其他的框架来处理.info这个模块就没有采用redux的框架.要从功能上灵活处理。能达到随机应变要对功能的实现有深刻的认识。</li>
+<li>对于state的思考,后面如果要继续提高RN的编程能力,要不断的思考state的问题.目前看到的两个大型程序的state，一个是f8的，一个是cnode的state.<br>我前面写过文章把state看成是内存的数据库,围绕着state做增删改查工作，是不是这个意思呢？f8中的state实现是一颗倒立的树,为什么是树呢？这是相对于网状结构来的,state中是没有之间的连接关系的.数据以节点来组织.看到f8app中combineReducer中的映射的时候，那感觉真爽啊。编程真有意思.回头看代码在解释.</li>
+<li>parse-server和graghql的问题,</li>
+<li><p>观察的视点选择问题,如果会你看过<a href="https://medium.com/@rajaraodv/step-by-step-guide-to-building-react-redux-apps-using-mocks-48ca0f47f9a" target="_blank" rel="external">这篇文章</a>,<a href="https://wenku.baidu.com/view/881a48f8aaea998fcd220ea5.html?from=search" target="_blank" rel="external">中文翻译版</a>的话,这篇文章实际是从UI组件的角度来找视点的,对于初学者俩说,这篇文章的确是很好的,但是对于F8app这样的大型app,从视图就有点喧宾夺主了.在f8app中state和Actions的复杂程度更高,从组件上面去学习就有点麻烦,尤其是这里面有几个地方的组件组合真的是太厉害了，看完组件的组合关系就已经没耐心了.从action和state开始读似乎是可行的.当然因人而异.我提出这个观点至少是说明我思考过这个问题.</p>
+</li>
+<li><p>贪心原理 f8APP中已经包含和了很多组件和中间件了,多学几遍就可以在其他地方用了.太好了.</p>
+</li>
+</ul>
+<blockquote>
+<p>时间太晚了，有些地方白天想明白了,现在又忘了.先写这么多.</p>
+</blockquote>
+
       
     </div>
 
@@ -478,7 +500,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/React/" rel="tag"># React</a>
+            <a href="/tags/React-native/" rel="tag"># React-native</a>
           
         </div>
       
@@ -491,8 +513,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/04/05/title/" rel="next" title="title">
-                <i class="fa fa-chevron-left"></i> title
+              <a href="/2017/04/04/翻译-redux-undo-redo-reucer增强组件/" rel="next" title="翻译|redux undo/redo reducer增强组件">
+                <i class="fa fa-chevron-left"></i> 翻译|redux undo/redo reducer增强组件
               </a>
             
           </div>
@@ -562,7 +584,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">81</span>
+                <span class="site-state-item-count">79</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
