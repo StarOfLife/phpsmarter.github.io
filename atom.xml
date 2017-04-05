@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-04-05T01:58:52.000Z</updated>
+  <updated>2017-04-05T16:40:28.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,24 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>乱花渐欲迷人眼,返璞归真F8(1)</title>
+    <link href="http://yoursite.com/2017/04/05/%E4%B9%B1%E8%8A%B1%E6%B8%90%E6%AC%B2%E8%BF%B7%E4%BA%BA%E7%9C%BC-%E8%BF%94%E7%92%9E%E5%BD%92%E7%9C%9F-1/"/>
+    <id>http://yoursite.com/2017/04/05/乱花渐欲迷人眼-返璞归真-1/</id>
+    <published>2017-04-05T10:00:23.000Z</published>
+    <updated>2017-04-05T16:40:28.000Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+      <category term="F8App源码阅读" scheme="http://yoursite.com/categories/F8App%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB/"/>
+    
+    
+      <category term="React,Redux" scheme="http://yoursite.com/tags/React-Redux/"/>
+    
+  </entry>
   
   <entry>
     <title>title</title>
@@ -1619,54 +1637,6 @@
     
     
       <category term="database" scheme="http://yoursite.com/tags/database/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>GraphQL for ParserServer</title>
-    <link href="http://yoursite.com/2017/03/25/graphql_for_parserserver/"/>
-    <id>http://yoursite.com/2017/03/25/graphql_for_parserserver/</id>
-    <published>2017-03-25T14:57:05.000Z</published>
-    <updated>2017-03-25T08:59:02.000Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="GraphQL-for-Parse-Server"><a href="#GraphQL-for-Parse-Server" class="headerlink" title="GraphQL for Parse Server"></a>GraphQL for Parse Server</h1><p><a href="https://travis-ci.org/thebakeryio/parse-graphql-server" target="_blank" rel="external"><img src="https://travis-ci.org/thebakeryio/parse-graphql-server.svg?branch=master" alt="Build Status"></a><br><a href="https://codeclimate.com/github/thebakeryio/parse-graphql-server" target="_blank" rel="external"><img src="https://codeclimate.com/github/thebakeryio/parse-graphql-server/badges/gpa.svg" alt="Code Climate"></a><br><a href="https://codeclimate.com/github/thebakeryio/parse-graphql-server/coverage" target="_blank" rel="external"><img src="https://codeclimate.com/github/thebakeryio/parse-graphql-server/badges/coverage.svg" alt="Test Coverage"></a><br><a href="https://david-dm.org/thebakeryio/parse-graphql-server" target="_blank" rel="external"><img src="https://david-dm.org/thebakeryio/parse-graphql-server.svg" alt="Dependency Status"></a><br><a href="https://david-dm.org/thebakeryio/parse-graphql-server#info=devDependencies" target="_blank" rel="external"><img src="https://david-dm.org/thebakeryio/parse-graphql-server/dev-status.svg" alt="devDependency Status"></a></p>
-<h2 id="When-to-use"><a href="#When-to-use" class="headerlink" title="When to use"></a>When to use</h2><ul>
-<li>you are using Parse SDK (web or mobile) coupled with Parse Server running on Express</li>
-<li>you are using GraphQL</li>
-<li>you want to control access to Parse models in your resolvers using Parse ACL system</li>
-<li>you are using <a href="https://github.com/thebakeryio/parse-graphql-client" target="_blank" rel="external">parse-graphql-client</a> package</li>
-</ul>
-<h2 id="Quick-start"><a href="#Quick-start" class="headerlink" title="Quick start"></a>Quick start</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install --save graphql parse-graphql-server parse</div></pre></td></tr></table></figure>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> express <span class="keyword">from</span> <span class="string">'express'</span>;</div><div class="line"><span class="keyword">import</span> Parse <span class="keyword">from</span> <span class="string">'parse/node'</span>;</div><div class="line"><span class="keyword">import</span> parseGraphQLHTTP <span class="keyword">from</span> <span class="string">'parse-graphql-server'</span>;</div><div class="line"><span class="keyword">import</span> &#123;</div><div class="line">  GraphQLObjectType,</div><div class="line">  GraphQLSchema,</div><div class="line">  GraphQLID,</div><div class="line">  GraphQLString,</div><div class="line">  GraphQLBoolean,</div><div class="line">  GraphQLList,</div><div class="line">  GraphQLNonNull,</div><div class="line">&#125; <span class="keyword">from</span> <span class="string">'graphql'</span>;</div><div class="line"></div><div class="line"><span class="keyword">const</span> Todo = Parse.Object.extend(<span class="string">'Todo'</span>);</div><div class="line"></div><div class="line"><span class="keyword">const</span> TodoType = <span class="keyword">new</span> GraphQLObjectType(&#123;</div><div class="line">  <span class="attr">name</span>: <span class="string">'Todo'</span>,</div><div class="line">  <span class="attr">description</span>: <span class="string">'Item in todo list'</span>,</div><div class="line">  <span class="attr">fields</span>: <span class="function"><span class="params">()</span> =&gt;</span> (&#123;</div><div class="line">    <span class="attr">id</span>: &#123;</div><div class="line">      <span class="attr">type</span>: GraphQLID,</div><div class="line">    &#125;,</div><div class="line">    <span class="attr">text</span>: &#123;</div><div class="line">      <span class="attr">type</span>: GraphQLString,</div><div class="line">      <span class="attr">resolve</span>: <span class="function"><span class="params">todo</span> =&gt;</span> todo.get(<span class="string">'text'</span>),</div><div class="line">    &#125;,</div><div class="line">    <span class="attr">isComplete</span>: &#123;</div><div class="line">      <span class="attr">type</span>: GraphQLBoolean,</div><div class="line">      <span class="attr">resolve</span>: <span class="function"><span class="params">todo</span> =&gt;</span> todo.get(<span class="string">'isComplete'</span>),</div><div class="line">    &#125;,</div><div class="line">  &#125;),</div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="keyword">const</span> schema = <span class="keyword">new</span> GraphQLSchema(&#123;</div><div class="line">  <span class="attr">query</span>: <span class="keyword">new</span> GraphQLObjectType(&#123;</div><div class="line">    <span class="attr">name</span>: <span class="string">'Query'</span>,</div><div class="line">    <span class="attr">fields</span>: &#123;</div><div class="line">      <span class="attr">todos</span>: &#123;</div><div class="line">        <span class="attr">type</span>: <span class="keyword">new</span> GraphQLList(TodoType),</div><div class="line">        <span class="attr">resolve</span>: <span class="function">(<span class="params">_, args, &#123; user, Query &#125;</span>) =&gt;</span> &#123;</div><div class="line">          <span class="keyword">const</span> query = <span class="keyword">new</span> Query(Todo);</div><div class="line">          <span class="keyword">return</span> query.find();</div><div class="line">        &#125;,</div><div class="line">      &#125;,</div><div class="line">    &#125;,</div><div class="line">  &#125;),</div><div class="line">  <span class="attr">mutation</span>: <span class="keyword">new</span> GraphQLObjectType(&#123;</div><div class="line">    <span class="attr">name</span>: <span class="string">'Mutation'</span>,</div><div class="line">    <span class="attr">fields</span>: &#123;</div><div class="line">      <span class="attr">addTodo</span>: &#123;</div><div class="line">        <span class="attr">type</span>: Todo.SchemaType,</div><div class="line">        <span class="attr">description</span>: <span class="string">'Create a new todo item'</span>,</div><div class="line">        <span class="attr">args</span>: &#123;</div><div class="line">          <span class="attr">text</span>: &#123; <span class="attr">type</span>: <span class="keyword">new</span> GraphQLNonNull(GraphQLString) &#125;,</div><div class="line">        &#125;,</div><div class="line">        <span class="attr">resolve</span>: <span class="function">(<span class="params">_, &#123; text &#125;, &#123; Query, user &#125;</span>) =&gt;</span> &#123;</div><div class="line">          <span class="keyword">const</span> newTodo = <span class="keyword">new</span> Query(Todo).create(&#123; text, <span class="attr">isComplete</span>: <span class="literal">false</span> &#125;);</div><div class="line">          <span class="keyword">if</span> (user) &#123;</div><div class="line">            newTodo.setACL(<span class="keyword">new</span> Parse.ACL(user));</div><div class="line">          &#125;</div><div class="line">          <span class="keyword">return</span> newTodo.save().then(<span class="function"><span class="params">td</span> =&gt;</span> td);</div><div class="line">        &#125;,</div><div class="line">      &#125;,</div><div class="line">      <span class="attr">deleteTodo</span>: &#123;</div><div class="line">        <span class="attr">type</span>: Todo.SchemaType,</div><div class="line">        <span class="attr">description</span>: <span class="string">'Delete a todo'</span>,</div><div class="line">        <span class="attr">args</span>: &#123;</div><div class="line">          <span class="attr">id</span>: &#123; <span class="attr">type</span>: <span class="keyword">new</span> GraphQLNonNull(GraphQLID) &#125;,</div><div class="line">        &#125;,</div><div class="line">        <span class="attr">resolve</span>: <span class="function">(<span class="params">_, &#123; id &#125;, &#123; Query &#125;</span>) =&gt;</span></div><div class="line">          <span class="keyword">new</span> Query(Todo).get(id).then(<span class="function">(<span class="params">todo</span>) =&gt;</span> &#123;</div><div class="line">            <span class="keyword">if</span> (todo) &#123;</div><div class="line">              <span class="keyword">return</span> todo.destroy();</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">return</span> todo;</div><div class="line">          &#125;),</div><div class="line">      &#125;,</div><div class="line">    &#125;,</div><div class="line">  &#125;),</div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="keyword">const</span> app = express();</div><div class="line">app.use(<span class="string">'/graphql'</span>, parseGraphQLHTTP(&#123; schema, <span class="attr">graphiql</span>: <span class="literal">true</span>, &#125;));</div><div class="line"></div><div class="line">app.listen(process.env.PORT, () =&gt; &#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'server running'</span>);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
-<h2 id="Writing-resolvers"><a href="#Writing-resolvers" class="headerlink" title="Writing resolvers"></a>Writing resolvers</h2><p>When using Parse GraphQL server package, all your GraphQL resolvers include authentication information and updated version of Parse.Query that passes ACL info along to make sure your queries are authenticated</p>
-<pre><code>{
-  resolve: (_, args, { Query, user }) =&gt; {
-    // **Query** is a patched version of Parse.Query that
-    // includes session token information for the currently authenticated 
-    // user (if any)
-    // It also extends basic Parse.Query to include a **create** method:
-    // const newTodo = new Query(Todo).create({ text, isComplete: false });
-    //
-    // **user** is an instance of Parse.User set to the authenticated user (if any)
-  },
-}
-</code></pre><h2 id="Client-side"><a href="#Client-side" class="headerlink" title="Client side"></a>Client side</h2><p>Parse GraphQL server looks for <strong>Authorization</strong> header set to the session token of the current Parse User. <a href="https://github.com/thebakeryio/parse-graphql-client" target="_blank" rel="external">Parse GraphQL client</a> sets this up for you automatically.  </p>
-<h2 id="See-it-in-action"><a href="#See-it-in-action" class="headerlink" title="See it in action"></a>See it in action</h2><ul>
-<li><a href="https://github.com/thebakeryio/todomvc-react-native" target="_blank" rel="external">TodoMVC using React Native</a></li>
-</ul>
-<h2 id="Credits"><a href="#Credits" class="headerlink" title="Credits"></a>Credits</h2><p>Parse GraphQL server relies heavily on <a href="https://github.com/graphql/express-graphql" target="_blank" rel="external">Express GraphQL package</a>.</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;GraphQL-for-Parse-Server&quot;&gt;&lt;a href=&quot;#GraphQL-for-Parse-Server&quot; class=&quot;headerlink&quot; title=&quot;GraphQL for Parse Server&quot;&gt;&lt;/a&gt;GraphQL for Pa
-    
-    </summary>
-    
-      <category term="Readme" scheme="http://yoursite.com/categories/Readme/"/>
-    
-    
-      <category term="other" scheme="http://yoursite.com/tags/other/"/>
     
   </entry>
   
