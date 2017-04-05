@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-04-05T16:40:28.000Z</updated>
+  <updated>2017-04-05T16:43:20.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://yoursite.com/2017/04/05/%E4%B9%B1%E8%8A%B1%E6%B8%90%E6%AC%B2%E8%BF%B7%E4%BA%BA%E7%9C%BC-%E8%BF%94%E7%92%9E%E5%BD%92%E7%9C%9F-1/"/>
     <id>http://yoursite.com/2017/04/05/乱花渐欲迷人眼-返璞归真-1/</id>
     <published>2017-04-05T10:00:23.000Z</published>
-    <updated>2017-04-05T16:40:28.000Z</updated>
+    <updated>2017-04-05T16:43:20.000Z</updated>
     
     <summary type="html">
     
@@ -29,7 +29,7 @@
       <category term="F8App源码阅读" scheme="http://yoursite.com/categories/F8App%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB/"/>
     
     
-      <category term="React,Redux" scheme="http://yoursite.com/tags/React-Redux/"/>
+      <category term="React" scheme="http://yoursite.com/tags/React/"/>
     
   </entry>
   
