@@ -91,7 +91,7 @@
 
 <meta property="og:type" content="website">
 <meta property="og:title" content="phpsmarter">
-<meta property="og:url" content="http://yoursite.com/tags/React-native/index.html">
+<meta property="og:url" content="http://yoursite.com/tags/React-Native/index.html">
 <meta property="og:site_name" content="phpsmarter">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="phpsmarter">
@@ -122,13 +122,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/tags/React-native/"/>
+  <link rel="canonical" href="http://yoursite.com/tags/React-Native/"/>
 
 
 
 
 
-  <title> 标签: React-native | phpsmarter </title>
+  <title> 标签: React-Native | phpsmarter </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -294,7 +294,7 @@
   <div id="posts" class="posts-collapse">
     <div class="collection-title">
       <h2 >
-        React-native
+        React-Native
         <small>标签</small>
       </h2>
     </div>
@@ -307,9 +307,9 @@
 
       <h1 class="post-title">
         
-            <a class="post-title-link" href="/2017/03/28/翻译-React-navigation导航系统-3/" itemprop="url">
+            <a class="post-title-link" href="/2017/03/30/翻译-React-navigation导航系统-8-Views/" itemprop="url">
               
-                <span itemprop="name">翻译|React-navigation导航系统(3)</span>
+                <span itemprop="name">翻译|React-navigation导航系统(8)-Views</span>
               
             </a>
         
@@ -317,9 +317,121 @@
 
       <div class="post-meta">
         <time class="post-time" itemprop="dateCreated"
-              datetime="2017-03-28T07:48:36Z"
-              content="2017-03-28" >
-          03-28
+              datetime="2017-03-30T14:04:48Z"
+              content="2017-03-30" >
+          03-30
+        </time>
+      </div>
+
+    </header>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h1 class="post-title">
+        
+            <a class="post-title-link" href="/2017/03/30/翻译-React-navigation导航系统-7-Router/" itemprop="url">
+              
+                <span itemprop="name">翻译|React-navigation导航系统(7)-Router</span>
+              
+            </a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2017-03-30T09:57:00Z"
+              content="2017-03-30" >
+          03-30
+        </time>
+      </div>
+
+    </header>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h1 class="post-title">
+        
+            <a class="post-title-link" href="/2017/03/30/翻译-React-navigation导航系统-6-Redux的整合实例/" itemprop="url">
+              
+                <span itemprop="name">翻译|React-navigation导航系统(6)-Redux的整合实例</span>
+              
+            </a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2017-03-29T23:42:14Z"
+              content="2017-03-29" >
+          03-29
+        </time>
+      </div>
+
+    </header>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h1 class="post-title">
+        
+            <a class="post-title-link" href="/2017/03/30/翻译-React-navigation导航系统-5-高级指南/" itemprop="url">
+              
+                <span itemprop="name">翻译|React-navigation导航系统(5)-高级指南</span>
+              
+            </a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2017-03-29T16:41:19Z"
+              content="2017-03-29" >
+          03-29
+        </time>
+      </div>
+
+    </header>
+  </article>
+
+
+    
+      
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h1 class="post-title">
+        
+            <a class="post-title-link" href="/2017/03/29/翻译-React-navigation导航系统-4/" itemprop="url">
+              
+                <span itemprop="name">翻译|React-navigation导航系统(4)</span>
+              
+            </a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2017-03-29T07:16:17Z"
+              content="2017-03-29" >
+          03-29
         </time>
       </div>
 
@@ -373,7 +485,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">79</span>
+                <span class="site-state-item-count">80</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -743,98 +855,6 @@
           }
 
           for (var i = 0; i < results.length; i++) {
-            var item = results[i];
-            var url = item.get('url');
-            var time = item.get('time');
-            var element = document.getElementById(url);
-
-            $(element).find(COUNT_CONTAINER_REF).text(time);
-          }
-          for(var i = 0; i < entries.length; i++) {
-            var url = entries[i];
-            var element = document.getElementById(url);
-            var countSpan = $(element).find(COUNT_CONTAINER_REF);
-            if( countSpan.text() == '') {
-              countSpan.text(0);
-            }
-          }
-        })
-        .fail(function (object, error) {
-          console.log("Error: " + error.code + " " + error.message);
-        });
-    }
-
-    function addCount(Counter) {
-      var $visitors = $(".leancloud_visitors");
-      var url = $visitors.attr('id').trim();
-      var title = $visitors.attr('data-flag-title').trim();
-      var query = new AV.Query(Counter);
-
-      query.equalTo("url", url);
-      query.find({
-        success: function(results) {
-          if (results.length > 0) {
-            var counter = results[0];
-            counter.fetchWhenSave(true);
-            counter.increment("time");
-            counter.save(null, {
-              success: function(counter) {
-                var $element = $(document.getElementById(url));
-                $element.find('.leancloud-visitors-count').text(counter.get('time'));
-              },
-              error: function(counter, error) {
-                console.log('Failed to save Visitor num, with error message: ' + error.message);
-              }
-            });
-          } else {
-            var newcounter = new Counter();
-            /* Set ACL */
-            var acl = new AV.ACL();
-            acl.setPublicReadAccess(true);
-            acl.setPublicWriteAccess(true);
-            newcounter.setACL(acl);
-            /* End Set ACL */
-            newcounter.set("title", title);
-            newcounter.set("url", url);
-            newcounter.set("time", 1);
-            newcounter.save(null, {
-              success: function(newcounter) {
-                var $element = $(document.getElementById(url));
-                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
-              },
-              error: function(newcounter, error) {
-                console.log('Failed to create');
-              }
-            });
-          }
-        },
-        error: function(error) {
-          console.log('Error:' + error.code + " " + error.message);
-        }
-      });
-    }
-
-    $(function() {
-      var Counter = AV.Object.extend("Counter");
-      if ($('.leancloud_visitors').length == 1) {
-        addCount(Counter);
-      } else if ($('.post-title-link').length > 1) {
-        showTime(Counter);
-      }
-    });
-  </script>
-
-
-
-  
-
-  
-
-  
-
-</body>
-</html>
-< results.length; i++) {
             var item = results[i];
             var url = item.get('url');
             var time = item.get('time');
