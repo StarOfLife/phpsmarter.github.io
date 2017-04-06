@@ -95,13 +95,13 @@
 修改 index.js 如下：">
 <meta property="og:type" content="website">
 <meta property="og:title" content="phpsmarter">
-<meta property="og:url" content="http://yoursite.com/other/3.3 模板引擎.html">
+<meta property="og:url" content="https://phpsmarter.github.com/other/3.3 模板引擎.html">
 <meta property="og:site_name" content="phpsmarter">
 <meta property="og:description" content="模板引擎（Template Engine）是一个将页面模板和数据结合起来生成 html 的工具。上例中，我们只是返回纯文本给浏览器，现在我们修改代码返回一个 html 页面给浏览器。
 3.3.1 ejs模板引擎有很多，ejs 是其中一种，因为它使用起来十分简单，而且与 express 集成良好，所以我们使用 ejs。安装 ejs：
 1npm i ejs --save
 修改 index.js 如下：">
-<meta property="og:image" content="http://yoursite.com/./img/3.3.1.png">
+<meta property="og:image" content="https://phpsmarter.github.com/./img/3.3.1.png">
 <meta property="og:updated_time" content="2016-11-28T16:07:21.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="phpsmarter">
@@ -109,7 +109,7 @@
 3.3.1 ejs模板引擎有很多，ejs 是其中一种，因为它使用起来十分简单，而且与 express 集成良好，所以我们使用 ejs。安装 ejs：
 1npm i ejs --save
 修改 index.js 如下：">
-<meta name="twitter:image" content="http://yoursite.com/./img/3.3.1.png">
+<meta name="twitter:image" content="https://phpsmarter.github.com/./img/3.3.1.png">
 
 
 
@@ -137,7 +137,7 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/other/3.3 模板引擎.html"/>
+  <link rel="canonical" href="https://phpsmarter.github.com/other/3.3 模板引擎.html"/>
 
 
 
@@ -358,7 +358,7 @@
 <p><strong>views/header.ejs</strong></p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">style</span> <span class="attr">type</span>=<span class="string">"text/css"</span>&gt;</span><span class="css"></span></div><div class="line">      <span class="selector-tag">body</span> &#123;<span class="attribute">padding</span>: <span class="number">50px</span>;<span class="attribute">font</span>: <span class="number">14px</span> <span class="string">"Lucida Grande"</span>, Helvetica, Arial, sans-serif;&#125;</div><div class="line">    <span class="tag">&lt;/<span class="name">style</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">body</span>&gt;</span></div></pre></td></tr></table></figure>
 <p><strong>views/footer.ejs</strong></p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">  <span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">  <span class="section">&lt;/body&gt;</span></div><div class="line"><span class="section">&lt;/html&gt;</span></div></pre></td></tr></table></figure>
 <p><strong>views/users.ejs</strong></p>
 <figure class="highlight erb"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="xml"><span class="tag">&lt;<span class="name">%-</span></span></span><span class="ruby"> <span class="keyword">include</span>(<span class="string">'header'</span>) </span><span class="xml"><span class="tag">%&gt;</span></span></div><div class="line">  <span class="tag">&lt;<span class="name">h1</span>&gt;</span><span class="tag">&lt;<span class="name">%=</span></span><span class="ruby"> name.toUpperCase() </span><span class="xml"><span class="tag">%&gt;</span><span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span></div><div class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span>hello, <span class="tag">&lt;<span class="name">%=</span></span><span class="ruby"> name </span><span class="xml"><span class="tag">%&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></div><div class="line"><span class="tag">&lt;<span class="name">%-</span></span><span class="ruby"> <span class="keyword">include</span>(<span class="string">'footer'</span>) </span><span class="xml"><span class="tag">%&gt;</span></span></div></pre></td></tr></table></figure>
 <p>我们将原来的 users.ejs 拆成出了 header.ejs 和 footer.ejs，并在 users.ejs 通过 ejs 内置的 include 方法引入，从而实现了跟以前一个模板文件相同的功能。</p>
