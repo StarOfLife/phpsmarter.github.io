@@ -1,0 +1,1179 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Redux," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="phpsmarter" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="Logger for Redux
+
+Table of contents
+Install
+Usage
+Options
+Recipes
+Log only in development
+Log everything except actions with certain type
+Collapse actions with certain type
+Transform Immutable (withou">
+<meta property="og:type" content="article">
+<meta property="og:title" content="redux-logger">
+<meta property="og:url" content="https://phpsmarter.github.com/2017/04/07/redux-logger/index.html">
+<meta property="og:site_name" content="phpsmarter">
+<meta property="og:description" content="Logger for Redux
+
+Table of contents
+Install
+Usage
+Options
+Recipes
+Log only in development
+Log everything except actions with certain type
+Collapse actions with certain type
+Transform Immutable (withou">
+<meta property="og:image" content="https://img.shields.io/npm/v/redux-logger.svg?maxAge=2592000?style=plastic">
+<meta property="og:image" content="https://img.shields.io/npm/dm/redux-logger.svg?maxAge=2592000?style=plastic">
+<meta property="og:image" content="https://travis-ci.org/evgenyrodionov/redux-logger.svg?branch=master">
+<meta property="og:image" content="http://i.imgur.com/CgAuHlE.png">
+<meta property="og:updated_time" content="2017-04-06T17:38:40.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="redux-logger">
+<meta name="twitter:description" content="Logger for Redux
+
+Table of contents
+Install
+Usage
+Options
+Recipes
+Log only in development
+Log everything except actions with certain type
+Collapse actions with certain type
+Transform Immutable (withou">
+<meta name="twitter:image" content="https://img.shields.io/npm/v/redux-logger.svg?maxAge=2592000?style=plastic">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://phpsmarter.github.com/2017/04/07/redux-logger/"/>
+
+
+
+
+
+  <title> redux-logger | phpsmarter </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">phpsmarter</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">A beginner of React-native</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://phpsmarter.github.com/2017/04/07/redux-logger/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="phpsmarter">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="phpsmarter">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                redux-logger
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-07T08:57:13+08:00">
+                2017-04-07
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2017-04-07T01:38:40+08:00">
+                2017-04-06
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Readme/" itemprop="url" rel="index">
+                    <span itemprop="name">Readme</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/04/07/redux-logger/" class="leancloud_visitors" data-flag-title="redux-logger">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  1,076
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长</span>
+                
+                <span title="阅读时长">
+                  7
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="Logger-for-Redux"><a href="#Logger-for-Redux" class="headerlink" title="Logger for Redux"></a>Logger for Redux</h1><p><a href="https://www.npmjs.com/package/redux-logger" target="_blank" rel="external"><img src="https://img.shields.io/npm/v/redux-logger.svg?maxAge=2592000?style=plastic" alt="npm"></a><br><a href="https://www.npmjs.com/package/redux-logger" target="_blank" rel="external"><img src="https://img.shields.io/npm/dm/redux-logger.svg?maxAge=2592000?style=plastic" alt="npm"></a><br><a href="https://travis-ci.org/evgenyrodionov/redux-logger" target="_blank" rel="external"><img src="https://travis-ci.org/evgenyrodionov/redux-logger.svg?branch=master" alt="Build Status"></a></p>
+<p><img src="http://i.imgur.com/CgAuHlE.png" alt="redux-logger"></p>
+<h2 id="Table-of-contents"><a href="#Table-of-contents" class="headerlink" title="Table of contents"></a>Table of contents</h2><ul>
+<li><a href="#install">Install</a></li>
+<li><a href="#usage">Usage</a></li>
+<li><a href="#options">Options</a></li>
+<li><a href="#recipes">Recipes</a><ul>
+<li><a href="#log-only-in-development">Log only in development</a></li>
+<li><a href="#log-everything-except-actions-with-certain-type">Log everything except actions with certain type</a></li>
+<li><a href="#collapse-actions-with-certain-type">Collapse actions with certain type</a></li>
+<li><a href="#transform-immutable-without-combinereducers">Transform Immutable (without <code>combineReducers</code>)</a></li>
+<li><a href="#transform-immutable-with-combinereducers">Transform Immutable (with <code>combineReducers</code>)</a></li>
+<li><a href="#log-batched-actions">Log batched actions</a></li>
+</ul>
+</li>
+<li><a href="#to-do">To Do</a></li>
+<li><a href="#known-issues">Known issues</a> (with <code>react-native</code> only at this moment)</li>
+<li><a href="#license">License</a></li>
+</ul>
+<h2 id="Install"><a href="#Install" class="headerlink" title="Install"></a>Install</h2><p><code>npm i --save redux-logger</code></p>
+<h2 id="Usage"><a href="#Usage" class="headerlink" title="Usage"></a>Usage</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> &#123; applyMiddleware, createStore &#125; <span class="keyword">from</span> <span class="string">'redux'</span>;</div><div class="line"></div><div class="line"><span class="comment">// Logger with default options</span></div><div class="line"><span class="keyword">import</span> logger <span class="keyword">from</span> <span class="string">'redux-logger'</span></div><div class="line"><span class="keyword">const</span> store = createStore(</div><div class="line">  reducer,</div><div class="line">  applyMiddleware(logger)</div><div class="line">)</div><div class="line"></div><div class="line"><span class="comment">// Note passing middleware as the third argument requires redux@&gt;=3.1.0</span></div></pre></td></tr></table></figure>
+<p>Or you can create your own logger with custom <a href="https://github.com/evgenyrodionov/redux-logger#options" target="_blank" rel="external">options</a>:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> &#123; applyMiddleware, createStore &#125; <span class="keyword">from</span> <span class="string">'redux'</span>;</div><div class="line"><span class="keyword">import</span> &#123; createLogger &#125; <span class="keyword">from</span> <span class="string">'redux-logger'</span></div><div class="line"></div><div class="line"><span class="keyword">const</span> logger = createLogger(&#123;</div><div class="line">  <span class="comment">// ...options</span></div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="keyword">const</span> store = createStore(</div><div class="line">  reducer,</div><div class="line">  applyMiddleware(logger)</div><div class="line">);</div></pre></td></tr></table></figure></p>
+<p>Note: logger <strong>must be</strong> the last middleware in chain, otherwise it will log thunk and promise, not actual actions (<a href="https://github.com/evgenyrodionov/redux-logger/issues/20" target="_blank" rel="external">#20</a>).</p>
+<h2 id="Options"><a href="#Options" class="headerlink" title="Options"></a>Options</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  predicate, <span class="comment">// if specified this function will be called before each action is processed with this middleware.</span></div><div class="line">  collapsed, <span class="comment">// takes a Boolean or optionally a Function that receives `getState` function for accessing current store state and `action` object as parameters. Returns `true` if the log group should be collapsed, `false` otherwise.</span></div><div class="line">  duration = <span class="literal">false</span>: <span class="built_in">Boolean</span>, <span class="comment">// print the duration of each action?</span></div><div class="line">  timestamp = <span class="literal">true</span>: <span class="built_in">Boolean</span>, <span class="comment">// print the timestamp with each action?</span></div><div class="line"></div><div class="line">  level = <span class="string">'log'</span>: <span class="string">'log'</span> | <span class="string">'console'</span> | <span class="string">'warn'</span> | <span class="string">'error'</span> | <span class="string">'info'</span>, <span class="comment">// console's level</span></div><div class="line">  colors: ColorsObject, <span class="comment">// colors for title, prev state, action and next state: https://github.com/evgenyrodionov/redux-logger/blob/master/src/defaults.js#L12-L18</span></div><div class="line">  titleFormatter, <span class="comment">// Format the title used when logging actions.</span></div><div class="line"></div><div class="line">  stateTransformer, <span class="comment">// Transform state before print. Eg. convert Immutable object to plain JSON.</span></div><div class="line">  actionTransformer, <span class="comment">// Transform action before print. Eg. convert Immutable object to plain JSON.</span></div><div class="line">  errorTransformer, <span class="comment">// Transform error before print. Eg. convert Immutable object to plain JSON.</span></div><div class="line"></div><div class="line">  logger = <span class="built_in">console</span>: LoggerObject, <span class="comment">// implementation of the `console` API.</span></div><div class="line">  logErrors = <span class="literal">true</span>: <span class="built_in">Boolean</span>, <span class="comment">// should the logger catch, log, and re-throw errors?</span></div><div class="line"></div><div class="line">  diff = <span class="literal">false</span>: <span class="built_in">Boolean</span>, <span class="comment">// (alpha) show diff between states?</span></div><div class="line">  diffPredicate <span class="comment">// (alpha) filter function for showing states diff, similar to `predicate`</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="Options-description"><a href="#Options-description" class="headerlink" title="Options description"></a>Options description</h3><h4 id="level-String-Function-Object"><a href="#level-String-Function-Object" class="headerlink" title="level (String | Function | Object)"></a><strong>level (String | Function | Object)</strong></h4><p>Level of <code>console</code>. <code>warn</code>, <code>error</code>, <code>info</code> or <a href="https://developer.mozilla.org/en/docs/Web/API/console" target="_blank" rel="external">else</a>.</p>
+<p>It can be a function <code>(action: Object) =&gt; level: String</code>.</p>
+<p>It can be an object with level string for: <code>prevState</code>, <code>action</code>, <code>nextState</code>, <code>error</code></p>
+<p>It can be an object with getter functions: <code>prevState</code>, <code>action</code>, <code>nextState</code>, <code>error</code>. Useful if you want to print<br>message based on specific state or action. Set any of them to <code>false</code> if you want to hide it.</p>
+<ul>
+<li><code>prevState(prevState: Object) =&gt; level: String</code></li>
+<li><code>action(action: Object) =&gt; level: String</code></li>
+<li><code>nextState(nextState: Object) =&gt; level: String</code></li>
+<li><code>error(error: Any, prevState: Object) =&gt; level: String</code></li>
+</ul>
+<p><em>Default: <code>log</code></em></p>
+<h4 id="duration-Boolean"><a href="#duration-Boolean" class="headerlink" title="duration (Boolean)"></a><strong>duration (Boolean)</strong></h4><p>Print duration of each action?</p>
+<p><em>Default: <code>false</code></em></p>
+<h4 id="timestamp-Boolean"><a href="#timestamp-Boolean" class="headerlink" title="timestamp (Boolean)"></a><strong>timestamp (Boolean)</strong></h4><p>Print timestamp with each action?</p>
+<p><em>Default: <code>true</code></em></p>
+<h4 id="colors-Object"><a href="#colors-Object" class="headerlink" title="colors (Object)"></a><strong>colors (Object)</strong></h4><p>Object with color getter functions: <code>title</code>, <code>prevState</code>, <code>action</code>, <code>nextState</code>, <code>error</code>. Useful if you want to paint<br>message based on specific state or action. Set any of them to <code>false</code> if you want to show plain message without colors.</p>
+<ul>
+<li><code>title(action: Object) =&gt; color: String</code></li>
+<li><code>prevState(prevState: Object) =&gt; color: String</code></li>
+<li><code>action(action: Object) =&gt; color: String</code></li>
+<li><code>nextState(nextState: Object) =&gt; color: String</code></li>
+<li><code>error(error: Any, prevState: Object) =&gt; color: String</code></li>
+</ul>
+<h4 id="logger-Object"><a href="#logger-Object" class="headerlink" title="logger (Object)"></a><strong>logger (Object)</strong></h4><p>Implementation of the <code>console</code> API. Useful if you are using a custom, wrapped version of <code>console</code>.</p>
+<p><em>Default: <code>console</code></em></p>
+<h4 id="logErrors-Boolean"><a href="#logErrors-Boolean" class="headerlink" title="logErrors (Boolean)"></a><strong>logErrors (Boolean)</strong></h4><p>Should the logger catch, log, and re-throw errors? This makes it clear which action triggered the error but makes “break<br>on error” in dev tools harder to use, as it breaks on re-throw rather than the original throw location.</p>
+<p><em>Default: <code>true</code></em></p>
+<h4 id="collapsed-getState-Function-action-Object-logEntry-Object-gt-Boolean"><a href="#collapsed-getState-Function-action-Object-logEntry-Object-gt-Boolean" class="headerlink" title="collapsed = (getState: Function, action: Object, logEntry: Object) =&gt; Boolean"></a><strong>collapsed = (getState: Function, action: Object, logEntry: Object) =&gt; Boolean</strong></h4><p>Takes a boolean or optionally a function that receives <code>getState</code> function for accessing current store state and <code>action</code> object as parameters. Returns <code>true</code> if the log group should be collapsed, <code>false</code> otherwise.</p>
+<p><em>Default: <code>false</code></em></p>
+<h4 id="predicate-getState-Function-action-Object-gt-Boolean"><a href="#predicate-getState-Function-action-Object-gt-Boolean" class="headerlink" title="predicate = (getState: Function, action: Object) =&gt; Boolean"></a><strong>predicate = (getState: Function, action: Object) =&gt; Boolean</strong></h4><p>If specified this function will be called before each action is processed with this middleware.<br>Receives <code>getState</code> function for  accessing current store state and <code>action</code> object as parameters. Returns <code>true</code> if action should be logged, <code>false</code> otherwise.</p>
+<p><em>Default: <code>null</code> (always log)</em></p>
+<h4 id="stateTransformer-state-Object-gt-state"><a href="#stateTransformer-state-Object-gt-state" class="headerlink" title="stateTransformer = (state: Object) =&gt; state"></a><strong>stateTransformer = (state: Object) =&gt; state</strong></h4><p>Transform state before print. Eg. convert Immutable object to plain JSON.</p>
+<p><em>Default: identity function</em></p>
+<h4 id="actionTransformer-action-Object-gt-action"><a href="#actionTransformer-action-Object-gt-action" class="headerlink" title="actionTransformer = (action: Object) =&gt; action"></a><strong>actionTransformer = (action: Object) =&gt; action</strong></h4><p>Transform action before print. Eg. convert Immutable object to plain JSON.</p>
+<p><em>Default: identity function</em></p>
+<h4 id="errorTransformer-error-Any-gt-error"><a href="#errorTransformer-error-Any-gt-error" class="headerlink" title="errorTransformer = (error: Any) =&gt; error"></a><strong>errorTransformer = (error: Any) =&gt; error</strong></h4><p>Transform error before print.</p>
+<p><em>Default: identity function</em></p>
+<h4 id="titleFormatter-action-Object-time-String-took-Number-gt-title"><a href="#titleFormatter-action-Object-time-String-took-Number-gt-title" class="headerlink" title="titleFormatter = (action: Object, time: String?, took: Number?) =&gt; title"></a><strong>titleFormatter = (action: Object, time: String?, took: Number?) =&gt; title</strong></h4><p>Format the title used for each action.</p>
+<p><em>Default: prints something like <code>action @ ${time} ${action.type} (in ${took.toFixed(2)} ms)</code></em></p>
+<h4 id="diff-Boolean"><a href="#diff-Boolean" class="headerlink" title="diff (Boolean)"></a><strong>diff (Boolean)</strong></h4><p>Show states diff.</p>
+<p><em>Default: <code>false</code></em></p>
+<h4 id="diffPredicate-getState-Function-action-Object-gt-Boolean"><a href="#diffPredicate-getState-Function-action-Object-gt-Boolean" class="headerlink" title="diffPredicate = (getState: Function, action: Object) =&gt; Boolean"></a><strong>diffPredicate = (getState: Function, action: Object) =&gt; Boolean</strong></h4><p>Filter states diff for certain cases.</p>
+<p><em>Default: <code>undefined</code></em></p>
+<h2 id="Using-redux-presist"><a href="#Using-redux-presist" class="headerlink" title="Using redux-presist"></a>Using redux-presist</h2><p>add some extra code<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"> <span class="keyword">import</span> &#123; compose,applyMiddleware, createStore &#125; <span class="keyword">from</span> <span class="string">'redux'</span>;</div><div class="line"><span class="keyword">import</span> &#123;autoRehydrate&#125; <span class="keyword">from</span> <span class="string">'redux-persist'</span>;</div><div class="line"><span class="keyword">import</span> logger <span class="keyword">from</span> <span class="string">'redux-logger'</span>;</div><div class="line"><span class="keyword">import</span> rootReducer <span class="keyword">from</span> <span class="string">'../reducers'</span>;</div><div class="line"><span class="built_in">console</span>.log(logger);</div><div class="line"></div><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="function"><span class="keyword">function</span> <span class="title">configureStore</span>(<span class="params">initialState</span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> createStore(</div><div class="line">    rootReducer,</div><div class="line">    initialState,</div><div class="line">    compose(</div><div class="line">    applyMiddleware(logger),</div><div class="line">    autoRehydrate()</div><div class="line">    )</div><div class="line">  );</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">//using compose function</span></div></pre></td></tr></table></figure></p>
+<h2 id="Recipes"><a href="#Recipes" class="headerlink" title="Recipes"></a>Recipes</h2><h3 id="Log-only-in-development"><a href="#Log-only-in-development" class="headerlink" title="Log only in development"></a>Log only in development</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> middlewares = [];</div><div class="line"></div><div class="line"><span class="keyword">if</span> (process.env.NODE_ENV === <span class="string">`development`</span>) &#123;</div><div class="line">  <span class="keyword">const</span> &#123; logger &#125; = <span class="built_in">require</span>(<span class="string">`redux-logger`</span>);</div><div class="line"></div><div class="line">  middlewares.push(logger);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">const</span> store = compose(applyMiddleware(...middlewares))(createStore)(reducer);</div></pre></td></tr></table></figure>
+<h3 id="Log-everything-except-actions-with-certain-type"><a href="#Log-everything-except-actions-with-certain-type" class="headerlink" title="Log everything except actions with certain type"></a>Log everything except actions with certain type</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">createLogger(&#123;</div><div class="line">  <span class="attr">predicate</span>: <span class="function">(<span class="params">getState, action</span>) =&gt;</span> action.type !== AUTH_REMOVE_TOKEN</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h3 id="Collapse-actions-with-certain-type"><a href="#Collapse-actions-with-certain-type" class="headerlink" title="Collapse actions with certain type"></a>Collapse actions with certain type</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">createLogger(&#123;</div><div class="line">  <span class="attr">collapsed</span>: <span class="function">(<span class="params">getState, action</span>) =&gt;</span> action.type === FORM_CHANGE</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h3 id="Collapse-actions-that-don’t-have-errors"><a href="#Collapse-actions-that-don’t-have-errors" class="headerlink" title="Collapse actions that don’t have errors"></a>Collapse actions that don’t have errors</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">createLogger(&#123;</div><div class="line">  <span class="attr">collapsed</span>: <span class="function">(<span class="params">getState, action, logEntry</span>) =&gt;</span> !logEntry.error</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h3 id="Transform-Immutable-without-combineReducers"><a href="#Transform-Immutable-without-combineReducers" class="headerlink" title="Transform Immutable (without combineReducers)"></a>Transform Immutable (without <code>combineReducers</code>)</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> &#123; Iterable &#125; <span class="keyword">from</span> <span class="string">'immutable'</span>;</div><div class="line"></div><div class="line"><span class="keyword">const</span> stateTransformer = <span class="function">(<span class="params">state</span>) =&gt;</span> &#123;</div><div class="line">  <span class="keyword">if</span> (Iterable.isIterable(state)) <span class="keyword">return</span> state.toJS();</div><div class="line">  <span class="keyword">else</span> <span class="keyword">return</span> state;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="keyword">const</span> logger = createLogger(&#123;</div><div class="line">  stateTransformer,</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h3 id="Transform-Immutable-with-combineReducers"><a href="#Transform-Immutable-with-combineReducers" class="headerlink" title="Transform Immutable (with combineReducers)"></a>Transform Immutable (with <code>combineReducers</code>)</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> logger = createLogger(&#123;</div><div class="line">  <span class="attr">stateTransformer</span>: <span class="function">(<span class="params">state</span>) =&gt;</span> &#123;</div><div class="line">    <span class="keyword">let</span> newState = &#123;&#125;;</div><div class="line"></div><div class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i <span class="keyword">of</span> <span class="built_in">Object</span>.keys(state)) &#123;</div><div class="line">      <span class="keyword">if</span> (Immutable.Iterable.isIterable(state[i])) &#123;</div><div class="line">        newState[i] = state[i].toJS();</div><div class="line">      &#125; <span class="keyword">else</span> &#123;</div><div class="line">        newState[i] = state[i];</div><div class="line">      &#125;</div><div class="line">    &#125;;</div><div class="line"></div><div class="line">    <span class="keyword">return</span> newState;</div><div class="line">  &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h3 id="Log-batched-actions"><a href="#Log-batched-actions" class="headerlink" title="Log batched actions"></a>Log batched actions</h3><p>Thanks to <a href="https://github.com/smashercosmo" target="_blank" rel="external">@smashercosmo</a><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> createLogger <span class="keyword">from</span> <span class="string">'redux-logger'</span>;</div><div class="line"></div><div class="line"><span class="keyword">const</span> actionTransformer = <span class="function"><span class="params">action</span> =&gt;</span> &#123;</div><div class="line">  <span class="keyword">if</span> (action.type === <span class="string">'BATCHING_REDUCER.BATCH'</span>) &#123;</div><div class="line">    action.payload.type = action.payload.map(<span class="function"><span class="params">next</span> =&gt;</span> next.type).join(<span class="string">' =&gt; '</span>);</div><div class="line">    <span class="keyword">return</span> action.payload;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="keyword">return</span> action;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="keyword">const</span> level = <span class="string">'info'</span>;</div><div class="line"></div><div class="line"><span class="keyword">const</span> logger = &#123;&#125;;</div><div class="line"></div><div class="line"><span class="keyword">for</span> (<span class="keyword">const</span> method <span class="keyword">in</span> <span class="built_in">console</span>) &#123;</div><div class="line">  <span class="keyword">if</span> (<span class="keyword">typeof</span> <span class="built_in">console</span>[method] === <span class="string">'function'</span>) &#123;</div><div class="line">    logger[method] = <span class="built_in">console</span>[method].bind(<span class="built_in">console</span>);</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">logger[level] = <span class="function"><span class="keyword">function</span> <span class="title">levelFn</span>(<span class="params">...args</span>) </span>&#123;</div><div class="line">  <span class="keyword">const</span> lastArg = args.pop();</div><div class="line"></div><div class="line">  <span class="keyword">if</span> (<span class="built_in">Array</span>.isArray(lastArg)) &#123;</div><div class="line">    <span class="keyword">return</span> lastArg.forEach(<span class="function"><span class="params">item</span> =&gt;</span> &#123;</div><div class="line">      <span class="built_in">console</span>[level].apply(<span class="built_in">console</span>, [...args, item]);</div><div class="line">    &#125;);</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="built_in">console</span>[level].apply(<span class="built_in">console</span>, <span class="built_in">arguments</span>);</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> createLogger(&#123;</div><div class="line">  level,</div><div class="line">  actionTransformer,</div><div class="line">  logger</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<h2 id="To-Do"><a href="#To-Do" class="headerlink" title="To Do"></a>To Do</h2><ul>
+<li>[x] Update eslint config to <a href="https://www.npmjs.com/package/eslint-config-airbnb" target="_blank" rel="external">airbnb’s</a></li>
+<li>[ ] Clean up code, because it’s very messy, to be honest</li>
+<li>[ ] Write tests</li>
+<li>[ ] Node.js support</li>
+<li>[ ] React-native support</li>
+</ul>
+<p>Feel free to create PR for any of those tasks!</p>
+<h2 id="Known-issues"><a href="#Known-issues" class="headerlink" title="Known issues"></a>Known issues</h2><ul>
+<li>Performance issues in react-native (<a href="https://github.com/evgenyrodionov/redux-logger/issues/32" target="_blank" rel="external">#32</a>)</li>
+</ul>
+<h2 id="License"><a href="#License" class="headerlink" title="License"></a>License</h2><p>MIT</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Redux/" rel="tag"># Redux</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/04/06/乱花渐欲迷人眼-返璞归真F8-2/" rel="next" title="乱花渐欲迷人眼,返璞归真F8(2)">
+                <i class="fa fa-chevron-left"></i> 乱花渐欲迷人眼,返璞归真F8(2)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpeg"
+               alt="phpsmarter" />
+          <p class="site-author-name" itemprop="name">phpsmarter</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">81</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Logger-for-Redux"><span class="nav-number">1.</span> <span class="nav-text">Logger for Redux</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Table-of-contents"><span class="nav-number">1.1.</span> <span class="nav-text">Table of contents</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Install"><span class="nav-number">1.2.</span> <span class="nav-text">Install</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Usage"><span class="nav-number">1.3.</span> <span class="nav-text">Usage</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Options"><span class="nav-number">1.4.</span> <span class="nav-text">Options</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Options-description"><span class="nav-number">1.4.1.</span> <span class="nav-text">Options description</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#level-String-Function-Object"><span class="nav-number">1.4.1.1.</span> <span class="nav-text">level (String | Function | Object)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#duration-Boolean"><span class="nav-number">1.4.1.2.</span> <span class="nav-text">duration (Boolean)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#timestamp-Boolean"><span class="nav-number">1.4.1.3.</span> <span class="nav-text">timestamp (Boolean)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#colors-Object"><span class="nav-number">1.4.1.4.</span> <span class="nav-text">colors (Object)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#logger-Object"><span class="nav-number">1.4.1.5.</span> <span class="nav-text">logger (Object)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#logErrors-Boolean"><span class="nav-number">1.4.1.6.</span> <span class="nav-text">logErrors (Boolean)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#collapsed-getState-Function-action-Object-logEntry-Object-gt-Boolean"><span class="nav-number">1.4.1.7.</span> <span class="nav-text">collapsed = (getState: Function, action: Object, logEntry: Object) => Boolean</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#predicate-getState-Function-action-Object-gt-Boolean"><span class="nav-number">1.4.1.8.</span> <span class="nav-text">predicate = (getState: Function, action: Object) => Boolean</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#stateTransformer-state-Object-gt-state"><span class="nav-number">1.4.1.9.</span> <span class="nav-text">stateTransformer = (state: Object) => state</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#actionTransformer-action-Object-gt-action"><span class="nav-number">1.4.1.10.</span> <span class="nav-text">actionTransformer = (action: Object) => action</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#errorTransformer-error-Any-gt-error"><span class="nav-number">1.4.1.11.</span> <span class="nav-text">errorTransformer = (error: Any) => error</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#titleFormatter-action-Object-time-String-took-Number-gt-title"><span class="nav-number">1.4.1.12.</span> <span class="nav-text">titleFormatter = (action: Object, time: String?, took: Number?) => title</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#diff-Boolean"><span class="nav-number">1.4.1.13.</span> <span class="nav-text">diff (Boolean)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#diffPredicate-getState-Function-action-Object-gt-Boolean"><span class="nav-number">1.4.1.14.</span> <span class="nav-text">diffPredicate = (getState: Function, action: Object) => Boolean</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Using-redux-presist"><span class="nav-number">1.5.</span> <span class="nav-text">Using redux-presist</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Recipes"><span class="nav-number">1.6.</span> <span class="nav-text">Recipes</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Log-only-in-development"><span class="nav-number">1.6.1.</span> <span class="nav-text">Log only in development</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Log-everything-except-actions-with-certain-type"><span class="nav-number">1.6.2.</span> <span class="nav-text">Log everything except actions with certain type</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Collapse-actions-with-certain-type"><span class="nav-number">1.6.3.</span> <span class="nav-text">Collapse actions with certain type</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Collapse-actions-that-don’t-have-errors"><span class="nav-number">1.6.4.</span> <span class="nav-text">Collapse actions that don’t have errors</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Transform-Immutable-without-combineReducers"><span class="nav-number">1.6.5.</span> <span class="nav-text">Transform Immutable (without combineReducers)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Transform-Immutable-with-combineReducers"><span class="nav-number">1.6.6.</span> <span class="nav-text">Transform Immutable (with combineReducers)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Log-batched-actions"><span class="nav-number">1.6.7.</span> <span class="nav-text">Log batched actions</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#To-Do"><span class="nav-number">1.7.</span> <span class="nav-text">To Do</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Known-issues"><span class="nav-number">1.8.</span> <span class="nav-text">Known issues</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#License"><span class="nav-number">1.9.</span> <span class="nav-text">License</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-phone"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">phpsmarter</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+<div class="theme-info">
+  主题 - 
+  <a theme-link href="http://www.aikuaidi.cn/" target="_blank" >快递查询</a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("0kGBxj215XRijm6VofFkzlws-gzGzoHsz", "V2FDLF52mPXum5Hh6wvwGpEk");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+
+</body>
+</html>
