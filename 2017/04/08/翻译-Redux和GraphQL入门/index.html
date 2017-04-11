@@ -1,0 +1,1161 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Redux," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="phpsmarter" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="当GraphQL发布以来,非常清楚的显示出,他将会成为非常好的技术.社区都在耐心的等待技术评价.但是你可能和我一样,发现文档比我们期待的更难理解.可能的原因是由于GraphQL和Relay的联合使用.
+
+我也感觉到了你的痛苦.我的大脑都要融化掉了,我告诉我自己我将会尝试在其他的框架里是用它.我做到了!这一次我仅仅把关注点放在GraphQL自身,其他的地方保持尽可能的简单.
+Sharing is">
+<meta property="og:type" content="article">
+<meta property="og:title" content="翻译|Redux和GraphQL入门">
+<meta property="og:url" content="https://phpsmarter.github.com/2017/04/08/翻译-Redux和GraphQL入门/index.html">
+<meta property="og:site_name" content="phpsmarter">
+<meta property="og:description" content="当GraphQL发布以来,非常清楚的显示出,他将会成为非常好的技术.社区都在耐心的等待技术评价.但是你可能和我一样,发现文档比我们期待的更难理解.可能的原因是由于GraphQL和Relay的联合使用.
+
+我也感觉到了你的痛苦.我的大脑都要融化掉了,我告诉我自己我将会尝试在其他的框架里是用它.我做到了!这一次我仅仅把关注点放在GraphQL自身,其他的地方保持尽可能的简单.
+Sharing is">
+<meta property="og:updated_time" content="2017-04-11T01:31:28.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="翻译|Redux和GraphQL入门">
+<meta name="twitter:description" content="当GraphQL发布以来,非常清楚的显示出,他将会成为非常好的技术.社区都在耐心的等待技术评价.但是你可能和我一样,发现文档比我们期待的更难理解.可能的原因是由于GraphQL和Relay的联合使用.
+
+我也感觉到了你的痛苦.我的大脑都要融化掉了,我告诉我自己我将会尝试在其他的框架里是用它.我做到了!这一次我仅仅把关注点放在GraphQL自身,其他的地方保持尽可能的简单.
+Sharing is">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://phpsmarter.github.com/2017/04/08/翻译-Redux和GraphQL入门/"/>
+
+
+
+
+
+  <title> 翻译|Redux和GraphQL入门 | phpsmarter </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">phpsmarter</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">A beginner of React-native</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://phpsmarter.github.com/2017/04/08/翻译-Redux和GraphQL入门/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="phpsmarter">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="phpsmarter">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                翻译|Redux和GraphQL入门
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-08T23:09:32+08:00">
+                2017-04-08
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2017-04-11T09:31:28+08:00">
+                2017-04-11
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/翻译/" itemprop="url" rel="index">
+                    <span itemprop="name">翻译</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/04/08/翻译-Redux和GraphQL入门/" class="leancloud_visitors" data-flag-title="翻译|Redux和GraphQL入门">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  2,745
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长</span>
+                
+                <span title="阅读时长">
+                  12
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>当GraphQL发布以来,非常清楚的显示出,他将会成为非常好的技术.社区都在耐心的等待技术评价.<br>但是你可能和我一样,发现文档比我们期待的更难理解.可能的原因是由于GraphQL和Relay的联合使用.</p>
+</blockquote>
+<p>我也感觉到了你的痛苦.我的大脑都要融化掉了,我告诉我自己我将会尝试在其他的框架里是用它.我做到了!这一次我仅仅把关注点放在GraphQL自身,其他的地方保持尽可能的简单.</p>
+<h1 id="Sharing-is-Caring"><a href="#Sharing-is-Caring" class="headerlink" title="Sharing is Caring"></a>Sharing is Caring</h1><p>这个教程的配置部分尽可能的简单,结合GraphQL和Redux.减少复杂的部分,所有的内容你可以直接从这里看到(指代码部分).</p>
+<p>我们将使用Redux来代替Relay,在服务器上使用es5而不是es6/babel-node.所有的GraphQL的东西都保持尽可能的简单.</p>
+<p>下面配置一下项目</p>
+<h1 id="项目文件配置"><a href="#项目文件配置" class="headerlink" title="项目文件配置"></a>项目文件配置</h1><p>创建新文件件(graphql-app).<br>需要一个package.json.<br><figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">npm</span> init</div></pre></td></tr></table></figure></p>
+<p>需要在服务器上安装一下模块:graphql-js,express-graphql,express,webpack和webpack-dev-server.</p>
+<p>编写服务器的编码使用es5,避免编译过程.</p>
+<p>创建<code>sevsr.js</code>文件,导入我们安装的模块<br><code>server.js</code><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"> <span class="keyword">var</span> webpack = <span class="built_in">require</span>(‘webpack’);</div><div class="line"><span class="keyword">var</span> WebpackDevServer = <span class="built_in">require</span>(‘webpack-dev-server’);</div><div class="line"><span class="keyword">var</span> express = <span class="built_in">require</span>(‘express’);</div><div class="line"><span class="keyword">var</span> graphqlHTTP = <span class="built_in">require</span>(‘express-graphql’);</div><div class="line"><span class="keyword">var</span> graphql = <span class="built_in">require</span>(‘graphql’);</div><div class="line"><span class="comment">//下面是有关graphql使用的配置,有对象和类型</span></div><div class="line"><span class="keyword">var</span> GraphQLSchema = graphql.GraphQLSchema;</div><div class="line"><span class="keyword">var</span> GraphQLObjectType = graphql.GraphQLObjectType;</div><div class="line"><span class="keyword">var</span> GraphQLString = graphql.GraphQLString;</div><div class="line"><span class="keyword">var</span> GraphQLInt = graphql.GraphQLInt;</div></pre></td></tr></table></figure></p>
+<p>你可以看到我们给graphQL的类型定义了变量,后面我们要使用这些变量.</p>
+<p>接着我们为GraphQL创建可以获取的数据.这里使用<code>Goldbergs</code>的数据作为来源.</p>
+<p>我们的数据</p>
+<figure class="highlight dts"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div></pre></td><td class="code"><pre><div class="line"> var goldbergs = &#123;</div><div class="line"> <span class="number">1</span>: &#123;</div><div class="line"><span class="symbol">   character:</span> <span class="string">"Beverly Goldberg"</span>,</div><div class="line"><span class="symbol">   actor:</span> <span class="string">"Wendi McLendon-Covey"</span>,</div><div class="line"><span class="symbol">   role:</span> <span class="string">"matriarch"</span>,</div><div class="line"><span class="symbol">   traits:</span> <span class="string">"embarrassing, overprotective"</span>,</div><div class="line"><span class="symbol">   id:</span> <span class="number">1</span></div><div class="line"> &#125;,</div><div class="line"> <span class="number">2</span>: &#123;</div><div class="line"><span class="symbol">   character:</span> <span class="string">"Murray Goldberg"</span>,</div><div class="line"><span class="symbol">   actor:</span> <span class="string">"Jeff Garlin"</span>,</div><div class="line"><span class="symbol">   role:</span> <span class="string">"patriarch"</span>,</div><div class="line"><span class="symbol">   traits:</span> <span class="string">"gruff, lazy"</span>,</div><div class="line"><span class="symbol">   id:</span> <span class="number">2</span></div><div class="line"> &#125;,</div><div class="line"> <span class="number">3</span>: &#123;</div><div class="line"><span class="symbol">   character:</span> <span class="string">"Erica Goldberg"</span>,</div><div class="line"><span class="symbol">   actor:</span> <span class="string">"Hayley Orrantia"</span>,</div><div class="line"><span class="symbol">   role:</span> <span class="string">"oldest child"</span>,</div><div class="line"><span class="symbol">   traits:</span> <span class="string">"rebellious, nonchalant"</span>,</div><div class="line"><span class="symbol">   id:</span> <span class="number">3</span></div><div class="line"> &#125;,</div><div class="line"> <span class="number">4</span>: &#123;</div><div class="line"><span class="symbol">   character:</span> <span class="string">"Barry Goldberg"</span>,</div><div class="line"><span class="symbol">   actor:</span> <span class="string">"Troy Gentile"</span>,</div><div class="line"><span class="symbol">   role:</span> <span class="string">"middle child"</span>,</div><div class="line"><span class="symbol">   traits:</span> <span class="string">"dim-witted, untalented"</span>,</div><div class="line"><span class="symbol">   id:</span> <span class="number">4</span></div><div class="line"> &#125;,</div><div class="line"> <span class="number">5</span>: &#123;</div><div class="line"><span class="symbol">   character:</span> <span class="string">"Adam Goldberg"</span>,</div><div class="line"><span class="symbol">   actor:</span> <span class="string">"Sean Giambrone"</span>,</div><div class="line"><span class="symbol">   role:</span> <span class="string">"youngest child"</span>,</div><div class="line"><span class="symbol">   traits:</span> <span class="string">"geeky, pop-culture obsessed"</span>,</div><div class="line"><span class="symbol">   id:</span> <span class="number">5</span></div><div class="line"> &#125;,</div><div class="line"> <span class="number">6</span>: &#123;</div><div class="line"><span class="symbol">   character:</span> <span class="string">"Albert 'Pops' Solomon"</span>,</div><div class="line"><span class="symbol">   actor:</span> <span class="string">"George Segal"</span>,</div><div class="line"><span class="symbol">   role:</span> <span class="string">"grandfather"</span>,</div><div class="line"><span class="symbol">   traits:</span> <span class="string">"goofy, laid back"</span>,</div><div class="line"><span class="symbol">   id:</span> <span class="number">6</span></div><div class="line"> &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="GraophQL"><a href="#GraophQL" class="headerlink" title="GraophQL"></a>GraophQL</h1><p>GraphQL从简化的角度考虑,有一个类型系统构成-这是我们用来理解他的心理模型-我们将看到这里有三种”类型”.</p>
+<ol>
+<li>模型的类型</li>
+<li>查询的类型</li>
+<li>schema的类型</li>
+</ol>
+<p>在实际的编码中,类型可能比这个简单,这里只是为了到入门的目的,所以比较简单</p>
+<h1 id="模型的类型"><a href="#模型的类型" class="headerlink" title="模型的类型"></a>模型的类型</h1><p>我们将创建一个”模型类型”,实际相当于实际的数据的镜像.</p>
+<figure class="highlight dts"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"> var goldbergType = new GraphQLObjectType(&#123;</div><div class="line"><span class="symbol">  name:</span> <span class="string">"Goldberg"</span>,</div><div class="line"><span class="symbol">  description:</span> <span class="string">"Member of The Goldbergs"</span>,</div><div class="line"><span class="symbol">  fields:</span> &#123;</div><div class="line"><span class="symbol">   character:</span> &#123;</div><div class="line"><span class="symbol">     type:</span> GraphQLString,</div><div class="line"><span class="symbol">     description:</span> <span class="string">"Name of the character"</span>,</div><div class="line">   &#125;,</div><div class="line"><span class="symbol">   actor:</span> &#123;</div><div class="line"><span class="symbol">     type:</span> GraphQLString,</div><div class="line"><span class="symbol">     description:</span> <span class="string">"Actor playing the character"</span>,</div><div class="line">   &#125;,</div><div class="line"><span class="symbol">   role:</span> &#123;</div><div class="line"><span class="symbol">     type:</span> GraphQLString,</div><div class="line"><span class="symbol">     description:</span> <span class="string">"Family role"</span></div><div class="line">   &#125;,</div><div class="line"><span class="symbol">   traits:</span> &#123;</div><div class="line"><span class="symbol">     type:</span> GraphQLString,</div><div class="line"><span class="symbol">     description:</span> <span class="string">"Traits this Goldberg is known for"</span></div><div class="line">   &#125;,</div><div class="line"><span class="symbol">   id:</span> &#123;</div><div class="line"><span class="symbol">     type:</span> GraphQLInt,</div><div class="line"><span class="symbol">     description:</span> <span class="string">"ID of this Goldberg"</span></div><div class="line">   &#125;</div><div class="line"> &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>我们创建了一个GraphQLObjectType的对象实例,取名为”Goldberg”.<br>在“fields”下,每一个“type”表明一个期待的类型.例如 string(GraphQLString)最为演员角色的类型,int(GraphQLInt)作为Id的类型约束.</p>
+<p>你可能也注意到了”description”字段,GraphQL自带说明文档.当我们结合express-graphql使用GraphiQL的时候可以在action中刚看到这个描述内容.</p>
+<h1 id="Query-Type"><a href="#Query-Type" class="headerlink" title="Query Type"></a>Query Type</h1><p>“Query type”定义了我们怎么查询我们的数据<br><figure class="highlight dts"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">var queryType = new GraphQLObjectType(&#123;</div><div class="line"><span class="symbol">  name:</span> <span class="string">"query"</span>,</div><div class="line"><span class="symbol">  description:</span> <span class="string">"Goldberg query"</span>,</div><div class="line"><span class="symbol">  fields:</span> &#123;</div><div class="line"><span class="symbol">    goldberg:</span> &#123;</div><div class="line"><span class="symbol">      type:</span> goldbergType,</div><div class="line"><span class="symbol">      args:</span> &#123;</div><div class="line"><span class="symbol">        id:</span> &#123;</div><div class="line"><span class="symbol">          type:</span> GraphQLInt</div><div class="line">        &#125;</div><div class="line">      &#125;,</div><div class="line"><span class="symbol">      resolve:</span> function(_, args)&#123;</div><div class="line">        return getGoldberg(args.id)</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<p>“query type”也是GraphQLObjectType的实例.只是用于不同的目的.<br>我们创建goldberg这个查询字段,设定的类型是goldbergType.在args(参数)下我们可以看到新的goldberg字段,它将接受id作为参数.</p>
+<p>但我们解析查询的时候,我们返回gegGoldberg()函数的调用返回值</p>
+<figure class="highlight ada"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"> <span class="keyword">function</span> <span class="title">getGoldberg</span>(id) &#123;</div><div class="line"> <span class="keyword">return</span> <span class="type">goldbergs[id]</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>从查询中的id从data中返回其中一个Goldberg.</p>
+<h1 id="Schema-type"><a href="#Schema-type" class="headerlink" title="Schema type"></a>Schema type</h1><p>最终”schema type”把类型放到一起.</p>
+<h1 id="为schema提供服务"><a href="#为schema提供服务" class="headerlink" title="为schema提供服务"></a>为schema提供服务</h1><p>我们可以使用express和graphqlHTTP 中间件来提供schma服务.<br><figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"> var graphQLServer = express()<span class="comment">;</span></div><div class="line">graphQLServer.use(<span class="string">'/'</span>, graphqlHTTP(&#123; <span class="keyword">schema: </span><span class="keyword">schema, </span>graphiql: true &#125;))<span class="comment">;</span></div><div class="line">graphQLServer.listen(<span class="number">8080</span>)<span class="comment">;</span></div><div class="line">console.log(<span class="string">"The GraphQL Server is running."</span>)</div></pre></td></tr></table></figure></p>
+<figure class="highlight crmsh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">node</span> <span class="title">server</span></div></pre></td></tr></table></figure>
+<p>浏览器打开<a href="http://localhost:8080/" target="_blank" rel="external">http://localhost:8080/</a>.可以看到GraphiQL IDE工作了.<br>如果我们执行了查询<br><figure class="highlight clojure"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"> &#123; </div><div class="line"> goldberg(<span class="name">id:</span> <span class="number">2</span>) &#123; </div><div class="line">   id,</div><div class="line">   character</div><div class="line"> &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>返回的结果是<br><figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"> &#123;</div><div class="line"> <span class="attr">"data"</span>: &#123;</div><div class="line">   <span class="attr">"goldberg"</span>: &#123;</div><div class="line">     <span class="attr">"id"</span>: <span class="number">2</span>,</div><div class="line">     <span class="attr">"character"</span>: <span class="string">"Murray Goldberg"</span></div><div class="line">   &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>再做一些其他查询也非常的有意思.</p>
+<p><code>提示：</code>在屏幕的顶部右边，有一个按钮,标签为”Docs”,如果我们点击按钮,可以看到之前在”description”中添加的字段内容.可以探索一下文档.</p>
+<h2 id="为app提供服务"><a href="#为app提供服务" class="headerlink" title="为app提供服务"></a>为app提供服务</h2><p>为了在我们app的前端使用GraphQL,需要安装babel,babel-loader以及一组babel-presets的约定.</p>
+<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm <span class="keyword">install </span>--save-dev <span class="keyword">babel-core </span><span class="keyword">babel-loader </span><span class="keyword">babel-preset-es2015 </span><span class="keyword">babel-preset-stage-0 </span><span class="keyword">babel-preset-react</span></div></pre></td></tr></table></figure>
+<p>创建文件<code>.babelrc</code>,这个文件告诉babel,我们的预先设定.</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"> &#123;</div><div class="line"> <span class="attr">"presets"</span>: [<span class="string">"es2015"</span>, <span class="string">"stage-0"</span>, <span class="string">"react"</span>]</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>创建一个新的<code>index.js</code>文件.目前还没有内容.</p>
+<p>创建新的文件夹<code>static</code>,在文件夹中添加<code>index.html</code>文件.<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"> <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"example"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"/static/bundle.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">h3</span>&gt;</span>hello world<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>现在我们的项目结构看起来像这样<br><figure class="highlight 1c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">graphql-app</div><div class="line"><span class="string">| -- index.js</span></div><div class="line"><span class="string">| -- server.js</span></div><div class="line"><span class="string">| -- package.json</span></div><div class="line"><span class="string">| -- .babelrc</span></div><div class="line"><span class="string">| -- static</span></div><div class="line">   <span class="string">| -- index.hml</span></div></pre></td></tr></table></figure></p>
+<p>在server.js文件中,我们需要配置webpack,借助babel打包项目的js文件.</p>
+<p>在graphQLServer.listen(8080)下<br><figure class="highlight dts"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"> var compiler = webpack(&#123;</div><div class="line"><span class="symbol">  entry:</span> <span class="string">"./index.js"</span>,</div><div class="line"><span class="symbol">  output:</span> &#123;</div><div class="line"><span class="symbol">    path:</span> __dirname,</div><div class="line"><span class="symbol">    filename:</span> <span class="string">"bundle.js"</span>,</div><div class="line"><span class="symbol">    publicPath:</span> <span class="string">"/static/"</span></div><div class="line">  &#125;,</div><div class="line"><span class="symbol">  module:</span> &#123;</div><div class="line"><span class="symbol">    loaders:</span> [</div><div class="line">      &#123; test: /\.js$/, </div><div class="line"><span class="symbol">        exclude:</span> /node_modules/, </div><div class="line"><span class="symbol">        loader:</span> <span class="string">"babel-loader"</span></div><div class="line">      &#125;</div><div class="line">    ]</div><div class="line">  &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<p>Webpack 将会接受index.js文件，编译一个est的版本到/static/bundle.js文件.</p>
+<p>接下来我们创建一个新的WebpackDevServer 来提供bundled的项目.</p>
+<figure class="highlight stata"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"> <span class="keyword">var</span> <span class="keyword">app</span> = new WebpackDevServer(compiler, &#123;</div><div class="line"> contentBase: <span class="string">"/public/"</span>,</div><div class="line"> proxy: &#123;<span class="string">"/graphql"</span>: `http:<span class="comment">//localhost:$&#123;8080&#125;`&#125;,</span></div><div class="line"> publicPath: <span class="string">"/static/"</span>,</div><div class="line"> stats: &#123;colors: true&#125;</div><div class="line">&#125;);</div><div class="line"><span class="keyword">app</span>.<span class="keyword">use</span>(<span class="string">"/"</span>, express.static(<span class="string">"static"</span>));</div><div class="line"><span class="keyword">app</span>.listen(3000);</div><div class="line">console.<span class="built_in">log</span>(<span class="string">"The App Server is running."</span>)</div></pre></td></tr></table></figure>
+<p>proxy字段添加了我们已经创建的GraphQL服务到我们的app server,这可以使我们直接在app内部进行查询,不会有跨域问题.</p>
+<p>启动一下<br><figure class="highlight axapta"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">noder <span class="keyword">server</span></div></pre></td></tr></table></figure></p>
+<p>浏览器打开<a href="http://localhost:3000" target="_blank" rel="external">http://localhost:3000</a>,我们会看到”hello world”的消息.<br>再到<a href="http://localhost:3000/graphql" target="_blank" rel="external">http://localhost:3000/graphql</a>.</p>
+<h1 id="React和Redux"><a href="#React和Redux" class="headerlink" title="React和Redux"></a>React和Redux</h1><p>为了添加react和react-redux,app需要额外的组件:React,Redux,React-Redux,Redux-thunk和Immutable.</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm <span class="keyword">install</span> <span class="comment">--save react react-dom redux react-redux redux-thunk immutable</span></div></pre></td></tr></table></figure>
+<p>因为我们使用babel配置了webpack,我们可以在前端使用es6</p>
+<p>从static/index.html文件中删除掉”hello world”,使用React添加新的信息.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"> <span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">"react"</span>;</div><div class="line"><span class="keyword">import</span> ReactDOM <span class="keyword">from</span> <span class="string">"react-dom"</span>;</div><div class="line"><span class="keyword">const</span> Main = React.createClass(&#123;</div><div class="line">  <span class="attr">render</span>: <span class="function"><span class="params">()</span> =&gt;</span> &#123;</div><div class="line">    <span class="keyword">return</span> (</div><div class="line">      <span class="xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></div><div class="line">        <span class="tag">&lt;<span class="name">p</span>&gt;</span>hello react!<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line">      <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">    )</div><div class="line">  &#125;</div><div class="line">&#125;);</div><div class="line">ReactDOM.render(</div><div class="line"> <span class="xml"><span class="tag">&lt;<span class="name">Main</span> /&gt;</span>,</span></div><div class="line"> document.getElementById("example")</div><div class="line">);</div></pre></td></tr></table></figure>
+<p>重新启动<a href="http://localhost:3000" target="_blank" rel="external">localhost:300</a>,可以看到信息.</p>
+<h1 id="Reducer"><a href="#Reducer" class="headerlink" title="Reducer"></a>Reducer</h1><p>添加新的文件夹,取名”app”最为子文件夹<br><figure class="highlight 1c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="string">| -- app</span></div><div class="line">  <span class="string">| -- actions</span></div><div class="line">  <span class="string">| -- components</span></div><div class="line">  <span class="string">| -- reducers</span></div></pre></td></tr></table></figure></p>
+<p>在reducerS 文件夹中创建reducer.js的文件,里面将执行我们的reducer函数.</p>
+<p>我们会使用利用Immuatable模块为state服务,以便我们形成好的习惯.<br><figure class="highlight gradle"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"> <span class="keyword">import</span> <span class="keyword">Immutable</span> <span class="keyword">from</span> <span class="string">"immutable"</span>;</div><div class="line">const immutableState = <span class="keyword">Immutable</span>.Map(&#123;</div><div class="line">  fetching: <span class="keyword">false</span>,</div><div class="line">  data: <span class="keyword">Immutable</span>.Map(&#123;&#125;)</div><div class="line">&#125;)</div></pre></td></tr></table></figure></p>
+<p>我们的state有两个字段-一个让我们知道是否在查询/等待响应的中间阶段,另一个包含着返回的响应数据.</p>
+<p>下一步我么把ImmutableState添加到reducer 函数中<br><figure class="highlight pf"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"> export const queryReducer = (<span class="keyword">state</span> = immutableState, action) =&gt; &#123;</div><div class="line">  switch (action.type) &#123;</div><div class="line">    case <span class="string">"STARTING_REQUEST"</span>:</div><div class="line">      return <span class="keyword">state</span>.<span class="built_in">set</span>(<span class="string">"fetching"</span>, true);</div><div class="line">    case <span class="string">"FINISHED_REQUEST"</span>:</div><div class="line">      return <span class="keyword">state</span>.<span class="built_in">set</span>(<span class="string">"fetching"</span>, false)</div><div class="line">             .<span class="built_in">set</span>(<span class="string">"data"</span>, Immutable.Map(action.response.data.goldberg));</div><div class="line">    <span class="keyword">default</span>:</div><div class="line">      return <span class="keyword">state</span></div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>当我们在执行“STARING_REQUEST” action的时候,分发的动作改变”fecthing”的state 为true,表示在获取数据中.</p>
+<p>当执行“FINISHED_REQUEST” action的时候,分发的工作改变 “feching”的state为false,data的state设定为我们的响应数据.</p>
+<h1 id="Store"><a href="#Store" class="headerlink" title="Store"></a>Store</h1><p>返回到index.js文件,我们想在reducer之外创建store,store接入到我们的主组件.我们需要借助redux和react-redux的助手函数来把刚刚创建的reducer导入store.</p>
+<p>还需要使用redux-thunk 中间件来协助后面的数据请求动过.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">"react"</span>;</div><div class="line"><span class="keyword">import</span> ReactDOM <span class="keyword">from</span> <span class="string">"react-dom"</span>;</div><div class="line"><span class="keyword">import</span> &#123; createStore, applyMiddleware &#125; <span class="keyword">from</span> <span class="string">"redux"</span>;</div><div class="line"><span class="keyword">import</span> &#123; Provider &#125; <span class="keyword">from</span> <span class="string">"react-redux"</span>;</div><div class="line"><span class="keyword">import</span> &#123; queryReducer &#125; <span class="keyword">from</span> <span class="string">"./app/reducers/reducers.js"</span>;</div><div class="line"><span class="keyword">import</span> thunkMiddleware <span class="keyword">from</span> <span class="string">"redux-thunk"</span>;</div></pre></td></tr></table></figure>
+<p>首先我们应用redux-thunk中间件<br><figure class="highlight lisp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"> const createStoreWithMiddleware = applyMiddleware(</div><div class="line">  <span class="name">thunkMiddleware</span></div><div class="line">)(<span class="name">createStore</span>)</div></pre></td></tr></table></figure></p>
+<p>然后在Redux Provider中包装我们的主组件,传递queryReducer到createStoreWithMiddleware.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"> ReactDOM.render(</div><div class="line">  <span class="xml"><span class="tag">&lt;<span class="name">Provider</span> <span class="attr">store</span>=<span class="string">&#123;createStoreWithMiddleware(queryReducer)&#125;</span>&gt;</span></span></div><div class="line">    <span class="tag">&lt;<span class="name">Main</span> /&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">Provider</span>&gt;</span>,</div><div class="line">  <span class="built_in">document</span>.getElementById(<span class="string">"example"</span>)</div><div class="line">);</div></pre></td></tr></table></figure>
+<p>完成了！创建了store.</p>
+<h1 id="Actions"><a href="#Actions" class="headerlink" title="Actions"></a>Actions</h1><p>在actions文件夹中创建新文件actions.js</p>
+<p>我们需要创建两个action来分发动作到我们的reducer,其中之一为“STARTING_REQUEST”,另一个为”FINISHED_REQUES”<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> startingRequest = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</div><div class="line">  <span class="keyword">return</span> &#123;</div><div class="line">    <span class="attr">type</span>: <span class="string">"STARTING_REQUEST"</span></div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"><span class="keyword">const</span> finishedRequest = <span class="function">(<span class="params">response</span>) =&gt;</span> &#123;</div><div class="line">  <span class="keyword">return</span> &#123;</div><div class="line">    <span class="attr">type</span>: <span class="string">"FINISHED_REQUEST"</span>,</div><div class="line">    <span class="attr">response</span>: response</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>在store中之前应用的中间件redux-thunk是一件非常伟大的事情,当一个action返回一个函数,这个函数可以使用dispatch来注入到reducer.(译注:对于一部操作,返回响应值以后,可以在发起一个dispatch来通知reducer对state做出改变).</p>
+<p>在一个新的getGraph action中,使用了两次dispatch()</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">export</span> <span class="keyword">const</span> getGraph = <span class="function">(<span class="params">payload</span>) =&gt;</span> &#123;</div><div class="line">  <span class="keyword">return</span> <span class="function"><span class="params">dispatch</span> =&gt;</span> &#123;</div><div class="line">    dispatch(startingRequest());</div><div class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">resolve, reject</span>) </span>&#123;</div><div class="line">      <span class="keyword">let</span> request=<span class="keyword">new</span> XMLHttpRequest();</div><div class="line">      request.open(<span class="string">"POST"</span>, <span class="string">"/graphql"</span>, <span class="literal">true</span>);</div><div class="line">      request.setRequestHeader(<span class="string">"Content-Type"</span>,</div><div class="line">                               <span class="string">"application/graphql"</span>);</div><div class="line">      request.send(payload);</div><div class="line">      request.onreadystatechange = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</div><div class="line">        <span class="keyword">if</span> (request.readyState === <span class="number">4</span>) &#123;</div><div class="line">          resolve(request.responseText)</div><div class="line">        &#125;</div><div class="line">      &#125;</div><div class="line">    &#125;).then(<span class="function"><span class="params">response</span> =&gt;</span></div><div class="line">            dispatch(finishedRequest(<span class="built_in">JSON</span>.parse(response))))</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>当getGraph()函数调用的时候,我们dispatch startingRequest(),表示开始一个新的查询.然后开始一个异步的请求(提示:”header”中有application/graphql的类型).当我们的查询完成的时候,我们dispatch finishedRequest() action，提供我们查询的结果.</p>
+<h1 id="Component"><a href="#Component" class="headerlink" title="Component"></a>Component</h1><p>在”component”文件夹中,我们创建一个新的文件, Query.js文件</p>
+<p>我们需要导入react,几个助手函数,还有刚刚创建的getGraph函数.</p>
+<figure class="highlight clean"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> React <span class="keyword">from</span> ‘react’;</div><div class="line"><span class="keyword">import</span> &#123; connect &#125; <span class="keyword">from</span> ‘react-redux’;</div><div class="line"><span class="keyword">import</span> &#123; getGraph &#125; <span class="keyword">from</span> ‘../actions/actions.js’;</div></pre></td></tr></table></figure>
+<p>目前我们创建了空的出查询组件<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> Query = React.createClass(&#123;</div><div class="line">  render() &#123;</div><div class="line">    <span class="keyword">return</span> (</div><div class="line">      <span class="xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></div><div class="line">      <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">    )</div><div class="line">  &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<p>我们要在组件中挂载我们的store和dispatch方法,方式是通过创建container组件和react-redux connect()函数</p>
+<figure class="highlight pf"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">const mapStateToProps = (<span class="keyword">state</span>) =&gt; &#123;</div><div class="line">  return &#123;</div><div class="line">    store: <span class="keyword">state</span></div><div class="line">  &#125;</div><div class="line">&#125;;</div><div class="line">export const QueryContainer = connect(</div><div class="line"> mapStateToProps</div><div class="line">)(Query);</div></pre></td></tr></table></figure>
+<p>在我们的Query组件中,我们需要接入componentDidMount 生命周期函数,从而可以在组件挂载的时候获取数据.</p>
+<figure class="highlight xquery"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> Query = React.createClass(&#123;</div><div class="line">  componentDidMount() &#123;</div><div class="line">    this.props.dispatch(</div><div class="line">      getGraph(<span class="string">"&#123;goldberg(id: 2) &#123;id, character, actor&#125;&#125;"</span>)</div><div class="line">    );</div><div class="line">  &#125;</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<p>然后我们要添加组件来用于填充获取的响应的数据,一个提交额外查询的按钮.我们想知道在数据查询过程中的状态,并且显示在页面中.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> Query = React.createClass(&#123;</div><div class="line">  componentDidMount() &#123;</div><div class="line">    <span class="keyword">this</span>.props.dispatch(</div><div class="line">      getGraph(<span class="string">"&#123;goldberg(id: 2) &#123;id, character, actor&#125;&#125;"</span>)</div><div class="line">    );</div><div class="line">  &#125;,</div><div class="line">  render() &#123;</div><div class="line">    <span class="keyword">let</span> dispatch = <span class="keyword">this</span>.props.dispatch;</div><div class="line">    <span class="keyword">let</span> fetchInProgress = <span class="built_in">String</span>(<span class="keyword">this</span>.props.store.get(<span class="string">'fetching'</span>));</div><div class="line">    <span class="keyword">let</span> queryText;</div><div class="line">    <span class="keyword">let</span> goldberg = <span class="keyword">this</span>.props.store.get(<span class="string">'data'</span>).toObject();</div><div class="line">    <span class="keyword">return</span> (</div><div class="line">      <span class="xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></div><div class="line">        <span class="tag">&lt;<span class="name">p</span>&gt;</span>Fetch in progress: &#123;fetchInProgress&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">h3</span>&gt;</span>&#123; goldberg.character &#125;<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">p</span>&gt;</span>&#123; goldberg.actor &#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">p</span>&gt;</span>&#123; goldberg.role &#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">p</span>&gt;</span>&#123; goldberg.traits &#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">ref</span>=<span class="string">&#123;node</span> =&gt;</span> &#123;queryText = node&#125;&#125;&gt;<span class="tag">&lt;/<span class="name">input</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">button</span> <span class="attr">onClick</span>=<span class="string">&#123;()</span> =&gt;</span> &#123;</div><div class="line">          dispatch(getGraph(queryText.value))&#125;</div><div class="line">        &#125;&gt;</div><div class="line">          query</div><div class="line">        <span class="tag">&lt;/<span class="name">button</span>&gt;</span></div><div class="line">      <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">    )</div><div class="line">  &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>上面这一步做完以后,最后一件事情就是把QueryContainer组件添加到我们的主组件.</p>
+<p><code>index.js</code><br><figure class="highlight gradle"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> &#123; QueryContainer &#125; <span class="keyword">from</span> “.<span class="regexp">/app/</span>components<span class="regexp">/Query.js”;</span></div></pre></td></tr></table></figure></p>
+<p>使用QueryConatiner组件替代”hello react”组件<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"> <span class="keyword">const</span> Main = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</div><div class="line">  <span class="keyword">return</span> (</div><div class="line">    <span class="xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></div><div class="line">      <span class="tag">&lt;<span class="name">QueryContainer</span> /&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">  )</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<p>完成!现在运行编制好的GraphQL查询就可以获得核心内容.试着查询：{gold-berg(id:4)}{id,charactar,actor,traits},看看可以获得什么结果.</p>
+<h1 id="感谢"><a href="#感谢" class="headerlink" title="感谢"></a>感谢</h1><p>感谢阅读,我希望这篇文章能对你有帮助.你可以在<a href="https://github.com/thisbejim/getting-started-with-redux-and-graphql" target="_blank" rel="external">这里</a>查看源代码.现在我们使用Redux和GraphQL构建了非常好的app.</p>
+<p>另外感谢Dan Abramov指出教程中的一个错误.</p>
+<h1 id="Resources"><a href="#Resources" class="headerlink" title="Resources"></a>Resources</h1>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Redux/" rel="tag"># Redux</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/04/08/normalizr-Redux-state-flatten/" rel="next" title="normalizr-Redux state flatten">
+                <i class="fa fa-chevron-left"></i> normalizr-Redux state flatten
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpeg"
+               alt="phpsmarter" />
+          <p class="site-author-name" itemprop="name">phpsmarter</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">86</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Sharing-is-Caring"><span class="nav-number">1.</span> <span class="nav-text">Sharing is Caring</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#项目文件配置"><span class="nav-number">2.</span> <span class="nav-text">项目文件配置</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#GraophQL"><span class="nav-number">3.</span> <span class="nav-text">GraophQL</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#模型的类型"><span class="nav-number">4.</span> <span class="nav-text">模型的类型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Query-Type"><span class="nav-number">5.</span> <span class="nav-text">Query Type</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Schema-type"><span class="nav-number">6.</span> <span class="nav-text">Schema type</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#为schema提供服务"><span class="nav-number">7.</span> <span class="nav-text">为schema提供服务</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#为app提供服务"><span class="nav-number">7.1.</span> <span class="nav-text">为app提供服务</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#React和Redux"><span class="nav-number">8.</span> <span class="nav-text">React和Redux</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Reducer"><span class="nav-number">9.</span> <span class="nav-text">Reducer</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Store"><span class="nav-number">10.</span> <span class="nav-text">Store</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Actions"><span class="nav-number">11.</span> <span class="nav-text">Actions</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Component"><span class="nav-number">12.</span> <span class="nav-text">Component</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#感谢"><span class="nav-number">13.</span> <span class="nav-text">感谢</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Resources"><span class="nav-number">14.</span> <span class="nav-text">Resources</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-phone"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">phpsmarter</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+<div class="theme-info">
+  主题 - 
+  <a theme-link href="http://www.aikuaidi.cn/" target="_blank" >快递查询</a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("0kGBxj215XRijm6VofFkzlws-gzGzoHsz", "V2FDLF52mPXum5Hh6wvwGpEk");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+
+</body>
+</html>

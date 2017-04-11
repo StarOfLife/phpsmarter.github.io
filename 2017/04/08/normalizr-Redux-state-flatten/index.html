@@ -1,0 +1,1203 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Redux," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="phpsmarter" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="Normalizr Guide
+Quick StartConsider a typical blog post. The API response for a single post might look something like this:
+1234567891011121314151617&amp;#123;  &quot;id&quot;: &quot;123&quot;,  &quot;author&quot;: &amp;#123;    &quot;id&quot;: &quot;1">
+<meta property="og:type" content="article">
+<meta property="og:title" content="normalizr-Redux state flatten">
+<meta property="og:url" content="https://phpsmarter.github.com/2017/04/08/normalizr-Redux-state-flatten/index.html">
+<meta property="og:site_name" content="phpsmarter">
+<meta property="og:description" content="Normalizr Guide
+Quick StartConsider a typical blog post. The API response for a single post might look something like this:
+1234567891011121314151617&amp;#123;  &quot;id&quot;: &quot;123&quot;,  &quot;author&quot;: &amp;#123;    &quot;id&quot;: &quot;1">
+<meta property="og:updated_time" content="2017-04-08T06:47:31.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="normalizr-Redux state flatten">
+<meta name="twitter:description" content="Normalizr Guide
+Quick StartConsider a typical blog post. The API response for a single post might look something like this:
+1234567891011121314151617&amp;#123;  &quot;id&quot;: &quot;123&quot;,  &quot;author&quot;: &amp;#123;    &quot;id&quot;: &quot;1">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://phpsmarter.github.com/2017/04/08/normalizr-Redux-state-flatten/"/>
+
+
+
+
+
+  <title> normalizr-Redux state flatten | phpsmarter </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">phpsmarter</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">A beginner of React-native</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://phpsmarter.github.com/2017/04/08/normalizr-Redux-state-flatten/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="phpsmarter">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="phpsmarter">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                normalizr-Redux state flatten
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-08T22:37:17+08:00">
+                2017-04-08
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2017-04-08T14:47:31+08:00">
+                2017-04-08
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Readme/" itemprop="url" rel="index">
+                    <span itemprop="name">Readme</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/04/08/normalizr-Redux-state-flatten/" class="leancloud_visitors" data-flag-title="normalizr-Redux state flatten">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  1,980
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长</span>
+                
+                <span title="阅读时长">
+                  12
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p> Normalizr Guide</p>
+<h1 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h1><p>Consider a typical blog post. The API response for a single post might look something like this:</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  <span class="attr">"id"</span>: <span class="string">"123"</span>,</div><div class="line">  <span class="attr">"author"</span>: &#123;</div><div class="line">    <span class="attr">"id"</span>: <span class="string">"1"</span>,</div><div class="line">    <span class="attr">"name"</span>: <span class="string">"Paul"</span></div><div class="line">  &#125;,</div><div class="line">  <span class="attr">"title"</span>: <span class="string">"My awesome blog post"</span>,</div><div class="line">  <span class="attr">"comments"</span>: [</div><div class="line">    &#123;</div><div class="line">      <span class="attr">"id"</span>: <span class="string">"324"</span>,</div><div class="line">      <span class="attr">"commenter"</span>: &#123;</div><div class="line">        <span class="attr">"id"</span>: <span class="string">"2"</span>,</div><div class="line">        <span class="attr">"name"</span>: <span class="string">"Nicole"</span></div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">  ]</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>We have two nested entity types within our <code>article</code>: <code>users</code> and <code>comments</code>. Using various <code>schema</code>, we can normalize all three entity types down:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> &#123; normalize, schema &#125; <span class="keyword">from</span> <span class="string">'normalizr'</span>;</div><div class="line"></div><div class="line"><span class="comment">// Define a users schema</span></div><div class="line"><span class="keyword">const</span> user = <span class="keyword">new</span> schema.Entity(<span class="string">'users'</span>);</div><div class="line"></div><div class="line"><span class="comment">// Define your comments schema</span></div><div class="line"><span class="keyword">const</span> comment = <span class="keyword">new</span> schema.Entity(<span class="string">'comments'</span>, &#123;</div><div class="line">  <span class="attr">commenter</span>: user</div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="comment">// Define your article </span></div><div class="line"><span class="keyword">const</span> article = <span class="keyword">new</span> schema.Entity(<span class="string">'articles'</span>, &#123; </div><div class="line">  <span class="attr">author</span>: user,</div><div class="line">  <span class="attr">comments</span>: [ comment ]</div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="keyword">const</span> normalizedData = normalize(originalData, article);</div></pre></td></tr></table></figure>
+<p>Now, <code>normalizedData</code> will be:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  <span class="attr">result</span>: <span class="string">"123"</span>,</div><div class="line">  <span class="attr">entities</span>: &#123;</div><div class="line">    <span class="string">"articles"</span>: &#123; </div><div class="line">      <span class="string">"123"</span>: &#123; </div><div class="line">        <span class="attr">id</span>: <span class="string">"123"</span>,</div><div class="line">        <span class="attr">author</span>: <span class="string">"1"</span>,</div><div class="line">        <span class="attr">title</span>: <span class="string">"My awesome blog post"</span>,</div><div class="line">        <span class="attr">comments</span>: [ <span class="string">"324"</span> ]</div><div class="line">      &#125;</div><div class="line">    &#125;,</div><div class="line">    <span class="string">"users"</span>: &#123;</div><div class="line">      <span class="string">"1"</span>: &#123; <span class="string">"id"</span>: <span class="string">"1"</span>, <span class="string">"name"</span>: <span class="string">"Paul"</span> &#125;,</div><div class="line">      <span class="string">"2"</span>: &#123; <span class="string">"id"</span>: <span class="string">"2"</span>, <span class="string">"name"</span>: <span class="string">"Nicole"</span> &#125;</div><div class="line">    &#125;,</div><div class="line">    <span class="string">"comments"</span>: &#123;</div><div class="line">      <span class="string">"324"</span>: &#123; <span class="attr">id</span>: <span class="string">"324"</span>, <span class="string">"commenter"</span>: <span class="string">"2"</span> &#125;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h1><h2 id="Motivation"><a href="#Motivation" class="headerlink" title="Motivation"></a>Motivation</h2><p>Many APIs, public or not, return JSON data that has deeply nested objects. Using data in this kind of structure is often <a href="https://groups.google.com/forum/#!topic/reactjs/jbh50-GJxpg" target="_blank" rel="external">very difficult</a> for JavaScript applications, especially those using <a href="http://facebook.github.io/flux/" target="_blank" rel="external">Flux</a> or <a href="http://redux.js.org/" target="_blank" rel="external">Redux</a>.</p>
+<h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><p>Normalizr is a small, but powerful utility for taking JSON with a schema definition and returning nested entities with their IDs, gathered in dictionaries.</p>
+<h3 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h3><p>The following nested object:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">[&#123;</div><div class="line">  <span class="attr">id</span>: <span class="number">1</span>,</div><div class="line">  <span class="attr">title</span>: <span class="string">'Some Article'</span>,</div><div class="line">  <span class="attr">author</span>: &#123;</div><div class="line">    <span class="attr">id</span>: <span class="number">1</span>,</div><div class="line">    <span class="attr">name</span>: <span class="string">'Dan'</span></div><div class="line">  &#125;</div><div class="line">&#125;, &#123;</div><div class="line">  <span class="attr">id</span>: <span class="number">2</span>,</div><div class="line">  <span class="attr">title</span>: <span class="string">'Other Article'</span>,</div><div class="line">  <span class="attr">author</span>: &#123;</div><div class="line">    <span class="attr">id</span>: <span class="number">1</span>,</div><div class="line">    <span class="attr">name</span>: <span class="string">'Dan'</span></div><div class="line">  &#125;</div><div class="line">&#125;]</div></pre></td></tr></table></figure>
+<p>Can be normalized to:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  <span class="attr">result</span>: [<span class="number">1</span>, <span class="number">2</span>],</div><div class="line">  <span class="attr">entities</span>: &#123;</div><div class="line">    <span class="attr">articles</span>: &#123;</div><div class="line">      <span class="number">1</span>: &#123;</div><div class="line">        <span class="attr">id</span>: <span class="number">1</span>,</div><div class="line">        <span class="attr">title</span>: <span class="string">'Some Article'</span>,</div><div class="line">        <span class="attr">author</span>: <span class="number">1</span></div><div class="line">      &#125;,</div><div class="line">      <span class="number">2</span>: &#123;</div><div class="line">        <span class="attr">id</span>: <span class="number">2</span>,</div><div class="line">        <span class="attr">title</span>: <span class="string">'Other Article'</span>,</div><div class="line">        <span class="attr">author</span>: <span class="number">1</span></div><div class="line">      &#125;</div><div class="line">    &#125;,</div><div class="line">    <span class="attr">users</span>: &#123;</div><div class="line">      <span class="number">1</span>: &#123;</div><div class="line">        <span class="attr">id</span>: <span class="number">1</span>,</div><div class="line">        <span class="attr">name</span>: <span class="string">'Dan'</span></div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="API"><a href="#API" class="headerlink" title="API"></a>API</h1><ul>
+<li><a href="#normalizedata-schema">normalize</a></li>
+<li><a href="#denormalizeinput-schema-entities">denormalize</a></li>
+<li><a href="#schema">schema</a><ul>
+<li><a href="#arraydefinition-schemaattribute">Array</a></li>
+<li><a href="#entitykey-definition---options--">Entity</a></li>
+<li><a href="#objectdefinition">Object</a></li>
+<li><a href="#uniondefinition-schemaattribute">Union</a></li>
+<li><a href="#valuesdefinition-schemaattribute">Values</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="normalize-data-schema"><a href="#normalize-data-schema" class="headerlink" title="normalize(data, schema)"></a><code>normalize(data, schema)</code></h2><p>Normalizes input data per the schema definition provided.</p>
+<ul>
+<li><code>data</code>: <strong>required</strong> Input JSON (or plain JS object) data that needs normalization.</li>
+<li><code>schema</code>: <strong>required</strong> A schema definition</li>
+</ul>
+<h3 id="Usage"><a href="#Usage" class="headerlink" title="Usage"></a>Usage</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> &#123; normalize, schema &#125; <span class="keyword">from</span> <span class="string">'normalizr'</span>;</div><div class="line"></div><div class="line"><span class="keyword">const</span> myData = &#123; <span class="attr">users</span>: [ &#123; <span class="attr">id</span>: <span class="number">1</span> &#125;, &#123; <span class="attr">id</span>: <span class="number">2</span> &#125; ] &#125;;</div><div class="line"><span class="keyword">const</span> user = <span class="keyword">new</span> schema.Entity(<span class="string">'users'</span>);</div><div class="line"><span class="keyword">const</span> mySchema = &#123; <span class="attr">users</span>: [ user ] &#125;</div><div class="line"><span class="keyword">const</span> normalizedData = normalize(myData, mySchema);</div></pre></td></tr></table></figure>
+<h3 id="Output"><a href="#Output" class="headerlink" title="Output"></a>Output</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  <span class="attr">result</span>: &#123; <span class="attr">users</span>: [ <span class="number">1</span>, <span class="number">2</span> ] &#125;,</div><div class="line">  <span class="attr">entities</span>: &#123;</div><div class="line">    <span class="attr">users</span>: &#123;</div><div class="line">      <span class="string">'1'</span>: &#123; <span class="attr">id</span>: <span class="number">1</span> &#125;,</div><div class="line">      <span class="string">'2'</span>: &#123; <span class="attr">id</span>: <span class="number">2</span> &#125;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="denormalize-input-schema-entities"><a href="#denormalize-input-schema-entities" class="headerlink" title="denormalize(input, schema, entities)"></a><code>denormalize(input, schema, entities)</code></h2><p>Denormalizes an input based on schema and provided entities from a plain object or Immutable data. The reverse of <code>normalize</code>.</p>
+<p><em>Special Note:</em> Be careful with denormalization. Prematurely reverting your data to large, nested objects could cause performance impacts in React (and other) applications.</p>
+<p>If your schema and data have recursive references, only the first instance of an entity will be given. Subsequent references will be returned as the <code>id</code> provided.</p>
+<ul>
+<li><code>input</code>: <strong>required</strong> The normalized result that should be <em>de-normalized</em>. Usually the same value that was given in the <code>result</code> key of the output of <code>normalize</code>.</li>
+<li><code>schema</code>: <strong>required</strong> A schema definition that was used to get the value for <code>input</code>.</li>
+<li><code>entities</code>: <strong>required</strong> An object, keyed by entity schema names that may appear in the denormalized output. Also accepts an object with Immutable data.</li>
+</ul>
+<h3 id="Usage-1"><a href="#Usage-1" class="headerlink" title="Usage"></a>Usage</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> &#123; denormalize, schema &#125; <span class="keyword">from</span> <span class="string">'normalizr'</span>;</div><div class="line"></div><div class="line"><span class="keyword">const</span> user = <span class="keyword">new</span> schema.Entity(<span class="string">'users'</span>);</div><div class="line"><span class="keyword">const</span> mySchema = &#123; <span class="attr">users</span>: [ user ] &#125;</div><div class="line"><span class="keyword">const</span> entities = &#123; <span class="attr">users</span>: &#123; <span class="string">'1'</span>: &#123; <span class="attr">id</span>: <span class="number">1</span> &#125;, <span class="string">'2'</span>: &#123; <span class="attr">id</span>: <span class="number">2</span> &#125; &#125; &#125;;</div><div class="line"><span class="keyword">const</span> denormalizedData = denormalize(&#123; <span class="attr">users</span>: [ <span class="number">1</span>, <span class="number">2</span> ] &#125;, mySchema, entities);</div></pre></td></tr></table></figure>
+<h3 id="Output-1"><a href="#Output-1" class="headerlink" title="Output"></a>Output</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&#123; </div><div class="line">  <span class="attr">users</span>: [</div><div class="line">    &#123; <span class="attr">id</span>: <span class="number">1</span> &#125;,</div><div class="line">    &#123; <span class="attr">id</span>: <span class="number">2</span> &#125;</div><div class="line">  ]</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="schema"><a href="#schema" class="headerlink" title="schema"></a><code>schema</code></h2><h3 id="Array-definition-schemaAttribute"><a href="#Array-definition-schemaAttribute" class="headerlink" title="Array(definition, schemaAttribute)"></a><code>Array(definition, schemaAttribute)</code></h3><p>Creates a schema to normalize an array of entities. If the input value is an <code>Object</code> instead of an <code>Array</code>, the normalized result will be an <code>Array</code> of the <code>Object</code>‘s values. </p>
+<p><em>Note: The same behavior can be defined with shorthand syntax: <code>[ mySchema ]</code></em></p>
+<ul>
+<li><code>definition</code>: <strong>required</strong> A singular schema that this array contains <em>or</em> a mapping of schema to attribute values.</li>
+<li><code>schemaAttribute</code>: <em>optional</em> (required if <code>definition</code> is not a singular schema) The attribute on each entity found that defines what schema, per the definition mapping, to use when normalizing.<br>Can be a string or a function. If given a function, accepts the following arguments:  <ul>
+<li><code>value</code>: The input value of the entity.</li>
+<li><code>parent</code>: The parent object of the input array.</li>
+<li><code>key</code>: The key at which the input array appears on the parent object.</li>
+</ul>
+</li>
+</ul>
+<h4 id="Instance-Methods"><a href="#Instance-Methods" class="headerlink" title="Instance Methods"></a>Instance Methods</h4><ul>
+<li><code>define(definition)</code>: When used, the <code>definition</code> passed in will be merged with the original definition passed to the <code>Array</code> constructor. This method tends to be useful for creating circular references in schema.</li>
+</ul>
+<h4 id="Usage-2"><a href="#Usage-2" class="headerlink" title="Usage"></a>Usage</h4><p>To describe a simple array of a singular entity type:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> data = [ &#123; <span class="attr">id</span>: <span class="string">'123'</span>, <span class="attr">name</span>: <span class="string">'Jim'</span> &#125;, &#123; <span class="attr">id</span>: <span class="string">'456'</span>, <span class="attr">name</span>: <span class="string">'Jane'</span> &#125; ];</div><div class="line"><span class="keyword">const</span> userSchema = <span class="keyword">new</span> schema.Entity(<span class="string">'users'</span>);</div><div class="line"></div><div class="line"><span class="keyword">const</span> userListSchema = <span class="keyword">new</span> schema.Array(userSchema);</div><div class="line"><span class="comment">// or use shorthand syntax:</span></div><div class="line"><span class="keyword">const</span> userListSchema = [ userSchema ];</div><div class="line"></div><div class="line"><span class="keyword">const</span> normalizedData = normalize(data, userListSchema);</div></pre></td></tr></table></figure>
+<h4 id="Output-2"><a href="#Output-2" class="headerlink" title="Output"></a>Output</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  <span class="attr">entities</span>: &#123;</div><div class="line">    <span class="attr">users</span>: &#123;</div><div class="line">      <span class="string">'123'</span>: &#123; <span class="attr">id</span>: <span class="string">'123'</span>, <span class="attr">name</span>: <span class="string">'Jim'</span> &#125;,</div><div class="line">      <span class="string">'456'</span>: &#123; <span class="attr">id</span>: <span class="string">'456'</span>, <span class="attr">name</span>: <span class="string">'Jane'</span> &#125;</div><div class="line">    &#125;</div><div class="line">  &#125;,</div><div class="line">  <span class="attr">result</span>: [ <span class="string">'123'</span>, <span class="string">'456'</span> ]</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>If your input data is an array of more than one type of entity, it is necessary to define a schema mapping. </p>
+<p><em>Note: If your data returns an object that you did not provide a mapping for, the original object will be returned in the result and an entity will not be created.</em></p>
+<p>For example:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> data = [ &#123; <span class="attr">id</span>: <span class="number">1</span>, <span class="attr">type</span>: <span class="string">'admin'</span> &#125;, &#123; <span class="attr">id</span>: <span class="number">2</span>, <span class="attr">type</span>: <span class="string">'user'</span> &#125; ];</div><div class="line"></div><div class="line"><span class="keyword">const</span> userSchema = <span class="keyword">new</span> schema.Entity(<span class="string">'users'</span>);</div><div class="line"><span class="keyword">const</span> adminSchema = <span class="keyword">new</span> schema.Entity(<span class="string">'admins'</span>);</div><div class="line"><span class="keyword">const</span> myArray = <span class="keyword">new</span> schema.Array(&#123;</div><div class="line">  <span class="attr">admins</span>: adminSchema,</div><div class="line">  <span class="attr">users</span>: userSchema</div><div class="line">&#125;, (input, parent, key) =&gt; <span class="string">`<span class="subst">$&#123;input.type&#125;</span>s`</span>);</div><div class="line"></div><div class="line"><span class="keyword">const</span> normalizedData = normalize(data, myArray);</div></pre></td></tr></table></figure>
+<h4 id="Output-3"><a href="#Output-3" class="headerlink" title="Output"></a>Output</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  <span class="attr">entities</span>: &#123;</div><div class="line">    <span class="attr">admins</span>: &#123; <span class="string">'1'</span>: &#123; <span class="attr">id</span>: <span class="number">1</span>, <span class="attr">type</span>: <span class="string">'admin'</span> &#125; &#125;,</div><div class="line">    <span class="attr">users</span>: &#123; <span class="string">'2'</span>: &#123; <span class="attr">id</span>: <span class="number">2</span>, <span class="attr">type</span>: <span class="string">'user'</span> &#125; &#125;</div><div class="line">  &#125;,</div><div class="line">  <span class="attr">result</span>: [</div><div class="line">    &#123; <span class="attr">id</span>: <span class="number">1</span>, <span class="attr">schema</span>: <span class="string">'admins'</span> &#125;,</div><div class="line">    &#123; <span class="attr">id</span>: <span class="number">2</span>, <span class="attr">schema</span>: <span class="string">'users'</span> &#125;</div><div class="line">  ]</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="Entity-key-definition-options"><a href="#Entity-key-definition-options" class="headerlink" title="Entity(key, definition = {}, options = {})"></a><code>Entity(key, definition = {}, options = {})</code></h3><ul>
+<li><code>key</code>: <strong>required</strong> The key name under which all entities of this type will be listed in the normalized response. Must be a string name.</li>
+<li><code>definition</code>: A definition of the nested entities found within this entity. Defaults to empty object.<br>You <em>do not</em> need to define any keys in your entity other than those that hold nested entities. All other values will be copied to the normalized entity’s output.</li>
+<li><code>options</code>:<ul>
+<li><code>idAttribute</code>: The attribute where unique IDs for each of this entity type can be found.<br>Accepts either a string key or a function. Defaults to <code>id</code>.<br>As a function, accepts the following arguments, in order: <ul>
+<li><code>value</code>: The input value of the entity.</li>
+<li><code>parent</code>: The parent object of the input array.</li>
+<li><code>key</code>: The key at which the input array appears on the parent object.</li>
+</ul>
+</li>
+<li><code>mergeStrategy(entityA, entityB)</code>: Strategy to use when merging two entities with the same <code>id</code> value. Defaults to merge the more recently found entity onto the previous.</li>
+<li><code>processStrategy(value, parent, key)</code>: Strategy to use when pre-processing the entity. Use this method to add extra data, defaults, and/or completely change the entity before normalization is complete. Defaults to returning a shallow copy of the input entity.<br><em>Note: It is recommended to always return a copy of your input and not modify the original.</em><br>The function accepts the following arguments, in order: <ul>
+<li><code>value</code>: The input value of the entity.</li>
+<li><code>parent</code>: The parent object of the input array.</li>
+<li><code>key</code>: The key at which the input array appears on the parent object.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="Instance-Methods-1"><a href="#Instance-Methods-1" class="headerlink" title="Instance Methods"></a>Instance Methods</h4><ul>
+<li><code>define(definition)</code>: When used, the <code>definition</code> passed in will be merged with the original definition passed to the <code>Entity</code> constructor. This method tends to be useful for creating circular references in schema.</li>
+<li><code>key</code>: Returns the key provided to the constructor.</li>
+<li><code>idAttribute</code>: Returns the idAttribute provided to the constructor in options.</li>
+</ul>
+<h4 id="Usage-3"><a href="#Usage-3" class="headerlink" title="Usage"></a>Usage</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> data = &#123; <span class="attr">id_str</span>: <span class="string">'123'</span>, <span class="attr">url</span>: <span class="string">'https://twitter.com'</span>, <span class="attr">user</span>: &#123; <span class="attr">id_str</span>: <span class="string">'456'</span>, <span class="attr">name</span>: <span class="string">'Jimmy'</span> &#125; &#125;;</div><div class="line"></div><div class="line"><span class="keyword">const</span> user = <span class="keyword">new</span> schema.Entity(<span class="string">'users'</span>, &#123;&#125;, &#123; <span class="attr">idAttribute</span>: <span class="string">'id_str'</span> &#125;);</div><div class="line"><span class="keyword">const</span> tweet = <span class="keyword">new</span> schema.Entity(<span class="string">'tweets'</span>, &#123; <span class="attr">user</span>: user &#125;, &#123; </div><div class="line">    <span class="attr">idAttribute</span>: <span class="string">'id_str'</span>,</div><div class="line">    <span class="comment">// Apply everything from entityB over entityA, except for "favorites"</span></div><div class="line">    mergeStrategy: <span class="function">(<span class="params">entityA, entityB</span>) =&gt;</span> (&#123;</div><div class="line">      ...entityA,</div><div class="line">      ...entityB,</div><div class="line">      <span class="attr">favorites</span>: entityA.favorites</div><div class="line">    &#125;),</div><div class="line">    <span class="comment">// Remove the URL field from the entity</span></div><div class="line">    processStrategy: <span class="function">(<span class="params">entity</span>) =&gt;</span> omit(entity, <span class="string">'url'</span>)</div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="keyword">const</span> normalizedData = normalize(data, tweet);</div></pre></td></tr></table></figure>
+<h4 id="Output-4"><a href="#Output-4" class="headerlink" title="Output"></a>Output</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  <span class="attr">entities</span>: &#123;</div><div class="line">    <span class="attr">tweets</span>: &#123; <span class="string">'123'</span>: &#123; <span class="attr">id_str</span>: <span class="string">'123'</span>, <span class="attr">user</span>: <span class="string">'456'</span> &#125; &#125;,</div><div class="line">    <span class="attr">users</span>: &#123; <span class="string">'456'</span>: &#123; <span class="attr">id_str</span>: <span class="string">'456'</span>, <span class="attr">name</span>: <span class="string">'Jimmy'</span> &#125; &#125;</div><div class="line">  &#125;,</div><div class="line">  <span class="attr">result</span>: <span class="string">'123'</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="Object-definition"><a href="#Object-definition" class="headerlink" title="Object(definition)"></a><code>Object(definition)</code></h3><p>Define a plain object mapping that has values needing to be normalized into Entities. <em>Note: The same behavior can be defined with shorthand syntax: <code>{ ... }</code></em></p>
+<ul>
+<li><code>definition</code>: <strong>required</strong> A definition of the nested entities found within this object. Defaults to empty object.<br>You <em>do not</em> need to define any keys in your object other than those that hold other entities. All other values will be copied to the normalized output.</li>
+</ul>
+<h4 id="Instance-Methods-2"><a href="#Instance-Methods-2" class="headerlink" title="Instance Methods"></a>Instance Methods</h4><ul>
+<li><code>define(definition)</code>: When used, the <code>definition</code> passed in will be merged with the original definition passed to the <code>Object</code> constructor. This method tends to be useful for creating circular references in schema.</li>
+</ul>
+<h4 id="Usage-4"><a href="#Usage-4" class="headerlink" title="Usage"></a>Usage</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// Example data response</span></div><div class="line"><span class="keyword">const</span> data = &#123; <span class="attr">users</span>: [ &#123; <span class="attr">id</span>: <span class="string">'123'</span>, <span class="attr">name</span>: <span class="string">'Beth'</span> &#125; ] &#125;;</div><div class="line"></div><div class="line"><span class="keyword">const</span> user = <span class="keyword">new</span> schema.Entity(<span class="string">'users'</span>);</div><div class="line"><span class="keyword">const</span> responseSchema = <span class="keyword">new</span> schema.Object(&#123; <span class="attr">users</span>: <span class="keyword">new</span> schema.Array(user) &#125;);</div><div class="line"><span class="comment">// or shorthand</span></div><div class="line"><span class="keyword">const</span> responseSchema = &#123; <span class="attr">users</span>: <span class="keyword">new</span> schema.Array(user) &#125;;</div><div class="line"></div><div class="line"><span class="keyword">const</span> normalizedData = normalize(data, responseSchema);</div></pre></td></tr></table></figure>
+<h4 id="Output-5"><a href="#Output-5" class="headerlink" title="Output"></a>Output</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  <span class="attr">entities</span>: &#123;</div><div class="line">    <span class="attr">users</span>: &#123; <span class="string">'123'</span>: &#123; <span class="attr">id_str</span>: <span class="string">'123'</span>, <span class="attr">name</span>: <span class="string">'Beth'</span> &#125; &#125;</div><div class="line">  &#125;,</div><div class="line">  <span class="attr">result</span>: &#123; <span class="attr">users</span>: [ <span class="string">'123'</span> ] &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="Union-definition-schemaAttribute"><a href="#Union-definition-schemaAttribute" class="headerlink" title="Union(definition, schemaAttribute)"></a><code>Union(definition, schemaAttribute)</code></h3><p>Describe a schema which is a union of multiple schemas. This is useful if you need the polymorphic behavior provided by <code>schema.Array</code> or <code>schema.Values</code> but for non-collection fields.</p>
+<ul>
+<li><code>definition</code>: <strong>required</strong> An object mapping the definition of the nested entities found within the input array</li>
+<li><code>schemaAttribute</code>: <strong>required</strong> The attribute on each entity found that defines what schema, per the definition mapping, to use when normalizing.<br>Can be a string or a function. If given a function, accepts the following arguments:  <ul>
+<li><code>value</code>: The input value of the entity.</li>
+<li><code>parent</code>: The parent object of the input array.</li>
+<li><code>key</code>: The key at which the input array appears on the parent object.</li>
+</ul>
+</li>
+</ul>
+<h4 id="Instance-Methods-3"><a href="#Instance-Methods-3" class="headerlink" title="Instance Methods"></a>Instance Methods</h4><ul>
+<li><code>define(definition)</code>: When used, the <code>definition</code> passed in will be merged with the original definition passed to the <code>Union</code> constructor. This method tends to be useful for creating circular references in schema.</li>
+</ul>
+<h4 id="Usage-5"><a href="#Usage-5" class="headerlink" title="Usage"></a>Usage</h4><p><em>Note: If your data returns an object that you did not provide a mapping for, the original object will be returned in the result and an entity will not be created.</em></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> data = &#123; <span class="attr">owner</span>: &#123; <span class="attr">id</span>: <span class="number">1</span>, <span class="attr">type</span>: <span class="string">'user'</span>, <span class="attr">name</span>: <span class="string">'Anne'</span> &#125; &#125;;</div><div class="line"></div><div class="line"><span class="keyword">const</span> user = <span class="keyword">new</span> schema.Entity(<span class="string">'users'</span>);</div><div class="line"><span class="keyword">const</span> group = <span class="keyword">new</span> schema.Entity(<span class="string">'groups'</span>);</div><div class="line"><span class="keyword">const</span> unionSchema = <span class="keyword">new</span> schema.Union(&#123;</div><div class="line">  <span class="attr">user</span>: user,</div><div class="line">  <span class="attr">group</span>: group</div><div class="line">&#125;, <span class="string">'type'</span>);</div><div class="line"></div><div class="line"><span class="keyword">const</span> normalizedData = normalize(data, &#123; <span class="attr">owner</span>: unionSchema &#125;);</div></pre></td></tr></table></figure>
+<h4 id="Output-6"><a href="#Output-6" class="headerlink" title="Output"></a>Output</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  <span class="attr">entities</span>: &#123;</div><div class="line">    <span class="attr">users</span>: &#123; <span class="string">'1'</span>: &#123; <span class="attr">id</span>: <span class="number">1</span>, <span class="attr">type</span>: <span class="string">'user'</span>, <span class="attr">name</span>: <span class="string">'Anne'</span> &#125; &#125;</div><div class="line">  &#125;,</div><div class="line">  <span class="attr">result</span>: &#123; <span class="attr">owner</span>: &#123; <span class="attr">id</span>: <span class="number">1</span>, <span class="attr">schema</span>: <span class="string">'user'</span> &#125; &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="Values-definition-schemaAttribute"><a href="#Values-definition-schemaAttribute" class="headerlink" title="Values(definition, schemaAttribute)"></a><code>Values(definition, schemaAttribute)</code></h3><p>Describes a map whose values follow the given schema.</p>
+<ul>
+<li><code>definition</code>: <strong>required</strong> A singular schema that this array contains <em>or</em> a mapping of schema to attribute values.</li>
+<li><code>schemaAttribute</code>: <em>optional</em> (required if <code>definition</code> is not a singular schema) The attribute on each entity found that defines what schema, per the definition mapping, to use when normalizing.<br>Can be a string or a function. If given a function, accepts the following arguments:  <ul>
+<li><code>value</code>: The input value of the entity.</li>
+<li><code>parent</code>: The parent object of the input array.</li>
+<li><code>key</code>: The key at which the input array appears on the parent object.</li>
+</ul>
+</li>
+</ul>
+<h4 id="Instance-Methods-4"><a href="#Instance-Methods-4" class="headerlink" title="Instance Methods"></a>Instance Methods</h4><ul>
+<li><code>define(definition)</code>: When used, the <code>definition</code> passed in will be merged with the original definition passed to the <code>Values</code> constructor. This method tends to be useful for creating circular references in schema.</li>
+</ul>
+<h4 id="Usage-6"><a href="#Usage-6" class="headerlink" title="Usage"></a>Usage</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> data = &#123; <span class="attr">firstThing</span>: &#123; <span class="attr">id</span>: <span class="number">1</span> &#125;, <span class="attr">secondThing</span>: &#123; <span class="attr">id</span>: <span class="number">2</span> &#125; &#125;;</div><div class="line"></div><div class="line"><span class="keyword">const</span> item = <span class="keyword">new</span> schema.Entity(<span class="string">'items'</span>);</div><div class="line"><span class="keyword">const</span> valuesSchema = <span class="keyword">new</span> schema.Values(item);</div><div class="line"></div><div class="line"><span class="keyword">const</span> normalizedData = normalize(data, valuesSchema);</div></pre></td></tr></table></figure>
+<h4 id="Output-7"><a href="#Output-7" class="headerlink" title="Output"></a>Output</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  <span class="attr">entities</span>: &#123;</div><div class="line">    <span class="attr">items</span>: &#123; <span class="string">'1'</span>: &#123; <span class="attr">id</span>: <span class="number">1</span> &#125;, <span class="string">'2'</span>: &#123; <span class="attr">id</span>: <span class="number">2</span> &#125; &#125;</div><div class="line">  &#125;,</div><div class="line">  <span class="attr">result</span>: &#123; <span class="attr">firstThing</span>: <span class="number">1</span>, <span class="attr">secondThing</span>: <span class="number">2</span> &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>If your input data is an object that has values of more than one type of entity, but their schema is not easily defined by the key, you can use a mapping of schema, much like <code>schema.Union</code> and <code>schema.Array</code>.</p>
+<p><em>Note: If your data returns an object that you did not provide a mapping for, the original object will be returned in the result and an entity will not be created.</em></p>
+<p>For example:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> data = &#123;</div><div class="line">  <span class="string">'1'</span>: &#123; <span class="attr">id</span>: <span class="number">1</span>, <span class="attr">type</span>: <span class="string">'admin'</span> &#125;, </div><div class="line">  <span class="string">'2'</span>: &#123; <span class="attr">id</span>: <span class="number">2</span>, <span class="attr">type</span>: <span class="string">'user'</span> &#125;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="keyword">const</span> userSchema = <span class="keyword">new</span> schema.Entity(<span class="string">'users'</span>);</div><div class="line"><span class="keyword">const</span> adminSchema = <span class="keyword">new</span> schema.Entity(<span class="string">'admins'</span>);</div><div class="line"><span class="keyword">const</span> valuesSchema = <span class="keyword">new</span> schema.Values(&#123;</div><div class="line">  <span class="attr">admins</span>: adminSchema,</div><div class="line">  <span class="attr">users</span>: userSchema</div><div class="line">&#125;, (input, parent, key) =&gt; <span class="string">`<span class="subst">$&#123;input.type&#125;</span>s`</span>);</div><div class="line"></div><div class="line"><span class="keyword">const</span> normalizedData = normalize(data, valuesSchema);</div></pre></td></tr></table></figure>
+<h4 id="Output-8"><a href="#Output-8" class="headerlink" title="Output"></a>Output</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  <span class="attr">entities</span>: &#123;</div><div class="line">    <span class="attr">admins</span>: &#123; <span class="string">'1'</span>: &#123; <span class="attr">id</span>: <span class="number">1</span>, <span class="attr">type</span>: <span class="string">'admin'</span> &#125; &#125;,</div><div class="line">    <span class="attr">users</span>: &#123; <span class="string">'2'</span>: &#123; <span class="attr">id</span>: <span class="number">2</span>, <span class="attr">type</span>: <span class="string">'user'</span> &#125; &#125;</div><div class="line">  &#125;,</div><div class="line">  <span class="attr">result</span>: &#123;</div><div class="line">    <span class="string">'1'</span>: &#123; <span class="attr">id</span>: <span class="number">1</span>, <span class="attr">schema</span>: <span class="string">'admins'</span> &#125;,</div><div class="line">    <span class="string">'2'</span>: &#123; <span class="attr">id</span>: <span class="number">2</span>, <span class="attr">schema</span>: <span class="string">'users'</span> &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Redux/" rel="tag"># Redux</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/04/08/airbnb-javascript-style/" rel="next" title="airbnb-javascript-style">
+                <i class="fa fa-chevron-left"></i> airbnb-javascript-style
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/04/08/翻译-Redux和GraphQL入门/" rel="prev" title="翻译|Redux和GraphQL入门">
+                翻译|Redux和GraphQL入门 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpeg"
+               alt="phpsmarter" />
+          <p class="site-author-name" itemprop="name">phpsmarter</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">86</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Quick-Start"><span class="nav-number">1.</span> <span class="nav-text">Quick Start</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Introduction"><span class="nav-number">2.</span> <span class="nav-text">Introduction</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Motivation"><span class="nav-number">2.1.</span> <span class="nav-text">Motivation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Solution"><span class="nav-number">2.2.</span> <span class="nav-text">Solution</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Example"><span class="nav-number">2.2.1.</span> <span class="nav-text">Example</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#API"><span class="nav-number">3.</span> <span class="nav-text">API</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#normalize-data-schema"><span class="nav-number">3.1.</span> <span class="nav-text">normalize(data, schema)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Usage"><span class="nav-number">3.1.1.</span> <span class="nav-text">Usage</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Output"><span class="nav-number">3.1.2.</span> <span class="nav-text">Output</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#denormalize-input-schema-entities"><span class="nav-number">3.2.</span> <span class="nav-text">denormalize(input, schema, entities)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Usage-1"><span class="nav-number">3.2.1.</span> <span class="nav-text">Usage</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Output-1"><span class="nav-number">3.2.2.</span> <span class="nav-text">Output</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#schema"><span class="nav-number">3.3.</span> <span class="nav-text">schema</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Array-definition-schemaAttribute"><span class="nav-number">3.3.1.</span> <span class="nav-text">Array(definition, schemaAttribute)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Instance-Methods"><span class="nav-number">3.3.1.1.</span> <span class="nav-text">Instance Methods</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Usage-2"><span class="nav-number">3.3.1.2.</span> <span class="nav-text">Usage</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Output-2"><span class="nav-number">3.3.1.3.</span> <span class="nav-text">Output</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Output-3"><span class="nav-number">3.3.1.4.</span> <span class="nav-text">Output</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Entity-key-definition-options"><span class="nav-number">3.3.2.</span> <span class="nav-text">Entity(key, definition = {}, options = {})</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Instance-Methods-1"><span class="nav-number">3.3.2.1.</span> <span class="nav-text">Instance Methods</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Usage-3"><span class="nav-number">3.3.2.2.</span> <span class="nav-text">Usage</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Output-4"><span class="nav-number">3.3.2.3.</span> <span class="nav-text">Output</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Object-definition"><span class="nav-number">3.3.3.</span> <span class="nav-text">Object(definition)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Instance-Methods-2"><span class="nav-number">3.3.3.1.</span> <span class="nav-text">Instance Methods</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Usage-4"><span class="nav-number">3.3.3.2.</span> <span class="nav-text">Usage</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Output-5"><span class="nav-number">3.3.3.3.</span> <span class="nav-text">Output</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Union-definition-schemaAttribute"><span class="nav-number">3.3.4.</span> <span class="nav-text">Union(definition, schemaAttribute)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Instance-Methods-3"><span class="nav-number">3.3.4.1.</span> <span class="nav-text">Instance Methods</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Usage-5"><span class="nav-number">3.3.4.2.</span> <span class="nav-text">Usage</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Output-6"><span class="nav-number">3.3.4.3.</span> <span class="nav-text">Output</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Values-definition-schemaAttribute"><span class="nav-number">3.3.5.</span> <span class="nav-text">Values(definition, schemaAttribute)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Instance-Methods-4"><span class="nav-number">3.3.5.1.</span> <span class="nav-text">Instance Methods</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Usage-6"><span class="nav-number">3.3.5.2.</span> <span class="nav-text">Usage</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Output-7"><span class="nav-number">3.3.5.3.</span> <span class="nav-text">Output</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Output-8"><span class="nav-number">3.3.5.4.</span> <span class="nav-text">Output</span></a></li></ol></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-phone"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">phpsmarter</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+<div class="theme-info">
+  主题 - 
+  <a theme-link href="http://www.aikuaidi.cn/" target="_blank" >快递查询</a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("0kGBxj215XRijm6VofFkzlws-gzGzoHsz", "V2FDLF52mPXum5Hh6wvwGpEk");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+
+</body>
+</html>
