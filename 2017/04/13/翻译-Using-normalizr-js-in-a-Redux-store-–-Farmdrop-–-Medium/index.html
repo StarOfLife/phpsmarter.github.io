@@ -89,16 +89,16 @@
 
 
 
-<meta name="description" content="原文请参见,程序设计我理解简单一句话就是处理数据和展现数据.数组,对象和数据库都是展现数据的不同形式.我自从意识到这一点以后,就突然冒出一个念头,React中引入的Redux就可以作为一个数据库来思考啊,至少是能使用已经学过的开发web模式,框架+数据库的概念来辅助理解.但是Redux中的state还显的很简单,所以有程序员就引入了normalizr.js来继续扩展state的能力,最终这篇文章">
+<meta name="description" content="原文请参见,程序设计我理解简单一句话就是处理数据和展现数据.数组,对象和数据库都是展现数据的不同形式.自从意识到这一点以后,就突然冒出一个念头,React中引入的Redux就可以作为一个数据库来思考啊,至少是能使用已经学过的开发web模式,框架+数据库的概念来辅助理解.但是Redux中的state还显的很简单,所以有程序员就引入了normalizr.js来继续扩展state的能力,最终这篇文章就">
 <meta property="og:type" content="article">
 <meta property="og:title" content="翻译|Using normalizr.js in a Redux store – Farmdrop – Medium">
 <meta property="og:url" content="https://phpsmarter.github.com/2017/04/13/翻译-Using-normalizr-js-in-a-Redux-store-–-Farmdrop-–-Medium/index.html">
 <meta property="og:site_name" content="phpsmarter">
-<meta property="og:description" content="原文请参见,程序设计我理解简单一句话就是处理数据和展现数据.数组,对象和数据库都是展现数据的不同形式.我自从意识到这一点以后,就突然冒出一个念头,React中引入的Redux就可以作为一个数据库来思考啊,至少是能使用已经学过的开发web模式,框架+数据库的概念来辅助理解.但是Redux中的state还显的很简单,所以有程序员就引入了normalizr.js来继续扩展state的能力,最终这篇文章">
-<meta property="og:updated_time" content="2017-04-13T00:10:48.000Z">
+<meta property="og:description" content="原文请参见,程序设计我理解简单一句话就是处理数据和展现数据.数组,对象和数据库都是展现数据的不同形式.自从意识到这一点以后,就突然冒出一个念头,React中引入的Redux就可以作为一个数据库来思考啊,至少是能使用已经学过的开发web模式,框架+数据库的概念来辅助理解.但是Redux中的state还显的很简单,所以有程序员就引入了normalizr.js来继续扩展state的能力,最终这篇文章就">
+<meta property="og:updated_time" content="2017-04-13T21:49:57.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="翻译|Using normalizr.js in a Redux store – Farmdrop – Medium">
-<meta name="twitter:description" content="原文请参见,程序设计我理解简单一句话就是处理数据和展现数据.数组,对象和数据库都是展现数据的不同形式.我自从意识到这一点以后,就突然冒出一个念头,React中引入的Redux就可以作为一个数据库来思考啊,至少是能使用已经学过的开发web模式,框架+数据库的概念来辅助理解.但是Redux中的state还显的很简单,所以有程序员就引入了normalizr.js来继续扩展state的能力,最终这篇文章">
+<meta name="twitter:description" content="原文请参见,程序设计我理解简单一句话就是处理数据和展现数据.数组,对象和数据库都是展现数据的不同形式.自从意识到这一点以后,就突然冒出一个念头,React中引入的Redux就可以作为一个数据库来思考啊,至少是能使用已经学过的开发web模式,框架+数据库的概念来辅助理解.但是Redux中的state还显的很简单,所以有程序员就引入了normalizr.js来继续扩展state的能力,最终这篇文章就">
 
 
 
@@ -357,7 +357,7 @@
               
                 <span class="post-meta-item-text">更新于</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2017-04-13T08:10:48+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2017-04-14T05:49:57+08:00">
                 2017-04-13
               </time>
             
@@ -417,7 +417,7 @@
                   <span class="post-meta-item-text">字数统计</span>
                 
                 <span title="字数统计">
-                  1,793
+                  1,792
                 </span>
               
 
@@ -453,7 +453,7 @@
 
       
         <blockquote>
-<p>原文请<a href="https://medium.com/farmdrop/using-normalizr-js-in-a-redux-store-96ab33991369" target="_blank" rel="external">参见</a>,程序设计我理解简单一句话就是处理数据和展现数据.数组,对象和数据库都是展现数据的不同形式.我自从意识到这一点以后,就突然冒出一个念头,React中引入的Redux就可以作为一个数据库来思考啊,至少是能使用已经学过的开发web模式,框架+数据库的概念来辅助理解.但是Redux中的state还显的很简单,所以有程序员就引入了normalizr.js来继续扩展state的能力,最终这篇文章就也提出了简单数据库的概念.我对这个问题还不是太清楚,前面看文档的时候并没有意识到他的价值,现在返回头来看,发现这个可能还挺有用的.后面会继续学习这部分的内容.翻译部分完成,但是有些内容不理解.<strong>所以内容以原文为准</strong></p>
+<p>原文请<a href="https://medium.com/farmdrop/using-normalizr-js-in-a-redux-store-96ab33991369" target="_blank" rel="external">参见</a>,程序设计我理解简单一句话就是处理数据和展现数据.数组,对象和数据库都是展现数据的不同形式.自从意识到这一点以后,就突然冒出一个念头,React中引入的Redux就可以作为一个数据库来思考啊,至少是能使用已经学过的开发web模式,框架+数据库的概念来辅助理解.但是Redux中的state还显的很简单,所以有程序员就引入了normalizr.js来继续扩展state的能力,最终这篇文章就也提出了简单数据库的概念.我对这个问题还不是太清楚,前面看文档的时候并没有意识到他的价值,现在返回头来看,发现这个可能还挺有用的.后面会继续学习这部分的内容.翻译部分完成,但是有些内容不理解.<strong>所以内容以原文为准</strong></p>
 </blockquote>
 <h1 id="在Redux-store中使用normalizr-js"><a href="#在Redux-store中使用normalizr-js" class="headerlink" title="在Redux store中使用normalizr.js"></a>在Redux store中使用normalizr.js</h1><p>   最近我们在app中开始使用React,但是我们意识到当app规模扩大的时候,单凭Props来传递数据是不能适应app的大规模结构需求.单纯使用React,要维护和添加额外的功能或者重构(refactor,是这么翻译的吗？)都非常的困难.因此我们决定在app中整合使用Redux,我们花费了很多精力来重构代码,由此我觉得可以分享一下我学到的东西.<code>第一件事就是怎么在Redux store中组织数据</code>.</p>
 <h2 id="提出问题"><a href="#提出问题" class="headerlink" title="提出问题"></a>提出问题</h2><p>   我们的app是e-commerce,所以里面有订单和商品的概念,把订单和商品联系起来的是每一条 Line Items(订单项).一个 Line Item连接一个产品到订单,可以储存客户订单中每种产品的数量.<br>   为了确保我们的app的性能,我想确认在app运行中没有实体(entities)在内存中被复制.在我们以前的Angular app中,我们在内从中复制产品类似下面<br>   (译注:这里的复制的意思是有没有存在重复的问题)</p>
