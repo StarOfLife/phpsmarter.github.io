@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://phpsmarter.github.com/"/>
-  <updated>2017-04-16T06:16:44.000Z</updated>
+  <updated>2017-04-16T06:26:00.000Z</updated>
   <id>https://phpsmarter.github.com/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="https://phpsmarter.github.com/2017/04/16/%E7%BF%BB%E8%AF%91-A-Dummy%E2%80%99s-Guide-to-Redux-and-Thunk-in-React/"/>
     <id>https://phpsmarter.github.com/2017/04/16/翻译-A-Dummy’s-Guide-to-Redux-and-Thunk-in-React/</id>
     <published>2017-04-15T21:36:07.000Z</published>
-    <updated>2017-04-16T06:16:44.000Z</updated>
+    <updated>2017-04-16T06:26:00.000Z</updated>
     
     <content type="html"><![CDATA[<h1 id="Redux和Thunk的使用傻瓜教程"><a href="#Redux和Thunk的使用傻瓜教程" class="headerlink" title="Redux和Thunk的使用傻瓜教程"></a>Redux和Thunk的使用傻瓜教程</h1><blockquote>
 <p><a href="https://medium.com/@stowball/a-dummys-guide-to-redux-and-thunk-in-react-d8904a7005d3" target="_blank" rel="external">原文参见</a><br>  <a href="https://github.com/stowball/dummys-guide-to-redux-and-thunk-react" target="_blank" rel="external">Github repo</a><br>  强烈推荐这篇文章.</p>
@@ -91,8 +91,46 @@
   <figure class="highlight pf"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">   const mapStateToProps = (<span class="keyword">state</span>) =&gt; &#123;</div><div class="line">    return &#123;</div><div class="line">        items: <span class="keyword">state</span>.items,</div><div class="line">        hasErrored: <span class="keyword">state</span>.itemsHasErrored,</div><div class="line">        isLoading: <span class="keyword">state</span>.itemsIsLoading</div><div class="line">    &#125;;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
 <p> 接着我们需要另一函数在props中<code>dispatch</code>我们的<code>itemsFetchData()</code>函数.</p>
  <figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">  const mapDispatchToProps = (dispatch) =&gt; &#123;</div><div class="line">    <span class="keyword">return</span> &#123;</div><div class="line"><span class="symbol">        fetchData:</span> (url) =&gt; dispatch(itemsFetchData(url))</div><div class="line">    &#125;<span class="comment">;</span></div><div class="line">&#125;<span class="comment">;</span></div><div class="line"> ``` </div><div class="line"> </div><div class="line"> 还是把`item`前缀去掉.这里的fetchData函数接受一个`url`参数,返回</div><div class="line"> 派发调用`itemsFetchData(url)`操作.</div><div class="line"> </div><div class="line"> 现在,`mapStatetoProps()`和`mapDispatchToProps()`还不能做什么事情,需要改变一下代码</div></pre></td></tr></table></figure>
-<p> export default connect(mapStateToProps, mapDispatchToProps)(ItemList);<br> <figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"> `connect`函数把组件连接到Redux,同时映射了需要用到的props.</div><div class="line"> </div><div class="line"> 最后一步是使用props替换掉state.</div><div class="line"> </div><div class="line"> * 删掉`constructor()&#123;&#125;`和`fetchData()&#123;&#125;`</div><div class="line"> * 在`componentDidMount()`里把`this.fetchData()`改为`this.props.fetchData()`.</div><div class="line"> * `this.state.x` 统一改为`this.props.X`.</div><div class="line"></div><div class="line">你的组件看起来应该是</div></pre></td></tr></table></figure></p>
-<p>   import React, { Component } from ‘react’;<br>import { connect } from ‘react-redux’;<br>import { itemsFetchData } from ‘../actions/items’;<br>class ItemList extends Component {<br>    componentDidMount() {<br>        this.props.fetchData(‘<a href="http://5826ed963900d612000138bd.mockapi.io/items" target="_blank" rel="external">http://5826ed963900d612000138bd.mockapi.io/items</a>‘);<br>    }<br>    render() {<br>        if (this.props.hasErrored) {<br>            return </p><p>Sorry! There was an error loading the items</p>;<br>        }<br>        if (this.props.isLoading) {<br>            return <p>Loading…</p>;<br>        }<br>        return (<br>            <ul><br>                {this.props.items.map((item) =&gt; (<br>                    <li key="{item.id}"><br>                        {item.label}<br>                    </li><br>                ))}<br>            </ul><br>        );<br>    }<br>}<br>const mapStateToProps = (state) =&gt; {<br>    return {<br>        items: state.items,<br>        hasErrored: state.itemsHasErrored,<br>        isLoading: state.itemsIsLoading<br>    };<br>};<br>const mapDispatchToProps = (dispatch) =&gt; {<br>    return {<br>        fetchData: (url) =&gt; dispatch(itemsFetchData(url))<br>    };<br>};<br>export default connect(mapStateToProps, mapDispatchToProps)(ItemList);<br>  ```<p></p>
+<p> export default connect(mapStateToProps, mapDispatchToProps)(ItemList);<br> <figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">`connect`函数把组件连接到Redux,同时映射了需要用到的props.</div><div class="line"></div><div class="line">最后一步是使用props替换掉state.</div><div class="line"></div><div class="line">* 删掉`constructor()&#123;&#125;`和`fetchData()&#123;&#125;`</div><div class="line">* 在`componentDidMount()`里把`this.fetchData()`改为`this.props.fetchData()`.</div><div class="line">* `this.state.x` 统一改为`this.props.X`.</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line">  你的组件看起来应该是</div></pre></td></tr></table></figure></p>
+<pre><code>    import React, { Component } from &apos;react&apos;;
+  import { connect } from &apos;react-redux&apos;;
+ import { itemsFetchData } from &apos;../actions/items&apos;;
+ class ItemList extends Component {
+componentDidMount() {
+    this.props.fetchData(&apos;http://5826ed963900d612000138bd.mockapi.io/items&apos;);
+}
+render() {
+    if (this.props.hasErrored) {
+        return &lt;p&gt;Sorry! There was an error loading the items&lt;/p&gt;;
+    }
+    if (this.props.isLoading) {
+        return &lt;p&gt;Loading…&lt;/p&gt;;
+    }
+    return (
+        &lt;ul&gt;
+            {this.props.items.map((item) =&gt; (
+                &lt;li key={item.id}&gt;
+                    {item.label}
+                &lt;/li&gt;
+            ))}
+        &lt;/ul&gt;
+    );
+}
+}
+ const mapStateToProps = (state) =&gt; {
+return {
+    items: state.items,
+    hasErrored: state.itemsHasErrored,
+    isLoading: state.itemsIsLoading
+};
+};
+const mapDispatchToProps = (dispatch) =&gt; {
+return {
+    fetchData: (url) =&gt; dispatch(itemsFetchData(url))
+};
+};
+ export default connect(mapStateToProps, mapDispatchToProps)(ItemList);
+</code></pre><p>   ```</p>
 <p>  好了,application现在使用Redux和Redux thunk来fetch和显示数据.</p>
 <p>  也不是太困难，是不是？</p>
 <p>  你现在也是Redux大师了 :D</p>
