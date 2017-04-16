@@ -1,0 +1,1152 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Redux," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="phpsmarter" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="Redux和Thunk的使用傻瓜教程
+原文参见  Github repo  强烈推荐这篇文章.
+
+  如果你和我一样,读了Redux的文档,看了Dan的录像,Wes的课程,仍然不能抓住怎么使用Redux的核心,希望这个傻瓜教程能够帮到你.  在真正实施之前,我做了一些尝试,所以我决定写一点从已经存在的使用fetch JSON数据的app一步步转变为使用Redux和Redux Thunk的app.如">
+<meta property="og:type" content="article">
+<meta property="og:title" content="翻译|A Dummy’s Guide to Redux and Thunk in React">
+<meta property="og:url" content="https://phpsmarter.github.com/2017/04/16/翻译-A-Dummy’s-Guide-to-Redux-and-Thunk-in-React/index.html">
+<meta property="og:site_name" content="phpsmarter">
+<meta property="og:description" content="Redux和Thunk的使用傻瓜教程
+原文参见  Github repo  强烈推荐这篇文章.
+
+  如果你和我一样,读了Redux的文档,看了Dan的录像,Wes的课程,仍然不能抓住怎么使用Redux的核心,希望这个傻瓜教程能够帮到你.  在真正实施之前,我做了一些尝试,所以我决定写一点从已经存在的使用fetch JSON数据的app一步步转变为使用Redux和Redux Thunk的app.如">
+<meta property="og:updated_time" content="2017-04-16T06:11:42.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="翻译|A Dummy’s Guide to Redux and Thunk in React">
+<meta name="twitter:description" content="Redux和Thunk的使用傻瓜教程
+原文参见  Github repo  强烈推荐这篇文章.
+
+  如果你和我一样,读了Redux的文档,看了Dan的录像,Wes的课程,仍然不能抓住怎么使用Redux的核心,希望这个傻瓜教程能够帮到你.  在真正实施之前,我做了一些尝试,所以我决定写一点从已经存在的使用fetch JSON数据的app一步步转变为使用Redux和Redux Thunk的app.如">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://phpsmarter.github.com/2017/04/16/翻译-A-Dummy’s-Guide-to-Redux-and-Thunk-in-React/"/>
+
+
+
+
+
+  <title> 翻译|A Dummy’s Guide to Redux and Thunk in React | phpsmarter </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">phpsmarter</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">A beginner of React-native</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://phpsmarter.github.com/2017/04/16/翻译-A-Dummy’s-Guide-to-Redux-and-Thunk-in-React/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="phpsmarter">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="phpsmarter">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                翻译|A Dummy’s Guide to Redux and Thunk in React
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-16T05:36:07+08:00">
+                2017-04-15
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2017-04-16T14:11:42+08:00">
+                2017-04-16
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/翻译/" itemprop="url" rel="index">
+                    <span itemprop="name">翻译</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/04/16/翻译-A-Dummy’s-Guide-to-Redux-and-Thunk-in-React/" class="leancloud_visitors" data-flag-title="翻译|A Dummy’s Guide to Redux and Thunk in React">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  3,822
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长</span>
+                
+                <span title="阅读时长">
+                  16
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="Redux和Thunk的使用傻瓜教程"><a href="#Redux和Thunk的使用傻瓜教程" class="headerlink" title="Redux和Thunk的使用傻瓜教程"></a>Redux和Thunk的使用傻瓜教程</h1><blockquote>
+<p><a href="https://medium.com/@stowball/a-dummys-guide-to-redux-and-thunk-in-react-d8904a7005d3" target="_blank" rel="external">原文参见</a><br>  <a href="https://github.com/stowball/dummys-guide-to-redux-and-thunk-react" target="_blank" rel="external">Github repo</a><br>  强烈推荐这篇文章.</p>
+</blockquote>
+<p>  如果你和我一样,读了Redux的文档,看了Dan的录像,Wes的课程,仍然不能抓住怎么使用Redux的核心,希望这个傻瓜教程能够帮到你.<br>  在真正实施之前,我做了一些尝试,所以我决定写一点从已经存在的使用fetch JSON数据的app一步步转变为使用Redux和Redux Thunk的app.如果你不知道Thunk是什么,也不要担心,我们会在”Redux 之路”部分来使用它执行函数的异步调用.<br>  这个教程需要你对React和ES6/2015有基本的掌握.</p>
+<h2 id="非Redux方法"><a href="#非Redux方法" class="headerlink" title="非Redux方法"></a>非Redux方法</h2><p>  在<code>components/ItemList.js</code>中创建一个React组件,用于fetch和显示items列表.</p>
+<h2 id="罗列一下基础组件"><a href="#罗列一下基础组件" class="headerlink" title="罗列一下基础组件"></a>罗列一下基础组件</h2><p>  首先我们使用包含各种items的state配置一个静态的组件,2 个boolean state分别用于根据loading和error来渲染出各自的单独显示组件.</p>
+  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div></pre></td><td class="code"><pre><div class="line">   <span class="keyword">import</span> React, &#123; Component &#125; <span class="keyword">from</span> <span class="string">'react'</span>;</div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">ItemList</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</div><div class="line">    <span class="keyword">constructor</span>() &#123;</div><div class="line">        <span class="keyword">super</span>();</div><div class="line">        <span class="keyword">this</span>.state = &#123;</div><div class="line">            <span class="attr">items</span>: [<span class="comment">//items在列表中现实的内容</span></div><div class="line">                &#123;</div><div class="line">                    <span class="attr">id</span>: <span class="number">1</span>,</div><div class="line">                    <span class="attr">label</span>: <span class="string">'List item 1'</span></div><div class="line">                &#125;,</div><div class="line">                &#123;</div><div class="line">                    <span class="attr">id</span>: <span class="number">2</span>,</div><div class="line">                    <span class="attr">label</span>: <span class="string">'List item 2'</span></div><div class="line">                &#125;,</div><div class="line">                &#123;</div><div class="line">                    <span class="attr">id</span>: <span class="number">3</span>,</div><div class="line">                    <span class="attr">label</span>: <span class="string">'List item 3'</span></div><div class="line">                &#125;,</div><div class="line">                &#123;</div><div class="line">                    <span class="attr">id</span>: <span class="number">4</span>,</div><div class="line">                    <span class="attr">label</span>: <span class="string">'List item 4'</span></div><div class="line">                &#125;</div><div class="line">            ],</div><div class="line">            <span class="attr">hasErrored</span>: <span class="literal">false</span>, <span class="comment">//网络请求错误的状态</span></div><div class="line">            isLoading: <span class="literal">false</span>   <span class="comment">//网络请求中的状态</span></div><div class="line">        &#125;;</div><div class="line">    &#125;</div><div class="line">    render() &#123;</div><div class="line">        <span class="keyword">if</span> (<span class="keyword">this</span>.state.hasErrored) &#123;<span class="comment">//根据Errored的状态决</span></div><div class="line">        <span class="comment">//定是否加载这个组件,网络请求错误时,false=&gt;true</span></div><div class="line">            <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">p</span>&gt;</span>Sorry! There was an error loading the items<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span>;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">if</span> (<span class="keyword">this</span>.state.isLoading) &#123;</div><div class="line">        <span class="comment">//网络请求中的组件,发出请求时,false=&gt;true</span></div><div class="line">            <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">p</span>&gt;</span>Loading…<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span>;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> (</div><div class="line">            <span class="xml"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></span></div><div class="line">                &#123;this.state.items.map((item) =&gt; (</div><div class="line">                    <span class="tag">&lt;<span class="name">li</span> <span class="attr">key</span>=<span class="string">&#123;item.id&#125;</span>&gt;</span></div><div class="line">                        &#123;item.label&#125;</div><div class="line">                    <span class="tag">&lt;/<span class="name">li</span>&gt;</span></div><div class="line">                ))&#125;</div><div class="line">            <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></div><div class="line">        );</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> ItemList;</div></pre></td></tr></table></figure>
+<p>  可能看起来还不是特别能说明问题,但是已经是一个好的开端了.<br>  渲染的时候,组件输出四个items列表,但是如果你把<code>isLoading</code>和<code>hasError</code>的state由false改为false的时候,对应的<code>&lt;p&gt;&lt;/p&gt;</code>就会显示出来.(注意每个组件都是return出来的,每次只显示一个).</p>
+<h2 id="改为动态值"><a href="#改为动态值" class="headerlink" title="改为动态值"></a>改为动态值</h2><p>  直接编码items对于组件来说不是特别有用,所以最好从JSON API来fetch <code>items</code>数据,如果这样做的话,我们就可以把<code>isLoading</code>和<code>hasError</code>改为合适的状态.<br>  响应值和我们直接编码是一样,但是在实际生产中,你可能会拉回一个图书畅销榜的列表,最新的blog帖子或者其他app中需要的内容.<br>  为了fetch items,我们将使用合适的Fetch API.Fetch使得执行请求比传统的XMLHttpRequest更容易,并且返回的是响应值的promise对象(这一点对于Thunk很重要).Fetch并不是在所有的浏览器中都可以使用,所以你需要在项目中添加依赖项.</p>
+  <figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm <span class="keyword">install</span> whatwg-<span class="keyword">fetch</span> <span class="comment">--save</span></div></pre></td></tr></table></figure>
+<p>  转变实际上相当简单.</p>
+<ul>
+<li>首先把<code>items</code>的初始化state设置为空数组</li>
+<li><p>现在我们添加一个方法fetch数据,同时还要设定loading和error的状态.</p>
+<figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">  fetchData(url) &#123;<span class="regexp">//</span>fetch的包装方法</div><div class="line">    <span class="regexp">//</span>进入函数首先设定isLoading state <span class="literal">false</span>=&gt;<span class="literal">true</span></div><div class="line">    <span class="keyword">this</span>.setState(&#123; isLoading: <span class="literal">true</span> &#125;);</div><div class="line">    fetch(url)</div><div class="line">        .<span class="keyword">then</span>(<span class="function"><span class="params">(response)</span> =&gt;</span> &#123;<span class="regexp">//</span>返回promise独享</div><div class="line">            <span class="keyword">if</span> (!response.ok) &#123;</div><div class="line">                <span class="keyword">throw</span> Error(response.statusText);</div><div class="line">            &#125;</div><div class="line">            <span class="regexp">//</span>不管返回的数据是什么,只要返回数据</div><div class="line">            <span class="regexp">//</span>就修改isLoading state <span class="literal">true</span>=&gt;<span class="literal">false</span></div><div class="line">            <span class="keyword">this</span>.setState(&#123; isLoading: <span class="literal">false</span> &#125;);</div><div class="line">            <span class="keyword">return</span> response;</div><div class="line">        &#125;)</div><div class="line">        .<span class="keyword">then</span>(<span class="function"><span class="params">(response)</span> =&gt;</span> response.json())</div><div class="line">        .<span class="keyword">then</span>(<span class="function"><span class="params">(items)</span> =&gt;</span> <span class="keyword">this</span>.setState(&#123; items &#125;)) </div><div class="line">        <span class="regexp">//</span> ES6 property value shorthand <span class="keyword">for</span> &#123; items: items &#125;</div><div class="line">        .<span class="keyword">catch</span>(<span class="function"><span class="params">()</span> =&gt;</span> <span class="keyword">this</span>.setState(&#123; hasErrored: <span class="literal">true</span> &#125;));<span class="regexp">//</span>返回数据的解析为json,如果捕获到错误就hasErrored:</div><div class="line">        <span class="regexp">//</span> <span class="literal">false</span>=&gt;<span class="literal">true</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<ul>
+<li><p>函数写完以后,在组件加载的时候就调用函数</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">  componentDidMount() &#123;</div><div class="line">  <span class="keyword">this</span>.fetchData(<span class="string">'http://      5826ed963900d612000138bd.mockapi.io/items'</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p> 完成以后,代码如下<br> <figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">  <span class="class"><span class="keyword">class</span> <span class="title">ItemList</span> <span class="keyword">extends</span> <span class="title">Component</span> &#123;</span></div><div class="line">    constructor() &#123;</div><div class="line">        <span class="keyword">this</span>.state = &#123;</div><div class="line">            items: [],</div><div class="line">        &#125;;</div><div class="line">    &#125;</div><div class="line">    fetchData(url) &#123;</div><div class="line">        <span class="keyword">this</span>.setState(&#123; isLoading: <span class="literal">true</span> &#125;);</div><div class="line">        fetch(url)</div><div class="line">            .<span class="keyword">then</span>(<span class="function"><span class="params">(response)</span> =&gt;</span> &#123;</div><div class="line">                <span class="keyword">if</span> (!response.ok) &#123;</div><div class="line">                    <span class="keyword">throw</span> Error(response.statusText);</div><div class="line">                &#125;</div><div class="line">                <span class="keyword">this</span>.setState(&#123; isLoading: <span class="literal">false</span> &#125;);</div><div class="line">                <span class="keyword">return</span> response;</div><div class="line">            &#125;)</div><div class="line">            .<span class="keyword">then</span>(<span class="function"><span class="params">(response)</span> =&gt;</span> response.json())</div><div class="line">            .<span class="keyword">then</span>(<span class="function"><span class="params">(items)</span> =&gt;</span> <span class="keyword">this</span>.setState(&#123; items &#125;))</div><div class="line">            .<span class="keyword">catch</span>(<span class="function"><span class="params">()</span> =&gt;</span> <span class="keyword">this</span>.setState(&#123; hasErrored: <span class="literal">true</span> &#125;));</div><div class="line">    &#125;</div><div class="line">    componentDidMount() &#123;</div><div class="line">        <span class="keyword">this</span>.fetchData(<span class="string">'http://5826ed963900d612000138bd.mockapi.io/items'</span>);</div><div class="line">    &#125;</div><div class="line">    render() &#123;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p> 差不多了,组件现在从REST API  fetch <code>items</code>数据,在4个items到达之前,你希望看”Loading…”出现提示.如果URL不能返回数据,你应该看到error 的信息.</p>
+<p> 然而(译注：讨厌的然而),在现实中,组件不应该包含具体的fetch逻辑,data也不应该储存在组件的state中,所以Redux实时的出现了.</p>
+<h2 id="转变到Redux"><a href="#转变到Redux" class="headerlink" title="转变到Redux"></a>转变到Redux</h2><p> 需要添加Redux, React Redux 和Redux Thunk作为依赖项.</p>
+ <figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm <span class="keyword">install</span> redux react-redux redux-thunk <span class="comment">--save</span></div></pre></td></tr></table></figure>
+<h2 id="理解Redux"><a href="#理解Redux" class="headerlink" title="理解Redux"></a>理解Redux</h2><p> 有几个Redux的核心原理,我们必须要理解(译注：话很简单,但是要在大脑里构建出Redux的工作流程是有花很多时间的和精力的).</p>
+<ol>
+<li>Redux中有一个全局state对象来管理整个应用的state.在篇文章中,全局对象就是我们组件的初始化对象.</li>
+<li>唯一能改变state的是触发一个action,action是一个描述state应该怎么改变的对象,Action Creators可以被<code>dispatch</code>ed的函数,触发一个变化,执行的内容是返回一个action</li>
+<li>当一个action被dispatch以后,Reducer执行根据action的内容实际改变state对象,如果action没有找到匹配项,就会返回默认的state.</li>
+<li><code>Reducers是纯函数,他们不能有任何的异步操作和mutate-必须要返回一个修改的copy</code>.</li>
+<li>单个的Reducer可以被combine为一个单一的<code>rootReducer</code>,从而创建一个离散的state聚合体.</li>
+<li>Store是把action和reducer组织到一起的工具,他包含了<code>rootReducer</code>代表的状态,中间件,允许你执行实际的<code>dispatch</code>actions</li>
+<li>为了在React中使用Redux,<code>&lt;Provider /&gt;</code>组件包装整个应用,传递<code>store</code>到子代组件们.</li>
+</ol>
+<h2 id="设计我们的state"><a href="#设计我们的state" class="headerlink" title="设计我们的state"></a>设计我们的state</h2><p>从我们现在已有的代码里,可以知道我们的state需要3个属性(properties)：<code>items</code>,<code>hasErrored</code>,<code>isLoading</code>,这个三个属性相应的需要三个独立的actions.</p>
+<p>现在,这里讲讲为什么Action Creator和Action是不同的,他们也不是1：1的关系:我们需要第四个actiong creator来根据fetch data的不同状态调用其他三个action(creators).这第四个action creator几乎和我们原先的<code>fetchData()</code>一样,但是它不会直接的使用<code>this.setState({isLoading:true})</code>来设置状态,我们将<code>dispatch</code>一个action去做同样的事情:<code>dispatch(isLoading(true))</code>.</p>
+<h2 id="创建actions"><a href="#创建actions" class="headerlink" title="创建actions"></a>创建actions</h2><p>在actions目录下创建itmes.js文件,其中包含我们的action creators.创建三个简单的actions.</p>
+<pre><code><figure class="highlight ada"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">     export <span class="keyword">function</span> <span class="title">itemsHasErrored</span>(bool) &#123;</div><div class="line">    <span class="keyword">return</span> <span class="type">&#123;</span></div><div class="line">        <span class="keyword">type</span>: <span class="symbol">'ITEMS_HAS_ERRORED</span>',</div><div class="line">        hasErrored: bool</div><div class="line">    &#125;;</div><div class="line">&#125;</div><div class="line">export <span class="keyword">function</span> <span class="title">itemsIsLoading</span>(bool) &#123;</div><div class="line">    <span class="keyword">return</span> <span class="type">&#123;</span></div><div class="line">        <span class="keyword">type</span>: <span class="symbol">'ITEMS_IS_LOADING</span>',</div><div class="line">        isLoading: bool</div><div class="line">    &#125;;</div><div class="line">&#125;</div><div class="line">export <span class="keyword">function</span> <span class="title">itemsFetchDataSuccess</span>(items) &#123;</div><div class="line">    <span class="keyword">return</span> <span class="type">&#123;</span></div><div class="line">        <span class="keyword">type</span>: <span class="symbol">'ITEMS_FETCH_DATA_SUCCESS</span>',</div><div class="line">        items</div><div class="line">    &#125;;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+
+如前面提到的,action creators似能返回函数的函数,使用`export`输出单个action creators,便于在代码中使用.
+第二个action creators接受一个布尔值(true/false)最为参数,返回一个有意义的`type`和布尔值,分配合适的属性.
+第三个,`itemsFetchSuccess()`,当数据成功返回以后,传递数据作为`items`属性的值.通过ES6的魔术属性缩写,我们能够返回一个对象含有属性名叫做`items`,他的值是`items`的数组.
+</code></pre><p>   （Note: that the value you use for type and the name of the other property that is returned is important, because you will re-use them in your reducers）这一句不知道怎么翻译.<br>   现在,我们有了三个actions,代表我们的状态,把原来的组件方法<code>fetchData</code>该给<code>itemFetchDaga()</code>action creator.<br>   默认情况下,Redux action creators是不支持异步actions的,像是fetching data的操作,所以这里我们使用Redux Thunk.Thunk允许你在action creator里返回一个函数代替实际的action.内部函数接受<code>dispatch</code>和<code>getState</code>作为参数,但是我们仅仅使用<code>dispatch</code>.<br>   实际的简单例子中五秒以后将会触发<code>itemHasErrored()</code>函数.</p>
+   <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">    <span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">errorAfterFiveSeconds</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="comment">// We return a function instead of an action object</span></div><div class="line">    <span class="comment">//dispatch作为参数传递给胖箭头函数</span></div><div class="line">    <span class="keyword">return</span> <span class="function">(<span class="params">dispatch</span>) =&gt;</span> &#123;</div><div class="line">        setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</div><div class="line">            <span class="comment">// This function is able to dispatch other action creators</span></div><div class="line">            dispatch(itemsHasErrored(<span class="literal">true</span>));</div><div class="line">        &#125;, <span class="number">5000</span>);</div><div class="line">    &#125;;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>   现在我们知道thunk是什么了.编写<code>itemsFetchData()</code>.</p>
+   <figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">    <span class="keyword">export</span> function itemsFetchData(url) &#123;</div><div class="line">    <span class="keyword">return</span> (dispatch) =&gt; &#123;</div><div class="line">        <span class="regexp">//</span>已进入fetchdata,按顺序把isLoading state 由</div><div class="line">        <span class="regexp">//</span> <span class="literal">false</span>=&gt;<span class="literal">true</span></div><div class="line">        dispatch(itemsIsLoading(<span class="literal">true</span>));</div><div class="line">        <span class="regexp">//</span>fetch执行实际的异步远程获取数据操作</div><div class="line">        fetch(url) </div><div class="line">            .<span class="keyword">then</span>(<span class="function"><span class="params">(response)</span> =&gt;</span> &#123;</div><div class="line">                <span class="keyword">if</span> (!response.ok) &#123;<span class="regexp">//</span>根据状态抛出错误</div><div class="line">                    <span class="keyword">throw</span> Error(response.statusText);</div><div class="line">                &#125;</div><div class="line">                <span class="regexp">//i</span>sLoading又改为<span class="literal">false</span>,加载Loading组件</div><div class="line">                dispatch(itemsIsLoading(<span class="literal">false</span>));</div><div class="line">                <span class="keyword">return</span> response;</div><div class="line">            &#125;)</div><div class="line">            .<span class="keyword">then</span>(<span class="function"><span class="params">(response)</span> =&gt;</span> response.json())</div><div class="line">            .<span class="keyword">then</span>(<span class="function"><span class="params">(items)</span> =&gt;</span> dispatch(itemsFetchDataSuccess(items)))</div><div class="line">            .<span class="keyword">catch</span>(<span class="function"><span class="params">()</span> =&gt;</span> </div><div class="line">            dispatch(itemsHasErrored(<span class="literal">true</span>)));</div><div class="line">            <span class="regexp">//</span>捕获错误以后HasError的状态 <span class="literal">false</span>=&gt;<span class="literal">true</span></div><div class="line">    &#125;;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="创建我们的reducers"><a href="#创建我们的reducers" class="headerlink" title="创建我们的reducers"></a>创建我们的reducers</h2><p> action定义好了以后,可以编写reducers接受actions,接着返回appliction的新状态(译注：实际上store中返回的对象都是一个新的对象,不是原对象的引用,这个就叫做immutable,facebook定义了一个immutable.js的技术实际是也是返回一个新的对象的硬拷贝,但是在原对象和修改对象之间共享了一部分内容,这一点有点微妙).<br> 注意：在Redux中,所有的reducers不考虑action,都会调用,所以即就是没有action被应用,你也必须要返回一个原来的定义的<code>state</code>.</p>
+<p> 每一个reducer接收两个参数,之前的state和一个<code>action</code>对象.也可以使用ES6的属性来调用默认的参数设定到默认的<code>初始化state</code>.</p>
+<p> 在每个reducer内部,使用<code>switch</code>申明来决定到底哪个<code>action.type</code>相匹配.如果是简单的reducer,可能没有必要使用<code>switch</code>,理论上使用<code>if/else</code>可能更快一点.</p>
+<p> 如果<code>action.type</code>一点匹配,然后会返回和<code>action</code>相关的属性.和前面提到的一样,<code>type</code>和<code>action[属性名]</code>是在action creators里定义的.</p>
+<p> 好啦,了解到这些内容,在<code>reducers/item.js</code>中创建items reducers<br> <figure class="highlight pf"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"> </div><div class="line"> export function itemsHasErrored(<span class="keyword">state</span> = false, action) &#123;</div><div class="line">    switch (action.type) &#123;</div><div class="line">        case 'ITEMS_HAS_ERRORED':</div><div class="line">            return action.hasErrored;</div><div class="line">        <span class="keyword">default</span>:</div><div class="line">            return <span class="keyword">state</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">export function itemsIsLoading(<span class="keyword">state</span> = false, action) &#123;</div><div class="line">    switch (action.type) &#123;</div><div class="line">        case 'ITEMS_IS_LOADING':</div><div class="line">            return action.isLoading;</div><div class="line">        <span class="keyword">default</span>:</div><div class="line">            return <span class="keyword">state</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">export function items(<span class="keyword">state</span> = [], action) &#123;</div><div class="line">    switch (action.type) &#123;</div><div class="line">        case 'ITEMS_FETCH_DATA_SUCCESS':</div><div class="line">            return action.items;</div><div class="line">        <span class="keyword">default</span>:</div><div class="line">            return <span class="keyword">state</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p> 注意reducer根据结果store的state属性来命名,<code>action.type</code>没有必要想对应.前两个表达完整的意思,第三个<code>items()</code>就稍微有点不同.</p>
+<p> 这是因为,可能会有很多条件返回<code>items</code>数组:有可能返回所有的数组,有可能在删除dispatch以后返回<code>items</code>的次级结构.或者所有的items都被删除了,会返回一个空数组.</p>
+<p> 为了重新遍历,每一个reducer都会返回一个截然不同的state属性,不需要考虑reducer内部的条件到底有多少.刚开始花了我很长时间想明白这个问题.<br> 单个的reducers创建好了以后,我们需要把单个的reducer合并(combine)成一个<code>rootReducer</code>,创建单一对象.</p>
+<p> 创建文件<code>reducers/index.js</code></p>
+ <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">  <span class="keyword">import</span> &#123; combineReducers &#125; <span class="keyword">from</span> <span class="string">'redux'</span>;</div><div class="line"><span class="keyword">import</span> &#123; items, itemsHasErrored, itemsIsLoading &#125; <span class="keyword">from</span> <span class="string">'./items'</span>;</div><div class="line"><span class="comment">//由于每个reducer返回的都是一个对象</span></div><div class="line"><span class="comment">//所以这里的操作就是合并对象的操作,在underscore和loadsh</span></div><div class="line"><span class="comment">//里面可以找到合并js对象的代码</span></div><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> combineReducers(&#123;</div><div class="line">    items,</div><div class="line">    itemsHasErrored,</div><div class="line">    itemsIsLoading</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p> 我们从<code>items</code>里导入每个reducers,使用redux的<code>combineReducers()</code>函数来合并输出单一对象(译注:所以每一个reducer返回的对象的属性名应该是唯一的,否则就覆盖了,前面的内容表达过这个意思)<br>因为我们的reducer的名字和在store中使用的属性名一样,所以我们可以使用ES6的对象字面量.</p>
+<p>注意,我有意提到了reducer的前缀,所以当我们的application变得比较复杂的时候,不能出现全局性的<code>hasErrored</code>和<code>isLoading</code>属性.可以使用不同的error和loading state,所以前缀可以给你很大的灵活性.例如<br>   <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">    <span class="keyword">import</span> &#123; combineReducers &#125; <span class="keyword">from</span> <span class="string">'redux'</span>;</div><div class="line"><span class="keyword">import</span> &#123; items, itemsHasErrored, itemsIsLoading &#125; <span class="keyword">from</span> <span class="string">'./items'</span>;</div><div class="line"><span class="keyword">import</span> &#123; posts, postsHasErrored, postsIsLoading &#125; <span class="keyword">from</span> <span class="string">'./posts'</span>;</div><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> combineReducers(&#123;</div><div class="line">    items,</div><div class="line">    itemsHasErrored,</div><div class="line">    itemsIsLoading,</div><div class="line">    posts,</div><div class="line">    postsHasErrored,</div><div class="line">    postsIsLoading</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<p>   替代方法是,可以在import的时候使用别名.但是我更愿意使用独一无二的名字.</p>
+<h2 id="配置store-注入到你的app中"><a href="#配置store-注入到你的app中" class="headerlink" title="配置store,注入到你的app中"></a>配置store,注入到你的app中</h2><p>操作很直接,创建<code>store/configureStore.js</code></p>
+  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">   <span class="keyword">import</span> &#123; createStore, applyMiddleware &#125; <span class="keyword">from</span> <span class="string">'redux'</span>;</div><div class="line"><span class="keyword">import</span> thunk <span class="keyword">from</span> <span class="string">'redux-thunk'</span>;</div><div class="line"><span class="keyword">import</span> rootReducer <span class="keyword">from</span> <span class="string">'../reducers'</span>;</div><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="function"><span class="keyword">function</span> <span class="title">configureStore</span>(<span class="params">initialState</span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> createStore(</div><div class="line">        rootReducer,</div><div class="line">        initialState,</div><div class="line">        applyMiddleware(thunk)</div><div class="line">    );</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>  现在在index.js中包含<code>&lt;Provider /&gt;</code>组件,<code>configureStore</code>,配置<code>store</code>.包装app(<code>&lt;ItemList /&gt;</code>),传递进去<code>store</code>和<code>props</code>.</p>
+  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">   <span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span>;</div><div class="line"><span class="keyword">import</span> &#123; render &#125; <span class="keyword">from</span> <span class="string">'react-dom'</span>;</div><div class="line"><span class="keyword">import</span> &#123; Provider &#125; <span class="keyword">from</span> <span class="string">'react-redux'</span>;</div><div class="line"><span class="keyword">import</span> configureStore <span class="keyword">from</span> <span class="string">'./store/configureStore'</span>;</div><div class="line"><span class="keyword">import</span> ItemList <span class="keyword">from</span> <span class="string">'./components/ItemList'</span>;</div><div class="line"><span class="keyword">const</span> store = configureStore(); <span class="comment">// You can also pass in an initialState here</span></div><div class="line">render(</div><div class="line">    <span class="xml"><span class="tag">&lt;<span class="name">Provider</span> <span class="attr">store</span>=<span class="string">&#123;store&#125;</span>&gt;</span></span></div><div class="line">        <span class="tag">&lt;<span class="name">ItemList</span> /&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">Provider</span>&gt;</span>,</div><div class="line">    <span class="built_in">document</span>.getElementById(<span class="string">'app'</span>)</div><div class="line">);</div></pre></td></tr></table></figure>
+<p>  我知道,其实花了很多努力才到了这一步,但是随着设置的完成,我们就可以使用配置来操纵我们的组件了(译注:这里是意译,组件又称为木偶组件,意思很清楚吧？谁是拿着吊线的人呢？就是redux).</p>
+<h2 id="把组件转化为使用Redux-store和方法"><a href="#把组件转化为使用Redux-store和方法" class="headerlink" title="把组件转化为使用Redux store和方法"></a>把组件转化为使用Redux store和方法</h2><p>  跳回到<code>components/ItemList.js</code></p>
+<p>  在顶部导入需要的部分<br>  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">   <span class="keyword">import</span> &#123; connect &#125; <span class="keyword">from</span> <span class="string">'react-redux'</span>;</div><div class="line"><span class="keyword">import</span> &#123; itemsFetchData &#125; <span class="keyword">from</span> <span class="string">'../actions/items'</span>;</div></pre></td></tr></table></figure></p>
+<p>  <code>connect</code>可以让组件链接到Redux的store,<code>itemsFetchData</code>是在开始写的action creator.我们仅仅需要导入actin creator.使用<code>dispatch</code>来触发actions.(译注:redux里面有很多内容其实是很基础的,例如这里,javascript的函数是一类对象,在js中函数是传引用的,所以函数名可以作为函数的引用,通过另一函数的参数来传递. 厉害 👍).<br>  在组件类定义好了以后,我们可以把Redux的state和action creator的dispatch映射到props上.<br>  创建一个函数,接受<code>state</code>返回一个props对象.在简单的组件中,可以把前缀去掉.</p>
+  <figure class="highlight pf"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">   const mapStateToProps = (<span class="keyword">state</span>) =&gt; &#123;</div><div class="line">    return &#123;</div><div class="line">        items: <span class="keyword">state</span>.items,</div><div class="line">        hasErrored: <span class="keyword">state</span>.itemsHasErrored,</div><div class="line">        isLoading: <span class="keyword">state</span>.itemsIsLoading</div><div class="line">    &#125;;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p> 接着我们需要另一函数在props中<code>dispatch</code>我们的<code>itemsFetchData()</code>函数.</p>
+ <figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">  const mapDispatchToProps = (dispatch) =&gt; &#123;</div><div class="line">    <span class="keyword">return</span> &#123;</div><div class="line"><span class="symbol">        fetchData:</span> (url) =&gt; dispatch(itemsFetchData(url))</div><div class="line">    &#125;<span class="comment">;</span></div><div class="line">&#125;<span class="comment">;</span></div><div class="line"> ``` </div><div class="line"> </div><div class="line"> 还是把`item`前缀去掉.这里的fetchData函数接受一个`url`参数,返回</div><div class="line"> 派发调用`itemsFetchData(url)`操作.</div><div class="line"> </div><div class="line"> 现在,`mapStatetoProps()`和`mapDispatchToProps()`还不能做什么事情,需要改变一下代码</div></pre></td></tr></table></figure>
+<p> export default connect(mapStateToProps, mapDispatchToProps)(ItemList);<br> <figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"> `connect`函数把组件连接到Redux,同时映射了需要用到的props.</div><div class="line"> </div><div class="line"> 最后一步是使用props替换掉state.</div><div class="line"> </div><div class="line"> * 删掉`constructor()&#123;&#125;`和`fetchData()&#123;&#125;`</div><div class="line"> * 在`componentDidMount()`里把`this.fetchData()`改为`this.props.fetchData()`.</div><div class="line"> * `this.state.x` 统一改为`this.props.X`.</div><div class="line"></div><div class="line">你的组件看起来应该是</div></pre></td></tr></table></figure></p>
+<p>   import React, { Component } from ‘react’;<br>import { connect } from ‘react-redux’;<br>import { itemsFetchData } from ‘../actions/items’;<br>class ItemList extends Component {<br>    componentDidMount() {<br>        this.props.fetchData(‘<a href="http://5826ed963900d612000138bd.mockapi.io/items" target="_blank" rel="external">http://5826ed963900d612000138bd.mockapi.io/items</a>‘);<br>    }<br>    render() {<br>        if (this.props.hasErrored) {<br>            return </p><p>Sorry! There was an error loading the items</p>;<br>        }<br>        if (this.props.isLoading) {<br>            return <p>Loading…</p>;<br>        }<br>        return (<br>            <ul><br>                {this.props.items.map((item) =&gt; (<br>                    <li key="{item.id}"><br>                        {item.label}<br>                    </li><br>                ))}<br>            </ul><br>        );<br>    }<br>}<br>const mapStateToProps = (state) =&gt; {<br>    return {<br>        items: state.items,<br>        hasErrored: state.itemsHasErrored,<br>        isLoading: state.itemsIsLoading<br>    };<br>};<br>const mapDispatchToProps = (dispatch) =&gt; {<br>    return {<br>        fetchData: (url) =&gt; dispatch(itemsFetchData(url))<br>    };<br>};<br>export default connect(mapStateToProps, mapDispatchToProps)(ItemList);<br>  ```<p></p>
+<p>  好了,application现在使用Redux和Redux thunk来fetch和显示数据.</p>
+<p>  也不是太困难，是不是？</p>
+<p>  你现在也是Redux大师了 :D</p>
+<h2 id="接下来做什么？"><a href="#接下来做什么？" class="headerlink" title="接下来做什么？"></a>接下来做什么？</h2><p>  我在github提交了每一步的代码.我希望你克隆和理解他,然后添加根据items的id删除item的功能.</p>
+<p>  我没有真正提到Redux的内容是,state是immutable,意识是你不能修改他.所以在reducers中每次都要返回一个新的state,上面的三个reducers比较简单,刚刚好可以工作.但是如果是从items的数组中删除操作,你可能不熟悉.<br>  你不能再使用<code>Array.protype.splice()</code>来从数组中移除items.因为这样做会mutate之前的state.<a href="https://egghead.io/lessons/javascript-redux-avoiding-array-mutations-with-concat-slice-and-spread" target="_blank" rel="external">Dan在视频中讲解了怎么从数组中删除一个元素</a>.如果你坚持要做,可以看看<code>delete-items</code>分支,可以找到解决办法.</p>
+<p>  我真切的希望这篇文章讲明了Redux和Thunk的原理以及怎么把现有的React application转变到使用redux.写作过程巩固了我对Redux的理解(译注:翻译过程也巩固了我的理解),所以我很高兴这么做(译注：so do I 😁).</p>
+<p>   下面有点不翻了。</p>
+<blockquote>
+<p>我个人觉得这篇文章却似写的非常的好.强烈推荐.</p>
+</blockquote>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Redux/" rel="tag"># Redux</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/04/13/翻译-Using-normalizr-js-in-a-Redux-store-–-Farmdrop-–-Medium/" rel="next" title="翻译|Using normalizr.js in a Redux store – Farmdrop – Medium">
+                <i class="fa fa-chevron-left"></i> 翻译|Using normalizr.js in a Redux store – Farmdrop – Medium
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpeg"
+               alt="phpsmarter" />
+          <p class="site-author-name" itemprop="name">phpsmarter</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">88</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Redux和Thunk的使用傻瓜教程"><span class="nav-number">1.</span> <span class="nav-text">Redux和Thunk的使用傻瓜教程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#非Redux方法"><span class="nav-number">1.1.</span> <span class="nav-text">非Redux方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#罗列一下基础组件"><span class="nav-number">1.2.</span> <span class="nav-text">罗列一下基础组件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#改为动态值"><span class="nav-number">1.3.</span> <span class="nav-text">改为动态值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#转变到Redux"><span class="nav-number">1.4.</span> <span class="nav-text">转变到Redux</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#理解Redux"><span class="nav-number">1.5.</span> <span class="nav-text">理解Redux</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#设计我们的state"><span class="nav-number">1.6.</span> <span class="nav-text">设计我们的state</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建actions"><span class="nav-number">1.7.</span> <span class="nav-text">创建actions</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建我们的reducers"><span class="nav-number">1.8.</span> <span class="nav-text">创建我们的reducers</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置store-注入到你的app中"><span class="nav-number">1.9.</span> <span class="nav-text">配置store,注入到你的app中</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#把组件转化为使用Redux-store和方法"><span class="nav-number">1.10.</span> <span class="nav-text">把组件转化为使用Redux store和方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#接下来做什么？"><span class="nav-number">1.11.</span> <span class="nav-text">接下来做什么？</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-phone"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">phpsmarter</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+<div class="theme-info">
+  主题 - 
+  <a theme-link href="http://www.aikuaidi.cn/" target="_blank" >快递查询</a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("0kGBxj215XRijm6VofFkzlws-gzGzoHsz", "V2FDLF52mPXum5Hh6wvwGpEk");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+
+</body>
+</html>
